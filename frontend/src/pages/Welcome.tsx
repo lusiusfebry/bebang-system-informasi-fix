@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Welcome() {
     const navigate = useNavigate();
+    const { user, logout } = useAuth();
 
     const modules = [
         {
@@ -41,6 +43,10 @@ export default function Welcome() {
         },
     ];
 
+    const handleLogout = () => {
+        logout();
+    };
+
     return (
         <div className="min-h-screen bg-background-light dark:bg-background-dark">
             {/* Header */}
@@ -62,12 +68,19 @@ export default function Welcome() {
                             <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                                 <span className="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
                             </button>
+                            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-800">
+                                <span className="material-symbols-outlined text-primary">account_circle</span>
+                                <div className="hidden sm:block">
+                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-200">{user?.fullName || 'User'}</p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">{user?.role || 'Unknown'}</p>
+                                </div>
+                            </div>
                             <button
-                                onClick={() => navigate('/login')}
-                                className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                onClick={handleLogout}
+                                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors"
                             >
-                                <span className="material-symbols-outlined text-gray-600 dark:text-gray-300">account_circle</span>
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Admin</span>
+                                <span className="material-symbols-outlined text-lg">logout</span>
+                                <span className="text-sm font-medium hidden sm:inline">Logout</span>
                             </button>
                         </div>
                     </div>

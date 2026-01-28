@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import { connectDatabase, disconnectDatabase } from './config/database';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { requestLogger } from './middleware/logger';
+import authRoutes from './routes/auth.routes';
 
 // Load environment variables
 dotenv.config();
@@ -51,6 +52,9 @@ app.get('/api', (_req: Request, res: Response) => {
         version: '1.0.0',
     });
 });
+
+// Auth routes
+app.use('/api/auth', authRoutes);
 
 // 404 handler
 app.use(notFoundHandler);
