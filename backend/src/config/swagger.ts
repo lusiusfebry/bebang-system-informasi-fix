@@ -406,6 +406,7 @@ const swaggerOptions: swaggerJsdoc.Options = {
         },
         tags: [
             { name: 'Auth', description: 'Authentication endpoints' },
+            { name: 'Employee Management', description: 'Manajemen data karyawan' },
             { name: 'Divisi', description: 'Divisi master data' },
             { name: 'Department', description: 'Department master data' },
             { name: 'Posisi Jabatan', description: 'Posisi Jabatan master data' },

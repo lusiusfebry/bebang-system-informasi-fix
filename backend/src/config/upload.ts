@@ -7,8 +7,9 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 
-// Ensure upload directories exist
-const UPLOAD_BASE_DIR = process.env.UPLOAD_DIR || 'uploads';
+// Ensure upload directories exist - use absolute path for consistency with static serving
+const UPLOAD_DIR_NAME = process.env.UPLOAD_DIR || 'uploads';
+const UPLOAD_BASE_DIR = path.resolve(process.cwd(), UPLOAD_DIR_NAME);
 const EMPLOYEE_PHOTO_DIR = path.join(UPLOAD_BASE_DIR, 'employees', 'photos');
 const EMPLOYEE_DOC_DIR = path.join(UPLOAD_BASE_DIR, 'employees', 'documents');
 

@@ -34,8 +34,9 @@ app.use(compression());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Serve static files for uploads
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+// Serve static files for uploads - use absolute path aligned with upload config
+const uploadDir = process.env.UPLOAD_DIR || 'uploads';
+app.use('/uploads', express.static(path.resolve(process.cwd(), uploadDir)));
 
 // Request logging
 app.use(requestLogger);
@@ -64,6 +65,10 @@ app.use('/api/auth', authRoutes);
 
 // HR Master Data routes
 app.use('/api/hr/master', hrMasterRoutes);
+
+// Employee Management routes
+import employeeRoutes from './routes/employee.routes';
+app.use('/api/hr/employees', employeeRoutes);
 
 // Setup Swagger documentation
 setupSwagger(app);
