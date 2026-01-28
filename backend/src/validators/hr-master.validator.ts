@@ -13,6 +13,14 @@ const statusMasterEnum = z.enum(['AKTIF', 'TIDAK_AKTIF']).default('AKTIF');
 const hexColorPattern = /^#[0-9A-Fa-f]{6}$/;
 
 // ==========================================
+// Path Parameter Schema (untuk validasi ID di URL)
+// ==========================================
+
+export const idParamsSchema = z.object({
+    id: z.string().uuid('ID harus berformat UUID yang valid'),
+});
+
+// ==========================================
 // Divisi Schemas
 // ==========================================
 

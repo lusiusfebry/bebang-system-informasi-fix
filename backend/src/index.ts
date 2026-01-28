@@ -8,6 +8,8 @@ import { connectDatabase, disconnectDatabase } from './config/database';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { requestLogger } from './middleware/logger';
 import authRoutes from './routes/auth.routes';
+import hrMasterRoutes from './routes/hr-master.routes';
+import { setupSwagger } from './config/swagger';
 
 // Load environment variables
 dotenv.config();
@@ -55,6 +57,12 @@ app.get('/api', (_req: Request, res: Response) => {
 
 // Auth routes
 app.use('/api/auth', authRoutes);
+
+// HR Master Data routes
+app.use('/api/hr/master', hrMasterRoutes);
+
+// Setup Swagger documentation
+setupSwagger(app);
 
 // 404 handler
 app.use(notFoundHandler);
