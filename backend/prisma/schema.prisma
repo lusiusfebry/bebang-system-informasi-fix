@@ -22,6 +22,9 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  // Relations
+  managedDepartments Department[]
+
   @@map("users")
 }
 
@@ -31,3 +34,151 @@ enum Role {
   HR_MANAGER
   VIEWER
 }
+
+// Status untuk Master Data HR
+enum StatusMaster {
+  AKTIF
+  TIDAK_AKTIF
+}
+
+// ==========================================
+// HR MASTER DATA MODELS
+// ==========================================
+
+// Divisi Model
+model Divisi {
+  id          String       @id @default(uuid())
+  namaDivisi  String
+  keterangan  String?
+  status      StatusMaster @default(AKTIF)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  // Relations
+  departments Department[]
+
+  @@unique([namaDivisi])
+  @@map("divisi")
+}
+
+// Department Model
+model Department {
+  id             String       @id @default(uuid())
+  namaDepartment String
+  managerId      String?      // FK ke User/Karyawan (nullable)
+  divisiId       String       // FK ke Divisi
+  keterangan     String?
+  status         StatusMaster @default(AKTIF)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  // Relations
+  divisi         Divisi          @relation(fields: [divisiId], references: [id])
+  manager        User?           @relation(fields: [managerId], references: [id])
+  posisiJabatan  PosisiJabatan[]
+
+  @@map("department")
+}
+
+// Posisi Jabatan Model
+model PosisiJabatan {
+  id                String       @id @default(uuid())
+  namaPosisiJabatan String
+  departmentId      String       // FK ke Department
+  keterangan        String?
+  status            StatusMaster @default(AKTIF)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  // Relations
+  department Department @relation(fields: [departmentId], references: [id])
+
+  @@map("posisi_jabatan")
+}
+
+// Kategori Pangkat Model
+model KategoriPangkat {
+  id                 String       @id @default(uuid())
+  namaKategoriPangkat String
+  keterangan         String?
+  status             StatusMaster @default(AKTIF)
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  @@map("kategori_pangkat")
+}
+
+// Golongan Model
+model Golongan {
+  id           String       @id @default(uuid())
+  namaGolongan String
+  keterangan   String?
+  status       StatusMaster @default(AKTIF)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@map("golongan")
+}
+
+// Sub Golongan Model
+model SubGolongan {
+  id              String       @id @default(uuid())
+  namaSubGolongan String
+  keterangan      String?
+  status          StatusMaster @default(AKTIF)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@map("sub_golongan")
+}
+
+// Jenis Hubungan Kerja Model
+model JenisHubunganKerja {
+  id                     String       @id @default(uuid())
+  namaJenisHubunganKerja String
+  keterangan             String?
+  status                 StatusMaster @default(AKTIF)
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
+
+  @@map("jenis_hubungan_kerja")
+}
+
+// Tag Model
+model Tag {
+  id         String       @id @default(uuid())
+  namaTag    String
+  warnaTag   String       // Hex color code (#RRGGBB)
+  keterangan String?
+  status     StatusMaster @default(AKTIF)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@map("tag")
+}
+
+// Lokasi Kerja Model
+model LokasiKerja {
+  id              String       @id @default(uuid())
+  namaLokasiKerja String
+  alamat          String?
+  keterangan      String?
+  status          StatusMaster @default(AKTIF)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@map("lokasi_kerja")
+}
+
+// Status Karyawan Model
+model StatusKaryawan {
+  id         String       @id @default(uuid())
+  namaStatus String
+  keterangan String?
+  status     StatusMaster @default(AKTIF)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@map("status_karyawan")
+}
+
