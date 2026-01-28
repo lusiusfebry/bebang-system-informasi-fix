@@ -44,6 +44,9 @@ const mockTag = {
     updatedAt: new Date('2024-01-01'),
 };
 
+// Valid UUID format but non-existent in database
+const nonExistentId = '00000000-0000-0000-0000-000000000000';
+
 describe('HR Master Routes Integration Tests', () => {
     let app: Express;
 
@@ -120,7 +123,7 @@ describe('HR Master Routes Integration Tests', () => {
             prismaMock.divisi.findUnique.mockResolvedValue(null);
 
             const response = await request(app)
-                .get('/api/hr/master/divisi/non-existent-id');
+                .get(`/api/hr/master/divisi/${nonExistentId}`);
 
             expect(response.status).toBe(404);
             expect(response.body.success).toBe(false);
@@ -188,7 +191,7 @@ describe('HR Master Routes Integration Tests', () => {
             prismaMock.divisi.findUnique.mockResolvedValue(null);
 
             const response = await request(app)
-                .put('/api/hr/master/divisi/non-existent-id')
+                .put(`/api/hr/master/divisi/${nonExistentId}`)
                 .send({
                     namaDivisi: 'Updated',
                 });
@@ -222,7 +225,7 @@ describe('HR Master Routes Integration Tests', () => {
             prismaMock.divisi.findUnique.mockResolvedValue(null);
 
             const response = await request(app)
-                .delete('/api/hr/master/divisi/non-existent-id');
+                .delete(`/api/hr/master/divisi/${nonExistentId}`);
 
             expect(response.status).toBe(404);
         });
@@ -314,7 +317,7 @@ describe('HR Master Routes Integration Tests', () => {
             prismaMock.divisi.findUnique.mockResolvedValue(null);
 
             const response = await request(app)
-                .get('/api/hr/master/divisi/non-existent');
+                .get(`/api/hr/master/divisi/${nonExistentId}`);
 
             expect(response.body).toHaveProperty('success', false);
             expect(response.body).toHaveProperty('error');
