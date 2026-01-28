@@ -267,6 +267,192 @@ async function main() {
     }
     console.log('  ✅ Status Karyawan: 4 records');
 
+    // ==========================================
+    // EMPLOYEE DATA SEEDING (Development Only)
+    // ==========================================
+
+    console.log('');
+    console.log('👤 Seeding Employee Data...');
+
+    const KARYAWAN_IDS = {
+        manager1: 'd1e2f3g4-1111-4ddd-eeee-111111111111',
+        staff1: 'd1e2f3g4-2222-4ddd-eeee-222222222222',
+        staff2: 'd1e2f3g4-3333-4ddd-eeee-333333333333',
+    };
+
+    // Get existing master data IDs for relations
+    const statusAktif = await prisma.statusKaryawan.findFirst({ where: { namaStatus: 'Aktif' } });
+    const lokasiJakarta = await prisma.lokasiKerja.findFirst({ where: { namaLokasiKerja: 'Kantor Pusat Jakarta' } });
+    const jhkTetap = await prisma.jenisHubunganKerja.findFirst({ where: { namaJenisHubunganKerja: 'Karyawan Tetap' } });
+
+    // Seed 3 sample employees
+    const karyawanData = [
+        {
+            id: KARYAWAN_IDS.manager1,
+            nomorIndukKaryawan: 'EMP001',
+            namaLengkap: 'Budi Santoso',
+            jenisKelamin: 'LAKI_LAKI' as const,
+            nomorHandphone: '081234567890',
+            emailPerusahaan: 'budi.santoso@bebang.local',
+            divisiId: DIVISI_IDS.operasional,
+            departmentId: DEPT_IDS.hr,
+            posisiJabatanId: POSISI_IDS.hrManager,
+            statusKaryawanId: statusAktif?.id,
+            lokasiKerjaId: lokasiJakarta?.id,
+            jenisHubunganKerjaId: jhkTetap?.id,
+            tempatLahir: 'Jakarta',
+            tanggalLahir: new Date('1985-05-15'),
+            agama: 'ISLAM' as const,
+            golonganDarah: 'A' as const,
+            nomorKtp: '3174051505850001',
+            alamatDomisili: 'Jl. Sudirman No. 123, Jakarta',
+            kotaDomisili: 'Jakarta',
+            provinsiDomisili: 'DKI Jakarta',
+            statusPernikahan: 'MENIKAH' as const,
+            jumlahAnak: 2,
+            tanggalMasuk: new Date('2020-01-15'),
+        },
+        {
+            id: KARYAWAN_IDS.staff1,
+            nomorIndukKaryawan: 'EMP002',
+            namaLengkap: 'Siti Nurhaliza',
+            jenisKelamin: 'PEREMPUAN' as const,
+            nomorHandphone: '081234567891',
+            emailPerusahaan: 'siti.nurhaliza@bebang.local',
+            divisiId: DIVISI_IDS.operasional,
+            departmentId: DEPT_IDS.hr,
+            posisiJabatanId: POSISI_IDS.hrStaff,
+            managerId: KARYAWAN_IDS.manager1,
+            atasanLangsungId: KARYAWAN_IDS.manager1,
+            statusKaryawanId: statusAktif?.id,
+            lokasiKerjaId: lokasiJakarta?.id,
+            jenisHubunganKerjaId: jhkTetap?.id,
+            tempatLahir: 'Bandung',
+            tanggalLahir: new Date('1990-08-20'),
+            agama: 'ISLAM' as const,
+            golonganDarah: 'B' as const,
+            nomorKtp: '3273082008900002',
+            alamatDomisili: 'Jl. Asia Afrika No. 45, Bandung',
+            kotaDomisili: 'Bandung',
+            provinsiDomisili: 'Jawa Barat',
+            statusPernikahan: 'BELUM_MENIKAH' as const,
+            jumlahAnak: 0,
+            tanggalMasuk: new Date('2021-03-10'),
+        },
+        {
+            id: KARYAWAN_IDS.staff2,
+            nomorIndukKaryawan: 'EMP003',
+            namaLengkap: 'Ahmad Hidayat',
+            jenisKelamin: 'LAKI_LAKI' as const,
+            nomorHandphone: '081234567892',
+            emailPerusahaan: 'ahmad.hidayat@bebang.local',
+            divisiId: DIVISI_IDS.it,
+            departmentId: DEPT_IDS.itSupport,
+            posisiJabatanId: POSISI_IDS.itStaff,
+            statusKaryawanId: statusAktif?.id,
+            lokasiKerjaId: lokasiJakarta?.id,
+            jenisHubunganKerjaId: jhkTetap?.id,
+            tempatLahir: 'Surabaya',
+            tanggalLahir: new Date('1992-12-10'),
+            agama: 'ISLAM' as const,
+            golonganDarah: 'O' as const,
+            nomorKtp: '3578101012920003',
+            alamatDomisili: 'Jl. Tunjungan No. 67, Surabaya',
+            kotaDomisili: 'Surabaya',
+            provinsiDomisili: 'Jawa Timur',
+            statusPernikahan: 'MENIKAH' as const,
+            jumlahAnak: 1,
+            tanggalMasuk: new Date('2022-06-01'),
+        },
+    ];
+
+    for (const karyawan of karyawanData) {
+        await prisma.karyawan.upsert({
+            where: { id: karyawan.id },
+            update: karyawan,
+            create: karyawan,
+        });
+    }
+    console.log('  ✅ Karyawan: 3 records');
+
+    // Seed Anak untuk karyawan yang punya anak
+    const anakData = [
+        {
+            id: randomUUID(),
+            karyawanId: KARYAWAN_IDS.manager1,
+            urutanAnak: 1,
+            namaAnak: 'Andi Santoso',
+            jenisKelamin: 'LAKI_LAKI' as const,
+            tanggalLahir: new Date('2010-03-15'),
+        },
+        {
+            id: randomUUID(),
+            karyawanId: KARYAWAN_IDS.manager1,
+            urutanAnak: 2,
+            namaAnak: 'Ani Santoso',
+            jenisKelamin: 'PEREMPUAN' as const,
+            tanggalLahir: new Date('2012-07-20'),
+        },
+        {
+            id: randomUUID(),
+            karyawanId: KARYAWAN_IDS.staff2,
+            urutanAnak: 1,
+            namaAnak: 'Fatimah Hidayat',
+            jenisKelamin: 'PEREMPUAN' as const,
+            tanggalLahir: new Date('2020-01-10'),
+        },
+    ];
+
+    for (const anak of anakData) {
+        const existing = await prisma.anak.findFirst({
+            where: {
+                karyawanId: anak.karyawanId,
+                urutanAnak: anak.urutanAnak,
+            },
+        });
+        if (!existing) {
+            await prisma.anak.create({ data: anak });
+        }
+    }
+    console.log('  ✅ Anak: 3 records');
+
+    // Seed Saudara Kandung (sample)
+    const saudaraKandungData = [
+        {
+            id: randomUUID(),
+            karyawanId: KARYAWAN_IDS.manager1,
+            urutanSaudara: 1,
+            namaSaudaraKandung: 'Bambang Santoso',
+            jenisKelamin: 'LAKI_LAKI' as const,
+            tanggalLahir: new Date('1983-02-10'),
+            pendidikanTerakhir: 'S1',
+            pekerjaan: 'Dokter',
+        },
+        {
+            id: randomUUID(),
+            karyawanId: KARYAWAN_IDS.manager1,
+            urutanSaudara: 2,
+            namaSaudaraKandung: 'Citra Santoso',
+            jenisKelamin: 'PEREMPUAN' as const,
+            tanggalLahir: new Date('1987-09-25'),
+            pendidikanTerakhir: 'S2',
+            pekerjaan: 'Dosen',
+        },
+    ];
+
+    for (const saudara of saudaraKandungData) {
+        const existing = await prisma.saudaraKandung.findFirst({
+            where: {
+                karyawanId: saudara.karyawanId,
+                urutanSaudara: saudara.urutanSaudara,
+            },
+        });
+        if (!existing) {
+            await prisma.saudaraKandung.create({ data: saudara });
+        }
+    }
+    console.log('  ✅ Saudara Kandung: 2 records');
+
     console.log('');
     console.log('🔐 DEV-ONLY Credentials (passwords are hashed in DB):');
     console.log(`   Admin: NIK=${DEV_CREDENTIALS.admin.nik}, Password=${DEV_CREDENTIALS.admin.password}`);

@@ -1,12 +1,12 @@
 /**
  * GenericMasterList Component
- * Halaman list generik untuk master data sederhana
+ * Halaman list generik untuk master data sederhana dengan sorting support
  */
 
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DataTable, SearchFilter, Pagination, DeleteConfirmDialog, useToast } from '../../../components/common';
-import type { TableColumn } from '../../../components/common';
+import type { TableColumn, SortState } from '../../../components/common';
 import { useHRMasterData } from '../../../hooks/useHRMasterData';
 import { GenericMasterFormModal } from './components/GenericMasterFormModal';
 import type { HRMasterEntityType, StatusMaster, HRMasterData } from '../../../types/hr-master.types';
@@ -50,17 +50,38 @@ export function GenericMasterList<T extends HRMasterData>({
     const [selectedItem, setSelectedItem] = useState<T | null>(null);
     const [submitting, setSubmitting] = useState(false);
 
+    // Sorting state
+    const [sortState, setSortState] = useState<SortState | undefined>(undefined);
+
     const { data, loading, meta, fetchData, createItem, updateItem, deleteItem } =
         useHRMasterData<T>(entityType, { autoFetch: false });
 
+    // Build sort string for API (e.g., "namaDivisi:asc" or "createdAt:desc")
+    const buildSortString = (sort?: SortState): string | undefined => {
+        if (!sort) return undefined;
+        return `${sort.key}:${sort.direction}`;
+    };
+
     useEffect(() => {
-        fetchData({ page: currentPage, limit, search: searchTerm || undefined, status: statusFilter || undefined });
-    }, [currentPage, limit, searchTerm, statusFilter, fetchData]);
+        fetchData({
+            page: currentPage,
+            limit,
+            search: searchTerm || undefined,
+            status: statusFilter || undefined,
+            sort: buildSortString(sortState),
+        });
+    }, [currentPage, limit, searchTerm, statusFilter, sortState, fetchData]);
 
     const handleSearch = useCallback((search: string) => { setSearchTerm(search); setCurrentPage(1); }, []);
     const handleStatusFilter = useCallback((status: StatusMaster | '') => { setStatusFilter(status); setCurrentPage(1); }, []);
     const handlePageChange = useCallback((page: number) => { setCurrentPage(page); }, []);
     const handleLimitChange = useCallback((newLimit: number) => { setLimit(newLimit); setCurrentPage(1); }, []);
+
+    // Handle sort change
+    const handleSort = useCallback((sort: SortState) => {
+        setSortState(sort);
+        setCurrentPage(1); // Reset to first page when sorting changes
+    }, []);
 
     const handleCreate = () => { setSelectedItem(null); setIsFormModalOpen(true); };
     const handleEdit = (item: T) => { setSelectedItem(item); setIsFormModalOpen(true); };
@@ -73,15 +94,32 @@ export function GenericMasterList<T extends HRMasterData>({
         try {
             if (selectedItem) {
                 const result = await updateItem(selectedItem.id, formData);
-                if (result) { showToast(`${title} berhasil diperbarui`, 'success'); handleCloseFormModal(); fetchData({ page: currentPage, limit, search: searchTerm || undefined, status: statusFilter || undefined }); }
-                else showToast(`Gagal memperbarui ${title.toLowerCase()}`, 'error');
+                if (result) {
+                    showToast(`${title} berhasil diperbarui`, 'success');
+                    handleCloseFormModal();
+                    fetchData({ page: currentPage, limit, search: searchTerm || undefined, status: statusFilter || undefined, sort: buildSortString(sortState) });
+                } else {
+                    showToast(`Gagal memperbarui ${title.toLowerCase()}`, 'error');
+                }
             } else {
                 const result = await createItem(formData);
-                if (result) { showToast(`${title} berhasil ditambahkan`, 'success'); handleCloseFormModal(); fetchData({ page: 1, limit }); setCurrentPage(1); setSearchTerm(''); setStatusFilter(''); }
-                else showToast(`Gagal menambahkan ${title.toLowerCase()}`, 'error');
+                if (result) {
+                    showToast(`${title} berhasil ditambahkan`, 'success');
+                    handleCloseFormModal();
+                    fetchData({ page: 1, limit });
+                    setCurrentPage(1);
+                    setSearchTerm('');
+                    setStatusFilter('');
+                    setSortState(undefined);
+                } else {
+                    showToast(`Gagal menambahkan ${title.toLowerCase()}`, 'error');
+                }
             }
-        } catch { showToast('Terjadi kesalahan', 'error'); }
-        finally { setSubmitting(false); }
+        } catch {
+            showToast('Terjadi kesalahan', 'error');
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     const handleConfirmDelete = async () => {
@@ -89,10 +127,18 @@ export function GenericMasterList<T extends HRMasterData>({
         setSubmitting(true);
         try {
             const success = await deleteItem(selectedItem.id);
-            if (success) { showToast(`${title} berhasil dihapus`, 'success'); handleCloseDeleteDialog(); fetchData({ page: currentPage, limit, search: searchTerm || undefined, status: statusFilter || undefined }); }
-            else showToast(`Gagal menghapus ${title.toLowerCase()}`, 'error');
-        } catch { showToast('Terjadi kesalahan', 'error'); }
-        finally { setSubmitting(false); }
+            if (success) {
+                showToast(`${title} berhasil dihapus`, 'success');
+                handleCloseDeleteDialog();
+                fetchData({ page: currentPage, limit, search: searchTerm || undefined, status: statusFilter || undefined, sort: buildSortString(sortState) });
+            } else {
+                showToast(`Gagal menghapus ${title.toLowerCase()}`, 'error');
+            }
+        } catch {
+            showToast('Terjadi kesalahan', 'error');
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     // Format entity type for breadcrumb display
@@ -123,7 +169,17 @@ export function GenericMasterList<T extends HRMasterData>({
                 <SearchFilter onSearch={handleSearch} onFilterStatus={handleStatusFilter} placeholder={`Cari ${title.toLowerCase()}...`} initialSearch={searchTerm} initialStatus={statusFilter} />
             </div>
 
-            <DataTable columns={columns} data={data} loading={loading} keyExtractor={(item) => item.id} onEdit={handleEdit} onDelete={handleDelete} emptyMessage={`Tidak ada data ${title.toLowerCase()}`} />
+            <DataTable
+                columns={columns}
+                data={data}
+                loading={loading}
+                keyExtractor={(item) => item.id}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                emptyMessage={`Tidak ada data ${title.toLowerCase()}`}
+                sortState={sortState}
+                onSort={handleSort}
+            />
 
             {meta && meta.totalPages > 0 && (
                 <Pagination currentPage={currentPage} totalPages={meta.totalPages} totalItems={meta.total} itemsPerPage={limit} onPageChange={handlePageChange} onLimitChange={handleLimitChange} />

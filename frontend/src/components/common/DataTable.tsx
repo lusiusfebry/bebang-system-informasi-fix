@@ -7,6 +7,15 @@ import React from 'react';
 import StatusBadge from './StatusBadge';
 import type { StatusMaster } from '../../types/hr-master.types';
 
+// Sort direction type
+export type SortDirection = 'asc' | 'desc';
+
+// Sort state type
+export interface SortState {
+    key: string;
+    direction: SortDirection;
+}
+
 // Column definition
 export interface TableColumn<T> {
     header: string;
@@ -24,6 +33,9 @@ interface DataTableProps<T> {
     onDelete?: (item: T) => void;
     emptyMessage?: string;
     keyExtractor: (item: T) => string;
+    // Sorting props
+    sortState?: SortState;
+    onSort?: (sort: SortState) => void;
 }
 
 // Loading skeleton row
@@ -67,6 +79,28 @@ const EmptyState: React.FC<{ message: string; colSpan: number }> = ({ message, c
     </tr>
 );
 
+// Sort icon component
+const SortIcon: React.FC<{ direction?: SortDirection; isActive: boolean }> = ({ direction, isActive }) => (
+    <span className={`ml-1 inline-flex ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400'}`}>
+        {!isActive || !direction ? (
+            // Default sort icon (both arrows)
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+            </svg>
+        ) : direction === 'asc' ? (
+            // Ascending icon
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            </svg>
+        ) : (
+            // Descending icon
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+        )}
+    </span>
+);
+
 // Helper function to get nested property
 const getNestedValue = <T,>(obj: T, path: string): unknown => {
     const keys = path.split('.');
@@ -89,8 +123,25 @@ export function DataTable<T extends { status?: StatusMaster }>({
     onDelete,
     emptyMessage = 'Tidak ada data',
     keyExtractor,
+    sortState,
+    onSort,
 }: DataTableProps<T>) {
     const totalColumns = columns.length + (onEdit || onDelete ? 1 : 0);
+
+    // Handle sort click
+    const handleSortClick = (column: TableColumn<T>) => {
+        if (!column.sortable || !onSort) return;
+
+        const key = column.accessor as string;
+        let direction: SortDirection = 'asc';
+
+        // Toggle direction if already sorted by this column
+        if (sortState?.key === key) {
+            direction = sortState.direction === 'asc' ? 'desc' : 'asc';
+        }
+
+        onSort({ key, direction });
+    };
 
     return (
         <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
@@ -98,16 +149,31 @@ export function DataTable<T extends { status?: StatusMaster }>({
                 {/* Table Header */}
                 <thead className="bg-gray-50 dark:bg-gray-800">
                     <tr>
-                        {columns.map((column, index) => (
-                            <th
-                                key={index}
-                                scope="col"
-                                className={`px-6 py-3 text-left text-xs font-semibold text-gray-600 
-                                    dark:text-gray-300 uppercase tracking-wider ${column.className || ''}`}
-                            >
-                                {column.header}
-                            </th>
-                        ))}
+                        {columns.map((column, index) => {
+                            const isSortable = column.sortable && onSort;
+                            const isActive = sortState?.key === column.accessor;
+
+                            return (
+                                <th
+                                    key={index}
+                                    scope="col"
+                                    onClick={() => isSortable && handleSortClick(column)}
+                                    className={`px-6 py-3 text-left text-xs font-semibold text-gray-600 
+                                        dark:text-gray-300 uppercase tracking-wider ${column.className || ''}
+                                        ${isSortable ? 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 select-none transition-colors' : ''}`}
+                                >
+                                    <div className="flex items-center">
+                                        {column.header}
+                                        {isSortable && (
+                                            <SortIcon
+                                                direction={isActive ? sortState?.direction : undefined}
+                                                isActive={isActive}
+                                            />
+                                        )}
+                                    </div>
+                                </th>
+                            );
+                        })}
                         {(onEdit || onDelete) && (
                             <th
                                 scope="col"

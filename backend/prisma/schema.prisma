@@ -42,6 +42,54 @@ enum StatusMaster {
 }
 
 // ==========================================
+// EMPLOYEE ENUMS
+// ==========================================
+
+enum JenisKelamin {
+  LAKI_LAKI
+  PEREMPUAN
+}
+
+enum Agama {
+  ISLAM
+  KRISTEN
+  KATOLIK
+  HINDU
+  BUDDHA
+  KONGHUCU
+}
+
+enum GolonganDarah {
+  A
+  B
+  AB
+  O
+}
+
+enum StatusPernikahan {
+  BELUM_MENIKAH
+  MENIKAH
+  CERAI_HIDUP
+  CERAI_MATI
+}
+
+enum StatusKelulusan {
+  LULUS
+  TIDAK_LULUS
+  SEDANG_BELAJAR
+}
+
+enum TingkatPendidikan {
+  SD
+  SMP
+  SMA
+  D3
+  S1
+  S2
+  S3
+}
+
+// ==========================================
 // HR MASTER DATA MODELS
 // ==========================================
 
@@ -56,6 +104,7 @@ model Divisi {
 
   // Relations
   departments Department[]
+  karyawan    Karyawan[]
 
   @@unique([namaDivisi])
   @@map("divisi")
@@ -76,6 +125,7 @@ model Department {
   divisi         Divisi          @relation(fields: [divisiId], references: [id])
   manager        User?           @relation(fields: [managerId], references: [id])
   posisiJabatan  PosisiJabatan[]
+  karyawan       Karyawan[]
 
   @@map("department")
 }
@@ -84,26 +134,30 @@ model Department {
 model PosisiJabatan {
   id                String       @id @default(uuid())
   namaPosisiJabatan String
-  departmentId      String       // FK ke Department
+  departmentId      String?      // FK ke Department (nullable)
   keterangan        String?
   status            StatusMaster @default(AKTIF)
   createdAt         DateTime     @default(now())
   updatedAt         DateTime     @updatedAt
 
   // Relations
-  department Department @relation(fields: [departmentId], references: [id])
+  department Department? @relation(fields: [departmentId], references: [id])
+  karyawan   Karyawan[]
 
   @@map("posisi_jabatan")
 }
 
 // Kategori Pangkat Model
 model KategoriPangkat {
-  id                 String       @id @default(uuid())
+  id                  String       @id @default(uuid())
   namaKategoriPangkat String
-  keterangan         String?
-  status             StatusMaster @default(AKTIF)
-  createdAt          DateTime     @default(now())
-  updatedAt          DateTime     @updatedAt
+  keterangan          String?
+  status              StatusMaster @default(AKTIF)
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  // Relations
+  karyawan Karyawan[]
 
   @@map("kategori_pangkat")
 }
@@ -117,6 +171,9 @@ model Golongan {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
+  // Relations
+  karyawan Karyawan[]
+
   @@map("golongan")
 }
 
@@ -129,6 +186,9 @@ model SubGolongan {
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
 
+  // Relations
+  karyawan Karyawan[]
+
   @@map("sub_golongan")
 }
 
@@ -140,6 +200,9 @@ model JenisHubunganKerja {
   status                 StatusMaster @default(AKTIF)
   createdAt              DateTime     @default(now())
   updatedAt              DateTime     @updatedAt
+
+  // Relations
+  karyawan Karyawan[]
 
   @@map("jenis_hubungan_kerja")
 }
@@ -154,6 +217,9 @@ model Tag {
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
 
+  // Relations
+  karyawan Karyawan[]
+
   @@map("tag")
 }
 
@@ -167,6 +233,10 @@ model LokasiKerja {
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
 
+  // Relations
+  karyawan          Karyawan[] @relation("KaryawanLokasiKerja")
+  karyawanSebelumnya Karyawan[] @relation("KaryawanLokasiSebelumnya")
+
   @@map("lokasi_kerja")
 }
 
@@ -179,6 +249,208 @@ model StatusKaryawan {
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
 
+  // Relations
+  karyawan Karyawan[]
+
   @@map("status_karyawan")
+}
+
+// ==========================================
+// EMPLOYEE MODELS
+// ==========================================
+
+// Karyawan Model (Main Employee Table)
+model Karyawan {
+  id                   String    @id @default(uuid())
+  
+  // Head Section
+  fotoKaryawan         String?
+  namaLengkap          String
+  nomorIndukKaryawan   String    @unique
+  divisiId             String?
+  departmentId         String?
+  managerId            String?
+  atasanLangsungId     String?
+  posisiJabatanId      String?
+  emailPerusahaan      String?
+  nomorHandphone       String
+  statusKaryawanId     String?
+  lokasiKerjaId        String?
+  tagId                String?
+  
+  // Personal Information
+  jenisKelamin         JenisKelamin?
+  tempatLahir          String?
+  tanggalLahir         DateTime?
+  emailPribadi         String?
+  agama                Agama?
+  golonganDarah        GolonganDarah?
+  nomorKartuKeluarga   String?
+  nomorKtp             String?
+  nomorNpwp            String?
+  nomorBpjs            String?
+  noNikKk              String?
+  statusPajak          String?
+  alamatDomisili       String?
+  kotaDomisili         String?
+  provinsiDomisili     String?
+  alamatKtp            String?
+  kotaKtp              String?
+  provinsiKtp          String?
+  nomorHandphone2      String?
+  nomorTeleponRumah1   String?
+  nomorTeleponRumah2   String?
+  statusPernikahan     StatusPernikahan?
+  namaPasangan         String?
+  tanggalMenikah       DateTime?
+  tanggalCerai         DateTime?
+  tanggalWafatPasangan DateTime?
+  pekerjaanPasangan    String?
+  jumlahAnak           Int?      @default(0)
+  nomorRekening        String?
+  namaPemegangRekening String?
+  namaBank             String?
+  cabangBank           String?
+  
+  // HR Information
+  jenisHubunganKerjaId  String?
+  tanggalMasukGroup     DateTime?
+  tanggalMasuk          DateTime?
+  tanggalPermanent      DateTime?
+  tanggalKontrak        DateTime?
+  tanggalAkhirKontrak   DateTime?
+  tanggalBerhenti       DateTime?
+  tingkatPendidikan     TingkatPendidikan?
+  bidangStudi           String?
+  namaSekolah           String?
+  kotaSekolah           String?
+  statusKelulusan       StatusKelulusan?
+  keteranganPendidikan  String?
+  kategoriPangkatId     String?
+  golonganPangkatId     String?
+  subGolonganPangkatId  String?
+  noDanaPensiun         String?
+  namaKontakDarurat1    String?
+  nomorTeleponKontakDarurat1 String?
+  hubunganKontakDarurat1 String?
+  alamatKontakDarurat1  String?
+  namaKontakDarurat2    String?
+  nomorTeleponKontakDarurat2 String?
+  hubunganKontakDarurat2 String?
+  alamatKontakDarurat2  String?
+  pointOfOriginal       String?
+  pointOfHire           String?
+  ukuranSeragamKerja    String?
+  ukuranSepatuKerja     String?
+  lokasiSebelumnyaId    String?
+  tanggalMutasi         DateTime?
+  siklusPembayaranGaji  String?
+  costing               String?
+  assign                String?
+  actual                String?
+  
+  // Family Information
+  tanggalLahirPasangan       DateTime?
+  pendidikanTerakhirPasangan String?
+  keteranganPasangan         String?
+  anakKe                     Int?
+  jumlahSaudaraKandung       Int?      @default(0)
+  namaAyahMertua             String?
+  tanggalLahirAyahMertua     DateTime?
+  pendidikanTerakhirAyahMertua String?
+  keteranganAyahMertua       String?
+  namaIbuMertua              String?
+  tanggalLahirIbuMertua      DateTime?
+  pendidikanTerakhirIbuMertua String?
+  keteranganIbuMertua        String?
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  divisi             Divisi?             @relation(fields: [divisiId], references: [id])
+  department         Department?         @relation(fields: [departmentId], references: [id])
+  manager            Karyawan?           @relation("ManagerRelation", fields: [managerId], references: [id])
+  atasanLangsung     Karyawan?           @relation("AtasanRelation", fields: [atasanLangsungId], references: [id])
+  posisiJabatan      PosisiJabatan?      @relation(fields: [posisiJabatanId], references: [id])
+  statusKaryawan     StatusKaryawan?     @relation(fields: [statusKaryawanId], references: [id])
+  lokasiKerja        LokasiKerja?        @relation("KaryawanLokasiKerja", fields: [lokasiKerjaId], references: [id])
+  tag                Tag?                @relation(fields: [tagId], references: [id])
+  jenisHubunganKerja JenisHubunganKerja? @relation(fields: [jenisHubunganKerjaId], references: [id])
+  kategoriPangkat    KategoriPangkat?    @relation(fields: [kategoriPangkatId], references: [id])
+  golonganPangkat    Golongan?           @relation(fields: [golonganPangkatId], references: [id])
+  subGolonganPangkat SubGolongan?        @relation(fields: [subGolonganPangkatId], references: [id])
+  lokasiSebelumnya   LokasiKerja?        @relation("KaryawanLokasiSebelumnya", fields: [lokasiSebelumnyaId], references: [id])
+  
+  // Reverse relations (self-reference)
+  bawahanAsManager   Karyawan[]          @relation("ManagerRelation")
+  bawahanAsAtasan    Karyawan[]          @relation("AtasanRelation")
+  
+  // Child tables
+  anak               Anak[]
+  saudaraKandung     SaudaraKandung[]
+  dokumen            DokumenKaryawan[]
+  
+  @@map("karyawan")
+}
+
+// Anak Model (Repeatable Data)
+model Anak {
+  id           String       @id @default(uuid())
+  karyawanId   String
+  urutanAnak   Int
+  namaAnak     String
+  jenisKelamin JenisKelamin
+  tanggalLahir DateTime
+  keterangan   String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  
+  // Relations
+  karyawan Karyawan @relation(fields: [karyawanId], references: [id], onDelete: Cascade)
+  
+  @@unique([karyawanId, urutanAnak])
+  @@map("anak")
+}
+
+// Saudara Kandung Model (Max 5)
+model SaudaraKandung {
+  id                 String        @id @default(uuid())
+  karyawanId         String
+  urutanSaudara      Int
+  namaSaudaraKandung String
+  jenisKelamin       JenisKelamin
+  tanggalLahir       DateTime?
+  pendidikanTerakhir String?
+  pekerjaan          String?
+  keterangan         String?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  
+  // Relations
+  karyawan Karyawan @relation(fields: [karyawanId], references: [id], onDelete: Cascade)
+  
+  @@unique([karyawanId, urutanSaudara])
+  @@map("saudara_kandung")
+}
+
+// Dokumen Karyawan Model (File Upload Tracking)
+model DokumenKaryawan {
+  id           String   @id @default(uuid())
+  karyawanId   String
+  jenisDokumen String
+  namaFile     String
+  pathFile     String
+  ukuranFile   Int
+  mimeType     String
+  keterangan   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Relations
+  karyawan Karyawan @relation(fields: [karyawanId], references: [id], onDelete: Cascade)
+  
+  @@map("dokumen_karyawan")
 }
 

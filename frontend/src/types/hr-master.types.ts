@@ -252,6 +252,7 @@ export interface MasterDataQueryParams {
     search?: string;
     divisiId?: string;
     departmentId?: string;
+    sort?: string; // Format: "field:direction" e.g. "namaDivisi:asc"
 }
 
 export interface PaginationMeta {

@@ -3,7 +3,7 @@
  * Generic hook untuk CRUD operations pada HR Master Data entities
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import * as hrMasterService from '../services/hr-master.service';
 import type {
     HRMasterEntityType,
@@ -40,16 +40,21 @@ export function useHRMasterData<T extends HRMasterData>(
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [meta, setMeta] = useState<PaginationMeta | null>(null);
-    const [currentParams, setCurrentParams] = useState<MasterDataQueryParams>(initialParams);
 
-    // Fetch data with pagination and filters
+    // Use ref to store current params without causing re-renders
+    const currentParamsRef = useRef<MasterDataQueryParams>(initialParams);
+
+    // Stable fetchData callback - only depends on entityType
     const fetchData = useCallback(async (params?: MasterDataQueryParams) => {
         setLoading(true);
         setError(null);
 
-        const queryParams = params || currentParams;
+        // Use passed params or fallback to stored params
+        const queryParams = params ?? currentParamsRef.current;
+
+        // Store params in ref for refetch
         if (params) {
-            setCurrentParams(params);
+            currentParamsRef.current = params;
         }
 
         try {
@@ -67,7 +72,7 @@ export function useHRMasterData<T extends HRMasterData>(
         } finally {
             setLoading(false);
         }
-    }, [entityType, currentParams]);
+    }, [entityType]);
 
     // Create new item
     const createItem = useCallback(async (createData: unknown): Promise<T | null> => {
@@ -126,10 +131,10 @@ export function useHRMasterData<T extends HRMasterData>(
         }
     }, [entityType]);
 
-    // Refetch with current params
+    // Refetch with current params (stored in ref)
     const refetch = useCallback(async () => {
-        await fetchData(currentParams);
-    }, [fetchData, currentParams]);
+        await fetchData(currentParamsRef.current);
+    }, [fetchData]);
 
     // Auto fetch on mount if enabled
     useEffect(() => {
