@@ -1,178 +1,159 @@
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import MainLayout from '../components/layout/MainLayout';
+import ModuleCard from '../components/ModuleCard';
+
+interface Module {
+    id: string;
+    name: string;
+    description: string;
+    icon: string;
+    path: string;
+    isHighlighted?: boolean;
+    comingSoon?: boolean;
+    isDashed?: boolean;
+}
+
+const modules: Module[] = [
+    {
+        id: 'hr',
+        name: 'Human Resources',
+        description: 'Kelola data karyawan, absensi, cuti, dan struktur organisasi perusahaan',
+        icon: 'groups',
+        path: '/hr',
+        isHighlighted: true,
+    },
+    {
+        id: 'inventory',
+        name: 'Inventory',
+        description: 'Kelola aset, peralatan, dan inventaris perusahaan',
+        icon: 'inventory_2',
+        path: '/inventory',
+        comingSoon: true,
+    },
+    {
+        id: 'mess',
+        name: 'Mess Management',
+        description: 'Kelola pengelolaan mess, katering, dan akomodasi karyawan',
+        icon: 'restaurant',
+        path: '/mess',
+        comingSoon: true,
+    },
+    {
+        id: 'building',
+        name: 'Building Management',
+        description: 'Kelola gedung, fasilitas, dan maintenance perusahaan',
+        icon: 'domain',
+        path: '/building',
+        comingSoon: true,
+    },
+    {
+        id: 'access-rights',
+        name: 'Access Rights',
+        description: 'Kelola hak akses, roles, dan permissions pengguna sistem',
+        icon: 'admin_panel_settings',
+        path: '/access-rights',
+        comingSoon: true,
+    },
+    {
+        id: 'request-module',
+        name: 'Request New Module',
+        description: 'Ajukan permintaan untuk modul baru yang dibutuhkan',
+        icon: 'add_circle',
+        path: '/request-module',
+        isDashed: true,
+    },
+];
 
 export default function Welcome() {
     const navigate = useNavigate();
-    const { user, logout } = useAuth();
+    const { user } = useAuth();
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const modules = [
-        {
-            id: 'hr',
-            name: 'Human Resources',
-            description: 'Kelola data karyawan, absensi, dan struktur organisasi',
-            icon: 'group',
-            color: 'bg-blue-500',
-            path: '/hr',
-        },
-        {
-            id: 'inventory',
-            name: 'Inventory',
-            description: 'Kelola aset dan inventaris perusahaan',
-            icon: 'inventory_2',
-            color: 'bg-green-500',
-            path: '/inventory',
-            comingSoon: true,
-        },
-        {
-            id: 'mess',
-            name: 'Mess Management',
-            description: 'Kelola pengelolaan mess dan akomodasi',
-            icon: 'home_work',
-            color: 'bg-orange-500',
-            path: '/mess',
-            comingSoon: true,
-        },
-        {
-            id: 'reports',
-            name: 'Reports',
-            description: 'Lihat laporan dan statistik',
-            icon: 'analytics',
-            color: 'bg-purple-500',
-            path: '/reports',
-            comingSoon: true,
-        },
-    ];
+    const filteredModules = useMemo(() => {
+        if (!searchQuery.trim()) return modules;
+        const query = searchQuery.toLowerCase();
+        return modules.filter(
+            (module) =>
+                module.name.toLowerCase().includes(query) ||
+                module.description.toLowerCase().includes(query)
+        );
+    }, [searchQuery]);
 
-    const handleLogout = () => {
-        logout();
+    const handleModuleClick = (module: Module) => {
+        if (!module.comingSoon) {
+            navigate(module.path);
+        }
     };
 
     return (
-        <div className="min-h-screen bg-background-light dark:bg-background-dark">
-            {/* Header */}
-            <header className="bg-white dark:bg-surface-dark shadow-soft">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                                <span className="material-symbols-outlined text-white">apartment</span>
-                            </div>
-                            <div>
-                                <h1 className="text-xl font-bold text-text-light dark:text-text-dark">
-                                    {import.meta.env.VITE_APP_NAME || 'Bebang Sistem Informasi'}
-                                </h1>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">Enterprise Portal</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                                <span className="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
-                            </button>
-                            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-800">
-                                <span className="material-symbols-outlined text-primary">account_circle</span>
-                                <div className="hidden sm:block">
-                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-200">{user?.fullName || 'User'}</p>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400">{user?.role || 'Unknown'}</p>
-                                </div>
-                            </div>
-                            <button
-                                onClick={handleLogout}
-                                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors"
-                            >
-                                <span className="material-symbols-outlined text-lg">logout</span>
-                                <span className="text-sm font-medium hidden sm:inline">Logout</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
+        <MainLayout onSearchChange={setSearchQuery}>
+            {/* Page Heading */}
+            <div className="mb-8">
+                <h1 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-2">
+                    Selamat Datang Kembali, {user?.fullName?.split(' ')[0] || 'User'}!
+                </h1>
+                <p className="text-lg text-gray-600 dark:text-gray-400">
+                    Pilih modul untuk mengelola layanan data enterprise Anda hari ini.
+                </p>
+            </div>
 
-            {/* Main Content */}
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Welcome Section */}
-                <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-text-light dark:text-text-dark mb-2">
-                        Selamat Datang! 👋
-                    </h2>
-                    <p className="text-gray-600 dark:text-gray-400">
-                        Pilih modul yang ingin Anda akses untuk memulai.
+            {/* Module Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {filteredModules.map((module) => (
+                    <ModuleCard
+                        key={module.id}
+                        id={module.id}
+                        name={module.name}
+                        description={module.description}
+                        icon={module.icon}
+                        isHighlighted={module.isHighlighted}
+                        comingSoon={module.comingSoon}
+                        isDashed={module.isDashed}
+                        onClick={() => handleModuleClick(module)}
+                    />
+                ))}
+            </div>
+
+            {/* No Results */}
+            {filteredModules.length === 0 && (
+                <div className="text-center py-12">
+                    <span className="material-symbols-outlined text-5xl text-gray-300 dark:text-gray-600 mb-4">
+                        search_off
+                    </span>
+                    <p className="text-lg text-gray-500 dark:text-gray-400">
+                        Tidak ada modul yang cocok dengan pencarian "{searchQuery}"
                     </p>
                 </div>
+            )}
 
-                {/* Module Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {modules.map((module) => (
-                        <div
-                            key={module.id}
-                            onClick={() => !module.comingSoon && navigate(module.path)}
-                            className={`card cursor-pointer hover:shadow-medium transition-all duration-300 transform hover:-translate-y-1 ${module.comingSoon ? 'opacity-60' : ''
-                                }`}
-                        >
-                            <div className="relative">
-                                {module.comingSoon && (
-                                    <span className="absolute -top-2 -right-2 px-2 py-0.5 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 text-xs font-medium rounded-full">
-                                        Segera Hadir
-                                    </span>
-                                )}
-                                <div className={`w-12 h-12 ${module.color} rounded-xl flex items-center justify-center mb-4`}>
-                                    <span className="material-symbols-outlined text-white text-2xl">{module.icon}</span>
-                                </div>
-                                <h3 className="text-lg font-semibold text-text-light dark:text-text-dark mb-2">
-                                    {module.name}
-                                </h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">{module.description}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Quick Stats */}
-                <div className="mt-12">
-                    <h3 className="text-lg font-semibold text-text-light dark:text-text-dark mb-4">
-                        Ringkasan Statistik
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="card">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-blue-600 dark:text-blue-400">group</span>
-                                </div>
-                                <div>
-                                    <p className="text-2xl font-bold text-text-light dark:text-text-dark">0</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">Total Karyawan</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-green-600 dark:text-green-400">inventory_2</span>
-                                </div>
-                                <div>
-                                    <p className="text-2xl font-bold text-text-light dark:text-text-dark">0</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">Total Inventaris</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-purple-600 dark:text-purple-400">trending_up</span>
-                                </div>
-                                <div>
-                                    <p className="text-2xl font-bold text-text-light dark:text-text-dark">-</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">Status Sistem</p>
-                                </div>
-                            </div>
-                        </div>
+            {/* Support Panel */}
+            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6 md:p-8">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <span className="material-symbols-outlined text-primary text-3xl">support_agent</span>
+                    </div>
+                    <div className="flex-1">
+                        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                            Butuh Bantuan?
+                        </h2>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Tim IT Support kami siap membantu Anda. Hubungi kami untuk pertanyaan teknis atau panduan penggunaan sistem.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                        <button className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                            <span className="material-symbols-outlined text-lg">call</span>
+                            Hubungi Support
+                        </button>
+                        <button className="px-6 py-3 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                            <span className="material-symbols-outlined text-lg">menu_book</span>
+                            Lihat Dokumentasi
+                        </button>
                     </div>
                 </div>
-            </main>
-
-            {/* Footer */}
-            <footer className="mt-auto py-6 text-center text-sm text-gray-500 dark:text-gray-400">
-                <p>© 2024 Bebang Sistem Informasi. All rights reserved.</p>
-            </footer>
-        </div>
+            </div>
+        </MainLayout>
     );
 }
