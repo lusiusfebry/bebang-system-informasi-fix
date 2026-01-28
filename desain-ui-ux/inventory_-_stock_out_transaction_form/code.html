@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory - Stock Out Transaction Form</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display">
+<div class="flex flex-col min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+</div>
+<nav class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Inventory</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">HR Master</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 flex border-none bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-100 dark:bg-slate-800 placeholder:text-slate-500 px-4 rounded-l-none pl-2 text-base font-normal leading-normal" placeholder="Search data..."/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200 dark:border-slate-700" data-alt="User avatar of the system administrator" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDj1D-ENBZ3B71E-AtXogN8lJCcnykCBk0JEEFqYZK6w_hZou3I90xDFKglmCZjvNnT9Y9H-usAqBnFxzHRIEd1DCbP8FVzsWHYcYzQxUq_B_48lbimCRYWFWm1DU1FSKFt9WKR0jaU0Pdfq_TojuHLDsyKdNWM8nIsBm0ZGarbqXnesMfVegaid7dKZgvhu8tkd2yLzqmDuuwdr947Xg9RA11H2W2LVqe5ZaqiELa59BvoDIM0ZDKoZmO_BCTP58O-A7ykZynZtH8");'></div>
+</div>
+</header>
+<div class="flex flex-1 max-w-screen-2xl mx-auto w-full">
+<!-- Sidebar -->
+<aside class="w-64 flex flex-col justify-between bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-4 shrink-0 overflow-y-auto">
+<div class="flex flex-col gap-6">
+<div class="flex gap-3 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-10" data-alt="Company logo for PT Prima Sarana Gemilang" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDq_q5aCohDgj_7OPizoc5qv2KAhlKS9xduyV73qIQIvePtwBAcv4YaJ_pea6tmyFvn3nqcZwQ9uXHx-1lxrbzcmX8eFJPGwIi22JGY2a1H8fmWAf0dvy6aCbzHSlajm0xxGtPLa5xdyYIzJ098_wGLi7CkP5Se6R17kS3cLGyr3GXO3iGWikEy7Joo1QblCPhkT3-z4xtg5dFlZicwW-awYT-EmVdRgMOfrZMgW5drctte2PKLd6vQ9gT6fxrgghruSexK--41to");'></div>
+<div class="flex flex-col overflow-hidden">
+<h1 class="text-slate-900 dark:text-white text-sm font-bold leading-tight truncate">PT Prima Sarana Gemilang</h1>
+<p class="text-slate-500 text-xs font-normal leading-normal">Inventory Services</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">move_to_inbox</span>
+<span class="text-sm font-medium">Stock In</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">outbox</span>
+<span class="text-sm font-bold">Stock Out</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-sm font-medium">Inventory List</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">warehouse</span>
+<span class="text-sm font-medium">Warehouses</span>
+</a>
+<div class="pt-4 pb-2">
+<p class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Administration</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">badge</span>
+<span class="text-sm font-medium">HR Master</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-sm font-medium">Audit Trail</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto px-8 py-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-4">
+<a class="text-slate-500 text-sm font-medium hover:text-primary" href="#">Inventory</a>
+<span class="text-slate-400 text-sm font-medium">/</span>
+<a class="text-slate-500 text-sm font-medium hover:text-primary" href="#">Transactions</a>
+<span class="text-slate-400 text-sm font-medium">/</span>
+<span class="text-slate-900 dark:text-white text-sm font-bold">Stock Out</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between gap-3 mb-8">
+<div class="flex flex-col gap-1">
+<h1 class="text-slate-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Stock Out Transaction</h1>
+<p class="text-slate-500 text-base font-normal">Record items issued from inventory to departments or employees.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 font-bold text-sm bg-white dark:bg-slate-800">
+<span class="material-symbols-outlined">history</span>
+                            Transaction History
+                        </button>
+</div>
+</div>
+<!-- Form Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<h2 class="text-slate-900 dark:text-white text-lg font-bold">Transaction Details</h2>
+<p class="text-slate-500 text-xs mt-1 uppercase tracking-wide">Step 1: Header Information</p>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-slate-700 dark:text-slate-300">Transaction Date <span class="text-red-500">*</span></label>
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary" type="date" value="2023-10-27"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-slate-700 dark:text-slate-300">Requisition Number <span class="text-red-500">*</span></label>
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary" placeholder="REQ-2023-0012" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                                Requesting Department
+                                <span class="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded uppercase font-bold dark:bg-blue-900/30 dark:text-blue-400">HR Linked</span>
+</label>
+<select class="form-select w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Select Department</option>
+<option selected="">Mining Operations</option>
+<option>Human Resources</option>
+<option>Finance &amp; Accounting</option>
+<option>Safety &amp; Environment</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                                Receiving Employee
+                                <span class="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded uppercase font-bold dark:bg-blue-900/30 dark:text-blue-400">HR Linked</span>
+</label>
+<select class="form-select w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Select Employee</option>
+<option selected="">Ahmad Junaidi (EMP-882)</option>
+<option>Budi Santoso (EMP-412)</option>
+<option>Citra Lestari (EMP-103)</option>
+</select>
+</div>
+</div>
+<div class="p-6 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<div class="flex justify-between items-center">
+<div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold">Line Items Selection</h2>
+<p class="text-slate-500 text-xs mt-1 uppercase tracking-wide">Step 2: Add Inventory Items</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg font-bold text-sm hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">add</span>
+                                Add Item
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/30">
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Item Name / SKU</th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">UoM</th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Available Stock</th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider w-40">Quantity to Issue</th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-slate-100 dark:border-slate-800">
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-bold text-sm">Industrial Safety Helmet (Z-100)</span>
+<span class="text-slate-400 text-xs">PPE-00122934</span>
+</div>
+</td>
+<td class="p-4 text-center">
+<span class="text-slate-600 dark:text-slate-400 text-sm">PCS</span>
+</td>
+<td class="p-4 text-right">
+<span class="inline-flex items-center rounded-md bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-bold text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20">42 Units Available</span>
+</td>
+<td class="p-4">
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary text-right" type="number" value="10"/>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-red-500 p-2">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-slate-100 dark:border-slate-800 bg-red-50/20 dark:bg-red-900/10">
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-bold text-sm">Heavy Duty Work Gloves (XL)</span>
+<span class="text-slate-400 text-xs">PPE-00445512</span>
+</div>
+</td>
+<td class="p-4 text-center">
+<span class="text-slate-600 dark:text-slate-400 text-sm">PAIR</span>
+</td>
+<td class="p-4 text-right">
+<span class="inline-flex items-center rounded-md bg-orange-50 dark:bg-orange-900/20 px-2 py-1 text-xs font-bold text-orange-700 dark:text-orange-400 ring-1 ring-inset ring-orange-600/20">5 Pairs Available</span>
+</td>
+<td class="p-4">
+<div class="relative">
+<input class="form-input w-full rounded-lg border-red-500 dark:border-red-900 bg-white dark:bg-slate-800 text-red-600 dark:text-red-400 focus:ring-red-500 text-right" type="number" value="15"/>
+<div class="absolute -bottom-5 right-0">
+<span class="text-[10px] text-red-600 font-bold">Insufficient Stock!</span>
+</div>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-red-500 p-2">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-slate-100 dark:border-slate-800">
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-bold text-sm">High-Visibility Safety Vest (M)</span>
+<span class="text-slate-400 text-xs">PPE-00991122</span>
+</div>
+</td>
+<td class="p-4 text-center">
+<span class="text-slate-600 dark:text-slate-400 text-sm">PCS</span>
+</td>
+<td class="p-4 text-right">
+<span class="inline-flex items-center rounded-md bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-bold text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20">120 Units Available</span>
+</td>
+<td class="p-4">
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary text-right" type="number" value="1"/>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-red-500 p-2">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-slate-700 dark:text-slate-300">Purpose / Notes</label>
+<textarea class="form-textarea w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Provide a reason for the stock issuance (e.g., Replacement for damaged gear, New intake issuance...)" rows="3"></textarea>
+</div>
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-800 flex justify-end items-center gap-4">
+<button class="px-6 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            Cancel &amp; Reset
+                        </button>
+<div class="group relative">
+<button class="px-8 py-2.5 bg-primary text-white rounded-lg font-bold text-sm shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2" disabled="">
+<span class="material-symbols-outlined">send_and_archive</span>
+                                Process Stock Out
+                            </button>
+<div class="absolute bottom-full mb-2 right-0 w-64 bg-slate-900 text-white text-[11px] p-2 rounded hidden group-hover:block z-10">
+                                ⚠️ Cannot process: One or more items exceed available stock levels.
+                            </div>
+</div>
+</div>
+</div>
+<!-- Summary Info Footer -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 opacity-80">
+<div class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600">
+<span class="material-symbols-outlined">info</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase">Stock Integrity</p>
+<p class="text-sm text-slate-700 dark:text-slate-300 mt-1">Real-time validation prevents issuing more items than currently in warehouse.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase">HR Verified</p>
+<p class="text-sm text-slate-700 dark:text-slate-300 mt-1">Personnel data is synced hourly with the HR Master Database.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase">Auto-Journal</p>
+<p class="text-sm text-slate-700 dark:text-slate-300 mt-1">Stock movements automatically generate GL entries for accounting.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

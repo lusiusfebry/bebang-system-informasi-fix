@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory - Stock Detail View | Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#1a212f] px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111318] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+</div>
+<nav class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-bold leading-normal text-primary" href="#">Inventory</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Employees</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#616f89] flex border-none bg-[#f0f2f4] dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] dark:bg-gray-800 focus:border-none h-full placeholder:text-[#616f89] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search components..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Profile picture of an employee" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoP7femPVBnDas5-710H84UDHlMOLnK39aVpVxI6V_ppQelRj1WUzcm3hx0tkByngPxk0_oWPT7Q9qT2BAVmKUopdnEkI_Z4csN_txyTvbfE0fNDjWNvHc55DJi8Y_NCInHskI6XwL7LgxZzr1Nt27WQFCrRFfQb-vJdDMUzrCGg59nLvTnfGkOniAkiuh2dPD0_pVt-k_zwZRxU84vaB1fEJagDhpORBeBu7L1EuJlQ6tw0wu-OUuofQErvsrI4O-G2ObcsS3Okw");'></div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col w-full max-w-[1200px] px-6 gap-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2">
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Inventory</a>
+<span class="material-symbols-outlined text-[#616f89] text-xs">chevron_right</span>
+<span class="text-[#111318] dark:text-white text-sm font-bold tracking-tight">Stock Detail</span>
+</div>
+<!-- Page Header & Key Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 bg-white dark:bg-[#1a212f] p-8 rounded-xl shadow-sm border border-[#f0f2f4] dark:border-gray-800">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<span class="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Heavy Machinery</span>
+<span class="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">In Stock</span>
+</div>
+<h1 class="text-[#111318] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Excavator Spare Part A-102</h1>
+<div class="flex items-center gap-4 mt-1">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Code: <span class="font-mono text-primary font-bold">PSG-INV-001</span></p>
+<div class="w-1 h-1 bg-gray-300 rounded-full"></div>
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Supplier: <span class="font-semibold text-[#111318] dark:text-white">Komatsu LTD</span></p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-11 px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-700 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined mr-2 text-lg">tune</span>
+<span class="truncate">Adjust Stock</span>
+</button>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-11 px-5 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined mr-2 text-lg">print</span>
+<span class="truncate">Print Label</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-11 w-11 bg-white dark:bg-gray-800 border border-[#f0f2f4] dark:border-gray-700 text-[#111318] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column: Tabs and Main Data -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Dashboard Tabs -->
+<div class="flex border-b border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#1a212f] px-4 rounded-t-xl">
+<button class="px-6 py-4 text-primary border-b-2 border-primary font-bold text-sm">Stock History</button>
+<button class="px-6 py-4 text-[#616f89] dark:text-gray-400 font-medium text-sm hover:text-primary transition-colors">Warehouse Locations</button>
+<button class="px-6 py-4 text-[#616f89] dark:text-gray-400 font-medium text-sm hover:text-primary transition-colors">Reorder Settings</button>
+</div>
+<!-- Table Section (Stock History) -->
+<div class="bg-white dark:bg-[#1a212f] rounded-b-xl border border-t-0 border-[#f0f2f4] dark:border-gray-800 overflow-hidden">
+<div class="flex items-center justify-between p-4 border-b border-[#f0f2f4] dark:border-gray-800">
+<h3 class="text-sm font-bold">Recent Movements</h3>
+<button class="flex items-center text-xs font-semibold text-primary">
+<span class="material-symbols-outlined text-sm mr-1">download</span> Export CSV
+                                    </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-background-light dark:bg-gray-800/50">
+<tr>
+<th class="px-4 py-3 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase">Date</th>
+<th class="px-4 py-3 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase">Movement Type</th>
+<th class="px-4 py-3 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase">Source/Dest</th>
+<th class="px-4 py-3 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase">Qty</th>
+<th class="px-4 py-3 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase">User</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#f0f2f4] dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-4 py-4 text-sm font-medium">Oct 24, 2023</td>
+<td class="px-4 py-4 text-sm">
+<span class="flex items-center text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-sm mr-1">arrow_downward</span> Received
+                                                    </span>
+</td>
+<td class="px-4 py-4 text-sm text-[#616f89] dark:text-gray-400">Vendor A-01</td>
+<td class="px-4 py-4 text-sm font-bold">+50</td>
+<td class="px-4 py-4 text-sm flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-600">JD</div>
+                                                    John Doe
+                                                </td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-4 py-4 text-sm font-medium">Oct 22, 2023</td>
+<td class="px-4 py-4 text-sm">
+<span class="flex items-center text-red-600 dark:text-red-400">
+<span class="material-symbols-outlined text-sm mr-1">arrow_upward</span> Issued
+                                                    </span>
+</td>
+<td class="px-4 py-4 text-sm text-[#616f89] dark:text-gray-400">Site B-Balikpapan</td>
+<td class="px-4 py-4 text-sm font-bold">-12</td>
+<td class="px-4 py-4 text-sm flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center text-[10px] font-bold text-orange-600">AS</div>
+                                                    Ani S.
+                                                </td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-4 py-4 text-sm font-medium">Oct 20, 2023</td>
+<td class="px-4 py-4 text-sm">
+<span class="flex items-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined text-sm mr-1">sync</span> Transfer
+                                                    </span>
+</td>
+<td class="px-4 py-4 text-sm text-[#616f89] dark:text-gray-400">WH Jakarta Main</td>
+<td class="px-4 py-4 text-sm font-bold">20</td>
+<td class="px-4 py-4 text-sm flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-[10px] font-bold text-purple-600">BK</div>
+                                                    Budi K.
+                                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 flex items-center justify-between border-t border-[#f0f2f4] dark:border-gray-800">
+<p class="text-xs text-[#616f89] dark:text-gray-400 font-medium">Showing 3 of 152 movements</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-xs font-bold rounded border border-[#f0f2f4] dark:border-gray-800 disabled:opacity-50">Prev</button>
+<button class="px-3 py-1 text-xs font-bold rounded border border-primary bg-primary text-white">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Stats & Chart -->
+<div class="flex flex-col gap-6">
+<!-- Total Available KPI -->
+<div class="flex flex-col gap-2 rounded-xl p-8 bg-white dark:bg-[#1a212f] border border-[#f0f2f4] dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-bold uppercase tracking-wider">Total Available</p>
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<p class="text-[#111318] dark:text-white tracking-tight text-4xl font-black leading-tight">450 Units</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="bg-green-100 dark:bg-green-900/30 text-[#07883b] dark:text-green-400 text-xs font-bold px-2 py-1 rounded">+12%</span>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-medium">vs last month</p>
+</div>
+</div>
+<!-- Trend Chart Placeholder -->
+<div class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#f0f2f4] dark:border-gray-800 shadow-sm p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-sm font-bold">30-Day Trend</h3>
+<select class="text-xs border-none bg-[#f0f2f4] dark:bg-gray-800 rounded-lg p-1 font-semibold focus:ring-0">
+<option>Daily</option>
+<option>Weekly</option>
+</select>
+</div>
+<!-- CSS-based chart visual -->
+<div class="relative h-32 w-full flex items-end gap-1 px-1">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[40%]" title="Day 1"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[45%]" title="Day 2"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[38%]" title="Day 3"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[50%]" title="Day 4"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[60%]" title="Day 5"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[55%]" title="Day 6"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[70%]" title="Day 7"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[65%]" title="Day 8"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[80%]" title="Day 9"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm h-[85%]" title="Day 10"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm h-[78%]" title="Day 11"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-[95%]" title="Today"></div>
+</div>
+<div class="flex justify-between mt-4">
+<span class="text-[10px] font-bold text-[#616f89] uppercase">30 Days Ago</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-wider">Now</span>
+</div>
+<div class="mt-6 pt-6 border-t border-[#f0f2f4] dark:border-gray-800 grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] font-bold text-[#616f89] uppercase mb-1">Avg Consump.</p>
+<p class="text-sm font-bold">4.2 Units / Day</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-[#616f89] uppercase mb-1">Last Restock</p>
+<p class="text-sm font-bold">3 Days Ago</p>
+</div>
+</div>
+</div>
+<!-- Warehouse Locations Summary -->
+<div class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#f0f2f4] dark:border-gray-800 shadow-sm p-6">
+<h3 class="text-sm font-bold mb-4">Stock by Warehouse</h3>
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center text-xs">
+<span class="font-medium">Jakarta Main Hub</span>
+<span class="font-bold">320 Units</span>
+</div>
+<div class="w-full bg-[#f0f2f4] dark:bg-gray-800 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 71%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center text-xs">
+<span class="font-medium">Balikpapan Site B</span>
+<span class="font-bold">130 Units</span>
+</div>
+<div class="w-full bg-[#f0f2f4] dark:bg-gray-800 rounded-full h-1.5">
+<div class="bg-orange-500 h-1.5 rounded-full" style="width: 29%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (PWA Style Mobile Support or Footer) -->
+<footer class="mt-auto px-40 py-8 border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#1a212f]">
+<div class="max-w-[1200px] mx-auto flex justify-between items-center">
+<p class="text-xs text-[#616f89] dark:text-gray-400">© 2023 PT Prima Sarana Gemilang. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="text-xs font-bold text-[#616f89] hover:text-primary" href="#">Help Center</a>
+<a class="text-xs font-bold text-[#616f89] hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-xs font-bold text-[#616f89] hover:text-primary" href="#">User Guide</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

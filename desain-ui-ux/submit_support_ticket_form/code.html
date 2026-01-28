@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Submit Support Ticket - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+<div class="flex h-full min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-white dark:bg-[#1a202c] border-r border-gray-200 dark:border-gray-800 flex flex-col justify-between p-4 sticky top-0 h-screen">
+<div class="flex flex-col gap-8">
+<div class="flex gap-3 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-10" data-alt="Corporate logo of PT Prima Sarana Gemilang" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCY3ys8t3glip9_cRppARDcgYRJAnImzandnGEu2Vho1Vbm8xic4VSTs-kawBHd0VCf1FkmYKXTyxsHOwFnk0eskyfvp5xH-jli0NRMNOd77Y6EUaiSP_ZDkPbSPYR1c-QsC7y-Ku_EFyCjQPYI2XNyIMMjiB5Ru8VyfUmrf4aSd8QK2ZP_iqFnQr0vc2PB8U9w1gqSTfcVBZA1H7foGbIGGyqHFdJpAdzpsk_xBnAbWvdjE_SuSIZaVHw6wt1KYgIsZkbMhOcukm4");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-sm font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-[10px] font-normal uppercase tracking-wider">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">badge</span>
+<p class="text-sm font-medium">Employee Data</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<p class="text-sm font-medium">Payroll</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">contact_support</span>
+<p class="text-sm font-medium">Support</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</nav>
+</div>
+<button class="flex w-full cursor-pointer items-center justify-center rounded-lg h-11 px-4 bg-primary text-white text-sm font-bold shadow-md hover:bg-blue-700 transition-all">
+<span>New Request</span>
+</button>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between bg-white dark:bg-[#1a202c] border-b border-gray-200 dark:border-gray-800 px-8 py-4 sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-[#111318] dark:text-white text-lg font-bold tracking-tight">Support Ticket System</h2>
+</div>
+<div class="flex items-center gap-6">
+<label class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-[#616f89]">search</span>
+<input class="w-64 h-10 pl-10 pr-4 rounded-lg bg-gray-100 dark:bg-gray-800 border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Search resources..."/>
+</label>
+<div class="h-8 w-[1px] bg-gray-200 dark:bg-gray-700"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-bold dark:text-white">Dian Sastro</p>
+<p class="text-[10px] text-gray-500">HR Specialist</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Profile picture of the current user" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCSPWn2maNL4jthADWfWrUrCn1QmZ8PPXFap3_7Z7aMGTlVXcegM2mc6vmAAoPtszaOvOomaRDKCVd08NFL0_XofZxnKE6_77aqaSDFP408BSvan2giGsQzMBDrdGSnqDELFbPxBXPAs-b70oDUNWkGHPFA6T53-ASau3DXjgVHHS3CWi0n4IwRUemO8ii6LljPIZH-u0ISICf95MpabwJvJTzcrzO_O1K4ZAl_SRKwKjfcC9GY62bZViAdKS03BP-8vr8V3AgNzbk");'></div>
+</div>
+</div>
+</header>
+<!-- Breadcrumbs & Heading -->
+<div class="px-8 py-6">
+<nav class="flex items-center gap-2 mb-4 text-xs font-medium">
+<a class="text-[#616f89] hover:text-primary" href="#">Home</a>
+<span class="text-[#616f89]">/</span>
+<a class="text-[#616f89] hover:text-primary" href="#">Support</a>
+<span class="text-[#616f89]">/</span>
+<span class="text-[#111318] dark:text-white">New Ticket</span>
+</nav>
+<div class="flex flex-wrap justify-between items-end gap-4">
+<div class="max-w-2xl">
+<h1 class="text-[#111318] dark:text-white text-4xl font-black leading-tight tracking-tight">Submit Support Ticket</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-base mt-2">Our team typically responds within 24 hours. Please provide as much detail as possible to help us resolve your issue quickly.</p>
+</div>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-[#111318] dark:text-white text-sm font-bold shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-base">history</span>
+                        View My Tickets
+                    </button>
+</div>
+</div>
+<!-- Form & Articles Grid -->
+<div class="px-8 pb-12 grid grid-cols-12 gap-8">
+<!-- Left Column: Form -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="bg-white dark:bg-[#1a202c] p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Module Category -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-white">Issue Category (Module)</label>
+<div class="relative">
+<select class="w-full h-12 pl-4 pr-10 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:ring-2 focus:ring-primary appearance-none dark:text-white">
+<option>Select system module...</option>
+<option>HR &amp; Personnel</option>
+<option>Payroll &amp; Benefits</option>
+<option>Attendance &amp; Leave</option>
+<option>IT &amp; Infrastructure</option>
+<option>Finance &amp; Expenses</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-gray-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Priority Level -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-white">Priority Level</label>
+<div class="flex gap-2 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg h-12">
+<label class="flex-1 flex items-center justify-center cursor-pointer rounded-md text-xs font-bold transition-all bg-white dark:bg-gray-700 text-primary shadow-sm">
+<input checked="" class="hidden" name="priority" type="radio"/> Low
+                                        </label>
+<label class="flex-1 flex items-center justify-center cursor-pointer rounded-md text-xs font-bold transition-all text-gray-500 hover:bg-white/50 dark:hover:bg-gray-700">
+<input class="hidden" name="priority" type="radio"/> Med
+                                        </label>
+<label class="flex-1 flex items-center justify-center cursor-pointer rounded-md text-xs font-bold transition-all text-gray-500 hover:bg-white/50 dark:hover:bg-gray-700">
+<input class="hidden" name="priority" type="radio"/> High
+                                        </label>
+<label class="flex-1 flex items-center justify-center cursor-pointer rounded-md text-xs font-bold transition-all text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20">
+<input class="hidden" name="priority" type="radio"/> Urgent
+                                        </label>
+</div>
+</div>
+</div>
+<!-- Subject Line -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-white">Subject</label>
+<input class="w-full h-12 px-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:ring-2 focus:ring-primary dark:text-white" placeholder="Brief summary of the issue..." type="text" value="Cannot access payroll breakdown for October 2023"/>
+</div>
+<!-- Detailed Description -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-white">Detailed Description</label>
+<textarea class="w-full p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:ring-2 focus:ring-primary dark:text-white" placeholder="Please provide step-by-step details of what happened..." rows="6">When I click on the 'Download PDF' button for the October 2023 payroll period, the screen stays blank and no file is downloaded. Other months are working fine.</textarea>
+</div>
+<!-- File Attachment Area -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-white">Attachments (Screenshots/Logs)</label>
+<div class="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl p-8 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer group">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">upload_file</span>
+</div>
+<p class="text-sm font-bold text-[#111318] dark:text-white">Click to upload or drag and drop</p>
+<p class="text-xs text-[#616f89] mt-1">PNG, JPG, PDF up to 10MB</p>
+</div>
+</div>
+<!-- Form Actions -->
+<div class="flex items-center justify-end gap-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+<button class="px-6 py-2.5 rounded-lg text-sm font-bold text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" type="button">
+                                    Save as Draft
+                                </button>
+<button class="px-8 py-2.5 rounded-lg bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-blue-700 transition-all" type="submit">
+                                    Submit Ticket
+                                </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Right Column: Suggested Articles -->
+<div class="col-span-12 lg:col-span-4">
+<div class="bg-white dark:bg-[#1a202c] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden sticky top-24">
+<div class="p-5 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 flex items-center justify-between">
+<h3 class="font-bold text-sm text-[#111318] dark:text-white">Suggested Articles</h3>
+<span class="text-[10px] font-bold px-2 py-0.5 bg-green-100 text-green-700 rounded-full">3 Matches</span>
+</div>
+<div class="p-2 space-y-1">
+<!-- Article Card 1 -->
+<a class="block p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 group transition-colors" href="#">
+<h4 class="text-sm font-bold text-primary group-hover:underline">Payroll PDF Download Issues</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">Learn how to resolve common browser blocking issues when downloading payslips...</p>
+<div class="flex items-center gap-2 mt-3 text-[10px] text-gray-400 uppercase font-bold tracking-widest">
+<span class="material-symbols-outlined text-sm">menu_book</span>
+                                    2 min read
+                                </div>
+</a>
+<div class="mx-4 h-[1px] bg-gray-100 dark:bg-gray-800"></div>
+<!-- Article Card 2 -->
+<a class="block p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 group transition-colors" href="#">
+<h4 class="text-sm font-bold text-primary group-hover:underline">Accessing Historical Records</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">How to access payroll data older than 24 months through the archive portal...</p>
+<div class="flex items-center gap-2 mt-3 text-[10px] text-gray-400 uppercase font-bold tracking-widest">
+<span class="material-symbols-outlined text-sm">menu_book</span>
+                                    5 min read
+                                </div>
+</a>
+<div class="mx-4 h-[1px] bg-gray-100 dark:bg-gray-800"></div>
+<!-- Article Card 3 -->
+<a class="block p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 group transition-colors" href="#">
+<h4 class="text-sm font-bold text-primary group-hover:underline">Payroll Processing Calendar</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">Schedule for salary disbursement and breakdown availability dates...</p>
+<div class="flex items-center gap-2 mt-3 text-[10px] text-gray-400 uppercase font-bold tracking-widest">
+<span class="material-symbols-outlined text-sm">menu_book</span>
+                                    1 min read
+                                </div>
+</a>
+</div>
+<div class="p-5 bg-blue-50 dark:bg-blue-900/10 mt-2">
+<p class="text-xs font-medium text-blue-800 dark:text-blue-300">Did these help?</p>
+<p class="text-[11px] text-blue-600 dark:text-blue-400 mt-1">If you found your answer, you don't need to submit this ticket.</p>
+</div>
+</div>
+<!-- Quick Tips Card -->
+<div class="mt-6 p-6 rounded-xl bg-gradient-to-br from-[#135bec] to-[#0a3a9c] text-white">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-white/80">lightbulb</span>
+<h4 class="font-bold text-sm">Quick Tip</h4>
+</div>
+<p class="text-xs leading-relaxed text-white/90">Include your <b>Employee ID</b> and the specific <b>Error Code</b> if any to help our tech team diagnose the issue faster.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

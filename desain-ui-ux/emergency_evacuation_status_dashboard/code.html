@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Emergency Evacuation Status Dashboard - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f20d0d",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#181111",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .blink-red {
+            animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0.3; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen">
+<div class="layout-container flex flex-col h-full grow">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#392828] px-10 py-3 bg-background-dark/80 backdrop-blur sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">emergency</span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+<p class="text-[10px] text-[#ba9c9c] uppercase tracking-widest">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<div class="flex items-center gap-9">
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary pb-1" href="#">Emergency Dashboard</a>
+<a class="text-[#ba9c9c] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Visitor Logs</a>
+<a class="text-[#ba9c9c] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Mess Logs</a>
+<a class="text-[#ba9c9c] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Reporting</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex items-center gap-3 bg-primary/10 px-4 py-2 rounded-lg border border-primary/20">
+<span class="size-2 rounded-full bg-primary blink-red"></span>
+<span class="text-primary font-bold text-sm">EVACUATION ACTIVE</span>
+<span class="text-white font-mono text-sm ml-2">00:42:15</span>
+</div>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-red-700 transition-all">
+<span class="truncate">Export Manifest</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[#392828]" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCf74w1cF7hoeM8QkudrnagYtlmdFm-s8SeUzeTn2FA1pbvQFO49CJJyFcecFoHP_t8dnSGXrWzVNoTeFg8ZZwa60xDY82CN-dgguY0FCxbrQmMSRiu8kJaACAaCuq_Lv81pgnPYEJBjNFDvLhkUBWOAjUyqPQsntOXAN-IThavu27QoUJKv_Egd_VuTviPLTHV46i8aemHcuqKhpq-idvaf-YBr5kjVQpDT8UEVUcv2LlfXXu4E2b4GAaS__wn2f6CO-3mJhUzd0");'></div>
+</div>
+</header>
+<main class="flex-1 max-w-[1440px] mx-auto w-full p-6">
+<!-- Stats Bar -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-[#2a1a1a] border-l-4 border-primary">
+<p class="text-[#ba9c9c] text-xs font-bold uppercase tracking-wider">Evacuation Status</p>
+<p class="text-primary tracking-light text-2xl font-black leading-tight blink-red">ACTIVE ALARM</p>
+<p class="text-white/60 text-xs font-medium">Zone A1 Detected Smoke</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-[#392828]">
+<p class="text-[#ba9c9c] text-xs font-bold uppercase tracking-wider">Total On-Site</p>
+<p class="text-white tracking-light text-2xl font-bold leading-tight">1,240</p>
+<p class="text-[#0bda0b] text-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span> Verified Personnel
+                    </p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-[#392828]">
+<p class="text-[#ba9c9c] text-xs font-bold uppercase tracking-wider">Confirmed Safe</p>
+<p class="text-white tracking-light text-2xl font-bold leading-tight">1,182</p>
+<div class="w-full bg-[#181111] rounded-full h-2 mt-1">
+<div class="bg-[#0bda0b] h-2 rounded-full" style="width: 95%"></div>
+</div>
+<p class="text-[#0bda0b] text-sm font-medium leading-normal">95.3% Accounting Rate</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-[#392828]">
+<p class="text-[#ba9c9c] text-xs font-bold uppercase tracking-wider">Missing/Unaccounted</p>
+<p class="text-primary tracking-light text-2xl font-black leading-tight">58</p>
+<p class="text-primary text-sm font-medium leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">warning</span> Immediate Action Required
+                    </p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Main Content (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Muster Points Overview -->
+<div class="bg-[#392828]/50 rounded-xl p-4 border border-[#392828]">
+<div class="flex items-center justify-between px-2 mb-4">
+<h2 class="text-white text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+                                Muster Point Overview
+                            </h2>
+<span class="text-[#ba9c9c] text-xs font-medium bg-[#181111] px-2 py-1 rounded">Live Sync Every 5s</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-2">
+<!-- MP A -->
+<div class="flex flex-col gap-3 p-4 bg-[#181111] rounded-lg border border-[#392828] border-t-4 border-green-500">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-white text-sm font-bold">Muster Point A</p>
+<p class="text-[#ba9c9c] text-[11px] uppercase">North Site Gate</p>
+</div>
+<span class="bg-green-500/10 text-green-500 text-[10px] font-bold px-1.5 py-0.5 rounded">STABLE</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-white text-3xl font-black">450</p>
+<p class="text-[#ba9c9c] text-sm mb-1">/ 450</p>
+</div>
+<div class="w-full bg-[#392828] h-1.5 rounded-full">
+<div class="bg-green-500 h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+<p class="text-[#0bda0b] text-[11px] font-medium">All Personnel Accounted</p>
+</div>
+<!-- MP B -->
+<div class="flex flex-col gap-3 p-4 bg-[#181111] rounded-lg border border-[#392828] border-t-4 border-yellow-500">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-white text-sm font-bold">Muster Point B</p>
+<p class="text-[#ba9c9c] text-[11px] uppercase">East Admin Block</p>
+</div>
+<span class="bg-yellow-500/10 text-yellow-500 text-[10px] font-bold px-1.5 py-0.5 rounded">WAITING</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-white text-3xl font-black">320</p>
+<p class="text-[#ba9c9c] text-sm mb-1">/ 350</p>
+</div>
+<div class="w-full bg-[#392828] h-1.5 rounded-full overflow-hidden">
+<div class="bg-yellow-500 h-1.5 rounded-full" style="width: 91%"></div>
+</div>
+<p class="text-yellow-500 text-[11px] font-medium">30 Personnel Pending</p>
+</div>
+<!-- MP C -->
+<div class="flex flex-col gap-3 p-4 bg-[#181111] rounded-lg border border-[#392828] border-t-4 border-primary">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-white text-sm font-bold">Muster Point C</p>
+<p class="text-[#ba9c9c] text-[11px] uppercase">South Workshop</p>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-1.5 py-0.5 rounded">CRITICAL</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-white text-3xl font-black">412</p>
+<p class="text-[#ba9c9c] text-sm mb-1">/ 440</p>
+</div>
+<div class="w-full bg-[#392828] h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 80%"></div>
+</div>
+<p class="text-primary text-[11px] font-medium">28 Personnel Unaccounted</p>
+</div>
+</div>
+</div>
+<!-- Missing Persons List -->
+<div class="bg-[#392828]/50 rounded-xl flex-1 flex flex-col border border-[#392828] overflow-hidden">
+<div class="p-6 border-b border-[#392828] flex items-center justify-between">
+<div>
+<h2 class="text-white text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person_search</span>
+                                    Missing / Unaccounted For
+                                </h2>
+<p class="text-[#ba9c9c] text-xs">Based on Visitor and Mess Log correlation</p>
+</div>
+<div class="flex gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#ba9c9c] text-sm">search</span>
+<input class="bg-[#181111] border-none text-xs rounded-lg pl-9 h-8 w-48 text-white focus:ring-1 focus:ring-primary" placeholder="Search name or ID..." type="text"/>
+</div>
+<button class="bg-[#181111] text-white p-2 rounded-lg hover:bg-black transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-y-auto">
+<table class="w-full text-left">
+<thead class="bg-[#181111]/50 text-[#ba9c9c] text-[10px] uppercase font-bold tracking-wider">
+<tr>
+<th class="px-6 py-3">Personnel</th>
+<th class="px-6 py-3">Designation</th>
+<th class="px-6 py-3">Last Known Location</th>
+<th class="px-6 py-3">Last Seen</th>
+<th class="px-6 py-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#392828]">
+<tr class="hover:bg-[#392828]/40 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover border border-primary/40" data-alt="Staff member photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXIKWlLfgmgXpFcKPfwMfFkR_x8ByQzRnKWfPsR4c5YKPp8awPt0rjcJg1VIGdaEmvDFb-LL7JQvgxxZCrY2bJO_h0DMKrAJU4GbTYSvO8IF8V-Guq4Zb9phLDPI_WNUtpw2hStjCNfitcigN8btxGJr4fdVP-tq7rD9h7gRYyomPjjlNUnduX0q-YOX_XtjOR8NMeO6x4mpth22azrnU08Gis86jS_lg_tsyPABANYRpWXWuHCFvkxkRVvDSVXY1ax6SSHxMyNiE");'></div>
+<div>
+<p class="text-white text-sm font-bold">Ahmad Subagyo</p>
+<p class="text-[#ba9c9c] text-[11px]">ID: PSG-8821</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-[#ba9c9c]">Heavy Eq. Operator</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-yellow-500">restaurant</span>
+<span class="text-xs text-white">Central Mess Hall</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-[#ba9c9c]">12:42 PM (Check-in)</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary text-[11px] font-bold border border-primary/30 px-3 py-1 rounded hover:bg-primary hover:text-white transition-all">FLAG AS SAFE</button>
+</td>
+</tr>
+<tr class="hover:bg-[#392828]/40 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover border border-primary/40" data-alt="Staff member photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7-OUoUjaHumpVnfbMCS_aN2Ronr3wT9ZXz5Lu7jiuEkAql_YO8jhSIa91pdWM10eKDiId8oSXNfkk1UFPn8uo9qOFdbiPHpUUnjZ0kAsQ5JmBd5OSA5TWQePl1Nj7LwVZzqUKO0JAINtxtBgZhEnNW8RopuyRKMpwENTmSFvEke8HWPNlw131mpW7QGdOHb_8zt0GxhWGgtxfUrpli43HhG1vmJYsF94mDP_b9coy6vxY8X4-Jef7IBx53D0k6DivnHVHMS_RhAg");'></div>
+<div>
+<p class="text-white text-sm font-bold">Sarah Wijaya</p>
+<p class="text-[#ba9c9c] text-[11px]">ID: PSG-4552</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-[#ba9c9c]">Site Inspector</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-yellow-500">engineering</span>
+<span class="text-xs text-white">Zone B Pit Access</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-[#ba9c9c]">12:15 PM (Visitor Log)</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary text-[11px] font-bold border border-primary/30 px-3 py-1 rounded hover:bg-primary hover:text-white transition-all">FLAG AS SAFE</button>
+</td>
+</tr>
+<tr class="hover:bg-[#392828]/40 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover border border-primary/40" data-alt="Staff member photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXlMf4us6ZcjNshyVWmZHIGdYaswR5MqDYd0vC__BVSYFffYaNaTj6qqbsSE1mFEM-55G7_RuiHGH4b1veQ-0P9qtjqFnLVexRoVO4OvxXHtTBEuGsIAR2N89zvwJV6Q3geqGhYSCXGeSt1T5qC7MyHoKWsjJVlvhCTBSI6QcD-Q5ZeXEqcEGqk5Z19jwlU62eo7LDyUPzuBbNXECg1aVrzL6EXRvEdYBIZrFzlanuPm34nDXsdrPvuFVVd8ETgeBnKkvixrZA4D4");'></div>
+<div>
+<p class="text-white text-sm font-bold">Marcus Thorne</p>
+<p class="text-[#ba9c9c] text-[11px]">ID: VST-1002</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-[#ba9c9c]">Contractor (Aconex)</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-yellow-500">meeting_room</span>
+<span class="text-xs text-white">Admin Block L2</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-[#ba9c9c]">11:30 AM (Reception)</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary text-[11px] font-bold border border-primary/30 px-3 py-1 rounded hover:bg-primary hover:text-white transition-all">FLAG AS SAFE</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-[#181111]/30 border-t border-[#392828] text-center">
+<button class="text-[#ba9c9c] text-xs font-medium hover:text-white transition-colors underline">View all 58 missing personnel</button>
+</div>
+</div>
+</div>
+<!-- Sidebar (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Response Team -->
+<div class="bg-[#392828]/50 rounded-xl border border-[#392828] flex flex-col">
+<div class="p-6 border-b border-[#392828]">
+<h2 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">groups</span>
+                                Response Team
+                            </h2>
+<p class="text-[#ba9c9c] text-xs">Emergency Wardens on Radio Channel 16</p>
+</div>
+<div class="p-4 flex flex-col gap-4">
+<div class="flex items-center justify-between p-3 bg-[#181111] rounded-lg border border-[#392828]">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-10 rounded-full bg-cover" data-alt="Warden avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCkJJe5h0oJF7OHis-Y1Tp4wkBYrk_97BFHuuch5u74iGpibN5l1jGDHbiSLhIGQwBg3JDoRMwtSGBHr8foudXfOa-cSvFl0JX3AQAV4eM_gsdxTD4O6cK9RVGnb304yY5BO-xGjyNzs1NGXqMB6BTEQFcBibM5Fr1tgGVEDm4gSimKJMTr2cT9OKoyw1nPLrnz6ztMU9fua9AdE2Ez5_gPcoijLEbnrsSvqeMCXuVdC8b6hcso_ejEERrRIcF0FZ0Jg2GVz7ByFow");'></div>
+<span class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-[#181111] rounded-full"></span>
+</div>
+<div>
+<p class="text-white text-sm font-bold">Chief Budiman</p>
+<p class="text-[#ba9c9c] text-[11px]">Command Lead</p>
+</div>
+</div>
+<button class="bg-primary/20 text-primary p-2 rounded-lg hover:bg-primary/30 transition-all">
+<span class="material-symbols-outlined text-sm">radio</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-[#181111] rounded-lg border border-[#392828]">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-10 rounded-full bg-cover" data-alt="Warden avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDg6kVmxk9TBzFKJU3Ykt_mkn2N2YRUvYwJQV-QoTWYOplbg79u8IILgYyI0W1J6mzB0e0PtIsKZ4ZoyTDoKOybPH0adiK2N0gMbokorWtcJc3vXyW58IS8FmEwhH0ASfvT8_gSXh2nddfjbNsAIC-uIrQE2WOCKU6ZS03AVZdDSyoCYUuU7Dn0iWCUAU6GKtesfLf0efobM_H1nppvJvtG3n9pYabj6oLr2buaQYkJA26A2v4m6jjGJeczRN9HE4u0C3y3GywqP7s");'></div>
+<span class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-[#181111] rounded-full"></span>
+</div>
+<div>
+<p class="text-white text-sm font-bold">Warden Susi</p>
+<p class="text-[#ba9c9c] text-[11px]">Zone A Leader</p>
+</div>
+</div>
+<button class="bg-primary/20 text-primary p-2 rounded-lg hover:bg-primary/30 transition-all">
+<span class="material-symbols-outlined text-sm">radio</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-[#181111] rounded-lg border border-[#392828]">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-10 rounded-full bg-cover" data-alt="Warden avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJL_gYQM0pW6Ihyi730tCgomh3aAqnpe1RNovjVIpEdYBhjIBpBE6nNujEpC-pbG2o1TFQcoYUTivhug1rtpzo8eljfhBmVVwlFB9-lbYe3GD7R8LxxtDA2q0iMFupNUWqfyPj2yqHMZhcKG9BIRIB2MCL9QNCxiDmAcNKbByQPE_jYIyz853cUU9kWOZTUT9afo5UuiDWKTpS5bE6ngXAMIcu11P9zN18VGcGlusTW7TFo1WHSgKN7BLGz7kfg3vLMyXlBKapeJk");'></div>
+<span class="absolute bottom-0 right-0 size-3 bg-orange-500 border-2 border-[#181111] rounded-full"></span>
+</div>
+<div>
+<p class="text-white text-sm font-bold">Warden Ratna</p>
+<p class="text-[#ba9c9c] text-[11px]">Zone C Leader</p>
+</div>
+</div>
+<button class="bg-primary/20 text-primary p-2 rounded-lg hover:bg-primary/30 transition-all">
+<span class="material-symbols-outlined text-sm">radio</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Live Activity Feed -->
+<div class="bg-[#392828]/50 rounded-xl border border-[#392828] flex-1 overflow-hidden flex flex-col">
+<div class="p-6 border-b border-[#392828]">
+<h2 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                                Activity Log
+                            </h2>
+</div>
+<div class="p-4 flex flex-col gap-4 overflow-y-auto max-h-[400px]">
+<div class="flex gap-3">
+<div class="flex flex-col items-center">
+<span class="size-2 rounded-full bg-green-500 mt-1.5"></span>
+<div class="w-px h-full bg-[#392828] mt-1"></div>
+</div>
+<div>
+<p class="text-white text-xs font-bold">Muster Point A Fully Accounted</p>
+<p class="text-[#ba9c9c] text-[10px]">12:54 PM • Warden Susi</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="flex flex-col items-center">
+<span class="size-2 rounded-full bg-primary mt-1.5 blink-red"></span>
+<div class="w-px h-full bg-[#392828] mt-1"></div>
+</div>
+<div>
+<p class="text-white text-xs font-bold">Manual Search Initiated: Workshop</p>
+<p class="text-[#ba9c9c] text-[10px]">12:50 PM • Response Team 02</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="flex flex-col items-center">
+<span class="size-2 rounded-full bg-green-500 mt-1.5"></span>
+<div class="w-px h-full bg-[#392828] mt-1"></div>
+</div>
+<div>
+<p class="text-white text-xs font-bold">Personnel PSG-112 Flagged Safe</p>
+<p class="text-[#ba9c9c] text-[10px]">12:48 PM • Check-in Point B</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="flex flex-col items-center">
+<span class="size-2 rounded-full bg-primary mt-1.5"></span>
+</div>
+<div>
+<p class="text-white text-xs font-bold">Alarm Triggered: Zone A1</p>
+<p class="text-[#ba9c9c] text-[10px]">12:42 PM • System Sensor</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Actions Sticky -->
+<div class="sticky bottom-0 w-full bg-[#181111]/90 backdrop-blur-md border-t border-[#392828] p-4 flex justify-between items-center px-10">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<p class="text-[#ba9c9c] text-[10px] uppercase font-bold tracking-widest">System Health</p>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-[#0bda0b]"></span>
+<span class="text-white text-xs">All sensors online &amp; syncing</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg border-2 border-[#392828] text-white text-sm font-bold hover:bg-[#392828] transition-all">
+                    Generate Incident Report
+                </button>
+<button class="px-8 py-2.5 rounded-lg bg-green-600 text-white text-sm font-black uppercase tracking-wider hover:bg-green-700 transition-all shadow-lg shadow-green-900/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                    Declare Site All Clear
+                </button>
+</div>
+</div>
+</div>
+</body></html>

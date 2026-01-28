@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Individual Performance Review - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white transition-colors duration-200">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-[#e5e7eb] dark:border-[#2d3748] bg-white dark:bg-background-dark px-4 md:px-10 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-1 rounded">
+<svg class="size-6" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold tracking-tight">Bebang Sistem Informasi</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium opacity-70 hover:opacity-100" href="#">Dashboard</a>
+<a class="text-sm font-semibold text-primary" href="#">Employees</a>
+<a class="text-sm font-medium opacity-70 hover:opacity-100" href="#">Performance</a>
+<a class="text-sm font-medium opacity-70 hover:opacity-100" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl">search</span>
+<input class="w-64 pl-10 pr-4 py-2 bg-background-light dark:bg-[#1e293b] border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search employees..."/>
+</div>
+<button class="p-2 rounded-lg bg-background-light dark:bg-[#1e293b] hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-cover bg-center border border-gray-200" data-alt="User avatar small" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrwDm0MZimC9J5YO4tzn1zR4ZXQnGPxzCaKGpLKAjCGAYfYbYQ2ibIeR1FE5x6erkERkFF0FQl7MvJbZcj_GeT078RbPnCvu7K1iEq0FyYDnIghtctNhq_lFLFWs5fdp1I0dlgyeVMGcW-9v4I4ql8iueNhdcqAHVTgzUniM-NwkG4kgdmEgjn3Q_JsdOpzAKzoE4trJ4K4CnCxRyHBOteJeoob6y8mMYlnM6EBmQy8mcuQ5Ze_CV82cUk1JBHsJACXllzZf0tDg0')"></div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto p-4 md:p-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-6 text-sm">
+<a class="text-gray-500 hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-sm text-gray-400">chevron_right</span>
+<a class="text-gray-500 hover:text-primary" href="#">Performance Management</a>
+<span class="material-symbols-outlined text-sm text-gray-400">chevron_right</span>
+<span class="font-semibold text-primary">Individual Review Form</span>
+</nav>
+<!-- Profile Header -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl p-6 shadow-sm border border-[#e5e7eb] dark:border-[#2d3748] mb-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="flex gap-6 items-center">
+<div class="h-24 w-24 rounded-full bg-cover bg-center ring-4 ring-primary/10" data-alt="Employee profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAOpAW-8bb9YaxfuZChc-Qdv_zsSA5Xyk9xeY-SQrACoGl5w7Wx_1-Ee-tltegLh3GYKCnwVt8cgA4E8aM4I7UhhiK4RhviPY7T2Am2Y9AbpTf42dDFvPgmuHPRFvMsH-FkY5rz1LEMSl3AsFvHrx5A5pgBDKQvMIs2oD5SNF0KGbaIB1EK1p8q738rZmmlIXtH7XffsffiQkpe7u0ViQ7Ghn8Mxacvv2BJiDgrvKL9mwyYWUffQ31MFpqiledjraC49_LAnK5__Kc')"></div>
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-2xl font-bold">Ananda Pratama</h1>
+<span class="px-2.5 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider">Active Period</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 mt-1">Senior Systems Engineer | ID: PSG-2024-089</p>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Review Period: H1 2024 (Jan - Jun)
+                            </div>
+<div class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-sm">person</span>
+                                Manager: Budi Santoso
+                            </div>
+</div>
+</div>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        View Full Profile
+                    </button>
+<button class="flex-1 md:flex-none px-4 py-2 bg-primary text-white rounded-lg font-semibold text-sm hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all">
+                        Submit Final Review
+                    </button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Main Form Content -->
+<div class="lg:col-span-8 space-y-8">
+<!-- KPI Section -->
+<section class="bg-white dark:bg-[#1e293b] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2d3748] overflow-hidden">
+<div class="px-6 py-4 border-b border-[#e5e7eb] dark:border-[#2d3748] flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
+<h2 class="text-lg font-bold">Key Performance Indicators (KPIs)</h2>
+<span class="text-xs font-medium text-gray-500 uppercase tracking-widest">Weight: 60%</span>
+</div>
+<div class="p-6 space-y-8">
+<!-- KPI Item 1 -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-semibold text-sm">Project Completion Rate</p>
+<p class="text-xs text-gray-500 italic">Target: 95% minimum across all assigned tickets</p>
+</div>
+<span class="text-sm font-bold text-primary">Actual: 92%</span>
+</div>
+<div class="relative h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="absolute h-full bg-primary/30 w-[95%] border-r-2 border-primary/50" title="Target"></div>
+<div class="absolute h-full bg-primary w-[92%] rounded-full" title="Actual"></div>
+</div>
+<div class="flex justify-between text-[10px] text-gray-400 font-bold uppercase">
+<span>0%</span>
+<span>Target: 95%</span>
+<span>100%</span>
+</div>
+</div>
+<!-- KPI Item 2 -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-semibold text-sm">Safety Compliance Audit</p>
+<p class="text-xs text-gray-500 italic">Target: 100% compliance in monthly safety reviews</p>
+</div>
+<span class="text-sm font-bold text-green-600">Actual: 100%</span>
+</div>
+<div class="relative h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="absolute h-full bg-green-500 w-full rounded-full"></div>
+</div>
+</div>
+<!-- KPI Item 3 -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-semibold text-sm">System Uptime Maintenance</p>
+<p class="text-xs text-gray-500 italic">Target: 99.9% uptime for core production modules</p>
+</div>
+<span class="text-sm font-bold text-amber-600">Actual: 88%</span>
+</div>
+<div class="relative h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="absolute h-full bg-primary/30 w-[99%] border-r-2 border-primary/50"></div>
+<div class="absolute h-full bg-amber-500 w-[88%] rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Competencies Section -->
+<section class="bg-white dark:bg-[#1e293b] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2d3748] overflow-hidden">
+<div class="px-6 py-4 border-b border-[#e5e7eb] dark:border-[#2d3748] flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
+<h2 class="text-lg font-bold">Core Competencies</h2>
+<span class="text-xs font-medium text-gray-500 uppercase tracking-widest">Weight: 40%</span>
+</div>
+<div class="divide-y divide-gray-100 dark:divide-gray-800">
+<!-- Competency Item -->
+<div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="max-w-md">
+<p class="font-semibold">Leadership &amp; Initiative</p>
+<p class="text-sm text-gray-500">Takes ownership of tasks and mentors junior staff members.</p>
+</div>
+<div class="flex gap-2">
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">1</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">2</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">3</button>
+<button class="size-10 rounded-lg flex items-center justify-center bg-primary text-white text-sm font-bold">4</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">5</button>
+</div>
+</div>
+<div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="max-w-md">
+<p class="font-semibold">Teamwork &amp; Collaboration</p>
+<p class="text-sm text-gray-500">Communicates effectively within and across departments.</p>
+</div>
+<div class="flex gap-2">
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">1</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">2</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">3</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">4</button>
+<button class="size-10 rounded-lg flex items-center justify-center bg-primary text-white text-sm font-bold">5</button>
+</div>
+</div>
+<div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="max-w-md">
+<p class="font-semibold">Technical Excellence</p>
+<p class="text-sm text-gray-500">Applies deep knowledge of system architecture to solve problems.</p>
+</div>
+<div class="flex gap-2">
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">1</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">2</button>
+<button class="size-10 rounded-lg flex items-center justify-center bg-primary text-white text-sm font-bold">3</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">4</button>
+<button class="size-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800">5</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Managerial Comments -->
+<section class="bg-white dark:bg-[#1e293b] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2d3748] overflow-hidden">
+<div class="px-6 py-4 border-b border-[#e5e7eb] dark:border-[#2d3748] bg-gray-50/50 dark:bg-gray-800/50">
+<h2 class="text-lg font-bold">Managerial Comments</h2>
+</div>
+<div class="p-6">
+<textarea class="w-full rounded-lg border-gray-200 dark:border-gray-700 dark:bg-background-dark focus:ring-primary focus:border-primary text-sm p-4" placeholder="Enter qualitative feedback, achievements, and areas for improvement..." rows="6"></textarea>
+<div class="mt-4 flex justify-between items-center">
+<p class="text-xs text-gray-500">Auto-saved 2 minutes ago</p>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-sm font-bold text-gray-500 hover:text-gray-700">Clear</button>
+<button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm font-bold">Save Draft</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar -->
+<aside class="lg:col-span-4 space-y-8">
+<!-- Past Review Scores Graph -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2d3748] p-6">
+<h3 class="font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                        Past Review Scores
+                    </h3>
+<div class="h-48 w-full relative mb-6">
+<!-- Simplified Line Chart Visual -->
+<div class="absolute inset-0 flex items-end justify-between px-2">
+<div class="w-full border-b border-dashed border-gray-200 dark:border-gray-700 absolute bottom-1/4"></div>
+<div class="w-full border-b border-dashed border-gray-200 dark:border-gray-700 absolute bottom-1/2"></div>
+<div class="w-full border-b border-dashed border-gray-200 dark:border-gray-700 absolute bottom-3/4"></div>
+<div class="flex flex-col items-center gap-2 z-10 w-full group">
+<div class="h-20 w-1.5 bg-gray-200 dark:bg-gray-700 rounded-full relative">
+<div class="absolute bottom-0 w-full h-full bg-primary/40 rounded-full"></div>
+<div class="absolute -top-1 left-1/2 -translate-x-1/2 size-3 bg-primary rounded-full ring-4 ring-white dark:ring-[#1e293b]"></div>
+</div>
+<span class="text-[10px] text-gray-400 font-bold uppercase">H1 '22</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-full">
+<div class="h-24 w-1.5 bg-gray-200 dark:bg-gray-700 rounded-full relative">
+<div class="absolute bottom-0 w-full h-full bg-primary/40 rounded-full"></div>
+<div class="absolute -top-1 left-1/2 -translate-x-1/2 size-3 bg-primary rounded-full ring-4 ring-white dark:ring-[#1e293b]"></div>
+</div>
+<span class="text-[10px] text-gray-400 font-bold uppercase">H2 '22</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-full">
+<div class="h-28 w-1.5 bg-gray-200 dark:bg-gray-700 rounded-full relative">
+<div class="absolute bottom-0 w-full h-full bg-primary/40 rounded-full"></div>
+<div class="absolute -top-1 left-1/2 -translate-x-1/2 size-3 bg-primary rounded-full ring-4 ring-white dark:ring-[#1e293b]"></div>
+</div>
+<span class="text-[10px] text-gray-400 font-bold uppercase">H1 '23</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-full">
+<div class="h-32 w-1.5 bg-gray-200 dark:bg-gray-700 rounded-full relative">
+<div class="absolute bottom-0 w-full h-full bg-primary rounded-full shadow-lg shadow-primary/40"></div>
+<div class="absolute -top-1 left-1/2 -translate-x-1/2 size-3 bg-primary rounded-full ring-4 ring-white dark:ring-[#1e293b]"></div>
+</div>
+<span class="text-[10px] text-primary font-bold uppercase">H2 '23</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
+<div>
+<p class="text-xs font-bold text-gray-400 uppercase">Latest Score</p>
+<p class="font-bold text-lg">4.2 / 5.0</p>
+</div>
+<span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded">+5% vs last</span>
+</div>
+<div class="flex justify-between items-center px-3">
+<span class="text-sm text-gray-500">Historical Avg</span>
+<span class="text-sm font-bold">3.8 / 5.0</span>
+</div>
+</div>
+</div>
+<!-- Review Checklist -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2d3748] p-6">
+<h3 class="font-bold mb-4">Submission Progress</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm">Employee Self-Review</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm">KPI Targets Updated</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-5 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="size-2 bg-primary rounded-full"></div>
+</div>
+<span class="text-sm font-semibold">Managerial Evaluation</span>
+</div>
+<div class="flex items-center gap-3 opacity-40">
+<div class="size-5 rounded-full border-2 border-gray-300"></div>
+<span class="text-sm">Final One-on-One Sync</span>
+</div>
+</div>
+</div>
+<!-- Guidelines Card -->
+<div class="bg-primary/5 rounded-xl border border-primary/20 p-6">
+<div class="flex items-center gap-2 mb-3 text-primary">
+<span class="material-symbols-outlined">info</span>
+<h4 class="font-bold text-sm">Rating Guidelines</h4>
+</div>
+<ul class="text-xs space-y-2 text-gray-600 dark:text-gray-300">
+<li><strong>5: Exceptional</strong> - Exceeds all targets consistently</li>
+<li><strong>4: Commendable</strong> - Often exceeds targets</li>
+<li><strong>3: Fully Competent</strong> - Meets all set targets</li>
+<li><strong>2: Developing</strong> - Progressing but below target</li>
+<li><strong>1: Improvement Required</strong> - Critical gaps identified</li>
+</ul>
+</div>
+</aside>
+</div>
+<!-- Footer Actions Sticky -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-[#e5e7eb] dark:border-[#2d3748] px-8 py-4 z-40">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-4">
+<span class="flex h-2 w-2 rounded-full bg-green-500"></span>
+<p class="text-sm text-gray-500">Currently editing draft. Last sync: 14:42 PM</p>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none text-sm font-bold text-gray-500 hover:text-red-500 transition-colors">Discard Changes</button>
+<button class="flex-1 md:flex-none px-6 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-bold shadow-sm">Save Draft</button>
+<button class="flex-1 md:flex-none px-8 py-2.5 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all">Submit Final Review</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Spacer for sticky footer -->
+<div class="h-24"></div>
+</body></html>

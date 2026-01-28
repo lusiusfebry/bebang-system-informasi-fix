@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brand Guidelines - Identity Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-[#2a343e] bg-white dark:bg-background-dark px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang DAM</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Guidelines</a>
+<a class="text-[#617589] dark:text-[#94a3b8] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Asset Library</a>
+<a class="text-[#617589] dark:text-[#94a3b8] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">History</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] flex border-none bg-[#f0f2f4] dark:bg-[#1e293b] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] dark:bg-[#1e293b] focus:border-none h-full placeholder:text-[#617589] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal" placeholder="Search guidelines..." value=""/>
+</div>
+</label>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-sm hover:bg-opacity-90 transition-all">
+<span class="truncate">Download Brand Kit</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar silhouette" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB98BGlaYqd25Sbd0bJDZ447nzePWxTuONLRhN18FiYha0I6tAB3MsZosnRVZg2lf_BeDPEukOz-GdV_xJK0eTT-MSpRLNnoK1yDl1yej34oJLc3y2asb12q6K_KNmPQ5icJWe4u67uAn4Ns_gvI8svYr5AKbxxk5AdGJ4p3bhaklg8LzMvCIx45APFWjb5SdUmjgDaVG5dpFJzn_2Oi_Pfjf_6olGeEGukYNzPHpBF5N0vMav74I4xG3KVexXLIGE0p5wqSWwonMI");'></div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex w-72 flex-col justify-between border-r border-[#f0f2f4] dark:border-[#2a343e] bg-white dark:bg-background-dark p-6 sticky top-[65px] h-[calc(100vh-65px)]">
+<div class="flex flex-col gap-6">
+<div class="flex gap-3 items-center">
+<div class="bg-primary/10 flex items-center justify-center rounded-lg size-10">
+<span class="material-symbols-outlined text-primary">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111418] dark:text-white text-sm font-bold leading-tight">PT Prima Sarana Gemilang</h1>
+<p class="text-[#617589] dark:text-[#94a3b8] text-xs font-normal">Identity Portal</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold uppercase tracking-wider text-[#617589] dark:text-[#94a3b8] px-3 mb-2">Navigation</p>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-[#94a3b8] hover:bg-[#f0f2f4] dark:hover:bg-[#1e293b] transition-colors" href="#">
+<span class="material-symbols-outlined">info</span>
+<p class="text-sm font-medium">Introduction</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">grid_view</span>
+<p class="text-sm font-bold">Logos</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-[#94a3b8] hover:bg-[#f0f2f4] dark:hover:bg-[#1e293b] transition-colors" href="#">
+<span class="material-symbols-outlined">palette</span>
+<p class="text-sm font-medium">Color Palette</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-[#94a3b8] hover:bg-[#f0f2f4] dark:hover:bg-[#1e293b] transition-colors" href="#">
+<span class="material-symbols-outlined">text_fields</span>
+<p class="text-sm font-medium">Typography</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-[#94a3b8] hover:bg-[#f0f2f4] dark:hover:bg-[#1e293b] transition-colors" href="#">
+<span class="material-symbols-outlined">camera</span>
+<p class="text-sm font-medium">Photography Style</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-[#94a3b8] hover:bg-[#f0f2f4] dark:hover:bg-[#1e293b] transition-colors" href="#">
+<span class="material-symbols-outlined">auto_awesome_motion</span>
+<p class="text-sm font-medium">Digital Assets</p>
+</a>
+</div>
+</div>
+<div class="pt-4 border-t border-[#f0f2f4] dark:border-[#2a343e]">
+<div class="flex items-center justify-between text-[#617589] dark:text-[#94a3b8]">
+<p class="text-xs">Version 2.1.0</p>
+<span class="material-symbols-outlined text-[18px]">settings</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto">
+<div class="mx-auto max-w-[1024px] px-6 lg:px-10 py-10">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-end gap-6 mb-10 border-b border-[#f0f2f4] dark:border-[#2a343e] pb-10">
+<div class="flex min-w-72 flex-col gap-4">
+<span class="inline-flex w-fit items-center px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest">Brand Guidelines</span>
+<p class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Corporate Identity Standards</p>
+<p class="text-[#617589] dark:text-[#94a3b8] text-lg font-normal leading-relaxed max-w-2xl">
+                                Bebang Sistem Informasi is the centralized digital asset management system for PT Prima Sarana Gemilang. This portal ensures brand consistency across all touchpoints.
+                            </p>
+</div>
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#e2e8f0] transition-colors border border-transparent hover:border-primary/20">
+<span class="material-symbols-outlined mr-2">download_for_offline</span>
+<span class="truncate">All Identity Assets</span>
+</button>
+</div>
+<!-- Section: Logo -->
+<section class="mb-16">
+<h2 class="text-[#111418] dark:text-white text-[28px] font-extrabold leading-tight tracking-[-0.015em] mb-6">01. Logo &amp; Clear Space</h2>
+<!-- Main Logo Card -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl border border-[#f0f2f4] dark:border-[#2a343e] shadow-sm overflow-hidden mb-6">
+<div class="p-4 @container">
+<div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-start gap-4">
+<div class="w-full @xl:w-1/2 bg-[#f8fafc] dark:bg-background-dark/50 border border-dashed border-[#cbd5e1] dark:border-[#334155] aspect-video flex items-center justify-center rounded-lg relative overflow-hidden group" data-alt="Primary brand logo on a grid showing clear space">
+<!-- Mockup of a logo and grid lines -->
+<div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:20px_20px] opacity-50"></div>
+<div class="relative z-10 text-primary flex flex-col items-center">
+<svg class="size-24 mb-2" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+<span class="font-black text-xl text-[#111418] dark:text-white">PRIMA SARANA</span>
+</div>
+<!-- Measurement lines -->
+<div class="absolute top-4 left-0 right-0 border-t border-red-400 opacity-40"></div>
+<div class="absolute bottom-4 left-0 right-0 border-t border-red-400 opacity-40"></div>
+<div class="absolute left-4 top-0 bottom-0 border-l border-red-400 opacity-40"></div>
+<div class="absolute right-4 top-0 bottom-0 border-l border-red-400 opacity-40"></div>
+<span class="absolute top-1 left-1/2 -translate-x-1/2 text-[10px] text-red-500 font-mono">X = 50px</span>
+</div>
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-4 py-4 @xl:px-4">
+<div>
+<p class="text-[#111418] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-2">Primary Logo Grid</p>
+<p class="text-[#617589] dark:text-[#94a3b8] text-base font-normal leading-relaxed">
+                                                The primary logo should always be used with a minimum clear space of 50px around all sides. No other graphic elements should encroach on this space.
+                                            </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-medium hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-[18px] mr-2">download</span>
+<span class="truncate">SVG Vector</span>
+</button>
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-white dark:bg-[#1e293b] border border-[#f0f2f4] dark:border-[#2a343e] text-[#111418] dark:text-white text-sm font-medium hover:bg-[#f0f2f4] dark:hover:bg-[#2a343e] transition-all">
+<span class="material-symbols-outlined text-[18px] mr-2">image</span>
+<span class="truncate">PNG Hi-Res</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Variations Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-[#1e293b] p-6 rounded-xl border border-[#f0f2f4] dark:border-[#2a343e]">
+<p class="text-sm font-bold text-[#111418] dark:text-white mb-4">Secondary Variation</p>
+<div class="bg-[#f8fafc] dark:bg-background-dark/50 aspect-video rounded-lg flex items-center justify-center mb-4" data-alt="Monochrome white logo on dark background">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-4xl">pentagon</span>
+<span class="font-bold text-lg text-slate-400">PRIMA SARANA</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-[#617589]">Horizontal Layout</span>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:underline">
+                                        Download <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1e293b] p-6 rounded-xl border border-[#f0f2f4] dark:border-[#2a343e]">
+<p class="text-sm font-bold text-[#111418] dark:text-white mb-4">Monochrome Stacked</p>
+<div class="bg-[#111418] aspect-video rounded-lg flex items-center justify-center mb-4" data-alt="Stacked brand logo version in grayscale">
+<div class="text-white flex flex-col items-center">
+<span class="material-symbols-outlined text-4xl">pentagon</span>
+<span class="text-[10px] tracking-[4px] font-bold mt-1">PRIMA SARANA</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-[#617589]">Dark Mode Optimized</span>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:underline">
+                                        Download <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Color Palette -->
+<section class="mb-16">
+<h2 class="text-[#111418] dark:text-white text-[28px] font-extrabold leading-tight tracking-[-0.015em] mb-6">02. Color Palette</h2>
+<p class="text-[#617589] dark:text-[#94a3b8] text-base mb-8 max-w-2xl">Our palette is led by Prima Blue, reflecting our commitment to reliability and professional excellence in the industrial services sector.</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Primary Color Card -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl border border-[#f0f2f4] dark:border-[#2a343e] overflow-hidden">
+<div class="h-48 bg-primary relative group flex items-end p-6">
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors cursor-pointer flex items-center justify-center">
+<span class="text-white opacity-0 group-hover:opacity-100 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">content_copy</span> Copy HEX
+                                        </span>
+</div>
+<div class="relative z-10 text-white">
+<p class="text-xs font-bold uppercase tracking-widest mb-1">Primary Brand Color</p>
+<h3 class="text-2xl font-black">Prima Blue</h3>
+</div>
+</div>
+<div class="p-6 grid grid-cols-3 gap-4">
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-[#617589] dark:text-[#94a3b8] uppercase">HEX</p>
+<p class="font-mono text-sm dark:text-white">#1173D4</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-[#617589] dark:text-[#94a3b8] uppercase">RGB</p>
+<p class="font-mono text-sm dark:text-white">17, 115, 212</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-[#617589] dark:text-[#94a3b8] uppercase">CMYK</p>
+<p class="font-mono text-sm dark:text-white">82, 54, 0, 0</p>
+</div>
+</div>
+</div>
+<!-- Neutral Color Card -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl border border-[#f0f2f4] dark:border-[#2a343e] overflow-hidden">
+<div class="h-48 bg-[#111418] relative group flex items-end p-6">
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors cursor-pointer flex items-center justify-center">
+<span class="text-white opacity-0 group-hover:opacity-100 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">content_copy</span> Copy HEX
+                                        </span>
+</div>
+<div class="relative z-10 text-white">
+<p class="text-xs font-bold uppercase tracking-widest mb-1">Text &amp; Dark Backgrounds</p>
+<h3 class="text-2xl font-black">Deep Obsidian</h3>
+</div>
+</div>
+<div class="p-6 grid grid-cols-3 gap-4">
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-[#617589] dark:text-[#94a3b8] uppercase">HEX</p>
+<p class="font-mono text-sm dark:text-white">#111418</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-[#617589] dark:text-[#94a3b8] uppercase">RGB</p>
+<p class="font-mono text-sm dark:text-white">17, 20, 24</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-[#617589] dark:text-[#94a3b8] uppercase">CMYK</p>
+<p class="font-mono text-sm dark:text-white">29, 17, 0, 91</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+<div class="flex flex-col gap-3">
+<div class="h-20 rounded-lg bg-[#f0f2f4] border border-[#e2e8f0] dark:border-[#334155]" data-alt="Light gray color swatch"></div>
+<div>
+<p class="text-xs font-bold dark:text-white">Cool Gray</p>
+<p class="text-[10px] font-mono text-[#617589]">#F0F2F4</p>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="h-20 rounded-lg bg-[#617589]" data-alt="Medium gray color swatch"></div>
+<div>
+<p class="text-xs font-bold dark:text-white">Steel</p>
+<p class="text-[10px] font-mono text-[#617589]">#617589</p>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="h-20 rounded-lg bg-[#facc15]" data-alt="Accent yellow color swatch"></div>
+<div>
+<p class="text-xs font-bold dark:text-white">Safety Gold</p>
+<p class="text-[10px] font-mono text-[#617589]">#FACC15</p>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="h-20 rounded-lg bg-[#10b981]" data-alt="Accent green color swatch"></div>
+<div>
+<p class="text-xs font-bold dark:text-white">Growth Green</p>
+<p class="text-[10px] font-mono text-[#617589]">#10B981</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Typography -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-[#111418] dark:text-white text-[28px] font-extrabold leading-tight tracking-[-0.015em]">03. Typography</h2>
+<button class="text-primary text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">cloud_download</span> Download Font Family
+                            </button>
+</div>
+<div class="bg-white dark:bg-[#1e293b] rounded-xl border border-[#f0f2f4] dark:border-[#2a343e] p-8">
+<div class="flex flex-col gap-8">
+<div class="border-b border-[#f0f2f4] dark:border-[#2a343e] pb-8">
+<p class="text-xs font-bold text-primary mb-4">PRIMARY TYPEFACE (DIGITAL &amp; PRINT)</p>
+<h3 class="text-6xl font-black text-[#111418] dark:text-white mb-2">Inter Typeface</h3>
+<p class="text-[#617589] dark:text-[#94a3b8] text-lg">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz</p>
+<p class="text-[#617589] dark:text-[#94a3b8] text-lg mt-2">1 2 3 4 5 6 7 8 9 0 ! @ # $ % &amp; * ( )</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="flex flex-col gap-6">
+<div>
+<p class="text-[10px] font-bold text-[#617589] mb-2 uppercase tracking-widest">Headline 1</p>
+<p class="text-4xl font-black dark:text-white">The quick brown fox</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-[#617589] mb-2 uppercase tracking-widest">Headline 2</p>
+<p class="text-2xl font-bold dark:text-white">The quick brown fox jumps over</p>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div>
+<p class="text-[10px] font-bold text-[#617589] mb-2 uppercase tracking-widest">Body Regular</p>
+<p class="text-base text-[#111418] dark:text-gray-300 leading-relaxed">
+                                                Our primary typeface is Inter. It is a highly legible sans-serif font designed for screens. It works well in small and large sizes, making it perfect for our digital-first identity.
+                                            </p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-[#617589] mb-2 uppercase tracking-widest">Button Text</p>
+<p class="text-sm font-bold uppercase tracking-wider dark:text-white">Confirm Action</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="bg-white dark:bg-[#1e293b] border-t border-[#f0f2f4] dark:border-[#2a343e] py-12">
+<div class="mx-auto max-w-[1024px] px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4 text-[#617589]">
+<span class="material-symbols-outlined">verified_user</span>
+<p class="text-sm">© 2024 PT Prima Sarana Gemilang. All brand assets are property of the corporation.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-xs font-bold text-[#111418] dark:text-white hover:text-primary" href="#">Contact Support</a>
+<a class="text-xs font-bold text-[#111418] dark:text-white hover:text-primary" href="#">Legal Terms</a>
+<a class="text-xs font-bold text-[#111418] dark:text-white hover:text-primary" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body></html>

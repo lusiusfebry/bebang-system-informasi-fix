@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory - Quarantine Management Dashboard</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white min-h-screen">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-[#dbe0e6] dark:border-gray-800 bg-white dark:bg-[#111418] flex flex-col shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary flex items-center justify-center rounded-lg text-white">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-base font-bold leading-none">Bebang Sistem</h1>
+<p class="text-[#617589] text-xs font-normal">Inventory &amp; Quality</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-[#617589] hover:bg-background-light dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">report_problem</span>
+                    Quarantine
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-[#617589] hover:bg-background-light dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined">history</span>
+                    RMA History
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-[#617589] hover:bg-background-light dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined">inventory</span>
+                    Inventory
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-[#617589] hover:bg-background-light dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined">description</span>
+                    Quality Reports
+                </a>
+</nav>
+<div class="p-4 border-t border-[#dbe0e6] dark:border-gray-800 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-[#617589] hover:bg-background-light dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-[#617589] hover:bg-background-light dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+                    Support
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<!-- Top Nav Bar -->
+<header class="h-16 flex items-center justify-between px-8 bg-white dark:bg-[#111418] border-b border-[#dbe0e6] dark:border-gray-800 sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold">Quarantine Management Dashboard</h2>
+<div class="h-4 w-[1px] bg-[#dbe0e6] dark:bg-gray-700"></div>
+<nav class="flex items-center gap-4">
+<a class="text-sm font-medium text-primary" href="#">Overview</a>
+<a class="text-sm font-medium text-[#617589] hover:text-[#111418] dark:hover:text-white" href="#">Reports</a>
+<a class="text-sm font-medium text-[#617589] hover:text-[#111418] dark:hover:text-white" href="#">Vendors</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#617589] text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-background-light dark:bg-gray-800 border-none rounded-lg text-sm focus:ring-1 focus:ring-primary" placeholder="Search records..." type="text"/>
+</div>
+<button class="p-2 bg-background-light dark:bg-gray-800 rounded-lg text-[#111418] dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-2 pl-2 border-l border-[#dbe0e6] dark:border-gray-800">
+<div class="size-8 rounded-full bg-cover" data-alt="User avatar profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFDuRIGw3U94i6cUtFlT-9Htvkw7sGpCENBhTbzsHFR1Qzvpx6OArUVkOFSPTze3fWSaB77wUV3fu_IZZ6jHpzXo4cN-GNkQkRytDc6SLGt5KZC7IqsTP57iPntawoxMoEdEWgfZm25MkyydhYmUTEX7jd_0JNXDCF-0Cy9sOAjdxk2JmwXB2yfV5ChqIacTbVk1UWPyAoilmksPzj0TINsv_TeEc26v8z0Q5PIlLfjxFn046GR0q7XOS7aDbvPgsSMyvTAEvgnI0')"></div>
+<span class="text-sm font-medium hidden lg:block">Admin User</span>
+</div>
+</div>
+</header>
+<!-- Content Scrollable -->
+<div class="flex-1 overflow-y-auto p-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-6">
+<a class="text-[#617589] text-sm font-medium hover:text-primary" href="#">Inventory</a>
+<span class="text-[#617589] text-sm font-medium">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-bold">Quarantine Management</span>
+</nav>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="bg-white dark:bg-[#1b252f] p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-700 shadow-sm">
+<p class="text-[#617589] text-xs font-semibold uppercase tracking-wider mb-2">Items in Quarantine</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-primary">142</span>
+<span class="text-xs text-red-500 font-medium">+12% vs last week</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1b252f] p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-700 shadow-sm">
+<p class="text-[#617589] text-xs font-semibold uppercase tracking-wider mb-2">Pending Return to Vendor</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold">38</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1b252f] p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-700 shadow-sm">
+<p class="text-[#617589] text-xs font-semibold uppercase tracking-wider mb-2">Avg. Resolution Time</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold">4.2</span>
+<span class="text-sm font-medium text-[#617589]">Days</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1b252f] p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-700 shadow-sm">
+<p class="text-[#617589] text-xs font-semibold uppercase tracking-wider mb-2">Value under Dispute</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold">$54,200</span>
+</div>
+</div>
+</div>
+<!-- Main Section Header -->
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xl font-bold">Quarantine Records</h3>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-3 py-2 bg-white dark:bg-[#1b252f] border border-[#dbe0e6] dark:border-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 px-3 py-2 bg-primary text-white rounded-lg text-sm font-bold hover:bg-primary/90">
+<span class="material-symbols-outlined text-sm">add</span>
+                            New Record
+                        </button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-[#1b252f] border border-[#dbe0e6] dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-background-light dark:bg-gray-800/50">
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase">Item Name / SKU</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase">QC Rejection Date</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase">Reason for Failure</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase">Warehouse Zone</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbe0e6] dark:divide-gray-700">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-sm">Hydraulic Pump Assembly</span>
+<span class="text-xs text-[#617589]">SKU-88291-QA</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Oct 24, 2023</td>
+<td class="px-6 py-4 text-sm text-red-600 dark:text-red-400 font-medium">Surface Scratches</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs font-medium">Zone Q-01</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-400">
+                                            Awaiting Disposition
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary font-bold text-sm hover:underline">Process</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-sm">Engine Valve Seal Kit</span>
+<span class="text-xs text-[#617589]">SKU-22004-EV</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Oct 23, 2023</td>
+<td class="px-6 py-4 text-sm text-red-600 dark:text-red-400 font-medium">Wrong Specification</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs font-medium">Zone Q-03</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-400">
+                                            Approved for Return
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary font-bold text-sm hover:underline">View RMA</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-sm">Control Unit Sensor V2</span>
+<span class="text-xs text-[#617589]">SKU-44120-SU</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Oct 21, 2023</td>
+<td class="px-6 py-4 text-sm text-red-600 dark:text-red-400 font-medium">Component Failure</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs font-medium">Zone Q-01</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-400">
+                                            Awaiting Credit Note
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary font-bold text-sm hover:underline">Track</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-sm">Heavy Duty Bearing B-500</span>
+<span class="text-xs text-[#617589]">SKU-10022-BRG</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Oct 20, 2023</td>
+<td class="px-6 py-4 text-sm text-red-600 dark:text-red-400 font-medium">Damaged Packaging</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs font-medium">Zone Q-02</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-400">
+                                            Awaiting Disposition
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary font-bold text-sm hover:underline">Process</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Placeholder -->
+<div class="px-6 py-4 border-t border-[#dbe0e6] dark:border-gray-700 flex items-center justify-between">
+<p class="text-xs text-[#617589]">Showing 4 of 142 records</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-[#dbe0e6] dark:border-gray-700 rounded text-xs font-medium hover:bg-gray-50 dark:hover:bg-gray-800">Previous</button>
+<button class="px-3 py-1 bg-primary text-white rounded text-xs font-medium">1</button>
+<button class="px-3 py-1 border border-[#dbe0e6] dark:border-gray-700 rounded text-xs font-medium hover:bg-gray-50 dark:hover:bg-gray-800">2</button>
+<button class="px-3 py-1 border border-[#dbe0e6] dark:border-gray-700 rounded text-xs font-medium hover:bg-gray-50 dark:hover:bg-gray-800">Next</button>
+</div>
+</div>
+</div>
+<!-- Footer Section -->
+<footer class="mt-12 py-6 border-t border-[#dbe0e6] dark:border-gray-800 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<span class="text-sm text-[#617589]">© 2023 PT Prima Sarana Gemilang. Bebang Sistem v2.4</span>
+</div>
+<div class="flex gap-6">
+<a class="text-sm text-primary hover:underline" href="#">Privacy Policy</a>
+<a class="text-sm text-primary hover:underline" href="#">Terms of Service</a>
+</div>
+</footer>
+</div>
+</main>
+</div>
+</body></html>

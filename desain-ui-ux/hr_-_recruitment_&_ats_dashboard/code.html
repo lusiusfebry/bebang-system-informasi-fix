@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HR - Recruitment &amp; ATS Dashboard | Bebang Sistem</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .funnel-clip {
+            clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318]">
+<div class="flex min-h-screen">
+<!-- Side Navigation Bar -->
+<aside class="w-64 bg-white dark:bg-background-dark border-r border-[#dbdfe6] dark:border-gray-800 flex flex-col h-screen sticky top-0">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-base font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-normal">HR Information System</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<p class="text-sm font-semibold">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">groups</span>
+<p class="text-sm font-medium">Talent Pool</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+<p class="text-sm font-medium">Interviews</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">account_tree</span>
+<p class="text-sm font-medium">Workflows</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-[#dbdfe6] dark:border-gray-800">
+<button class="w-full flex items-center justify-center gap-2 rounded-lg h-10 bg-primary text-white text-sm font-bold shadow-sm hover:bg-blue-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Post New Job</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="h-16 bg-white dark:bg-background-dark border-b border-[#dbdfe6] dark:border-gray-800 flex items-center justify-between px-8 sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<nav class="flex items-center gap-2 text-sm text-[#616f89]">
+<span>Bebang Sistem Informasi</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-[#111318] dark:text-white font-semibold">Recruitment Dashboard</span>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#616f89] text-[20px]">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg pl-10 pr-4 h-9 text-sm focus:ring-1 focus:ring-primary placeholder-[#616f89]" placeholder="Search applications..." type="text"/>
+</div>
+<div class="flex items-center gap-3 border-l border-[#dbdfe6] dark:border-gray-800 pl-6">
+<button class="p-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="p-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center ring-2 ring-white dark:ring-gray-700" data-alt="User profile avatar of HR administrator" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOaxiwj-eY8W0Mx09tvnUmFXqZV9i6RFlu-v6yxbeyFZLPhCeldQFrPJJmsABTRvriWLqtXXjd28z77dKizHibjIYDs-z6KRBHp82kkqdnxO3yVq90X3YeAsftG2XDfdyl72SnZ6fkLWTDC2qIIRMWUjBE2gn51zqs-azfxPLyXK0Kmd3wowLPfBb5FBaejbayAXrEyq9Cw5iX701jMCXT7yhR6Ca7-s1NAMMqwquoCgmJO4FDSWcRHBxRIjoFUKRc_WfoLRwdUv4");'></div>
+</div>
+</div>
+</header>
+<main class="p-8">
+<!-- Stats Overview -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[#616f89] text-sm font-medium">Open Vacancies</p>
+<span class="material-symbols-outlined text-primary">work</span>
+</div>
+<div class="flex items-end gap-2">
+<h3 class="text-3xl font-bold dark:text-white">12</h3>
+<span class="text-[#07883b] text-sm font-bold mb-1">+5%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[#616f89] text-sm font-medium">Total Applicants</p>
+<span class="material-symbols-outlined text-primary">person_search</span>
+</div>
+<div class="flex items-end gap-2">
+<h3 class="text-3xl font-bold dark:text-white">1,240</h3>
+<span class="text-[#07883b] text-sm font-bold mb-1">+12%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[#616f89] text-sm font-medium">Interviews This Week</p>
+<span class="material-symbols-outlined text-primary">event_available</span>
+</div>
+<div class="flex items-end gap-2">
+<h3 class="text-3xl font-bold dark:text-white">45</h3>
+<span class="text-[#e73908] text-sm font-bold mb-1">-2%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[#616f89] text-sm font-medium">Time to Hire</p>
+<span class="material-symbols-outlined text-primary">timer</span>
+</div>
+<div class="flex items-end gap-2">
+<h3 class="text-3xl font-bold dark:text-white">22 Days</h3>
+<span class="text-[#07883b] text-sm font-bold mb-1">+1%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- Left: Job Openings Table -->
+<div class="xl:col-span-2 flex flex-col gap-4">
+<div class="bg-white dark:bg-background-dark rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-[#dbdfe6] dark:border-gray-800 flex items-center justify-between">
+<h2 class="text-lg font-bold dark:text-white">Active Job Openings</h2>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-sm font-medium">
+                                        All Departments <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-sm font-medium">
+                                        Filter <span class="material-symbols-outlined text-sm">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-[#f9fafb] dark:bg-gray-800/50 text-[#616f89] text-xs font-semibold uppercase tracking-wider">
+<th class="px-6 py-4">Job Title</th>
+<th class="px-6 py-4">Department</th>
+<th class="px-6 py-4">Applicants</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold dark:text-white">Senior Software Engineer</span>
+<span class="text-xs text-[#616f89]">Full-time • Remote</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-semibold">Engineering</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold dark:text-white">42</span>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border-2 border-white dark:border-gray-700 bg-gray-200" data-alt="Candidate profile placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDz07XG80iAmvfdClzFtHF0w5C3boYwjwrWVrtBjRhIZFZj8iwvV4XTSQaeYKv0VQFFdGcgsxcld1muii21j6A9mBHFYn0B1vVKp9xzIbAgxUrBcsg7Yn-c-kOVpESLilMQ9lx_KBfSWABSCJvOZOPaVLly37v3WnBq4HlqEbYXVZlsx9NhubsNqKAhm9FgILGkWdJ5rGJoY7A24uDxSuN8OtsW9CLOQjPdv5O9ZxRtxp3QjvdnwqnB7WhOZD7mWO7w7MnII8CV5u0");'></div>
+<div class="size-6 rounded-full border-2 border-white dark:border-gray-700 bg-gray-200" data-alt="Candidate profile placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCXFy_P5cEed8Y1AqGtxTed48NxSrbb55nGs4bjryVTMTb48lNmLnphJlrV5c85FwAzB1WX4UjqPbFM_4TyFpKFgv2-eGPhFqvdRWe-Gl3dHCktNzY3QRGQQssRSEySmQtqTLOkDwghFdqCv7hjPt5dR51afK52fQWD-6m_6BMzpih1e9k0SnpnH3sZ1WgVPhq5Knst2vcPXQyiDyG6DT7mJBQzTsycF66EJd9zTQQjYYjkLKdhx2LHMnt3ABKN7ZiDTjsbAN_sXNQ");'></div>
+<div class="size-6 rounded-full bg-primary text-[8px] text-white flex items-center justify-center border-2 border-white dark:border-gray-700 font-bold">+39</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 bg-[#e7f5ed] text-[#07883b] text-xs font-bold rounded-full">
+<span class="size-1.5 rounded-full bg-[#07883b]"></span>
+                                                    Active
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-[#616f89] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold dark:text-white">HR Generalist</span>
+<span class="text-xs text-[#616f89]">Contract • Jakarta</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded text-xs font-semibold">Human Resources</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-bold dark:text-white">18</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 bg-amber-50 text-amber-600 text-xs font-bold rounded-full">
+<span class="size-1.5 rounded-full bg-amber-600"></span>
+                                                    Closing Soon
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-[#616f89] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold dark:text-white">Project Manager</span>
+<span class="text-xs text-[#616f89]">Full-time • Jakarta</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded text-xs font-semibold">Operations</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-bold dark:text-white">65</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 bg-[#e7f5ed] text-[#07883b] text-xs font-bold rounded-full">
+<span class="size-1.5 rounded-full bg-[#07883b]"></span>
+                                                    Active
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-[#616f89] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-[#dbdfe6] dark:border-gray-800 flex items-center justify-between">
+<p class="text-sm text-[#616f89]">Showing 1-10 of 12 jobs</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-[#dbdfe6] dark:border-gray-800 rounded text-sm hover:bg-gray-50 transition-colors dark:text-white">Previous</button>
+<button class="px-3 py-1 border border-[#dbdfe6] dark:border-gray-800 rounded text-sm bg-primary text-white">1</button>
+<button class="px-3 py-1 border border-[#dbdfe6] dark:border-gray-800 rounded text-sm hover:bg-gray-50 transition-colors dark:text-white">2</button>
+<button class="px-3 py-1 border border-[#dbdfe6] dark:border-gray-800 rounded text-sm hover:bg-gray-50 transition-colors dark:text-white">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Recruitment Funnel Visualization -->
+<div class="flex flex-col gap-4">
+<div class="bg-white dark:bg-background-dark rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm overflow-hidden h-full flex flex-col">
+<div class="p-6 border-b border-[#dbdfe6] dark:border-gray-800">
+<h2 class="text-lg font-bold dark:text-white">Recruitment Funnel</h2>
+<p class="text-xs text-[#616f89]">Conversion from application to hire</p>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<!-- Application -->
+<div class="flex items-center gap-4 mb-3">
+<div class="flex-1">
+<div class="w-full bg-primary h-12 rounded-lg flex items-center px-4 justify-between text-white font-bold relative overflow-hidden group">
+<span>Applications</span>
+<span>1,240</span>
+</div>
+</div>
+<div class="w-12 text-xs font-bold text-[#616f89]">100%</div>
+</div>
+<!-- Screening -->
+<div class="flex items-center gap-4 mb-3">
+<div class="flex-1 px-[5%]">
+<div class="w-full bg-primary/80 h-10 rounded-lg flex items-center px-4 justify-between text-white font-bold">
+<span class="text-sm truncate">Screening</span>
+<span class="text-sm">480</span>
+</div>
+</div>
+<div class="w-12 text-xs font-bold text-[#616f89]">38%</div>
+</div>
+<!-- Technical -->
+<div class="flex items-center gap-4 mb-3">
+<div class="flex-1 px-[10%]">
+<div class="w-full bg-primary/60 h-10 rounded-lg flex items-center px-4 justify-between text-white font-bold">
+<span class="text-sm truncate">Technical</span>
+<span class="text-sm">120</span>
+</div>
+</div>
+<div class="w-12 text-xs font-bold text-[#616f89]">9%</div>
+</div>
+<!-- HR Interview -->
+<div class="flex items-center gap-4 mb-3">
+<div class="flex-1 px-[15%]">
+<div class="w-full bg-primary/40 h-10 rounded-lg flex items-center px-4 justify-between text-[#111318] dark:text-white font-bold">
+<span class="text-sm truncate">HR Interview</span>
+<span class="text-sm">65</span>
+</div>
+</div>
+<div class="w-12 text-xs font-bold text-[#616f89]">5%</div>
+</div>
+<!-- Offering -->
+<div class="flex items-center gap-4 mb-3">
+<div class="flex-1 px-[20%]">
+<div class="w-full bg-primary/20 h-10 rounded-lg flex items-center px-4 justify-between text-[#111318] dark:text-white font-bold">
+<span class="text-sm truncate">Offering</span>
+<span class="text-sm">32</span>
+</div>
+</div>
+<div class="w-12 text-xs font-bold text-[#616f89]">2%</div>
+</div>
+<!-- Hired -->
+<div class="flex items-center gap-4">
+<div class="flex-1 px-[25%]">
+<div class="w-full bg-[#07883b] h-12 rounded-lg flex items-center px-4 justify-between text-white font-bold">
+<span>Hired</span>
+<span>24</span>
+</div>
+</div>
+<div class="w-12 text-xs font-bold text-[#07883b]">1.9%</div>
+</div>
+</div>
+<div class="p-6 bg-[#f9fafb] dark:bg-gray-800/50 mt-auto">
+<div class="flex items-center justify-between">
+<div class="text-center">
+<p class="text-[10px] uppercase font-bold text-[#616f89]">Offer Acceptance</p>
+<p class="text-lg font-bold text-[#111318] dark:text-white">75%</p>
+</div>
+<div class="w-px h-8 bg-[#dbdfe6] dark:bg-gray-700"></div>
+<div class="text-center">
+<p class="text-[10px] uppercase font-bold text-[#616f89]">Cost per Hire</p>
+<p class="text-lg font-bold text-[#111318] dark:text-white">$1.2k</p>
+</div>
+<div class="w-px h-8 bg-[#dbdfe6] dark:bg-gray-700"></div>
+<div class="text-center">
+<p class="text-[10px] uppercase font-bold text-[#616f89]">Turnover Rate</p>
+<p class="text-lg font-bold text-[#111318] dark:text-white">4.2%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Section -->
+<div class="mt-8 bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<h2 class="text-lg font-bold dark:text-white mb-6">Recent Recruitment Activity</h2>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-blue-100 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">how_to_reg</span>
+</div>
+<div class="flex flex-col">
+<p class="text-sm font-medium dark:text-white"><span class="font-bold">John Doe</span> applied for <span class="text-primary font-bold">Senior Software Engineer</span></p>
+<span class="text-xs text-[#616f89]">2 hours ago • HR Screening Pending</span>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-green-100 flex items-center justify-center text-[#07883b] flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<div class="flex flex-col">
+<p class="text-sm font-medium dark:text-white"><span class="font-bold">Sarah Chen</span> has been <span class="text-[#07883b] font-bold">Hired</span> as Project Manager</p>
+<span class="text-xs text-[#616f89]">5 hours ago • Operations Department</span>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<div class="flex flex-col">
+<p class="text-sm font-medium dark:text-white">Technical Interview scheduled for <span class="font-bold">Michael Ross</span></p>
+<span class="text-xs text-[#616f89]">Yesterday at 4:30 PM • With Engineering Panel</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

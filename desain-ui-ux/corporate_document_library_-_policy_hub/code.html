@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Corporate Document Library - Policy Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen text-[#111418] dark:text-white">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-[#1a242f] border-b border-[#f0f2f4] dark:border-gray-700 px-4 md:px-10 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between gap-8">
+<div class="flex items-center gap-8 shrink-0">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<h2 class="text-base font-bold leading-tight tracking-tight">Bebang Sistem Informasi</h2>
+<span class="text-[10px] uppercase tracking-wider text-primary font-bold">Policy Hub</span>
+</div>
+</div>
+</div>
+<!-- Centralized Search in Nav -->
+<div class="flex-1 max-w-2xl hidden md:block">
+<label class="flex flex-col w-full h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden bg-[#f0f2f4] dark:bg-gray-800 border border-transparent focus-within:border-primary/50">
+<div class="text-[#617589] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:outline-0 focus:ring-0 h-full placeholder:text-[#617589] px-3 text-sm font-normal" placeholder="Search for HSE Policies, HR Handbooks, SOPs..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-6 shrink-0">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Documents</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Directories</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Archive</a>
+</nav>
+<div class="flex items-center gap-3 border-l border-[#f0f2f4] dark:border-gray-700 pl-6">
+<div class="size-8 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border-2 border-primary/20" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfn5SnQHO_aMGC-X8cPe-e3vnKN7ABG5OWnbhyBDR08bxgRSCI3492HrLvoLQAdqmTEjx5hFwTskm9-53Q-YJyoV_TsNu9zyMdvpuVHZGXebkYyt6ZdJkpn24iYQacdsOfcsgt73mtkoY2EDc9ZUEPGzEwDSSjRkZSvDE_9aZ5hdLUhoFGPmfd7_UKpz2RO5lRMt7khcyQrdbhW4oqk9_57COUtB5yusfa9X_rrvP7pMYd5iW7ZmiknNd7BVyaf6CUIYgyUDJgl-o");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-6 p-4 md:p-8">
+<!-- Left Sidebar: Directory -->
+<aside class="w-full lg:w-72 shrink-0">
+<div class="flex flex-col gap-6 bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-[#f0f2f4] dark:border-gray-700 shadow-sm">
+<div>
+<h3 class="text-lg font-bold">Directory</h3>
+<p class="text-xs text-[#617589] dark:text-gray-400">PT Prima Sarana Gemilang</p>
+</div>
+<div class="flex flex-col gap-1">
+<button class="flex items-center justify-between w-full group">
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white w-full">
+<span class="material-symbols-outlined text-xl">folder_open</span>
+<span class="text-sm font-medium">Global Policies</span>
+</div>
+</button>
+<div class="flex flex-col gap-1 mt-1">
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] dark:text-gray-300 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+<p class="text-sm font-medium">Mining Operations</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] dark:text-gray-300 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-xl">shield</span>
+<p class="text-sm font-medium">Health &amp; Safety</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] dark:text-gray-300 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-xl">group</span>
+<p class="text-sm font-medium">Human Capital</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] dark:text-gray-300 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+<p class="text-sm font-medium">Finance</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] dark:text-gray-300 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-xl">gavel</span>
+<p class="text-sm font-medium">Legal &amp; Compliance</p>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-[#f0f2f4] dark:border-gray-700">
+<p class="text-xs font-bold uppercase tracking-widest text-[#617589] mb-3">System</p>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] dark:text-gray-300 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 cursor-pointer">
+<span class="material-symbols-outlined text-xl">archive</span>
+<p class="text-sm font-medium">Archived Documents</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] dark:text-gray-300 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 cursor-pointer">
+<span class="material-symbols-outlined text-xl">settings</span>
+<p class="text-sm font-medium">Request Access</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 min-w-0 flex flex-col gap-6">
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-black leading-tight tracking-tight">Corporate Document Library</h1>
+<p class="text-[#617589] dark:text-gray-400 text-base">Centralized repository for operational and compliance standards.</p>
+</div>
+<button class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">upload_file</span>
+                    Upload New
+                </button>
+</div>
+<!-- Quick Filters (Chips) -->
+<div class="flex items-center gap-3 overflow-x-auto pb-2 no-scrollbar">
+<span class="text-xs font-bold text-[#617589] uppercase mr-2 shrink-0">Quick Filters:</span>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/10 text-primary px-4 cursor-pointer border border-primary/20">
+<p class="text-sm font-semibold">All Documents</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-[#f0f2f4] dark:border-gray-700 px-4 hover:border-primary/40 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-lg text-primary">health_and_safety</span>
+<p class="text-sm font-medium">HSE Policies</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-[#f0f2f4] dark:border-gray-700 px-4 hover:border-primary/40 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-lg text-primary">menu_book</span>
+<p class="text-sm font-medium">HR Handbooks</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-[#f0f2f4] dark:border-gray-700 px-4 hover:border-primary/40 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-lg text-primary">assignment</span>
+<p class="text-sm font-medium">SOPs</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-[#f0f2f4] dark:border-gray-700 px-4 hover:border-primary/40 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-lg text-primary">verified_user</span>
+<p class="text-sm font-medium">Compliance</p>
+</div>
+</div>
+<!-- Documents Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+<!-- Mandatory Card -->
+<div class="bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-primary/30 dark:border-primary/20 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="px-2 py-0.5 rounded bg-red-100 text-red-600 text-[10px] font-black uppercase tracking-wider">Mandatory Reading</span>
+<span class="text-[10px] text-[#617589] font-medium">v2.4.1</span>
+</div>
+</div>
+<h3 class="font-bold text-base mb-1 group-hover:text-primary transition-colors">Site Safety Protocol 2024</h3>
+<p class="text-xs text-[#617589] dark:text-gray-400 mb-4 line-clamp-2 leading-relaxed">Standard operating procedures for onsite heavy machinery maintenance and emergency evacuation plans.</p>
+<div class="flex items-center justify-between pt-4 border-t border-[#f0f2f4] dark:border-gray-700">
+<span class="text-[11px] font-medium text-[#617589]">Pub: Oct 12, 2023</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-lg text-[#617589] cursor-pointer hover:text-primary transition-colors">bookmark</span>
+<span class="material-symbols-outlined text-lg text-[#617589] cursor-pointer hover:text-primary transition-colors">download</span>
+</div>
+</div>
+</div>
+<!-- Regular Card 1 -->
+<div class="bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-[#f0f2f4] dark:border-gray-700 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 bg-[#f0f2f4] dark:bg-gray-800 rounded-lg flex items-center justify-center text-[#617589]">
+<span class="material-symbols-outlined text-3xl">description</span>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="px-2 py-0.5 rounded bg-green-100 text-green-600 text-[10px] font-black uppercase tracking-wider">Revised</span>
+<span class="text-[10px] text-[#617589] font-medium">v1.2.0</span>
+</div>
+</div>
+<h3 class="font-bold text-base mb-1 group-hover:text-primary transition-colors">Employee Benefits Guide</h3>
+<p class="text-xs text-[#617589] dark:text-gray-400 mb-4 line-clamp-2 leading-relaxed">Comprehensive overview of medical, insurance, and performance bonus structures for PT PSG employees.</p>
+<div class="flex items-center justify-between pt-4 border-t border-[#f0f2f4] dark:border-gray-700">
+<span class="text-[11px] font-medium text-[#617589]">Pub: Jan 05, 2024</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-lg text-primary fill-1">bookmark</span>
+<span class="material-symbols-outlined text-lg text-[#617589] cursor-pointer hover:text-primary transition-colors">download</span>
+</div>
+</div>
+</div>
+<!-- Regular Card 2 -->
+<div class="bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-[#f0f2f4] dark:border-gray-700 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 bg-[#f0f2f4] dark:bg-gray-800 rounded-lg flex items-center justify-center text-[#617589]">
+<span class="material-symbols-outlined text-3xl">table_chart</span>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-wider">New</span>
+<span class="text-[10px] text-[#617589] font-medium">v1.0.0</span>
+</div>
+</div>
+<h3 class="font-bold text-base mb-1 group-hover:text-primary transition-colors">Quarterly Compliance Matrix</h3>
+<p class="text-xs text-[#617589] dark:text-gray-400 mb-4 line-clamp-2 leading-relaxed">Financial compliance reporting schedule and stakeholder notification matrix for fiscal year 2024.</p>
+<div class="flex items-center justify-between pt-4 border-t border-[#f0f2f4] dark:border-gray-700">
+<span class="text-[11px] font-medium text-[#617589]">Pub: Mar 22, 2024</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-lg text-[#617589] cursor-pointer hover:text-primary transition-colors">bookmark</span>
+<span class="material-symbols-outlined text-lg text-[#617589] cursor-pointer hover:text-primary transition-colors">download</span>
+</div>
+</div>
+</div>
+<!-- Folder Card -->
+<div class="bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-[#f0f2f4] dark:border-gray-700 shadow-sm group hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="size-14 bg-amber-50 rounded-lg flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined text-4xl fill-1">folder</span>
+</div>
+<div>
+<h3 class="font-bold text-base mb-0.5">Project Alpha Archives</h3>
+<p class="text-xs text-[#617589]">124 Files · Last modified 2 days ago</p>
+</div>
+</div>
+</div>
+<!-- Folder Card -->
+<div class="bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-[#f0f2f4] dark:border-gray-700 shadow-sm group hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="size-14 bg-amber-50 rounded-lg flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined text-4xl fill-1">folder</span>
+</div>
+<div>
+<h3 class="font-bold text-base mb-0.5">Procurement Forms</h3>
+<p class="text-xs text-[#617589]">18 Files · Last modified 5 hours ago</p>
+</div>
+</div>
+</div>
+<!-- Folder Card -->
+<div class="bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-[#f0f2f4] dark:border-gray-700 shadow-sm group hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="size-14 bg-amber-50 rounded-lg flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined text-4xl fill-1">folder</span>
+</div>
+<div>
+<h3 class="font-bold text-base mb-0.5">Training Modules</h3>
+<p class="text-xs text-[#617589]">42 Files · Last modified Mar 20, 2024</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Utilities -->
+<aside class="w-full lg:w-80 shrink-0 flex flex-col gap-6">
+<!-- Recent Updates -->
+<div class="bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-[#f0f2f4] dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-[#617589]">Recent Updates</h3>
+<span class="material-symbols-outlined text-lg text-[#617589] cursor-pointer">refresh</span>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex gap-3">
+<div class="size-2 bg-primary rounded-full mt-1.5 shrink-0"></div>
+<div class="flex flex-col">
+<p class="text-sm font-bold leading-snug">Safety Handbook updated to v2.5</p>
+<p class="text-[11px] text-[#617589]">1 hour ago by HSE Admin</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="size-2 bg-green-500 rounded-full mt-1.5 shrink-0"></div>
+<div class="flex flex-col">
+<p class="text-sm font-bold leading-snug">New Compliance SOP uploaded</p>
+<p class="text-[11px] text-[#617589]">4 hours ago by Finance Dept</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="size-2 bg-[#617589] rounded-full mt-1.5 shrink-0"></div>
+<div class="flex flex-col">
+<p class="text-sm font-bold leading-snug">Mining Log template revised</p>
+<p class="text-[11px] text-[#617589]">Yesterday by Operations</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-xs font-bold text-primary border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors">View All Activity</button>
+</div>
+<!-- My Bookmarks -->
+<div class="bg-white dark:bg-[#1a242f] p-5 rounded-xl border border-[#f0f2f4] dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-[#617589]">My Bookmarks</h3>
+<span class="text-xs font-bold text-primary cursor-pointer hover:underline">Edit</span>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-lg text-primary fill-1">description</span>
+<p class="text-sm font-medium truncate group-hover:text-primary transition-colors">Employee Benefits Guide</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-lg text-primary fill-1">picture_as_pdf</span>
+<p class="text-sm font-medium truncate group-hover:text-primary transition-colors">Leave Request Form</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-lg text-primary fill-1">table_chart</span>
+<p class="text-sm font-medium truncate group-hover:text-primary transition-colors">Budget Template 2024</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-lg text-primary fill-1">folder</span>
+<p class="text-sm font-medium truncate group-hover:text-primary transition-colors">Shared Resources</p>
+</div>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="bg-gradient-to-br from-primary to-[#0d5fb1] p-6 rounded-xl text-white shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="text-xs font-bold uppercase tracking-widest opacity-80 mb-4">Library Health</h4>
+<div class="flex items-end gap-2 mb-1">
+<span class="text-3xl font-black">2,481</span>
+<span class="text-xs font-medium opacity-80 mb-1">Total Docs</span>
+</div>
+<div class="w-full h-1.5 bg-white/20 rounded-full mt-4 overflow-hidden">
+<div class="h-full bg-white w-[85%]"></div>
+</div>
+<p class="text-[10px] mt-2 opacity-80 font-medium">85% Compliance Completion Rate</p>
+</div>
+<!-- Abstract pattern background -->
+<div class="absolute -right-4 -bottom-4 size-24 bg-white/10 rounded-full blur-xl"></div>
+</div>
+</aside>
+</main>
+<!-- Footer Area (Subtle) -->
+<footer class="max-w-[1440px] mx-auto px-8 py-10 border-t border-[#f0f2f4] dark:border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4 text-[#617589] dark:text-gray-400">
+<p class="text-sm font-medium">© 2024 Bebang Sistem Informasi. All rights reserved.</p>
+<div class="flex gap-6 text-sm">
+<a class="hover:text-primary" href="#">System Status</a>
+<a class="hover:text-primary" href="#">User Guide</a>
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Help Center</a>
+</div>
+</footer>
+</body></html>

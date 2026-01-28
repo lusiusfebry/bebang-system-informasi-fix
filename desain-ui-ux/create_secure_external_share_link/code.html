@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Secure External Share Link - Bebang DAM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-[#2a343d] bg-white dark:bg-[#1a252f] px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Bebang DAM</h2>
+</div>
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] flex border-none bg-[#f0f2f4] dark:bg-[#2a343d] items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#f0f2f4] dark:bg-[#2a343d] text-[#111418] dark:text-white focus:outline-0 focus:ring-0 h-full placeholder:text-[#617589] px-4 rounded-r-lg pl-2 text-base font-normal" placeholder="Search assets..."/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-9">
+<a class="text-[#111418] dark:text-[#d0d3d6] text-sm font-medium hover:text-primary transition-colors" href="#">Library</a>
+<a class="text-[#111418] dark:text-[#d0d3d6] text-sm font-medium hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-primary text-sm font-bold" href="#">Shared</a>
+<a class="text-[#111418] dark:text-[#d0d3d6] text-sm font-medium hover:text-primary transition-colors" href="#">Activity</a>
+</nav>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal">
+<span class="truncate">Upload Asset</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-gray-200" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6RuZtrfRjvLZJLWReFKV8m4FUxgLm09eL9M6ShRyabEGaoa8Jxy4l5foQP0b_C7pDuGEO9n-6g-jzhnRfZYPsqSRIiCZZDuYSn3E1BEZEP5nZJrVvpaFfeK9inWDSeEzkui4EmW7XEvfxR82dc6ZxWqKZHSVIspzf_2BISJ3fSY1tjT1Yy1uFEErqItpI7ssTQcaTi9xY1pRy1lOEx_i-jZI23SwPg6a1krSRZxczO6Duwj2bRvZup6pBA7HcjfGBEFxCG_p2UGs");'></div>
+</div>
+</header>
+<main class="flex-grow flex justify-center py-10 px-6">
+<div class="max-w-[1000px] w-full grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8">
+<!-- Sidebar Navigation -->
+<aside class="flex flex-col gap-6">
+<div class="flex flex-col bg-white dark:bg-[#1a252f] p-4 rounded-xl shadow-sm">
+<div class="flex flex-col mb-6">
+<h1 class="text-[#111418] dark:text-white text-base font-bold">PT Prima Sarana Gemilang</h1>
+<p class="text-[#617589] text-xs font-normal">DAM Admin Dashboard</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-[#d0d3d6] hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-xl">folder_open</span>
+<span class="text-sm font-medium">All Assets</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1">share</span>
+<span class="text-sm font-bold">External Shares</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-[#d0d3d6] hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-xl">link</span>
+<span class="text-sm font-medium">Internal Links</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-[#d0d3d6] hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-xl">security</span>
+<span class="text-sm font-medium">Security Logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-[#d0d3d6] hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Content: Create Share Link Form -->
+<section class="flex flex-col bg-white dark:bg-[#1a252f] rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 px-8 pt-6">
+<a class="text-[#617589] text-sm font-medium hover:text-primary" href="#">External Shares</a>
+<span class="text-[#617589] text-sm font-medium">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-bold">Create Share Link</span>
+</div>
+<!-- Page Heading -->
+<div class="px-8 py-4 border-b border-gray-50 dark:border-gray-800">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black tracking-tight">Create Secure Share Link</h1>
+<p class="text-[#617589] text-sm font-normal">Configure privacy, visibility, and access controls for external asset sharing.</p>
+</div>
+</div>
+<!-- Form Body -->
+<div class="px-8 py-6 space-y-10">
+<!-- Section 1: Selected Assets -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-[#111418] dark:text-white text-lg font-bold">1. Selected Assets</h2>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-lg">add_circle</span> Add More
+                            </button>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="relative group aspect-square rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Office workspace photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtmkkSTXkllFTF5OK_YOok9iWlchrShAYqqWKZ6a8NuoR6zGciYqazbcQmjBdyI0htXtTDCLTX0LewXF9kh5S1fP2tmph_S0fdHG5VHmH4sdtZw9y4XQEI5YHtdDVMVTHZk23q9oWwa2yHppaTSVB8EN_2Z4WqoxR0qUd1yQqKaasY90TMV8YCI5BgLzxaI4aJSlFiEXYMLRgGLMQ_RTYOta5ve-sL_7XeYKE5jfi3Ttg1iLlTQpKtvWNq6hK378fa-ggLMbCAgC0"/>
+<button class="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="relative group aspect-square rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Business analytics dashboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlliCHEo3mRs-ZBLmvZ9zwY-fjjohdKjlUCGg2wh8ioXVvzsyWpWGWCApVnORJ0itUoXrFJQ6UReJ254Lyy0zaxBohXVyXtm0bR2tEmyIjib4W441cC-VGFICEqkQkDdZBGwtLMg6j5owxCxVrZSpMtMB5zX0SrsqR0-98unJae0DKBzz2ETSmE6v90UgTruHVVtFq4NNx4QCT3osjK18Ap2eSeeuUf-KdIYtoUnYnuXdaPNITD9ACnLYRQ-zygPAcL-6yOr5ABCY"/>
+<button class="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="relative group aspect-square rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Server room technology" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDnRSGlkXpeuTsO6vEwsODjNa-GUSjLpU5_-0-zzi6-CmOEvhsGXDPuEC1R6xPjBHc2RtlxVzV0kqymdbStNgp1ZS8SLrZpv1jh_4Ue_noxf_uu3Ta5k2MgyF2nWLGd9php-tVzlnLyINIFrnPPQczJjxOzMjs_Tbf3LP21P5-VMqagq6rDGuWHkWjGUc4tDlZRoyPwDggBMF2nM6KoEnsKk6dzNeM6UnLffA0Xa1tVM35RE8jLfg3jMFxr99BxP9G27lxuiT_bxo"/>
+<button class="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="bg-[#f0f2f4] dark:bg-[#2a343d] aspect-square rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 cursor-pointer hover:border-primary group transition-colors">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary">add_photo_alternate</span>
+<span class="text-xs text-gray-500 font-medium mt-1">+8 more</span>
+</div>
+</div>
+</div>
+<!-- Section 2: Distribution Details -->
+<div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold mb-4">2. Recipient &amp; Label</h2>
+<div class="grid grid-cols-2 gap-6">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-[#111418] dark:text-white">Recipient Email</label>
+<input class="form-input rounded-lg border-[#d0d3d6] dark:border-gray-700 dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary w-full h-11" placeholder="client@example.com" type="email"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-[#111418] dark:text-white">Link Alias (Optional)</label>
+<div class="flex h-11">
+<span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-[#d0d3d6] dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-gray-500 text-sm">share.psg.id/</span>
+<input class="form-input flex-1 rounded-r-lg border-[#d0d3d6] dark:border-gray-700 dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary border-l-0" placeholder="project-alpha" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Security Settings -->
+<div class="bg-[#f6f7f8] dark:bg-[#101922] p-6 rounded-xl space-y-6">
+<h2 class="text-[#111418] dark:text-white text-lg font-bold">3. Security Settings</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111418] dark:text-white">Password Protection</span>
+<span class="text-xs text-gray-500">Require a password to view assets</span>
+</div>
+<button class="w-12 h-6 flex items-center bg-primary rounded-full p-1 cursor-pointer">
+<div class="bg-white size-4 rounded-full shadow-sm translate-x-6"></div>
+</button>
+</div>
+<div class="flex flex-col gap-1.5">
+<input class="form-input rounded-lg border-[#d0d3d6] dark:border-gray-700 dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary w-full h-11" type="password" value="********"/>
+<p class="text-[10px] text-green-600 font-medium">Strong security level</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111418] dark:text-white">Expiry Date</span>
+<span class="text-xs text-gray-500">Link will deactivate automatically</span>
+</div>
+<button class="w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full p-1 cursor-pointer">
+<div class="bg-white size-4 rounded-full shadow-sm translate-x-0"></div>
+</button>
+</div>
+<div class="relative">
+<input class="form-input rounded-lg border-[#d0d3d6] dark:border-gray-700 dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary w-full h-11 pl-10" type="text" value="Oct 24, 2024"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-gray-400">calendar_today</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-gray-200 dark:border-gray-800">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">download</span>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111418] dark:text-white">Allow Download Permissions</span>
+<span class="text-xs text-gray-500">Recipients can download original high-res files</span>
+</div>
+</div>
+<button class="w-12 h-6 flex items-center bg-primary rounded-full p-1 cursor-pointer">
+<div class="bg-white size-4 rounded-full shadow-sm translate-x-6"></div>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-8 py-6 border-t border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-[#1a252f] flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500">verified_user</span>
+<p class="text-xs text-gray-500 font-medium">This share will be encrypted using 256-bit SSL</p>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 rounded-lg h-11 px-6 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white text-sm font-bold hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+                            Copy Link
+                        </button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 rounded-lg h-11 px-8 bg-primary text-white text-sm font-bold hover:bg-primary/90 shadow-md transition-all">
+<span class="material-symbols-outlined text-xl">send</span>
+                            Send via Email
+                        </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Success Feedback Overlay (Hidden by default, for visualization of context) -->
+<!-- This is a placeholder for the interaction design -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 pointer-events-none opacity-0 translate-y-10 transition-all duration-300">
+<span class="material-symbols-outlined text-green-400">check_circle</span>
+<p class="text-sm font-medium">Secure share link created successfully</p>
+</div>
+</body></html>

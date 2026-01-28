@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Notifications Center Panel - Bebang Sistem</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dbdfe6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Main Dashboard Content (Background) -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col justify-between p-4 hidden lg:flex">
+<div class="flex flex-col gap-6">
+<div class="flex gap-3 items-center">
+<div class="bg-primary rounded-full size-10 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-base font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-[#616f89] text-xs font-normal">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-primary">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">badge</span>
+<p class="text-sm font-medium">HR Services</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">inventory_2</span>
+<p class="text-sm font-medium">Inventory</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">night_shelter</span>
+<p class="text-sm font-medium">Mess Management</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">health_and_safety</span>
+<p class="text-sm font-medium">Safety</p>
+</div>
+</nav>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-[0.015em]">
+<span>New Request</span>
+</button>
+</aside>
+<!-- Placeholder Main Content -->
+<main class="flex-1 bg-background-light dark:bg-background-dark p-8 overflow-y-auto">
+<div class="max-w-4xl mx-auto">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Welcome back, Admin</h2>
+<div class="flex gap-4">
+<div class="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-300">search</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="h-32 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4"></div>
+<div class="h-32 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4"></div>
+<div class="h-32 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4"></div>
+</div>
+</div>
+</main>
+</div>
+<!-- Notification Center Slide-out Panel -->
+<div class="w-full max-w-[420px] bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800 flex flex-col shadow-2xl z-50">
+<!-- Header Section -->
+<div class="flex flex-col shrink-0">
+<div class="flex items-center justify-between px-6 pt-6 pb-2">
+<h2 class="text-[#111318] dark:text-white text-xl font-bold leading-tight">Notifications</h2>
+<div class="flex items-center gap-1">
+<button class="p-2 text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-xs font-semibold uppercase tracking-wider">
+<span class="material-symbols-outlined !text-lg">done_all</span>
+                            Mark all
+                        </button>
+<button class="p-2 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
+<span class="material-symbols-outlined !text-[24px]">settings</span>
+</button>
+</div>
+</div>
+<!-- Tabs Section -->
+<div class="px-6 border-b border-gray-100 dark:border-gray-800">
+<div class="flex gap-8">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-primary pb-3 pt-4 transition-all" href="#">
+<p class="text-sm font-bold tracking-[0.015em]">All</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-[#616f89] pb-3 pt-4 hover:text-gray-800 dark:hover:text-gray-200 transition-all" href="#">
+<div class="flex items-center gap-1.5">
+<p class="text-sm font-bold tracking-[0.015em]">Unread</p>
+<span class="size-2 rounded-full bg-primary"></span>
+</div>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-[#616f89] pb-3 pt-4 hover:text-gray-800 dark:hover:text-gray-200 transition-all" href="#">
+<p class="text-sm font-bold tracking-[0.015em]">Urgent</p>
+</a>
+</div>
+</div>
+</div>
+<!-- Scrollable List Area -->
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<!-- Urgent Item -->
+<div class="group relative flex gap-4 bg-red-50/50 dark:bg-red-900/10 px-6 py-5 border-b border-red-100 dark:border-red-900/20 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors cursor-pointer">
+<div class="flex items-start gap-4 flex-1">
+<div class="text-red-600 flex items-center justify-center rounded-xl bg-red-100 dark:bg-red-900/30 shrink-0 size-12">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex flex-col justify-center overflow-hidden">
+<div class="flex items-center gap-2 mb-1">
+<p class="text-[#111318] dark:text-white text-[15px] font-bold leading-tight truncate">Safety Drill Reminder</p>
+<span class="px-1.5 py-0.5 rounded bg-red-600 text-[10px] font-bold text-white uppercase tracking-tight">Urgent</span>
+</div>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-medium mb-1.5">10 mins ago • Safety Dept</p>
+<p class="text-[#4b5563] dark:text-gray-300 text-sm font-normal leading-snug">Mandatory safety drill scheduled for tomorrow at 09:00 AM at Assembly Point A.</p>
+</div>
+</div>
+<div class="shrink-0 flex items-start pt-1">
+<div class="size-2.5 rounded-full bg-red-600"></div>
+</div>
+</div>
+<!-- HR Notification -->
+<div class="group relative flex gap-4 bg-white dark:bg-transparent px-6 py-5 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer">
+<div class="flex items-start gap-4 flex-1">
+<div class="text-primary flex items-center justify-center rounded-xl bg-primary/10 shrink-0 size-12">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<div class="flex flex-col justify-center overflow-hidden">
+<p class="text-[#111318] dark:text-white text-[15px] font-bold leading-tight mb-1 truncate">Leave Request Approved</p>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-medium mb-1.5">1 hour ago • HR Services</p>
+<p class="text-[#4b5563] dark:text-gray-300 text-sm font-normal leading-snug">Your annual leave request for July 12-15 has been approved by the manager.</p>
+</div>
+</div>
+<div class="shrink-0 flex items-start pt-1">
+<div class="size-2.5 rounded-full bg-primary"></div>
+</div>
+</div>
+<!-- Inventory Notification -->
+<div class="group relative flex gap-4 bg-white dark:bg-transparent px-6 py-5 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer">
+<div class="flex items-start gap-4 flex-1">
+<div class="text-amber-600 flex items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/20 shrink-0 size-12">
+<span class="material-symbols-outlined">inventory</span>
+</div>
+<div class="flex flex-col justify-center overflow-hidden">
+<p class="text-[#111318] dark:text-white text-[15px] font-bold leading-tight mb-1 truncate">Low Stock Alert: PPE Gear</p>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-medium mb-1.5">4 hours ago • Inventory</p>
+<p class="text-[#4b5563] dark:text-gray-300 text-sm font-normal leading-snug">Safety vests and hard hats are below the minimum threshold. Please restock.</p>
+</div>
+</div>
+</div>
+<!-- Mess Notification -->
+<div class="group relative flex gap-4 bg-white dark:bg-transparent px-6 py-5 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer">
+<div class="flex items-start gap-4 flex-1">
+<div class="text-emerald-600 flex items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/20 shrink-0 size-12">
+<span class="material-symbols-outlined">bed</span>
+</div>
+<div class="flex flex-col justify-center overflow-hidden">
+<p class="text-[#111318] dark:text-white text-[15px] font-bold leading-tight mb-1 truncate">Room Change Notification</p>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-medium mb-1.5">Yesterday • Mess Management</p>
+<p class="text-[#4b5563] dark:text-gray-300 text-sm font-normal leading-snug">Accommodation update: You have been moved to Block B-12 for the next cycle.</p>
+</div>
+</div>
+</div>
+<!-- Earlier Notif -->
+<div class="group relative flex gap-4 bg-white dark:bg-transparent px-6 py-5 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer">
+<div class="flex items-start gap-4 flex-1">
+<div class="text-gray-500 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 shrink-0 size-12">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<div class="flex flex-col justify-center overflow-hidden opacity-75">
+<p class="text-[#111318] dark:text-white text-[15px] font-bold leading-tight mb-1 truncate">Weekly System Update</p>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-medium mb-1.5">2 days ago • System</p>
+<p class="text-[#4b5563] dark:text-gray-300 text-sm font-normal leading-snug">The portal will be down for maintenance on Saturday from 2 AM to 4 AM.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Section -->
+<div class="p-6 border-t border-gray-100 dark:border-gray-800 shrink-0 bg-gray-50 dark:bg-gray-900/80">
+<button class="w-full py-3 text-primary text-sm font-bold border border-primary/20 bg-primary/5 rounded-lg hover:bg-primary/10 transition-colors flex items-center justify-center gap-2">
+                    See All Notifications
+                    <span class="material-symbols-outlined !text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

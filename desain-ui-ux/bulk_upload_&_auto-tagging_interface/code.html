@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bulk Upload &amp; Auto-Tagging | Bebang Sistem Informasi</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-gray-100 min-h-screen flex flex-col font-display">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-gray-900 px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<h2 class="text-[#111418] dark:text-white text-base font-bold leading-tight tracking-tight">Bebang Sistem Informasi</h2>
+<p class="text-[10px] text-primary font-bold uppercase tracking-wider">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="#">Digital Library</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="#">Recent Uploads</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="#">Site Admin</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4">
+<label class="hidden lg:flex flex-col min-w-40 h-9 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] flex bg-[#f0f2f4] dark:bg-gray-800 items-center justify-center pl-3 rounded-l-lg">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#f0f2f4] dark:bg-gray-800 focus:ring-0 h-full placeholder:text-[#617589] px-2 text-sm rounded-r-lg" placeholder="Search assets..."/>
+</div>
+</label>
+<button class="size-9 flex items-center justify-center rounded-full bg-background-light dark:bg-gray-800">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border-2 border-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzYRKJFSQJd4OkgEg16YpHSAv7PZCmF7AqdS2aJjKo4bfsYzHJxOMeLJiGobrPbh0O9GiCtZ5rm8DnO0b8cs7-HfUA2GjZ7-cB4zaFQSyvzP57HN4aJpAUGuEyvVPo8RhVsjfS4hqzv2ng-UbYgiUya9EPswDBlTQs_jtoznVO_XhT7MWV9fJPiGYC92gLHlZFF28WVEuBmvgS4Gq9n52c1EIGFkQ5pK_MK8Fu0d9MES2pau51E1GPtA2u7C-2rsn-gzyGNWQ2Nn4");'></div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Section: Main Upload Area -->
+<section class="flex-1 flex flex-col p-6 overflow-y-auto custom-scrollbar">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-3 mb-6">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Bulk Asset Upload</h1>
+<p class="text-[#617589] dark:text-gray-400 text-sm font-normal">Manage high-resolution images, drone footage, and safety videos.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-[#f0f2f4] dark:bg-gray-800 hover:bg-[#e2e5e9] dark:hover:bg-gray-700 rounded-lg text-[#111418] dark:text-white text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-lg">folder_open</span>
+<span>View Library</span>
+</button>
+</div>
+<!-- Drag & Drop Zone -->
+<div class="flex flex-col mb-8">
+<div class="flex flex-col items-center gap-4 rounded-xl border-2 border-dashed border-[#dbe0e6] dark:border-gray-700 bg-white/50 dark:bg-gray-900/30 px-6 py-10 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="size-16 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">cloud_upload</span>
+</div>
+<div class="flex max-w-[480px] flex-col items-center gap-2">
+<p class="text-[#111418] dark:text-white text-lg font-bold text-center">Drag &amp; Drop assets here</p>
+<p class="text-[#617589] dark:text-gray-400 text-sm text-center">
+                            Support for JPG, PNG, MP4, and RAW files. Maximum file size 500MB.
+                        </p>
+</div>
+<button class="mt-2 flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-lg text-sm font-bold shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Browse Files</span>
+</button>
+</div>
+</div>
+<!-- Upload Queue Header -->
+<div class="flex items-center justify-between px-1 mb-4">
+<h2 class="text-[#111418] dark:text-white text-xl font-bold">Upload Queue <span class="text-primary font-medium text-sm ml-2 bg-primary/10 px-2 py-0.5 rounded-full">12 files</span></h2>
+<button class="text-sm font-bold text-primary hover:underline">Clear Queue</button>
+</div>
+<!-- Upload Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-24">
+<!-- Card 1: Image -->
+<div class="bg-white dark:bg-gray-800 rounded-xl p-3 border border-[#f0f2f4] dark:border-gray-700 shadow-sm group">
+<div class="relative w-full aspect-video bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden mb-3">
+<div class="w-full h-full bg-center bg-cover" data-alt="High angle shot of a mining site" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB2-7g_F8eCQDibD7kgR3Dw3FVkDmIqEkMa24Dwc2WW02H2jyTpJQfas45Csu2XEJbDltyfqJ3QXSfpIbD8wqrv2pXOdKhodCr-lSVK4jiqZbYD8fR1NeDxD2bsdgbSM7eRkDPc5DqdOqVZ1RWehhKqsDl1qIMt4mYZzM0F7bBepHasuaAcrCv50w8hfQKBLZ9fWOmJmJC_-XfEuU1RPnQS6Q1gDNTvFAY-nJRA6iXqdBn78TvH4srZULbolzp3uRyeaopK6ECG1do");'></div>
+<div class="absolute top-2 right-2 flex gap-1">
+<button class="size-7 bg-white/90 dark:bg-gray-900/90 rounded-full flex items-center justify-center text-red-500 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+</div>
+<div class="space-y-1">
+<p class="text-[#111418] dark:text-white text-sm font-bold truncate">Taliabu_Site_Survey_01.jpg</p>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium uppercase">4.2 MB • JPG</p>
+<div class="pt-2">
+<div class="flex items-center justify-between mb-1">
+<span class="text-[10px] font-bold text-primary uppercase">Ready</span>
+<span class="text-[10px] text-[#617589]">0%</span>
+</div>
+<div class="w-full h-1.5 bg-[#f0f2f4] dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="w-0 h-full bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Video -->
+<div class="bg-white dark:bg-gray-800 rounded-xl p-3 border border-[#f0f2f4] dark:border-gray-700 shadow-sm group">
+<div class="relative w-full aspect-video bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden mb-3">
+<div class="w-full h-full bg-center bg-cover" data-alt="Safety training video thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDu3fCDLbEx0GL8n3zP9oTafwRuthYGoBm_b4f9VqmZ1PzrUfhKYffA-QKdU3B79KR3dC6Eo0wJHAywik1b78g4nwGXIt7f8m2ASPvQVEH-_lZ5bjiUtuu7nxYdXbAo7orATS42jaYGx78aLCbLfh8TYlqxQgxR2etBpybjUEsUjHCkBcYFSyuT8D9xD66xWfUgO4kMLSngtFhGQz60R4dTwXOi8scNeLlfCTy0ieiGPLijxBdP81lQp8pgbA7ccTQN5k5YTyWf6hM");'></div>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20">
+<span class="material-symbols-outlined text-white text-3xl">play_circle</span>
+</div>
+<div class="absolute bottom-2 right-2 px-1.5 py-0.5 bg-black/60 text-white text-[10px] rounded">02:45</div>
+</div>
+<div class="space-y-1">
+<p class="text-[#111418] dark:text-white text-sm font-bold truncate">Safety_Briefing_HQ.mp4</p>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium uppercase">156.0 MB • MP4</p>
+<div class="pt-2">
+<div class="flex items-center justify-between mb-1">
+<span class="text-[10px] font-bold text-yellow-500 uppercase">Processing AI...</span>
+<span class="text-[10px] text-[#617589]">82%</span>
+</div>
+<div class="w-full h-1.5 bg-[#f0f2f4] dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="w-[82%] h-full bg-yellow-500 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Image -->
+<div class="bg-white dark:bg-gray-800 rounded-xl p-3 border border-[#f0f2f4] dark:border-gray-700 shadow-sm group">
+<div class="relative w-full aspect-video bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden mb-3">
+<div class="w-full h-full bg-center bg-cover" data-alt="Excavator at work in morning sun" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFbXqG5rX4yzccrdVLOmR5AhAl7_XfjwHWqCuSQmOgPJW_fKJ-dzv3ehA2WM8gAQrN-csfFKwa-mj4j7picLpL_28bH4yDJHQEuI6f5iVXYZoKyixRK940tTwsifIO6VuVc7-zoUgCEay-UGjAJmrk0ctDjvRbaJ4c46pF3zZr8DDxBCh-81tST6qKpdCR0_mhP4BFPHsaz5wr0qhEqDCeqRumNVkMya2drvcMnECvRdOOGa5jp2G_--QQtTmKTxbq5X4Tp4lXLIY");'></div>
+</div>
+<div class="space-y-1">
+<p class="text-[#111418] dark:text-white text-sm font-bold truncate">Heavy_Equipment_Morning.jpg</p>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium uppercase">5.8 MB • JPG</p>
+<div class="pt-2">
+<div class="flex items-center justify-between mb-1">
+<span class="text-[10px] font-bold text-primary uppercase">Ready</span>
+<span class="text-[10px] text-[#617589]">0%</span>
+</div>
+<div class="w-full h-1.5 bg-[#f0f2f4] dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="w-0 h-full bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4: Image -->
+<div class="bg-white dark:bg-gray-800 rounded-xl p-3 border border-[#f0f2f4] dark:border-gray-700 shadow-sm group">
+<div class="relative w-full aspect-video bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden mb-3">
+<div class="w-full h-full bg-center bg-cover" data-alt="Mining personnel in safety gear" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAivcugo3bu9d76t2GDzpLS3CYx72GybU2wsnpSPiCFlBU507I8mPGH6DyjRLYEVvwxlAr0zbCvmEvAGOLCZXYADpk7skntKicVrW5EXFtCU8nx9oq1n5SIfodq8NHPtdSeNu5E0Iz0XMybPXv-JKoERCsv7LxQ9oM5LGcxBK3yWuEB53oGI1-Piqx4FNSk_RoKMWuSRC6vbyK8uY5grZwUU_0amH2oZaP6r1_L7JuHMMXAl2v3fdHd8WahRV4U4NaqtCEsTKzwV5g");'></div>
+</div>
+<div class="space-y-1">
+<p class="text-[#111418] dark:text-white text-sm font-bold truncate">Staff_Group_Photo.png</p>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium uppercase">12.1 MB • PNG</p>
+<div class="pt-2">
+<div class="flex items-center justify-between mb-1">
+<span class="text-[10px] font-bold text-primary uppercase">Ready</span>
+<span class="text-[10px] text-[#617589]">0%</span>
+</div>
+<div class="w-full h-1.5 bg-[#f0f2f4] dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="w-0 h-full bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Section: Global Settings Sidebar -->
+<aside class="w-80 bg-white dark:bg-gray-900 border-l border-[#f0f2f4] dark:border-gray-800 flex flex-col shadow-xl z-20 overflow-y-auto custom-scrollbar">
+<div class="p-5 flex items-center justify-between border-b border-[#f0f2f4] dark:border-gray-800">
+<h3 class="text-[#111418] dark:text-white font-bold">Apply To All</h3>
+<span class="material-symbols-outlined text-gray-400">info</span>
+</div>
+<div class="p-5 space-y-6">
+<!-- AI Auto-Tagging Toggle -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111418] dark:text-white">AI Auto-Tagging</span>
+<span class="text-[11px] text-[#617589] dark:text-gray-400">Detect mining, safety &amp; equipment</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</div>
+<div class="p-3 bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/10">
+<p class="text-[11px] text-primary/80 font-medium mb-2">Detected AI Suggested Tags:</p>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-white dark:bg-gray-800 text-[10px] font-bold rounded border border-primary/20 text-primary">Mining Ops</span>
+<span class="px-2 py-0.5 bg-white dark:bg-gray-800 text-[10px] font-bold rounded border border-primary/20 text-primary">Safety First</span>
+<span class="px-2 py-0.5 bg-white dark:bg-gray-800 text-[10px] font-bold rounded border border-primary/20 text-primary">Heavy Machinery</span>
+</div>
+</div>
+</div>
+<!-- Metadata Form -->
+<div class="space-y-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[#617589] uppercase tracking-wide">Photographer Name</label>
+<input class="w-full h-10 px-3 bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50" type="text" value="Ahmad Sulaiman"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[#617589] uppercase tracking-wide">Site Location</label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-10 bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 appearance-none">
+<option>Taliabu Site (PT PSG)</option>
+<option>Jakarta HQ</option>
+<option>Balikpapan Terminal</option>
+<option>Morowali Smelter</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-gray-500 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[#617589] uppercase tracking-wide">Event Category</label>
+<select class="w-full h-10 px-3 bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 appearance-none">
+<option>Site Inspection</option>
+<option>Corporate Event</option>
+<option>Safety Training</option>
+<option>Daily Operations</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-[#617589] uppercase tracking-wide">Notes / Description</label>
+<textarea class="w-full p-3 bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 resize-none h-24" placeholder="Briefly describe the context of these assets..."></textarea>
+</div>
+</div>
+</div>
+<div class="mt-auto p-5 border-t border-[#f0f2f4] dark:border-gray-800 bg-[#f8f9fa] dark:bg-gray-800/50">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">verified</span>
+<p class="text-[11px] text-[#617589] dark:text-gray-400">Settings will be applied to all <span class="font-bold text-[#111418] dark:text-white">12 assets</span> in the queue during upload.</p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Control Footer -->
+<footer class="h-20 bg-white dark:bg-gray-900 border-t border-[#f0f2f4] dark:border-gray-800 px-6 flex items-center justify-between sticky bottom-0 z-50">
+<div class="flex items-center gap-6">
+<div class="flex flex-col">
+<p class="text-[10px] font-bold text-[#617589] dark:text-gray-400 uppercase tracking-widest mb-1">Total Progress</p>
+<div class="flex items-center gap-3">
+<div class="w-32 sm:w-48 h-2 bg-[#f0f2f4] dark:bg-gray-800 rounded-full overflow-hidden">
+<div class="w-[12%] h-full bg-primary rounded-full"></div>
+</div>
+<span class="text-sm font-black text-[#111418] dark:text-white">12%</span>
+</div>
+</div>
+<div class="hidden sm:block h-10 w-px bg-[#f0f2f4] dark:border-gray-800"></div>
+<div class="hidden sm:flex flex-col">
+<span class="text-[10px] font-bold text-[#617589] dark:text-gray-400 uppercase tracking-widest">Selected</span>
+<span class="text-sm font-bold text-[#111418] dark:text-white">12 Files (178.1 MB)</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-6 h-11 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-[#617589] dark:text-gray-400 text-sm font-bold rounded-lg transition-colors">
+                Cancel All
+            </button>
+<button class="flex items-center gap-2 px-8 h-11 bg-primary hover:bg-[#0e61b3] text-white text-sm font-bold rounded-lg shadow-lg shadow-primary/25 transition-all">
+<span class="material-symbols-outlined text-lg">publish</span>
+<span>Start Upload</span>
+</button>
+</div>
+</footer>
+</body></html>

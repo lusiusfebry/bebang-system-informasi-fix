@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QC Inspection Detail View - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111418] dark:text-gray-100">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-[#1a242d] border-b border-solid border-[#e5e7eb] dark:border-gray-800 px-4 md:px-20 lg:px-40 py-3">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between gap-8">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">Bebang SI</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium hover:text-primary transition-colors border-b-2 border-primary pb-1" href="#">Inventory</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">QC Inspection</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4">
+<label class="hidden sm:flex flex-col min-w-40 max-w-64 h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] flex border-none bg-gray-100 dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-gray-100 dark:bg-gray-800 focus:ring-0 h-full placeholder:text-[#617589] px-4 rounded-r-lg text-sm" placeholder="Search records..." value=""/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-gray-200 dark:border-gray-700" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNu4fFp_LPTbrgK_d4yfSD2y6rH6e9iuN8g25cg0y8tgvhtyCXMdghvyk3WfC7x0S0evvyrEQA7J-Qs44S6V8teIubZuliWYZVzrXho931SGclp_EEys_Riw5Fzz6ksQLrMNAmwwo-rpwTK6tmabMiqWd4iTakck9yTYgrcKzrs4hO6OJhYzhLhXzaiOpwhongAHp6jvvp6CVNBBe-_5PXcwG1l3sodYimlaBY-7mdVKBccpHGDgkffMTZbjjIOEOwyKv9GpCRkTE");'></div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-4 py-8 space-y-6">
+<!-- Breadcrumbs -->
+<nav class="flex flex-wrap gap-2 text-sm">
+<a class="text-[#617589] hover:text-primary transition-colors" href="#">Inventory Management</a>
+<span class="text-[#617589]">/</span>
+<a class="text-[#617589] hover:text-primary transition-colors" href="#">QC Center</a>
+<span class="text-[#617589]">/</span>
+<span class="text-primary font-semibold">Report #QC-2023-0892</span>
+</nav>
+<!-- Page Heading & Status Badge -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white dark:bg-[#1a242d] p-6 rounded-xl border border-[#e5e7eb] dark:border-gray-800 shadow-sm">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black leading-tight tracking-tight">Inspection #QC-2023-0892</h1>
+<span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800">FAILED</span>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-base font-normal">Batch: PSG-INV-8821 • Material: Carbon Steel Plate • Supplier: PT Global Steel</p>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg text-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+                    Export PDF
+                </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary hover:bg-blue-700 text-white rounded-lg text-sm font-bold shadow-md shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-lg">history_edu</span>
+                    View History
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Content Area (2/3) -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Summary Data Card -->
+<section class="bg-white dark:bg-[#1a242d] rounded-xl border border-[#e5e7eb] dark:border-gray-800 overflow-hidden">
+<div class="px-6 py-4 border-b border-[#e5e7eb] dark:border-gray-800 flex items-center justify-between">
+<h2 class="text-lg font-bold">General Information</h2>
+<span class="text-xs text-gray-500">Last updated: 2 hours ago</span>
+</div>
+<div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-y-6">
+<div class="flex flex-col gap-1">
+<p class="text-[#617589] text-xs font-semibold uppercase tracking-wider">Lead Inspector</p>
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold">AF</div>
+<p class="text-[#111418] dark:text-gray-100 text-sm font-medium">Ahmad Fauzi</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[#617589] text-xs font-semibold uppercase tracking-wider">Inspection Date</p>
+<p class="text-[#111418] dark:text-gray-100 text-sm font-medium">October 24, 2023 • 09:15 AM</p>
+</div>
+<div class="flex flex-col gap-1 border-t border-gray-100 dark:border-gray-800 pt-4">
+<p class="text-[#617589] text-xs font-semibold uppercase tracking-wider">Storage Facility</p>
+<p class="text-[#111418] dark:text-gray-100 text-sm font-medium">Jakarta Central Hub (B-4)</p>
+</div>
+<div class="flex flex-col gap-1 border-t border-gray-100 dark:border-gray-800 pt-4">
+<p class="text-[#617589] text-xs font-semibold uppercase tracking-wider">Total Quantity</p>
+<p class="text-[#111418] dark:text-gray-100 text-sm font-medium">500 Units (12 Crates)</p>
+</div>
+</div>
+</section>
+<!-- Checkpoints Table -->
+<section class="bg-white dark:bg-[#1a242d] rounded-xl border border-[#e5e7eb] dark:border-gray-800 overflow-hidden">
+<div class="px-6 py-4 border-b border-[#e5e7eb] dark:border-gray-800 flex items-center justify-between bg-gray-50/50 dark:bg-gray-800/30">
+<h2 class="text-lg font-bold">Inspection Checkpoints</h2>
+<span class="bg-red-50 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold border border-red-100 uppercase">2 Critical Failures</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 dark:bg-gray-800/50 text-[#617589] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">
+<th class="px-6 py-4">Checkpoint</th>
+<th class="px-6 py-4">Requirement</th>
+<th class="px-6 py-4">Actual Value</th>
+<th class="px-6 py-4">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<tr>
+<td class="px-6 py-4 text-sm font-medium">Surface Roughness</td>
+<td class="px-6 py-4 text-sm text-gray-500">&lt; 1.6 μm</td>
+<td class="px-6 py-4 text-sm">1.4 μm</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-green-600 font-bold text-xs uppercase">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> Pass
+                                        </div>
+</td>
+</tr>
+<tr class="bg-red-50/30 dark:bg-red-900/10">
+<td class="px-6 py-4 text-sm font-medium">Tensile Strength</td>
+<td class="px-6 py-4 text-sm text-gray-500">&gt; 400 MPa</td>
+<td class="px-6 py-4 text-sm text-red-600 font-bold">382 MPa</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-red-600 font-bold text-xs uppercase">
+<span class="material-symbols-outlined text-[18px]">error</span> Fail
+                                        </div>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-medium">Edge Flatness</td>
+<td class="px-6 py-4 text-sm text-gray-500">± 0.5 mm</td>
+<td class="px-6 py-4 text-sm">0.2 mm</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-green-600 font-bold text-xs uppercase">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> Pass
+                                        </div>
+</td>
+</tr>
+<tr class="bg-red-50/30 dark:bg-red-900/10 border-l-4 border-red-500">
+<td class="px-6 py-4 text-sm font-medium">Zinc Coating Thickness</td>
+<td class="px-6 py-4 text-sm text-gray-500">80 - 120 μm</td>
+<td class="px-6 py-4 text-sm text-red-600 font-bold">65 μm</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-red-600 font-bold text-xs uppercase">
+<span class="material-symbols-outlined text-[18px]">error</span> Fail
+                                        </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Evidence Gallery -->
+<section class="bg-white dark:bg-[#1a242d] rounded-xl border border-[#e5e7eb] dark:border-gray-800 overflow-hidden">
+<div class="px-6 py-4 border-b border-[#e5e7eb] dark:border-gray-800 flex items-center justify-between">
+<h2 class="text-lg font-bold">Evidence Gallery</h2>
+<button class="text-primary text-sm font-bold hover:underline">Download All (5.4MB)</button>
+</div>
+<div class="p-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="group relative aspect-square rounded-lg overflow-hidden border border-gray-200 cursor-pointer">
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Close up photo of steel plate surface with measurement tool" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvLaDxvFz1Ay8n3KdmpTkNeCDZwp1_2KTh_nsxY1EcX_K2Ob38slXWp8vuLg5SCk_1YXZZVmbhBR3QYn6LwE5H2kvSKi-Sjh6uc3TZe_e86leCuMBuGuhNFGn3PWtWvpauMwV1LR9Un0kHbT9BxA5-aUsqTBkD9UvA4Kyh-cZG7x4mhpU0W6b-eeicdu-kZ7SFyKn7YIC9XM_fQ0X_IRcE8pNYEjxu6BHd-zG_LGA_lATga4jizJOo_zOiFka4pO5aCJdtLRPfj2A');"></div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden border border-gray-200 cursor-pointer">
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Laboratory tensile test result graph on screen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvjqbByXrAXTthrQiaRLcxMRiIEigChkQ8yEulQHazEx3QCwv3FohEcXdR_wx7FNVm9EG_hg7ZdbqV-o0ZDQEplbBdQ8z5nB7_xjMtHX3YXyLk0XlE-UVp8zXUd-Uzi0INr6revsaYsJJG0glL4TkxWaoynWZoArocd4vphd9E4wRvC-fvfk9sFQGYQJnBJW95YzAcJFKXJcrHi8YDM0HWfdm1SSZt_grMkl6mgtrk6DCF5mwFnm2ZSi-hnWGfs21t3ITFAYYOEP4');"></div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden border border-gray-200 cursor-pointer">
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Crate packaging overview showing batch labels" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjvKgkQvvMo5dbVGLcdvZ8-BEkyjIvyWEN7KdW8HKmeI_LZD3_qsmKNyVZ5aIYeM0WVVQ8UaS4dBCkGQWeoD25Mth1I_c-K7Kh56iRHgZ18kHgZs9NSF8iwOMPyLhKXhzsB7wLJuyllxqieqYNxbCFXn6QOE9eP65MxDuNqD26X1uKCVzMd1IRqK2_9OxC0Jk2PKr8gQdmsiBskLvBXRQ3mohvtgez-78AiAl1Ir9qgRHPJHP7TZg-JkNPpYn1c5duSE2_tIeXQM8');"></div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden border border-gray-200 cursor-pointer">
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Zinc coating thickness gauge on material surface" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJqgFS0nWdkTU3dUz2IkZ11iQJh8HzqSb6dqLFc9bH8vJy9zEiNOYaFU0Fu_FDcJzUvtiABqAo_KNkGJlo02r2nfoog-yS7EeR8dp395BaUVN6mloUHc2wAi2DrhQPgFd0duuSOdu5NTZD-j39qWgUYhbH1q41UjPPe2pT3Z7d7jiPz1Tn-XoJS3HH9Rpr-PNyY1p86uah9dnNHFypH8qta9kDNqLs6juQbGu9cj9NomQhPp_FRqnpIuzKjuuVEalHwPNqqfi8UHk');"></div>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar Area (1/3) -->
+<aside class="space-y-6">
+<!-- Quarantine Status Panel (Failed State) -->
+<div class="bg-red-50 dark:bg-red-950/20 rounded-xl border border-red-100 dark:border-red-900 overflow-hidden">
+<div class="bg-red-600 px-6 py-4 flex items-center gap-3 text-white">
+<span class="material-symbols-outlined">gavel</span>
+<h2 class="text-sm font-bold uppercase tracking-widest">Quarantine Status</h2>
+</div>
+<div class="p-6 space-y-5">
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-red-600">location_on</span>
+</div>
+<div>
+<p class="text-xs font-bold text-red-800 dark:text-red-400 uppercase">Current Location</p>
+<p class="text-sm font-semibold text-gray-900 dark:text-gray-100">Quarantine Zone A-102</p>
+<p class="text-xs text-red-700/70 dark:text-red-400/70">Restricted Access Required</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-red-600">assignment_return</span>
+</div>
+<div>
+<p class="text-xs font-bold text-red-800 dark:text-red-400 uppercase">Remediation Step</p>
+<p class="text-sm font-semibold text-gray-900 dark:text-gray-100">Return to Vendor (RTV)</p>
+<p class="text-xs text-red-700/70 dark:text-red-400/70">Awaiting Logistic Schedule</p>
+</div>
+</div>
+<div class="pt-4 border-t border-red-200 dark:border-red-900/50">
+<p class="text-xs font-bold text-red-800 dark:text-red-400 uppercase mb-2">Assigned To</p>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-red-200 dark:bg-red-800 flex items-center justify-center text-[10px] font-bold">BS</div>
+<div>
+<p class="text-xs font-bold">Budi Santoso</p>
+<p class="text-[10px] text-red-700/70 dark:text-red-400/70">Logistics Lead</p>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center gap-2">
+                            Update Disposition
+                        </button>
+</div>
+</div>
+<!-- Compliance Section (Locked/Conditional) -->
+<div class="bg-gray-100 dark:bg-[#1a242d] rounded-xl border border-gray-200 dark:border-gray-800 p-6 flex flex-col items-center text-center space-y-4">
+<div class="size-16 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-gray-400 text-4xl">verified</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-bold text-gray-400">Certificate of Compliance</h3>
+<p class="text-xs text-gray-500">Unavailable for failed inspections. All requirements must be met to issue CoC.</p>
+</div>
+<button class="w-full py-2 bg-gray-200 dark:bg-gray-800 text-gray-400 rounded-lg text-sm font-bold cursor-not-allowed border border-gray-300 dark:border-gray-700" disabled="">
+                        Download CoC
+                    </button>
+</div>
+<!-- Notes / Comments -->
+<div class="bg-white dark:bg-[#1a242d] rounded-xl border border-[#e5e7eb] dark:border-gray-800 p-6 space-y-4">
+<h3 class="font-bold border-b border-gray-100 dark:border-gray-800 pb-2">Inspector Remarks</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 italic">
+                        "The tensile strength results are consistently below the threshold of 400 MPa across multiple samples in this batch. Suggesting a full return to PT Global Steel for re-testing or replacement."
+                    </p>
+<div class="flex items-center gap-2 text-xs text-gray-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                        Oct 24, 2023 at 11:40 AM
+                    </div>
+</div>
+</aside>
+</div>
+</main>
+<footer class="mt-12 border-t border-gray-200 dark:border-gray-800 py-10 px-4 md:px-20 lg:px-40 bg-white dark:bg-[#1a242d]">
+<div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4 text-[#617589]">
+<div class="size-5 opacity-50">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<p class="text-sm">© 2023 Bebang Sistem Informasi. PT Prima Sarana Gemilang Quality Control Division.</p>
+</div>
+<div class="flex gap-8 text-sm text-[#617589]">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</body></html>

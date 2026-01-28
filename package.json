@@ -1,0 +1,26 @@
+{
+    "name": "bebang-information-system",
+    "version": "1.0.0",
+    "description": "Enterprise web application for organizational information management",
+    "private": true,
+    "workspaces": [
+        "backend",
+        "frontend"
+    ],
+    "scripts": {
+        "dev:backend": "npm run dev --workspace=backend",
+        "dev:frontend": "npm run dev --workspace=frontend",
+        "build:backend": "npm run build --workspace=backend",
+        "build:frontend": "npm run build --workspace=frontend",
+        "build": "npm run build:backend && npm run build:frontend"
+    },
+    "keywords": [
+        "information-system",
+        "enterprise",
+        "react",
+        "express",
+        "typescript"
+    ],
+    "author": "Bebang Development Team",
+    "license": "UNLICENSED"
+}

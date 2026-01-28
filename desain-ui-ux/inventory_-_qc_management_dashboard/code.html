@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory - QC Management Dashboard | PT Prima Sarana Gemilang</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">verified</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem</h2>
+</div>
+<div class="flex items-center gap-9">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Inventory</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary pb-1" href="#">QC Management</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Reports</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] flex border-none bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-100 dark:bg-slate-800 focus:border-none h-full placeholder:text-[#617589] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Global Search..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar of the QC manager" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAddJl7Ay1Whci5tOAuNOzM7hCb51n1nHdK_f4hu0ijrDxN85VbozYy5NRyFzPJXIWR1wgNLT-P4bZH6Psiiyf2qAQMNbDGhB5hagCgK32cqtwoTwduYm9GW1bnF2-tz_odp9UGpjaoL_YJHMNCeOp6k1yCX03_Q_3hcfXhHjH9ze_5erU3sDI8qb8H1KbpTamkyPHOonIrm9yOHZDbXk7RY9bKdNORF9ThuyXLsd8h13dhTFtzCLxdE9JA_iPZ2f60gg15YWdVxlM");'></div>
+</div>
+</header>
+<main class="flex flex-col flex-1 max-w-[1200px] mx-auto w-full py-8 px-4">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-end gap-3 mb-8">
+<div class="flex min-w-72 flex-col gap-1">
+<p class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">QC Management Dashboard</p>
+<p class="text-[#617589] dark:text-slate-400 text-base font-normal leading-normal">PT Prima Sarana Gemilang — Quality Control Operations Overview</p>
+</div>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined mr-2 text-lg">download</span> Export CSV
+                        </button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined mr-2 text-lg">sync</span> Refresh Data
+                        </button>
+</div>
+</div>
+<!-- Stats Section -->
+<div class="flex flex-wrap gap-4 mb-8">
+<div class="flex min-w-[240px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">Pending Inspections</p>
+<span class="material-symbols-outlined text-primary">assignment</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">24</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-600 text-sm">trending_up</span>
+<p class="text-green-600 text-xs font-semibold leading-normal">+5% from yesterday</p>
+</div>
+</div>
+<div class="flex min-w-[240px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">Rejection Rate (%)</p>
+<span class="material-symbols-outlined text-red-500">dangerous</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">2.4%</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 text-sm">trending_down</span>
+<p class="text-red-500 text-xs font-semibold leading-normal">-0.2% vs last month</p>
+</div>
+</div>
+<div class="flex min-w-[240px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">Avg. QC Lead Time</p>
+<span class="material-symbols-outlined text-amber-500">timer</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">4.2 hrs</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 text-sm">trending_up</span>
+<p class="text-red-500 text-xs font-semibold leading-normal">+10% delay increase</p>
+</div>
+</div>
+<div class="flex min-w-[240px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">Recent Passes</p>
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-light text-3xl font-bold leading-tight">112</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-600 text-sm">trending_up</span>
+<p class="text-green-600 text-xs font-semibold leading-normal">+12% volume</p>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<!-- Tabs -->
+<div class="flex border-b border-slate-200 dark:border-slate-800 px-6 gap-8 bg-slate-50 dark:bg-slate-900/50">
+<a class="flex items-center gap-2 border-b-[3px] border-b-primary text-primary pb-[13px] pt-4 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">pending_actions</span>
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Pending QC Tasks</p>
+<span class="bg-primary/10 text-primary text-[10px] px-1.5 py-0.5 rounded-full">24</span>
+</a>
+<a class="flex items-center gap-2 border-b-[3px] border-b-transparent text-slate-500 dark:text-slate-400 pb-[13px] pt-4 hover:text-slate-800 dark:hover:text-slate-200 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">history</span>
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">QC History</p>
+</a>
+</div>
+<!-- SearchBar within Table Section -->
+<div class="px-6 py-4 flex items-center justify-between gap-4">
+<label class="flex flex-col min-w-80 h-11 w-full max-w-md">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-slate-700">
+<div class="text-slate-400 flex bg-white dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-white dark:bg-slate-800 text-[#111418] dark:text-white focus:outline-0 focus:ring-0 h-full placeholder:text-slate-400 px-3 rounded-r-lg text-sm" placeholder="Search GRN, Supplier, or Item Name..."/>
+</div>
+</label>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-900/30 text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+<th class="px-6 py-4 border-b border-slate-200 dark:border-slate-800">GRN Number</th>
+<th class="px-6 py-4 border-b border-slate-200 dark:border-slate-800">Supplier</th>
+<th class="px-6 py-4 border-b border-slate-200 dark:border-slate-800">Item Name</th>
+<th class="px-6 py-4 border-b border-slate-200 dark:border-slate-800">Batch/Lot Number</th>
+<th class="px-6 py-4 border-b border-slate-200 dark:border-slate-800">Received Date</th>
+<th class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-slate-700 dark:text-slate-300">
+<tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-mono text-xs font-bold text-primary">GRN-2023-8842</td>
+<td class="px-6 py-4 text-sm">Industrial Components Co.</td>
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">Steel Rivets - Type A</td>
+<td class="px-6 py-4 text-sm">BAT-992-X1</td>
+<td class="px-6 py-4 text-sm">Oct 24, 2023 | 09:15</td>
+<td class="px-6 py-4 text-right">
+<button class="inline-flex items-center px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors">
+                                            Start Inspection
+                                        </button>
+</td>
+</tr>
+<tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-mono text-xs font-bold text-primary">GRN-2023-8845</td>
+<td class="px-6 py-4 text-sm">Metals &amp; More Ltd.</td>
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">Aluminum Sheet 2mm</td>
+<td class="px-6 py-4 text-sm">BAT-405-Y2</td>
+<td class="px-6 py-4 text-sm">Oct 24, 2023 | 11:30</td>
+<td class="px-6 py-4 text-right">
+<button class="inline-flex items-center px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors">
+                                            Start Inspection
+                                        </button>
+</td>
+</tr>
+<tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-mono text-xs font-bold text-primary">GRN-2023-8848</td>
+<td class="px-6 py-4 text-sm">Global Fasteners Inc.</td>
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">Hex Bolt Grade 8.8</td>
+<td class="px-6 py-4 text-sm">BAT-771-Z9</td>
+<td class="px-6 py-4 text-sm flex items-center gap-2">
+                                        Oct 23, 2023 | 14:00
+                                        <span class="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" title="Overdue"></span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="inline-flex items-center px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors">
+                                            Start Inspection
+                                        </button>
+</td>
+</tr>
+<tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-mono text-xs font-bold text-primary">GRN-2023-8851</td>
+<td class="px-6 py-4 text-sm">Precision Tools Corp.</td>
+<td class="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">Gasket Set B-12</td>
+<td class="px-6 py-4 text-sm">BAT-220-G1</td>
+<td class="px-6 py-4 text-sm">Oct 24, 2023 | 16:45</td>
+<td class="px-6 py-4 text-right">
+<button class="inline-flex items-center px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors">
+                                            Start Inspection
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="px-6 py-4 flex items-center justify-between border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30">
+<p class="text-xs text-slate-500">Showing 4 of 24 pending tasks</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-xs font-bold border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 text-xs font-bold border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300">Next</button>
+</div>
+</div>
+</div>
+<!-- Recent Activity/History Preview (Small Section Below) -->
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">history</span>
+                            Recent History Preview
+                        </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-2 border-b border-slate-100 dark:border-slate-800 last:border-0">
+<div>
+<p class="text-xs font-bold text-slate-900 dark:text-white">Stainless Steel Rods</p>
+<p class="text-[10px] text-slate-500">QC-ID: #12992 • Inspected by: John Doe</p>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">PASSED</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-slate-100 dark:border-slate-800 last:border-0">
+<div>
+<p class="text-xs font-bold text-slate-900 dark:text-white">Hydraulic Valve X2</p>
+<p class="text-[10px] text-slate-500">QC-ID: #12990 • Inspected by: Sarah Tan</p>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">FAILED (QUARANTINED)</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-slate-100 dark:border-slate-800 last:border-0">
+<div>
+<p class="text-xs font-bold text-slate-900 dark:text-white">Copper Wiring Reel</p>
+<p class="text-[10px] text-slate-500">QC-ID: #12988 • Inspected by: John Doe</p>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">CONDITIONAL PASS</span>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl border border-primary/20 p-6 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">assignment_turned_in</span>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Ready to scale?</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-4 max-w-xs">You have cleared 85% of today's workload. Only 24 items left to reach 100% compliance.</p>
+<button class="bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm hover:shadow-lg hover:shadow-primary/20 transition-all">
+                            Generate Full QC Report
+                        </button>
+</div>
+</div>
+</main>
+<footer class="mt-auto py-8 text-center text-slate-400 text-xs">
+                © 2023 Bebang Sistem Informasi. PT Prima Sarana Gemilang - Confidential Internal Use Only.
+            </footer>
+</div>
+</div>
+</body></html>

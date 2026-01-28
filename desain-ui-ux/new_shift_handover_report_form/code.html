@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Shift Handover Report | Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen">
+<!-- Navigation Header -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-icons">assignment_turned_in</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight">Shift Handover Report</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Operational Management Module • PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden md:flex flex-col items-end mr-4">
+<span class="text-sm font-medium">Supervisor Portal</span>
+<span class="text-[10px] uppercase tracking-wider text-primary font-bold">Session Active</span>
+</div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-icons text-slate-500">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional portrait of a site supervisor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkcWw0WTE38ak99Wx4CoC3xvoL5NX6hVNHlwbjvWvUlxz3z7rha-kXZR36Qw-Cn6QAttsknBswU5y_mKZKXm0XxVozrMZ0sRuSMzIsgwZXl-Qs72lvEkoeFiUIIM8p91cQszUI4OpOG4JtpzpUpBjO2mpEyKgnR4oLiCRB4NqCN8IWcVJAnaqGwNzcC0riPU7lhtZR4GBJscdt5Xicp6SbCYUBVzXptbkTWLml4wzR2Vq2f256KQiX3l2r1TQ0hLhp_bA61B19PJs"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8 pb-32">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Shift Info & Production -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Section 1: Shift Info -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+<span class="material-icons text-primary">schedule</span>
+<h2 class="text-lg font-semibold">1. Shift Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Date &amp; Time</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" type="datetime-local" value="2023-10-24T18:00"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Shift Type</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary">
+<option>Day Shift (06:00 - 18:00)</option>
+<option selected="">Night Shift (18:00 - 06:00)</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Crew ID / Team</label>
+<div class="relative">
+<span class="material-icons absolute left-3 top-2.5 text-slate-400 text-sm">groups</span>
+<input class="w-full pl-10 rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="Search Crew..." type="text" value="Alpha-04 (Excavation)"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Location Area</label>
+<div class="relative">
+<span class="material-icons absolute left-3 top-2.5 text-slate-400 text-sm">place</span>
+<input class="w-full pl-10 rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="Pit/Site Area" type="text" value="South Pit - Sector B7"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Operational Summary -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+<div class="flex items-center gap-2">
+<span class="material-icons text-primary">analytics</span>
+<h2 class="text-lg font-semibold">2. Operational Summary</h2>
+</div>
+<span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold rounded uppercase">Target On Track</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Production Volume (m³)</label>
+<span class="text-xs font-semibold text-primary">88% of Target</span>
+</div>
+<div class="flex gap-4">
+<div class="flex-1">
+<span class="text-[10px] text-slate-400 block mb-1">Target</span>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-center font-bold" type="number" value="12500"/>
+</div>
+<div class="flex-1">
+<span class="text-[10px] text-slate-400 block mb-1">Actual</span>
+<input class="w-full rounded-lg border-primary/50 dark:border-primary/50 bg-primary/5 dark:bg-primary/10 text-center font-bold text-primary" type="number" value="11000"/>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-xs font-bold uppercase text-slate-500 tracking-wider block">Equipment Availability</label>
+<div class="flex items-center gap-4 h-full pt-1">
+<div class="flex-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center">
+<span class="block text-2xl font-bold">14</span>
+<span class="text-[10px] text-slate-500 uppercase">Active</span>
+</div>
+<div class="flex-1 bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-800 rounded-lg p-3 text-center text-amber-600">
+<span class="block text-2xl font-bold">2</span>
+<span class="text-[10px] uppercase">Service</span>
+</div>
+<div class="flex-1 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-800 rounded-lg p-3 text-center text-red-600">
+<span class="block text-2xl font-bold">1</span>
+<span class="text-[10px] uppercase">Down</span>
+</div>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-50 dark:bg-slate-800 text-slate-500 uppercase text-[10px] font-bold">
+<tr>
+<th class="px-4 py-2 rounded-tl-lg">Unit ID</th>
+<th class="px-4 py-2">Equipment Type</th>
+<th class="px-4 py-2">Status</th>
+<th class="px-4 py-2 rounded-tr-lg text-right">Fuel Level</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="px-4 py-3 font-medium">EX-204</td>
+<td class="px-4 py-3">Excavator Cat 6020B</td>
+<td class="px-4 py-3"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-green-500"></span> Active</span></td>
+<td class="px-4 py-3 text-right">85%</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-medium">DT-412</td>
+<td class="px-4 py-3">Dump Truck 777E</td>
+<td class="px-4 py-3"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Standby</span></td>
+<td class="px-4 py-3 text-right">40%</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-medium">DT-415</td>
+<td class="px-4 py-3">Dump Truck 777E</td>
+<td class="px-4 py-3"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500"></span> Breakdown</span></td>
+<td class="px-4 py-3 text-right">12%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Section 4: Outstanding Tasks -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+<div class="flex items-center gap-2">
+<span class="material-icons text-primary">list_alt</span>
+<h2 class="text-lg font-semibold">4. Outstanding Tasks &amp; Work Orders</h2>
+</div>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-icons text-sm">open_in_new</span> SYNC MAINTENANCE
+                        </button>
+</div>
+<div class="space-y-3">
+<div class="group flex items-center gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all">
+<div class="w-10 h-10 flex-shrink-0 bg-red-100 dark:bg-red-900/30 text-red-600 rounded flex items-center justify-center">
+<span class="material-icons">priority_high</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h4 class="font-bold text-sm">WO-2023-884: DT-415 Hydraulic Leak</h4>
+<span class="text-[10px] font-bold text-red-600 bg-red-100 dark:bg-red-900/30 px-2 py-0.5 rounded">URGENT</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Reported at 14:20. Parts ordered from main warehouse. Est. repair: 4 hours.</p>
+</div>
+<input class="w-5 h-5 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary" type="checkbox"/>
+</div>
+<div class="group flex items-center gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all">
+<div class="w-10 h-10 flex-shrink-0 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded flex items-center justify-center">
+<span class="material-icons">build</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h4 class="font-bold text-sm">WO-2023-889: Pit Lighting Inspection</h4>
+<span class="text-[10px] font-bold text-blue-600 bg-blue-100 dark:bg-blue-900/30 px-2 py-0.5 rounded">ROUTINE</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Pending night shift inspection. 3 floodlights in Sector B7 require alignment.</p>
+</div>
+<input class="w-5 h-5 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary" type="checkbox"/>
+</div>
+</div>
+<button class="mt-4 w-full py-2 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-lg text-slate-400 text-xs font-bold flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+<span class="material-icons text-sm">add</span> LINK NEW WORK ORDER
+                    </button>
+</section>
+</div>
+<!-- Right Column: Safety, Notes & Auth -->
+<div class="space-y-8">
+<!-- Section 3: Safety & Incidents -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden relative">
+<div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+<span class="material-icons text-8xl">health_and_safety</span>
+</div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons text-emerald-500">verified_user</span>
+<h2 class="text-lg font-semibold">3. Safety &amp; Incidents</h2>
+</div>
+<div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 p-4 rounded-lg mb-4">
+<div class="flex gap-3">
+<span class="material-icons text-emerald-600">check_circle</span>
+<div>
+<h4 class="text-sm font-bold text-emerald-800 dark:text-emerald-400">Zero Incidents Reported</h4>
+<p class="text-xs text-emerald-700 dark:text-emerald-500 mt-0.5">Automated sync with HSE Module: Success</p>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Last Toolbox Talk:</span>
+<span class="font-bold">06:15 AM</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Safety PPE Check:</span>
+<span class="font-bold text-emerald-600 uppercase">Passed</span>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<label class="text-xs font-bold uppercase text-slate-500 tracking-wider block mb-2">Safety Hazards Identified</label>
+<textarea class="w-full text-sm rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800" placeholder="Describe any near-misses or hazards..." rows="2"></textarea>
+</div>
+</div>
+</section>
+<!-- Section 5: Critical Notes -->
+<section class="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-xl shadow-sm border-2 border-amber-200 dark:border-amber-800/50">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-icons text-amber-600">warning_amber</span>
+<h2 class="text-lg font-semibold text-amber-900 dark:text-amber-400">5. Critical Notes</h2>
+</div>
+<p class="text-xs text-amber-800/70 dark:text-amber-500/80 mb-4">Essential alerts for the incoming supervisor. These must be acknowledged.</p>
+<textarea class="w-full text-sm font-medium rounded-lg border-amber-300 dark:border-amber-800 bg-white dark:bg-slate-900 focus:ring-amber-500 focus:border-amber-500 placeholder-amber-200 dark:placeholder-slate-700" placeholder="Enter high-priority instructions here..." rows="6">1. Weather Alert: Light rain expected at 02:00 AM. Monitor Pit Floor slope stability in Sector B7.
+2. Blasting Schedule: Preparation for tomorrow 10:00 AM blast in North Ridge. Keep all DTs clear of primary access road 'Zulu' after 04:00 AM.
+3. Fuel Truck: Scheduled for 01:00 AM arrival. prioritized for Excavator EX-204.</textarea>
+</section>
+<!-- Section 6: Dual Signature -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons text-primary">draw</span>
+<h2 class="text-lg font-semibold">Handover Acknowledgment</h2>
+</div>
+<div class="space-y-6">
+<div class="p-4 border border-slate-100 dark:border-slate-800 rounded-lg bg-slate-50/50 dark:bg-slate-800/50">
+<div class="flex justify-between items-center mb-3">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Outgoing Supervisor</span>
+<span class="text-[10px] text-green-600 font-bold bg-green-100 dark:bg-green-900/30 px-2 rounded">SIGNED</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of Anton Budiman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy6MgqlUPXY3xbVm9FSiXyEqAJUzWwnWJNfoSrjLjwVLPhnvwmKjmvaWzje3t3acPdSyJI59c1wyraFRBGvPf5_B698AC1YkgmCigqz4vgy7kABS1ft-itdeFRILAwNPGbOuXKIq74C77FJHL_4x4xLs68NAHZnE8knhxxJpDUxwTdUaNV26N272idBJ2VMZ5bLO9OLqsCGGpbiY9q_VRnV8NUtisMCYhj-YoAN5w8zaE6_2K87JQj_oq5iq7bKpMAutDd2Fva6m8"/>
+</div>
+<div>
+<p class="text-sm font-bold">Anton Budiman</p>
+<p class="text-[10px] text-slate-500">2023-10-24 | 18:05:12</p>
+</div>
+</div>
+</div>
+<div class="p-4 border-2 border-dashed border-primary/20 rounded-lg bg-primary/5 dark:bg-primary/10">
+<div class="flex justify-between items-center mb-3">
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Incoming Supervisor</span>
+<span class="text-[10px] text-primary font-bold animate-pulse">AWAITING</span>
+</div>
+<button class="w-full py-2 bg-primary text-white rounded-lg text-xs font-bold hover:bg-primary/90 transition-all shadow-md shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-icons text-sm">lock_open</span> AUTHENTICATE &amp; SIGN
+                            </button>
+<p class="text-[10px] text-center text-slate-400 mt-2 italic">Requires PIN or Biometric Login</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Action Bar -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 p-4 z-40">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-slate-500">
+<span class="material-icons text-sm">cloud_done</span>
+<span class="text-xs">Draft autosaved 2 mins ago</span>
+</div>
+<div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-700 hidden md:block"></div>
+<div class="text-xs">
+<span class="text-slate-400">Handover Status:</span>
+<span class="ml-1 font-bold text-amber-600">In Progress</span>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-2.5 border border-slate-300 dark:border-slate-700 rounded-lg text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                    Discard Draft
+                </button>
+<button class="flex-1 md:flex-none px-6 py-2.5 bg-slate-800 dark:bg-slate-700 text-white rounded-lg text-sm font-semibold hover:bg-slate-700 transition-all">
+                    Save as Template
+                </button>
+<button class="flex-1 md:flex-none px-10 py-2.5 bg-primary text-white rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/30 flex items-center justify-center gap-2">
+<span class="material-icons">send</span> FINALIZE HANDOVER
+                </button>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HR - Training &amp; Certification Tracker | Bebang Sistem Informasi</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-gray-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-col hidden lg:flex">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">star</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-sm font-bold leading-tight">Bebang SI</h1>
+<p class="text-[#616f89] text-[10px] font-medium uppercase tracking-wider">Enterprise Portal</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+<span class="text-sm font-medium">Employee Directory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-sm font-medium">Payroll Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined text-[20px] fill-[1]">school</span>
+<span class="text-sm font-semibold">Training &amp; Certs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-3 p-2 rounded-lg bg-gray-50 dark:bg-gray-800">
+<div class="size-9 rounded-full bg-cover bg-center" data-alt="User profile avatar placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0QZfqV0gkp0sidaFDXrov1IsD1wmVYRe9IFwK8156L5cn0nDCWdpejcZLBBaso2rOTVdijSzJ5qXjVxVLNk6DqEJvWXLfTWOnPJdBf5JYrtHfokJV07DhJBmR-VASurZRLCTLEOoMUvz-hHEtEY1x68lsak09RzkspeTgDJ8IPBPGkeQ5Q9lm5bEHCftoTUgiCSuPCaBTzHHeQ9yqgg0_2md_nwIJ9Lcma9T9bkQswRULGkvrQ41BZAdC1xWVvpmztrF1cSn9tw8');"></div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold text-gray-900 dark:text-white truncate">Administrator</p>
+<p class="text-[10px] text-gray-500 truncate">PT Prima Sarana Gemilang</p>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-sm">logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Top Navbar -->
+<header class="h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-400 text-sm">home</span>
+<span class="text-gray-400 text-xs">/</span>
+<span class="text-gray-400 text-xs font-medium">HR</span>
+<span class="text-gray-400 text-xs">/</span>
+<span class="text-[#111318] dark:text-white text-xs font-semibold">Training &amp; Certification</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-gray-900"></span>
+</button>
+<div class="h-8 w-[1px] bg-gray-200 dark:bg-gray-800 mx-2"></div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium dark:text-white">PSG Admin</span>
+<span class="material-symbols-outlined text-gray-400">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto bg-[#f8f9fa] dark:bg-background-dark p-8">
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="text-2xl font-extrabold text-[#111318] dark:text-white tracking-tight">Training &amp; Certification Tracker</h2>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Manage employee professional development and compliance records.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-sm font-bold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                            Export Report
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary rounded-lg text-sm font-bold text-white hover:bg-blue-700 shadow-md shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                            Add New Training
+                        </button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col gap-1">
+<div class="flex items-center justify-between mb-2">
+<span class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">verified</span>
+</span>
+<span class="text-[#07883b] text-xs font-bold bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded-full">+12%</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Active Certifications</p>
+<p class="text-2xl font-black text-[#111318] dark:text-white">1,248</p>
+</div>
+<div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col gap-1 ring-1 ring-orange-500/20">
+<div class="flex items-center justify-between mb-2">
+<span class="p-2 bg-orange-500/10 rounded-lg text-orange-600">
+<span class="material-symbols-outlined">warning</span>
+</span>
+<span class="text-orange-600 text-xs font-bold bg-orange-50 dark:bg-orange-900/20 px-2 py-0.5 rounded-full">High Priority</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Expiring Soon</p>
+<p class="text-2xl font-black text-[#111318] dark:text-white">42</p>
+</div>
+<div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col gap-1">
+<div class="flex items-center justify-between mb-2">
+<span class="p-2 bg-emerald-500/10 rounded-lg text-emerald-600">
+<span class="material-symbols-outlined">trending_up</span>
+</span>
+<span class="text-emerald-600 text-xs font-bold bg-emerald-50 dark:bg-emerald-900/20 px-2 py-0.5 rounded-full">Above Target</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Completion Rate</p>
+<p class="text-2xl font-black text-[#111318] dark:text-white">94.2%</p>
+</div>
+<div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col gap-1">
+<div class="flex items-center justify-between mb-2">
+<span class="p-2 bg-blue-500/10 rounded-lg text-blue-600">
+<span class="material-symbols-outlined">pending_actions</span>
+</span>
+<span class="text-red-500 text-xs font-bold bg-red-50 dark:bg-red-900/20 px-2 py-0.5 rounded-full">-3%</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Pending Enrollments</p>
+<p class="text-2xl font-black text-[#111318] dark:text-white">18</p>
+</div>
+</div>
+<!-- Main Data Section -->
+<div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
+<!-- Table Header/Filters -->
+<div class="p-4 border-b border-gray-200 dark:border-gray-800 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div class="flex flex-1 items-center gap-3 bg-[#f0f2f4] dark:bg-gray-800 px-3 py-2 rounded-lg max-w-md">
+<span class="material-symbols-outlined text-gray-500">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-gray-500 dark:text-white" placeholder="Search by employee or certification name..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 font-medium">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                                Filter Status:
+                            </div>
+<select class="text-sm border-gray-200 dark:border-gray-800 dark:bg-gray-800 dark:text-white rounded-lg focus:border-primary focus:ring-primary">
+<option>All Status</option>
+<option>Valid</option>
+<option>Expiring Soon</option>
+<option>Expired</option>
+<option>Renewal in Progress</option>
+</select>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-800">
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Employee Name</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Certification Title</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Issuing Body</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Issue Date</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Expiry Date</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Avatar of employee Aris Budiman" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAW1vB0w2dQS8OPc43frQNWbX-G2amJS9M6VClfdUcwXX9Z0aiEK8Gfux4Tx-wnb9gZpdAG_J3Nxw0T7homEk414HBfBeKBvOp1VgX43MN1xmm05pZ2QctTnx3JSoJ9G-lF6P-O8IIjmWvidH53Ov9DleWb469_gstsuNsqUINIFrNcnsj1hkxu3RnloRAwekC74dFDhcPPnjJcY3By1Kke7rygSOGTiLcQcFG82u0nDxlp4vT6q1T8ISAuOFsyi0e4bKxm_7d9aJo');"></div>
+<div>
+<p class="text-sm font-bold text-gray-900 dark:text-white">Aris Budiman</p>
+<p class="text-[11px] text-gray-500">Sr. Site Engineer</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-gray-900 dark:text-white">PMP Certification</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-gray-600 dark:text-gray-400">PMI Institute</p>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Jan 12, 2023</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Jan 11, 2026</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+<span class="size-1.5 rounded-full bg-green-600"></span>
+                                            Valid
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Avatar of employee Siti Aminah" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA1EwgdDvnhclQtOaPLBkFu3IFayjaWCuaAibkrzPzVEfjiNOMe2Gc5BhYVN8chj9a3YqR-C8tKyLXQzt4fRVUUdt1MwAdRNGofjwj6VOg4c29d-aNvRDzYkZhfg5F7lbVrzeC_HyauHs2JvEd6sbb2-wWFrzKdxrP7ik-xmTe8fatw0N-fsThog-ihM-UMfCbNiI-H3ffrAyI_hYpd9lzAEKAF_aVsAWuFT5D1195-6c_7tL8R8lqZuDrRPVg0dwULr3Bqvwkh1zo');"></div>
+<div>
+<p class="text-sm font-bold text-gray-900 dark:text-white">Siti Aminah</p>
+<p class="text-[11px] text-gray-500">HSE Officer</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-gray-900 dark:text-white">K3 Umum Kemnaker</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-gray-600 dark:text-gray-400">Kemnaker RI</p>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Mar 05, 2021</td>
+<td class="px-6 py-4 text-sm font-semibold text-orange-600">Oct 20, 2024</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400">
+<span class="size-1.5 rounded-full bg-orange-600"></span>
+                                            Expiring Soon
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Avatar of employee Budi Santoso" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6TwUjJA3mSdxu1aeCJ3nup3nUUWO5OYk7fA4cAchHwl2cpK7WJoSrwA1Xcci3sz7C1j-nUDm3ZJTtF5iUV9aRk1pD00bvyON3IZpv2LGq-SPwyw37EO4ezhwfoVH7zL3kY9DBgepk6RieCaK6PvuNF4e-8NbQMqgnyIJsjsNpmDYcebF656YO_Hsr6URBJI8lnhTd5mLFmYQcq_ij-9oWzaRDPXQ9LQJCeVgXOtaWUJytfnJIVbxoFicur5F0dxlSCrstxhgQ9vA');"></div>
+<div>
+<p class="text-sm font-bold text-gray-900 dark:text-white">Budi Santoso</p>
+<p class="text-[11px] text-gray-500">Heavy Equipment Op</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-gray-900 dark:text-white">SIO Excavator Class 1</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-gray-600 dark:text-gray-400">Disnaker</p>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Sep 10, 2019</td>
+<td class="px-6 py-4 text-sm text-red-600 font-bold">Sep 10, 2024</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">
+<span class="size-1.5 rounded-full bg-red-600"></span>
+                                            Expired
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Avatar of employee Dian Wijaya" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSBPbecHGdZfjVm1AyOB9twyEn-RVA9G0jdJ6I4_a9bQYu4b0TFzpBcXNd24fopUkgWoM_KHPSlK7zP0mWFLxQR4IwnMmqYsec6hJ9pwTIITxEyhrKv02WwsfyWz7StJZPZOgr-1GIDN6O-aLnmlyRR0TrTDsKbv4zVFWSsSMpMr26T5r5YdJTVv01zmPQbQNB-iarBTrzn5bTqwyYOxbPNtrbRGHPjUshlXXmuwmK8w-QI43iKcnOZOpcCE4RWOTZ1TNS80-A8YE');"></div>
+<div>
+<p class="text-sm font-bold text-gray-900 dark:text-white">Dian Wijaya</p>
+<p class="text-[11px] text-gray-500">Legal Counsel</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-gray-900 dark:text-white">Corporate Governance</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-gray-600 dark:text-gray-400">PERADI</p>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Feb 15, 2024</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Feb 14, 2025</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+<span class="size-1.5 rounded-full bg-blue-600"></span>
+                                            Renewal in Progress
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Avatar of employee Ridwan Kamil" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTSeKHCf8UNulLEjar-O7JBNNa2A2UJ9WAui57JARaW2_KooY_PavEMW10Dm8iCcaZCOBoTQ8EJ3uibY6KbBPp3EDDvFrNq6YnyYyDb4w96SP67aFTNf0VHVtusPuNxmcVz3JgtnGfWJLVRiuJTVLgxZ4o8awfqsi1nBTIOVeBfsjuSHkji4xcumdfgE6GiyUJkkSLv1xnzDc_ZNDNqVHEkT37jC-lOl7IaCQL3NpfDyvSjgBbB3gZglmz5-jUJA88UVFQioUbJ8Q');"></div>
+<div>
+<p class="text-sm font-bold text-gray-900 dark:text-white">Eko Prasetyo</p>
+<p class="text-[11px] text-gray-500">Senior Accountant</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-gray-900 dark:text-white">Certified Public Accountant</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-gray-600 dark:text-gray-400">IAI Indonesia</p>
+</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Jul 20, 2022</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Jul 19, 2025</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+<span class="size-1.5 rounded-full bg-green-600"></span>
+                                            Valid
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between">
+<p class="text-xs text-gray-500 dark:text-gray-400">Showing 1 to 5 of 1,248 entries</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded text-xs font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 bg-primary text-white rounded text-xs font-bold">1</button>
+<button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded text-xs font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800">2</button>
+<button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded text-xs font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800">3</button>
+<button class="px-3 py-1 border border-gray-300 dark:border-gray-700 rounded text-xs font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

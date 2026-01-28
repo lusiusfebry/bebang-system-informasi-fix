@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketing - Social Media Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<h1 class="text-sm font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Marketing Analytics</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 p-4 space-y-2">
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-semibold">Dashboard Home</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">bar_chart</span>
+<p class="text-sm font-medium">Campaign Reports</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">compare_arrows</span>
+<p class="text-sm font-medium">Competitor Benchmarking</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="User profile avatar placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCox2B3pb0aneYozpDBz6Bl87GN8sZkLcc3bENNcyXZ7ivWU-XNpX-7nyt4B9L5IE_3gpX2egKBRwpiRf39jvL0JgOCYlyIiA6pHtri_m8fpZU_Iqoz44_V8ZtcM7G9KkG8ySDhlNwQ4rSejjFb7XFEvwrOPv_71E8_DsnT0FLhk02_EsIMk9-wRxLbuUKhcM3W2UuNv1cbGZLqrOLFS37-UnbU0gMtOGbjCCgtxylMEWvyoRAa115fSYySZtOvWtqd6t2Io4LURho')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-semibold truncate text-slate-800 dark:text-slate-200">Prima Sarana Admin</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-wider">Premium Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Top Nav Bar -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-8 py-4 flex items-center justify-between">
+<div>
+<h2 class="text-xl font-bold">Social Media Analytics</h2>
+<p class="text-sm text-slate-500">PT Prima Sarana Gemilang • Performance Dashboard</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 gap-2 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-400 text-sm">calendar_today</span>
+<span class="text-sm font-medium">Last 30 Days</span>
+</div>
+<button class="bg-primary text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Download Report
+                    </button>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- Filters Bar -->
+<div class="flex gap-3 flex-wrap">
+<button class="flex h-10 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4">
+<p class="text-sm font-medium">All Platforms</p>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button class="flex h-10 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4">
+<p class="text-sm font-medium">LinkedIn</p>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button class="flex h-10 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4">
+<p class="text-sm font-medium">Facebook</p>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+<!-- KPI Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 text-sm font-medium">Total Followers</p>
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<p class="text-3xl font-bold mb-1">128.5K</p>
+<p class="text-green-600 text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                        </p>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 text-sm font-medium">Net Engagement Rate</p>
+<span class="material-symbols-outlined text-primary">ads_click</span>
+</div>
+<p class="text-3xl font-bold mb-1">4.2%</p>
+<p class="text-green-600 text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +0.5%
+                        </p>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 text-sm font-medium">Total Impressions</p>
+<span class="material-symbols-outlined text-primary">visibility</span>
+</div>
+<p class="text-3xl font-bold mb-1">2.1M</p>
+<p class="text-red-500 text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> -2.4%
+                        </p>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 text-sm font-medium">Link Clicks</p>
+<span class="material-symbols-outlined text-primary">mouse</span>
+</div>
+<p class="text-3xl font-bold mb-1">15.4K</p>
+<p class="text-green-600 text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +8.1%
+                        </p>
+</div>
+</div>
+<!-- Engagement Trend Chart Section -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold">Engagement Trends Comparison</h3>
+<p class="text-sm text-slate-500">Multi-series analysis across primary social channels</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 text-xs font-medium">
+<span class="size-2 rounded-full bg-primary"></span> LinkedIn
+                            </div>
+<div class="flex items-center gap-2 text-xs font-medium">
+<span class="size-2 rounded-full bg-teal-500"></span> Facebook
+                            </div>
+<div class="flex items-center gap-2 text-xs font-medium">
+<span class="size-2 rounded-full bg-purple-500"></span> Instagram
+                            </div>
+</div>
+</div>
+<div class="relative h-[300px] w-full">
+<!-- Simulated Chart SVG -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 200">
+<!-- Instagram Path (Purple) -->
+<path d="M0 160 Q 100 150, 200 140 T 400 100 T 600 120 T 800 60" fill="none" stroke="#a855f7" stroke-width="2"></path>
+<!-- Facebook Path (Teal) -->
+<path d="M0 140 Q 150 160, 300 120 T 500 140 T 800 100" fill="none" stroke="#14b8a6" stroke-width="2"></path>
+<!-- LinkedIn Path (Primary Blue) -->
+<path d="M0 180 Q 200 100, 400 120 T 600 40 T 800 80" fill="none" stroke="#1173d4" stroke-width="3"></path>
+<!-- Grid Lines -->
+<line stroke="#f1f5f9" stroke-dasharray="4" x1="0" x2="800" y1="40" y2="40"></line>
+<line stroke="#f1f5f9" stroke-dasharray="4" x1="0" x2="800" y1="80" y2="80"></line>
+<line stroke="#f1f5f9" stroke-dasharray="4" x1="0" x2="800" y1="120" y2="120"></line>
+<line stroke="#f1f5f9" stroke-dasharray="4" x1="0" x2="800" y1="160" y2="160"></line>
+</svg>
+</div>
+<div class="flex justify-between mt-4 px-2">
+<span class="text-[10px] text-slate-400 font-bold uppercase">Week 1</span>
+<span class="text-[10px] text-slate-400 font-bold uppercase">Week 2</span>
+<span class="text-[10px] text-slate-400 font-bold uppercase">Week 3</span>
+<span class="text-[10px] text-slate-400 font-bold uppercase">Week 4</span>
+</div>
+</div>
+<!-- Tables & Demographics Row -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- Top Performing Posts -->
+<div class="xl:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-lg font-bold">Top Performing Posts</h3>
+<button class="text-primary text-sm font-semibold">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-800/50 text-[11px] font-bold text-slate-500 uppercase">
+<tr>
+<th class="px-6 py-3">Post Content</th>
+<th class="px-6 py-3">Platform</th>
+<th class="px-6 py-3">Engagement</th>
+<th class="px-6 py-3">Sentiment</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-slate-700 bg-cover bg-center shrink-0" data-alt="Mining equipment field operations photo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2ppcWYSwSH_0S8RIyiosMmw2RgiJkZrwkt2lKFMW-npMtt_0C8DZgFN6ISMR6PTL_CIboyIbZYVE-jfXVQCwKO6Qu2WFaOyvPdEIcahXS54M-9gQ_RnyjU0__rnpKKYiwk25P_GRINVaqU-Qj7IYdUvNRvYLARBnqzFjjZtfyrkrqkBVRLulFHfW4mgezcfRiO16YQjhAJQ2G-oEikhprkyJaFTEjyRbC8FPHmx_F2RgOoofF8SZEqNnpmmNOv32RTtzEjS7CKmA')"></div>
+<span class="text-sm font-medium line-clamp-1">Q3 Mining Project Milestone in Balikpapan...</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">corporate_fare</span>
+<span class="text-xs">LinkedIn</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-bold">12.4K</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 uppercase tracking-wide">Positive</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-slate-700 bg-cover bg-center shrink-0" data-alt="Company anniversary celebration team photo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB47lKOu6JCO49d42F0Zznl6UAyRbAi3acplHB8vQ-pTjn6_QSjKlfzBZVzavPkKrO1SWTIIVp3TaJfUV7wh58YYGrKwPvFGmYwk2z0HSBIUtJ7tDhoEi6MFs9nwU6Te6P9_2x8xU770gTnYHYo3sUXCLEjZQDs-ZdQarwh72Qhfz1zOu3cQrs2wI6Dk36QVESWI4XVL79iegNl_yc2n2Xc5YbLqwuUGsl8Ja4if-p4TM-lJ_bWycOX0pL8Iwpjq-KcOteMBlSYagM')"></div>
+<span class="text-sm font-medium line-clamp-1">Celebrating 15 Years of Excellence...</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-pink-600">
+<span class="material-symbols-outlined text-lg">photo_camera</span>
+<span class="text-xs">Instagram</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-bold">9.8K</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 uppercase tracking-wide">Positive</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-slate-700 bg-cover bg-center shrink-0" data-alt="Logistics fleet transportation truck" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCd6B7T8nSAQXvYFhYs2adL6sNOe3F3xRaZpUTSB_ih_DIiFE42HIEz_6_nXlsMsmHo_VLJiUHSBFmwj6QBGsafgn9hLVtwiA6zDvgcp9-nXGxDapWDxkcn479xLUZlMj4xjHsiUvAVSOmXIlj58F3hVFAkGIkmalXGm6JXGvKNk2fGDB8kXYoaeRKBU81NTRGUpuMRvD1-lSxkvn7TMdsY6rMPs-kptM2Qb6MYT6KQ0iAu9uYqRecwFbBAyEd0cfb6hlQ7J2LdsP4')"></div>
+<span class="text-sm font-medium line-clamp-1">New Fleet Expansion for Java Logistics...</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-blue-700">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span class="text-xs">Facebook</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-bold">4.2K</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 uppercase tracking-wide">Neutral</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Demographic Breakdown -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-bold mb-6">Demographic Breakdown</h3>
+<div class="space-y-6">
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Top Industries</p>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs font-medium mb-1">
+<span>Mining &amp; Resources</span>
+<span>45%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-medium mb-1">
+<span>Construction</span>
+<span>30%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-medium mb-1">
+<span>Logistics</span>
+<span>15%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Top Locations</p>
+<div class="space-y-3">
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-base">location_on</span>
+<span>Jakarta</span>
+</div>
+<span class="font-bold">42%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-base">location_on</span>
+<span>Balikpapan</span>
+</div>
+<span class="font-bold">28%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-base">location_on</span>
+<span>Surabaya</span>
+</div>
+<span class="font-bold">15%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

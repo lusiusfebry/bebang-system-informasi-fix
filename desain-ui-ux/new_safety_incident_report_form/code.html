@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Safety Incident Report - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .severity-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 4px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white min-h-screen">
+<div class="flex h-full min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-72 bg-white dark:bg-[#1a212f] border-r border-[#f0f2f4] dark:border-[#2d3648] hidden lg:flex flex-col fixed h-full overflow-y-auto">
+<div class="p-6 flex flex-col h-full">
+<div class="flex gap-3 mb-8">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="HSE Professional User Profile Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC52xUr_6PCvNOOAAKv0OwPFReDon__HHaQX0am2ObOjwXK1egZqKz4_5HVINq3LBB3OgUsXwjIFjcOmpxP4B9IgvMOH0bHfXNsnn5piFrlihk4GnnFecNJV3KDeN7dZFKojoKyv-tvnsX4xnBHOkFducuu7FOcYgwDUxg3QT4LNWryiWhduI724tmHtW1lIxrFsgzPoKiI_Q4B6pQLIhhF_t7hTXr5tEe-3PkH5976znCqjBtsTurmUQ_3F1NQCQZ5G1NFYB30758");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-base font-semibold leading-normal">Bebang Sistem Informasi</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-normal">HSE Module - PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 flex-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">report_problem</span>
+<span class="text-sm font-medium">Incidents</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="text-sm font-medium">Risk Assessment</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="text-sm font-medium">Compliance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-[#f0f2f4] dark:border-[#2d3648]">
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-72 flex flex-col">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-[#2d3648] bg-white dark:bg-[#1a212f] px-4 md:px-10 py-3 sticky top-0 z-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary lg:hidden">
+<span class="material-symbols-outlined">menu</span>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold">Bebang</h2>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-[#111318] dark:text-white text-sm font-semibold border-b-2 border-primary pb-1" href="#">New Incident</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary" href="#">History</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<label class="hidden sm:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden">
+<div class="text-[#616f89] flex border-none bg-[#f0f2f4] dark:bg-[#2d3648] items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full border-none bg-[#f0f2f4] dark:bg-[#2d3648] text-[#111318] dark:text-white focus:ring-0 h-full placeholder:text-[#616f89] px-4 pl-2 text-sm" placeholder="Search incidents..."/>
+</div>
+</label>
+<button class="bg-[#f0f2f4] dark:bg-[#2d3648] p-2 rounded-lg text-[#616f89]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Small profile user indicator" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXBXjBVPQrP5SodU8eNpQnKzbQS1DtMsiJgGz03EzeaH0fZtufC5Zl_1PBoyFO2bHUclhT4zCPM1dFTo-nwQZGiaOAQD8HqZrQy677c1m27bueKfKzLORC3gRNjiQiU-vUaFMdMtQAmyVvQ_nBjx9SDPr7aWToqXBSYRgZGsubwu69g6onIh-snarxhvCwZk8rUwpro2v1_9xdT0n0IHtSbOCcAxCI_gqzqqx3sY3UBNCiMuB8cmSONslnfwXNYmbarXF-NDPG1kQ");'></div>
+</div>
+</header>
+<div class="p-4 md:p-8 max-w-5xl mx-auto w-full">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 mb-6">
+<a class="text-[#616f89] text-sm font-medium hover:text-primary" href="#">HSE Module</a>
+<span class="text-[#616f89] text-sm">/</span>
+<a class="text-[#616f89] text-sm font-medium hover:text-primary" href="#">Incidents</a>
+<span class="text-[#616f89] text-sm">/</span>
+<span class="text-[#111318] dark:text-white text-sm font-semibold">New Incident Report</span>
+</div>
+<!-- Page Heading -->
+<div class="mb-8">
+<h1 class="text-[#111318] dark:text-white text-3xl font-black tracking-tight mb-2">New Safety Incident Report</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-base">Please fill out the details below to document a safety incident. Accuracy is crucial for risk management.</p>
+</div>
+<!-- Form Content -->
+<form class="space-y-8 pb-32">
+<!-- Section 1: General Info -->
+<section class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#f0f2f4] dark:border-[#2d3648] shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-[#2d3648] flex items-center gap-3">
+<span class="bg-primary/10 text-primary p-1.5 rounded-lg material-symbols-outlined">info</span>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold">1. General Information</h2>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-gray-200">Date of Incident *</label>
+<input class="w-full rounded-lg border-[#f0f2f4] dark:border-[#2d3648] dark:bg-[#101622] focus:border-primary focus:ring-1 focus:ring-primary" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-gray-200">Time of Incident *</label>
+<input class="w-full rounded-lg border-[#f0f2f4] dark:border-[#2d3648] dark:bg-[#101622] focus:border-primary focus:ring-1 focus:ring-primary" type="time"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-gray-200">Location/Site *</label>
+<select class="w-full rounded-lg border-[#f0f2f4] dark:border-[#2d3648] dark:bg-[#101622] focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Select Site...</option>
+<option>Site A - Open Pit</option>
+<option>Site B - Processing Plant</option>
+<option>Logistics Hub - Yard 4</option>
+<option>Maintenance Workshop</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section 2: Description -->
+<section class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#f0f2f4] dark:border-[#2d3648] shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-[#2d3648] flex items-center gap-3">
+<span class="bg-primary/10 text-primary p-1.5 rounded-lg material-symbols-outlined">subject</span>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold">2. Incident Description</h2>
+</div>
+<div class="p-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-gray-200">Narrative - What Happened? *</label>
+<textarea class="w-full rounded-lg border-[#f0f2f4] dark:border-[#2d3648] dark:bg-[#101622] focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-gray-400" placeholder="Provide a detailed account of the events leading up to and during the incident..." rows="4"></textarea>
+</div>
+</div>
+</section>
+<!-- Section 3: People Involved -->
+<section class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#f0f2f4] dark:border-[#2d3648] shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-[#2d3648] flex items-center gap-3">
+<span class="bg-primary/10 text-primary p-1.5 rounded-lg material-symbols-outlined">group</span>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold">3. People Involved</h2>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex gap-2">
+<div class="flex-1 relative">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-[#616f89]">
+<span class="material-symbols-outlined text-xl">person_search</span>
+</div>
+<input class="w-full pl-10 rounded-lg border-[#f0f2f4] dark:border-[#2d3648] dark:bg-[#101622] focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search HR Database by Name or NIK..." type="text"/>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm" type="button">Add Person</button>
+</div>
+<!-- Tag Cloud of Added People -->
+<div class="flex flex-wrap gap-2 pt-2">
+<div class="flex items-center gap-2 bg-[#f0f2f4] dark:bg-[#2d3648] px-3 py-1.5 rounded-full text-sm">
+<div class="size-6 rounded-full bg-cover" data-alt="Worker Headshot" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuASFIC6aro4wHP5ArdCuIb88a8ePp5NFpvCLJFIZvaiV_UZWtnfWI_Wf3Oum1QM8wQExfOETpzZl3aLMuRbUysRgZJWy2AxAkxLRSt17lxs6e1xf_fZPf_hbB-AXS5izsY7P9vXuwCi9RwY5Ru4gApoQ_e3QSIAPtkXMl53vhMiqM8Ds4hBzqChDAsPpL4aCtBSoCIXhYL1LufJ6TVyp9pz5pzzpvwsVor-aF1JFKOlzVxZTKQV0vfa29en4DkOjW6z0k_p7HcC0EQ');"></div>
+<span>Budi Santoso (77210)</span>
+<button class="material-symbols-outlined text-xs">close</button>
+</div>
+<div class="flex items-center gap-2 bg-[#f0f2f4] dark:bg-[#2d3648] px-3 py-1.5 rounded-full text-sm">
+<div class="size-6 rounded-full bg-cover" data-alt="Worker Headshot" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCk1xlFYzFJrtHo9hJ3R3VeMnHj1eV9ROjXjRLNNJgwpQCAHxIhW8ZbqYtT_7keBRrdmHXY6krWapj2WbvabpJM3nL5hGLcNQxfvQY3YNbeYFAC7imHKFbFtygJNDVOU0ZbRehRpazKs3ooBik1bkL57ChZ_0nMwGKTP1iha2-nexbTB8oiSEe2_VUYX-RbYFsJnMMa6sCB3oxo9HfXeSebLVLY34jRlrex1aCIMkVB6vjCk1vWvF4Xzw0hQDJjWkA99fMce3HR8Nc');"></div>
+<span>Ani Wijaya (77215)</span>
+<button class="material-symbols-outlined text-xs">close</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Evidence -->
+<section class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#f0f2f4] dark:border-[#2d3648] shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-[#2d3648] flex items-center gap-3">
+<span class="bg-primary/10 text-primary p-1.5 rounded-lg material-symbols-outlined">attachment</span>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold">4. Evidence &amp; Documentation</h2>
+</div>
+<div class="p-6">
+<div class="border-2 border-dashed border-[#f0f2f4] dark:border-[#2d3648] rounded-xl p-8 flex flex-col items-center justify-center bg-background-light dark:bg-[#1a212f] hover:bg-primary/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-[#616f89] group-hover:text-primary mb-3">cloud_upload</span>
+<p class="text-[#111318] dark:text-white font-semibold">Click to upload or drag and drop</p>
+<p class="text-[#616f89] text-sm">PNG, JPG or PDF (max. 10MB each)</p>
+</div>
+<div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="relative aspect-square rounded-lg overflow-hidden border border-[#f0f2f4] dark:border-[#2d3648]">
+<div class="absolute inset-0 bg-cover" data-alt="Photo of site incident evidence" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLLzthel5BscdsJ_JqpFaeUUQixgv5JlKv09UrfC0HtY-VyL6zIj0iwLdzGaMcrieR1qu4ovhnJXLN7BE_hrOtkstvVTp7m_HFGOmaM94fvPgztQYXAghCk1nuYp5OWizfufHFmmB1lFHhL5DcVMXdd-1PLxK-YP2XIJdU-HNQHXvWfqgVVaMa5Hl7wmdFQiEI2Oxrp4Io7IoGoX_5NzPKU8PxFQXKFS_lbuN7knNC3xkBjN797EHHm8EI82zj2iQ2xO6ZAcl0cJM');"></div>
+<button class="absolute top-1 right-1 bg-red-500 text-white p-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs">close</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Severity Assessment -->
+<section class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#f0f2f4] dark:border-[#2d3648] shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-[#2d3648] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="bg-primary/10 text-primary p-1.5 rounded-lg material-symbols-outlined">grid_view</span>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold">5. Severity Assessment</h2>
+</div>
+<button class="text-primary text-sm font-semibold flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm">help</span> Matrix Help
+                            </button>
+</div>
+<div class="p-6">
+<p class="text-[#616f89] text-sm mb-4">Evaluate the potential impact by selecting the intersection of Consequence and Likelihood.</p>
+<div class="overflow-x-auto">
+<div class="min-w-[600px]">
+<div class="severity-matrix-grid text-[10px] font-bold uppercase text-[#616f89] mb-1 text-center">
+<div></div>
+<div>Insignificant</div>
+<div>Minor</div>
+<div>Moderate</div>
+<div>Major</div>
+<div>Catastrophic</div>
+</div>
+<div class="grid grid-cols-6 gap-1 h-64">
+<div class="flex flex-col justify-between text-[10px] font-bold uppercase text-[#616f89] py-2">
+<span>Almost Certain</span>
+<span>Likely</span>
+<span>Possible</span>
+<span>Unlikely</span>
+<span>Rare</span>
+</div>
+<!-- Matrix Cells - Row 1 -->
+<div class="bg-yellow-400 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold">M</div>
+<div class="bg-orange-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">H</div>
+<div class="bg-red-600 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">C</div>
+<div class="bg-red-600 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">C</div>
+<div class="bg-red-600 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white border-2 border-black">C</div>
+<!-- Row 2 -->
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-yellow-400 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold">M</div>
+<div class="bg-orange-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">H</div>
+<div class="bg-red-600 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">C</div>
+<div class="bg-red-600 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">C</div>
+<!-- Row 3 -->
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-yellow-400 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold">M</div>
+<div class="bg-orange-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">H</div>
+<div class="bg-red-600 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">C</div>
+<!-- Row 4 -->
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-yellow-400 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold">M</div>
+<div class="bg-orange-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">H</div>
+<!-- Row 5 -->
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-green-500 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold text-white">L</div>
+<div class="bg-yellow-400 rounded-sm cursor-pointer hover:opacity-80 flex items-center justify-center text-xs font-bold">M</div>
+</div>
+</div>
+</div>
+<div class="mt-6 p-4 bg-red-100 border border-red-200 rounded-lg flex gap-4 items-center">
+<div class="size-12 rounded-lg bg-red-600 flex items-center justify-center text-white text-xl font-black">C</div>
+<div>
+<h4 class="font-bold text-red-900">Current Level: Critical Risk</h4>
+<p class="text-sm text-red-800">Requires immediate work stoppage and notification of Head of Department.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: Immediate Actions -->
+<section class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#f0f2f4] dark:border-[#2d3648] shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-[#2d3648] flex items-center gap-3">
+<span class="bg-primary/10 text-primary p-1.5 rounded-lg material-symbols-outlined">flash_on</span>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold">6. Immediate Actions Taken</h2>
+</div>
+<div class="p-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-[#111318] dark:text-gray-200">Mitigation Steps *</label>
+<textarea class="w-full rounded-lg border-[#f0f2f4] dark:border-[#2d3648] dark:bg-[#101622] focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-gray-400" placeholder="List steps taken to secure the scene, provide medical aid, or prevent further hazard..." rows="3"></textarea>
+</div>
+</div>
+</section>
+</form>
+</div>
+<!-- Sticky Footer Actions -->
+<footer class="fixed bottom-0 left-0 lg:left-72 right-0 bg-white/80 dark:bg-[#1a212f]/80 backdrop-blur-md border-t border-[#f0f2f4] dark:border-[#2d3648] p-4 z-20">
+<div class="max-w-5xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-2 text-[#616f89] text-xs">
+<span class="material-symbols-outlined text-sm">cloud_done</span>
+                        Last saved at 14:32:01
+                    </div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg border border-[#f0f2f4] dark:border-[#2d3648] text-[#111318] dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-[#101622] transition-colors" type="button">
+                            Save as Draft
+                        </button>
+<button class="px-8 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all flex items-center gap-2" type="submit">
+                            Submit Report <span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

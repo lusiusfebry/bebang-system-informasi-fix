@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketing - Social Media Scheduler Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white antialiased min-h-screen">
+<div class="flex flex-col h-screen overflow-hidden">
+<!-- Header / TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e2e8f0] dark:border-gray-800 bg-white dark:bg-gray-900 px-6 py-3 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight">Bebang Marketing</h2>
+<p class="text-xs text-[#617589]">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary text-sm font-semibold leading-normal" href="#">Dashboard</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Calendar</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Analytics</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Assets</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<label class="hidden lg:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+<div class="text-[#617589] flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full border-none bg-transparent focus:ring-0 text-sm" placeholder="Search campaigns..." value=""/>
+</div>
+</label>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Create Post</span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/20 bg-cover bg-center" data-alt="User profile avatar portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBdPeuDefeKuvgr7u5Ak35MXz_x5RGgERkMPfxNGFgqADFTBnm3zfL77O2QCf86fBtoGuuTW6a9qHbublwZc1h0bOp5RO2eFTcQeIDB-0sOWb2a9cCdHljsvYiTiu1KxW3bBga1DueWNRJpS0X5gpKPLnMErTcU_GQYOVjddbs5DXK-X61r8LheFx995A2NWVa2hH2U7V58v3o8o12LStEqJ4Qj3B-7M6usi_kCFqnS0dW9-f_-_dzQ8YZevohJW16xxSQY5rTKMGw");'></div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-64 border-r border-[#e2e8f0] dark:border-gray-800 bg-white dark:bg-gray-900 hidden xl:flex flex-col py-6">
+<div class="px-4 mb-6">
+<p class="text-[11px] font-bold text-[#617589] uppercase tracking-wider mb-4">Marketing Module</p>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined fill-1">calendar_month</span>
+<p class="text-sm font-semibold">Scheduler</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+<span class="material-symbols-outlined">layers</span>
+<p class="text-sm font-medium">Campaigns</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+<span class="material-symbols-outlined">edit_note</span>
+<p class="text-sm font-medium">Drafts</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+<span class="material-symbols-outlined">perm_media</span>
+<p class="text-sm font-medium">Media Library</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer mt-4">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</div>
+</div>
+</div>
+<!-- Calendar Picker Mini -->
+<div class="mt-auto px-4 border-t border-gray-100 dark:border-gray-800 pt-6">
+<div class="flex items-center justify-between mb-2">
+<p class="text-xs font-bold text-gray-500">Quick View</p>
+<span class="material-symbols-outlined text-sm text-gray-400">chevron_right</span>
+</div>
+<div class="p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+<div class="flex justify-between items-center mb-2 px-1">
+<span class="text-[10px] font-bold">OCT 2023</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-xs cursor-pointer">chevron_left</span>
+<span class="material-symbols-outlined text-xs cursor-pointer">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-[10px] text-center">
+<div class="text-gray-400">S</div><div class="text-gray-400">M</div><div class="text-gray-400">T</div><div class="text-gray-400">W</div><div class="text-gray-400">T</div><div class="text-gray-400">F</div><div class="text-gray-400">S</div>
+<div class="py-1">29</div><div class="py-1">30</div><div class="py-1">31</div><div class="py-1 bg-primary text-white rounded-sm">1</div><div class="py-1">2</div><div class="py-1">3</div><div class="py-1">4</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col bg-background-light dark:bg-background-dark overflow-y-auto custom-scrollbar">
+<!-- Dashboard Control Bar -->
+<div class="p-6 pb-0 space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="text-2xl font-bold text-[#111418] dark:text-white">Social Scheduler</h1>
+<p class="text-sm text-[#617589]">Manage and plan your social media presence.</p>
+</div>
+<!-- Segmented View Toggle -->
+<div class="flex bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-1 w-fit shadow-sm">
+<button class="px-4 py-1.5 text-sm font-semibold rounded-md bg-gray-100 dark:bg-gray-700 text-[#111418] dark:text-white">Monthly View</button>
+<button class="px-4 py-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">Weekly View</button>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex items-center gap-3 pb-2 overflow-x-auto no-scrollbar">
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 shadow-sm cursor-pointer">
+<span class="material-symbols-outlined text-lg text-primary">filter_list</span>
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium">All Platforms</p>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 shadow-sm cursor-pointer hover:border-primary transition-colors">
+<div class="w-2 h-2 rounded-full bg-pink-500"></div>
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium">Instagram</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 shadow-sm cursor-pointer hover:border-primary transition-colors">
+<div class="w-2 h-2 rounded-full bg-blue-600"></div>
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium">LinkedIn</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 shadow-sm cursor-pointer hover:border-primary transition-colors">
+<div class="w-2 h-2 rounded-full bg-blue-500"></div>
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium">Facebook</p>
+</div>
+<div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-2"></div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 px-4 cursor-pointer">
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium">Campaign: Q4 Launch</p>
+<span class="material-symbols-outlined text-sm">close</span>
+</div>
+</div>
+</div>
+<!-- Calendar Interface -->
+<div class="flex-1 p-6">
+<div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden flex flex-col h-[calc(100vh-280px)] min-h-[500px]">
+<!-- Calendar Header -->
+<div class="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-4">
+<h3 class="text-lg font-bold">October 2023</h3>
+<div class="flex gap-1">
+<button class="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="flex gap-2">
+<span class="text-xs font-medium text-gray-500 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> Published</span>
+<span class="text-xs font-medium text-gray-500 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span> Scheduled</span>
+</div>
+</div>
+<!-- Days of Week -->
+<div class="grid grid-cols-7 border-b border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30">
+<div class="py-2 text-center text-xs font-bold text-gray-400 uppercase tracking-tighter">Sun</div>
+<div class="py-2 text-center text-xs font-bold text-gray-400 uppercase tracking-tighter">Mon</div>
+<div class="py-2 text-center text-xs font-bold text-gray-400 uppercase tracking-tighter">Tue</div>
+<div class="py-2 text-center text-xs font-bold text-gray-400 uppercase tracking-tighter">Wed</div>
+<div class="py-2 text-center text-xs font-bold text-gray-400 uppercase tracking-tighter">Thu</div>
+<div class="py-2 text-center text-xs font-bold text-gray-400 uppercase tracking-tighter">Fri</div>
+<div class="py-2 text-center text-xs font-bold text-gray-400 uppercase tracking-tighter">Sat</div>
+</div>
+<!-- Grid Body -->
+<div class="calendar-grid flex-1 overflow-y-auto custom-scrollbar">
+<!-- Placeholder days from prev month -->
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 bg-gray-50/30 dark:bg-gray-800/10 opacity-40">24</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 bg-gray-50/30 dark:bg-gray-800/10 opacity-40">25</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 bg-gray-50/30 dark:bg-gray-800/10 opacity-40">26</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 bg-gray-50/30 dark:bg-gray-800/10 opacity-40">27</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 bg-gray-50/30 dark:bg-gray-800/10 opacity-40">28</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 bg-gray-50/30 dark:bg-gray-800/10 opacity-40">29</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 bg-gray-50/30 dark:bg-gray-800/10 opacity-40">30</div>
+<!-- Month Days -->
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 group hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<span class="text-xs font-bold">1</span>
+<div class="mt-2 space-y-1">
+<div class="p-1 rounded bg-blue-50 dark:bg-blue-900/30 border-l-2 border-blue-600 flex items-center gap-1 cursor-pointer">
+<div class="size-4 rounded bg-cover bg-center" data-alt="Social media post thumbnail abstract" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfJZcHfJ3B-ZUkKVBXpuKb7vHTnqx9xZb-t5kchRVf-CgANsq-huySt252OklfVBPwHBLnkuVLWTR9voTEu_W_7H4xLj2dDzEY1DaP5M7ZmRy1jDCevr-AlmJMd9iWZBbDVO9wQOFupS127rcxrZ2tYPcw8cLNCGCt4Dg2Aj8IoVTC0CuzCvuNvTXDpWqiPnLgUf2XhpnRgErGHaR-V9g0JVtYNBty5-ry71jHhdJ7pCa0v4GZ_xzN1e8Dmdtvk5yy8VvvH6pca6M');"></div>
+<span class="text-[9px] font-bold truncate">Project Update...</span>
+<span class="text-[8px] ml-auto font-medium opacity-60">10:00</span>
+</div>
+</div>
+</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2">
+<span class="text-xs font-bold">2</span>
+</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2">
+<span class="text-xs font-bold">3</span>
+</div>
+<!-- Active/Today -->
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2 bg-primary/5">
+<span class="text-xs font-bold bg-primary text-white size-6 flex items-center justify-center rounded-full">4</span>
+<div class="mt-2 space-y-1">
+<div class="p-1 rounded bg-pink-50 dark:bg-pink-900/30 border-l-2 border-pink-500 flex items-center gap-1 cursor-pointer">
+<div class="size-4 rounded bg-cover bg-center" data-alt="Post thumbnail lifestyle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMSzeWNimLfK6oMt91ZwjtzhOfooWnYX8p3W3NDrqZXdQFtagGrKX327arH738Vg1ZxwRqS2Yr5Xqe8FOQYZvN_GV7LAuZIDHVSVWvPph85UnO0CMS7EQZM5MFERmQt64lwUrwrP_VrC8KBUnivfeN8xns-E0bjurPdbv6EkQ0CLziTrGcNNP2fqWEsfq25Ls_y1f51My6arbO8ag_-Geez3bN5cUtmtKpXotLzNd8xZOHFmMinewthFGLVPTemd_RForZrBMCgE0');"></div>
+<span class="text-[9px] font-bold truncate">Office Tour</span>
+<span class="text-[8px] ml-auto font-medium opacity-60">14:30</span>
+</div>
+<div class="p-1 rounded bg-blue-50 dark:bg-blue-900/30 border-l-2 border-blue-500 flex items-center gap-1 cursor-pointer">
+<div class="size-4 rounded bg-cover bg-center" data-alt="Post thumbnail corporate" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZYJkrGtzKi1ljL3zdT6Lsqo5E4TzE8wEP4d5knsmV2O6SyKmROlddNUI0Me7YmMJSdzdW4RQw4earMriqMvSTf9nxcZnCadmkNdXCaLbLW0uoUGLqWtfKMfLlpcWjAeT1HdyatCtZIQYnqF2VB_a-veZnmAO_ulragxjVQFnpiM5osEYcTF22iQJ4-hSPRkv_Ojc3m42SEUi-R91rMKaKC44vXxKY8WpnYEp3XMTyJ530rVPtmJoN2ralEa70dMTgVbrNEDpqfao');"></div>
+<span class="text-[9px] font-bold truncate">New Hire...</span>
+<span class="text-[8px] ml-auto font-medium opacity-60">17:00</span>
+</div>
+</div>
+</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">5</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">6</span></div>
+<div class="min-h-[140px] border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">7</span></div>
+<!-- Row 2 -->
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">8</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">9</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2">
+<span class="text-xs font-bold">10</span>
+<div class="mt-2">
+<div class="p-1 rounded bg-green-50 dark:bg-green-900/30 border-l-2 border-green-500 flex items-center gap-1 opacity-60">
+<span class="material-symbols-outlined text-[10px] text-green-600">check_circle</span>
+<span class="text-[9px] font-bold truncate">Q4 Promo</span>
+<span class="text-[8px] ml-auto font-medium">09:00</span>
+</div>
+</div>
+</div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">11</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">12</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">13</span></div>
+<div class="min-h-[140px] border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">14</span></div>
+<!-- Additional empty days for structural integrity -->
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">15</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">16</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">17</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">18</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">19</span></div>
+<div class="min-h-[140px] border-r border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">20</span></div>
+<div class="min-h-[140px] border-b border-gray-100 dark:border-gray-800 p-2"><span class="text-xs font-bold">21</span></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Utility Sidebar (Right) -->
+<aside class="w-80 border-l border-[#e2e8f0] dark:border-gray-800 bg-white dark:bg-gray-900 hidden 2xl:flex flex-col overflow-y-auto custom-scrollbar">
+<!-- Drafts Section -->
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">edit_square</span>
+                            Drafts
+                        </h4>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">4</span>
+</div>
+<div class="space-y-3">
+<div class="p-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 hover:shadow-md transition-all cursor-move group">
+<div class="flex items-start gap-3">
+<div class="size-12 rounded bg-cover bg-center shrink-0 border border-gray-200 dark:border-gray-700" data-alt="Draft image abstract pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdOpPIIvpq1TnO_vPiwLU6Pm-OrGdvI6mVOg7lffoYW7xEPYP2g2gR0iUaCB81k7i9YaZYXIi8ceklxK_AIVdVq8wq-_STZcoEmmdp7k2IuDWKhXRgj4olOYEYlelunDCWztY3kw1pEsx2FncG7SddGKk0rRN11_hi_jaSe5FFTq94aJhvlHDY8Xcpc_ZyaHMTC6G8vrWbcpS7CxDvyiWFGfSgyidCdR89FE_cD-3GDV6iaRM1JS3iUZwXnSVvHg9w5AyY79SYXmQ');"></div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold truncate group-hover:text-primary transition-colors">Safety Workshop Recap</p>
+<p class="text-[10px] text-gray-500 line-clamp-2 mt-0.5">Summary of last week's safety protocols and drills at site...</p>
+<div class="flex items-center gap-2 mt-2">
+<div class="w-2 h-2 rounded-full bg-blue-600"></div>
+<span class="text-[10px] font-semibold text-gray-400">LinkedIn</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 hover:shadow-md transition-all cursor-move group">
+<div class="flex items-start gap-3">
+<div class="size-12 rounded bg-cover bg-center shrink-0 border border-gray-200 dark:border-gray-700" data-alt="Draft image construction equipment" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDL63VpQN11-9Yrvt6oia6DUtzakXFXqi-uUgrCv5Ay4y2ipjR1RKCOyOtIpq0Yl01auBK137-w6awluhrQktH7PEE7IG_ILgMcXYRyloUwImfnOPkBKaHUwLs1icjzRgCn7Kh1eSlQ8lRD0noxqbxscgdTiIUn_pKcs3iJq0M0X5DRRgN6vH1R9lnCHQIs0ZxUN9sgTnacusx4rN4wH_2CcRZUM_Pslh2xBwtQQxOYlsno4TIeUlOQf-rxv_v9q47JB8Bbo0pcEeI');"></div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold truncate group-hover:text-primary transition-colors">Equipment Spotlight: Cat 320</p>
+<p class="text-[10px] text-gray-500 line-clamp-2 mt-0.5">Showcasing our latest machinery performance metrics...</p>
+<div class="flex items-center gap-2 mt-2">
+<div class="w-2 h-2 rounded-full bg-pink-500"></div>
+<span class="text-[10px] font-semibold text-gray-400">Instagram</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 border-2 border-dashed border-gray-200 dark:border-gray-800 rounded-lg text-xs font-bold text-gray-400 hover:border-primary hover:text-primary transition-all">
+                        + New Draft
+                    </button>
+</div>
+<!-- Top Performing Posts -->
+<div class="p-6 border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/20">
+<h4 class="text-sm font-bold flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-yellow-500">stars</span>
+                        Top Performing
+                    </h4>
+<div class="space-y-4">
+<div class="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="h-32 bg-cover bg-center" data-alt="Successful corporate event photo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZvagPVhaG0nwUDc_POMkZ3hrkr4ZXu7cdDSY-sP7Yi_FHDOrd78HufzHAr9QrTM4C0UWh0g538mFZcGtBYtze3ufNwnOoWV1y1SKJ23dBauJYd0IiQiX1iXQjM_PTrk1kK49-Bf1z77PPCQA9__sr6nzecbHaCytYz5F41eBxJVCSz2o_ph99H-fa9yUDhfl0sA4Sgk9hUMEPoCx0c1MARJgRGeHMWR_PxIJxs4atnMailnP8jD4_DfmsNb5gATr8vefK0nQIRvA');"></div>
+<div class="p-3">
+<p class="text-xs font-bold mb-1">Company Anniversary Event</p>
+<div class="flex items-center justify-between text-[10px]">
+<span class="text-gray-400">3 days ago</span>
+<div class="flex gap-3">
+<span class="flex items-center gap-1 font-bold"><span class="material-symbols-outlined text-[12px] text-pink-500">favorite</span> 1.2k</span>
+<span class="flex items-center gap-1 font-bold"><span class="material-symbols-outlined text-[12px] text-blue-500">share</span> 428</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="h-32 bg-cover bg-center" data-alt="Mining site landscape photo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqNKQlph62DH09H7PVVY47VKTmNutP9dfnjpnT6tcZPH_AXOZYjfrMHeVizD4QjYSTWyMqk-QgntmP_g7cJ-_rS00q6BeIL1wY_1gShFR5ysA6Dzd8985roBIDER4tM0Okn2cFTgjdOwP0g9n8cnyPX0n8j4sWZJmXTrD080IlKQ6Y57NVQvmigiZ3XN4MNYzTZcqB0XIpBdM8_Ip51i4bncsfStyLdZSK2GpfmGnqGc9CNaCCEw_3tl-3bc8n_je-iHfra27Q04I');"></div>
+<div class="p-3">
+<p class="text-xs font-bold mb-1">Night Shift at Site B</p>
+<div class="flex items-center justify-between text-[10px]">
+<span class="text-gray-400">1 week ago</span>
+<div class="flex gap-3">
+<span class="flex items-center gap-1 font-bold"><span class="material-symbols-outlined text-[12px] text-pink-500">favorite</span> 894</span>
+<span class="flex items-center gap-1 font-bold"><span class="material-symbols-outlined text-[12px] text-blue-500">share</span> 112</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Inspiration / Help -->
+<div class="mt-auto p-6 bg-primary/5 border-t border-primary/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<div>
+<p class="text-[11px] font-bold">Content Tip</p>
+<p class="text-[10px] text-gray-600 dark:text-gray-400">Engagement is 20% higher on Tuesdays. Schedule your key updates then!</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</body></html>

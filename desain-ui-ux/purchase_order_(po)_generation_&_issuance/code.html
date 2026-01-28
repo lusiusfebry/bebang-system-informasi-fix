@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PO Generation &amp; Issuance - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white min-h-screen">
+<div class="flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e7eb] dark:border-[#2d394a] bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Bebang Sistem Informasi</h2>
+</div>
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary" href="#">Procurement</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Inventory</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden">
+<div class="text-[#617589] flex bg-[#f0f2f4] dark:bg-[#1c2632] items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#f0f2f4] dark:bg-[#1c2632] focus:outline-0 focus:ring-0 h-full placeholder:text-[#617589] px-4 pl-2 text-base font-normal" placeholder="Search POs..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-lg bg-[#f0f2f4] dark:bg-[#1c2632] hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-[#f0f2f4] dark:bg-[#1c2632] hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar of the procurement officer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDgtggMcba57_bUi3HMQUCaR35j1lJTYwEVHXsKWjk9ExzoWplsojZVL3epGggdSTyxH0cKJY3ibIx1mmDyf8mLSGixLawkORUDmnh8JwUwNPPxNOG50fOf3hH93YWwoezBsExO7Tdb9IcaSnGVUB4YxGhtg0FN42jXx9Fhh6DS3NqlAa8usqqcF7PMH1iGE6eZEswMaCp3iPSQg-p1xZG0O0KThbkoRt1X82KySVepNOn_UGDVP6L2GuH9r5vayD2PmOeBJ67bo0");'></div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar: Requisition Selection -->
+<aside class="w-80 border-r border-[#e5e7eb] dark:border-[#2d394a] bg-white dark:bg-[#141d28] flex flex-col">
+<div class="p-6 border-b border-[#e5e7eb] dark:border-[#2d394a]">
+<h1 class="text-[#111418] dark:text-white text-lg font-bold">Approved Requisitions</h1>
+<p class="text-[#617589] text-xs font-normal mt-1">Select a request to generate its PO</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Active Requisition -->
+<div class="flex flex-col gap-2 p-4 rounded-xl bg-primary/10 border border-primary/30 cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="text-primary font-bold text-sm">PR-2023-001</span>
+<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase">Urgent</span>
+</div>
+<p class="text-[#111418] dark:text-white text-sm font-semibold">Mining Ops - Spare Parts</p>
+<div class="flex items-center gap-2 text-[#617589] text-xs">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Oct 24, 2023</span>
+</div>
+</div>
+<!-- Other Requisitions -->
+<div class="flex flex-col gap-2 p-4 rounded-xl bg-transparent border border-transparent hover:bg-[#f0f2f4] dark:hover:bg-[#1c2632] cursor-pointer transition-colors group">
+<div class="flex justify-between items-start">
+<span class="text-[#111418] dark:text-white font-bold text-sm">PR-2023-004</span>
+<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase">Approved</span>
+</div>
+<p class="text-[#617589] dark:text-[#a0aec0] text-sm font-medium">Logistics - Fuel Supply</p>
+<div class="flex items-center gap-2 text-[#617589] text-xs">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Oct 23, 2023</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 p-4 rounded-xl bg-transparent border border-transparent hover:bg-[#f0f2f4] dark:hover:bg-[#1c2632] cursor-pointer transition-colors group">
+<div class="flex justify-between items-start">
+<span class="text-[#111418] dark:text-white font-bold text-sm">PR-2023-009</span>
+<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase">Approved</span>
+</div>
+<p class="text-[#617589] dark:text-[#a0aec0] text-sm font-medium">IT Dept - Laptops</p>
+<div class="flex items-center gap-2 text-[#617589] text-xs">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Oct 21, 2023</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 p-4 rounded-xl bg-transparent border border-transparent hover:bg-[#f0f2f4] dark:hover:bg-[#1c2632] cursor-pointer transition-colors group">
+<div class="flex justify-between items-start">
+<span class="text-[#111418] dark:text-white font-bold text-sm">PR-2023-012</span>
+<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase">Approved</span>
+</div>
+<p class="text-[#617589] dark:text-[#a0aec0] text-sm font-medium">HR - Office Supplies</p>
+<div class="flex items-center gap-2 text-[#617589] text-xs">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Oct 20, 2023</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main PO Creation Workspace -->
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark">
+<div class="max-w-[1100px] mx-auto pb-12">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 px-8 py-4">
+<a class="text-[#617589] text-sm font-medium hover:text-primary" href="#">Procurement</a>
+<span class="text-[#617589] text-sm font-medium">/</span>
+<a class="text-[#617589] text-sm font-medium hover:text-primary" href="#">Purchase Orders</a>
+<span class="text-[#617589] text-sm font-medium">/</span>
+<span class="text-primary font-bold text-sm">Generate PO</span>
+</div>
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-center gap-3 px-8 pb-6">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black tracking-tight">Create Purchase Order</h1>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">Drafting Mode</span>
+</div>
+<p class="text-[#617589] text-sm">Converting Approved Requisition <span class="font-bold text-primary">PR-2023-001</span> into a formal PO</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-white dark:bg-[#1c2632] border border-[#e5e7eb] dark:border-[#2d394a] text-[#111418] dark:text-white text-sm font-bold shadow-sm hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-lg mr-2">visibility</span>
+                                Preview PDF
+                            </button>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-white dark:bg-[#1c2632] border border-[#e5e7eb] dark:border-[#2d394a] text-[#111418] dark:text-white text-sm font-bold shadow-sm hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-lg mr-2">sync</span>
+                                Sync from PR
+                            </button>
+</div>
+</div>
+<!-- Section: Supplier & Logistics -->
+<div class="px-8 space-y-6">
+<div class="bg-white dark:bg-[#141d28] rounded-xl border border-[#e5e7eb] dark:border-[#2d394a] p-6 shadow-sm">
+<h2 class="text-[#111418] dark:text-white text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">store</span>
+                                Supplier &amp; Logistics Information
+                            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Supplier Selection -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-[#111418] dark:text-white">Supplier Name</label>
+<div class="relative">
+<select class="form-select w-full rounded-lg border-[#e5e7eb] dark:border-[#2d394a] bg-[#f8f9fa] dark:bg-[#1c2632] text-sm focus:ring-primary focus:border-primary">
+<option>IndoTractor Supply Co.</option>
+<option>PT Gemilang Teknik Mandiri</option>
+<option>United Tractors Tbk</option>
+</select>
+<div class="mt-2 flex items-center gap-2">
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs">star</span>
+</div>
+<span class="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded uppercase">Preferred</span>
+</div>
+</div>
+</div>
+<!-- Shipping Address (Master Lokasi) -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-[#111418] dark:text-white">Shipping Destination</label>
+<select class="form-select w-full rounded-lg border-[#e5e7eb] dark:border-[#2d394a] bg-[#f8f9fa] dark:bg-[#1c2632] text-sm focus:ring-primary focus:border-primary">
+<option>Mining Site Alpha - Balikpapan</option>
+<option>Head Office - Jakarta</option>
+<option>Warehouse Site B - Sangatta</option>
+</select>
+<p class="text-[11px] text-[#617589] leading-tight">Jl. Mulawarman No. 12, Sepinggan, Balikpapan Selatan, Kalimantan Timur.</p>
+</div>
+<!-- Payment Terms -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-[#111418] dark:text-white">Payment Terms</label>
+<select class="form-select w-full rounded-lg border-[#e5e7eb] dark:border-[#2d394a] bg-[#f8f9fa] dark:bg-[#1c2632] text-sm focus:ring-primary focus:border-primary">
+<option>Net 30 Days</option>
+<option>Net 60 Days</option>
+<option>Immediate (COD)</option>
+<option>50% Advanced / 50% Delivery</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section: Items Table -->
+<div class="bg-white dark:bg-[#141d28] rounded-xl border border-[#e5e7eb] dark:border-[#2d394a] overflow-hidden shadow-sm">
+<div class="p-6 border-b border-[#e5e7eb] dark:border-[#2d394a] flex justify-between items-center">
+<h2 class="text-[#111418] dark:text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">list_alt</span>
+                                    Line Items (From PR-2023-001)
+                                </h2>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                                    Add New Row
+                                </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-[#f8f9fa] dark:bg-[#1c2632] text-[#617589] font-bold border-b border-[#e5e7eb] dark:border-[#2d394a]">
+<tr>
+<th class="px-6 py-4">Item Description</th>
+<th class="px-4 py-4 w-24">Qty</th>
+<th class="px-4 py-4 w-24">Unit</th>
+<th class="px-4 py-4 w-40">Unit Price (IDR)</th>
+<th class="px-4 py-4 w-32">Tax (PPN)</th>
+<th class="px-6 py-4 text-right">Subtotal</th>
+<th class="px-4 py-4 w-12"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e5e7eb] dark:divide-[#2d394a]">
+<!-- Row 1 -->
+<tr>
+<td class="px-6 py-4">
+<div class="font-semibold text-[#111418] dark:text-white">Hydraulic Pump Seal Kit</div>
+<div class="text-[11px] text-[#617589]">Part #HYD-SK-9981-B</div>
+</td>
+<td class="px-4 py-4">
+<input class="w-full rounded border-[#e5e7eb] dark:border-[#2d394a] bg-transparent text-sm focus:ring-primary focus:border-primary px-2 py-1" type="number" value="12"/>
+</td>
+<td class="px-4 py-4 text-[#617589]">Set</td>
+<td class="px-4 py-4">
+<input class="w-full rounded border-[#e5e7eb] dark:border-[#2d394a] bg-transparent text-sm font-medium focus:ring-primary focus:border-primary px-2 py-1" type="text" value="1,250,000"/>
+</td>
+<td class="px-4 py-4">
+<select class="w-full rounded border-[#e5e7eb] dark:border-[#2d394a] bg-transparent text-xs focus:ring-primary focus:border-primary px-2 py-1">
+<option selected="">11% (PPN)</option>
+<option>0% (Exempt)</option>
+</select>
+</td>
+<td class="px-6 py-4 text-right font-bold text-[#111418] dark:text-white">15,000,000</td>
+<td class="px-4 py-4">
+<button class="text-gray-400 hover:text-red-500"><span class="material-symbols-outlined text-lg">delete</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td class="px-6 py-4">
+<div class="font-semibold text-[#111418] dark:text-white">Filters CAT 320D - Primary</div>
+<div class="text-[11px] text-[#617589]">Part #CAT-FL-1022</div>
+</td>
+<td class="px-4 py-4">
+<input class="w-full rounded border-[#e5e7eb] dark:border-[#2d394a] bg-transparent text-sm focus:ring-primary focus:border-primary px-2 py-1" type="number" value="20"/>
+</td>
+<td class="px-4 py-4 text-[#617589]">Pcs</td>
+<td class="px-4 py-4">
+<input class="w-full rounded border-[#e5e7eb] dark:border-[#2d394a] bg-transparent text-sm font-medium focus:ring-primary focus:border-primary px-2 py-1" type="text" value="450,000"/>
+</td>
+<td class="px-4 py-4">
+<select class="w-full rounded border-[#e5e7eb] dark:border-[#2d394a] bg-transparent text-xs focus:ring-primary focus:border-primary px-2 py-1">
+<option selected="">11% (PPN)</option>
+<option>0% (Exempt)</option>
+</select>
+</td>
+<td class="px-6 py-4 text-right font-bold text-[#111418] dark:text-white">9,000,000</td>
+<td class="px-4 py-4">
+<button class="text-gray-400 hover:text-red-500"><span class="material-symbols-outlined text-lg">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Footer Summary & Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Internal Notes -->
+<div class="bg-white dark:bg-[#141d28] rounded-xl border border-[#e5e7eb] dark:border-[#2d394a] p-6 shadow-sm h-full">
+<label class="text-sm font-bold text-[#111418] dark:text-white block mb-2">Internal Notes &amp; Reminders</label>
+<textarea class="w-full rounded-lg border-[#e5e7eb] dark:border-[#2d394a] bg-[#f8f9fa] dark:bg-[#1c2632] text-sm focus:ring-primary focus:border-primary" placeholder="Enter notes for the vendor or warehouse team..." rows="4"></textarea>
+</div>
+<!-- Totals & Main Actions -->
+<div class="bg-white dark:bg-[#141d28] rounded-xl border border-[#e5e7eb] dark:border-[#2d394a] p-6 shadow-sm space-y-4">
+<div class="space-y-2 pb-4 border-b border-dashed border-[#e5e7eb] dark:border-[#2d394a]">
+<div class="flex justify-between text-sm">
+<span class="text-[#617589]">Subtotal</span>
+<span class="text-[#111418] dark:text-white font-semibold">IDR 24,000,000</span>
+</div>
+<div class="flex justify-between text-sm text-green-600">
+<span>Total Discount</span>
+<span>- IDR 0</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-[#617589]">PPN (11%)</span>
+<span class="text-[#111418] dark:text-white font-semibold">IDR 2,640,000</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[#111418] dark:text-white font-bold text-lg">Grand Total</span>
+<span class="text-primary font-black text-2xl tracking-tight">IDR 26,640,000</span>
+</div>
+<div class="flex gap-4 pt-4">
+<button class="flex-1 flex items-center justify-center rounded-lg h-12 bg-primary text-white font-bold text-base shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined mr-2">send</span>
+                                        Generate &amp; Send PO
+                                    </button>
+<button class="px-6 flex items-center justify-center rounded-lg h-12 border-2 border-primary/20 bg-primary/5 text-primary font-bold hover:bg-primary/10 transition-all">
+                                        Save Draft
+                                    </button>
+</div>
+<p class="text-[10px] text-center text-[#617589] font-medium">By clicking "Generate &amp; Send", the PO will be officially recorded and emailed to Indotractor Supply Co.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

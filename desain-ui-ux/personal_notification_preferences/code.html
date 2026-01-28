@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Personal Notification Preferences - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Inter", sans-serif
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+/* Custom Checkbox Styling for Checkmark */
+input[type="checkbox"]:checked {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAXYg6cz9f7ItnaIB0iq5L5nvSSEY-UwUeCVvWihT0uU0vyNWOnqRtsycWCN8KuoGaI8IcYfA9_F75rle2U1tyuAM6JlqN_KFKlfulr1usUwAESk2idx_3b801ohFwEjBc9qf7w5ysNlP-nKwloahnG59vdZUGs7z1KerKlVzhe6Ce4vb0S5TwZPovUGxpgoBEYTkfyGkzHXja3S-kP2y9DDnOaX-FH-IB0khsyxtCSEsUamm4vn_yVYONfXUTbeZTBce4y06C7hZQ)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+</div>
+<div class="flex items-center gap-9">
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Employee Data</a>
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary" href="#">Settings</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#616f89] flex border-none bg-background-light dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white focus:outline-0 focus:ring-0 border-none bg-background-light dark:bg-slate-800 focus:border-none h-full placeholder:text-[#616f89] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search" value=""/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#dbdfe6] dark:border-slate-700" data-alt="Employee profile picture placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBLIDcsRcjkUr4ulwW5ELhGXrMH9OWi0Pri1LzzSi-YP63mXgaSBlMdyAK4uLAmZ5jjCDulNdYW4TQed9zv_95tAsStOWsZ7sQcyQUtam20g8LGrB_rSOsEz7aYuWIdmGg0zGz0cD2nFGgXYr8jiAfjWmIFTbmdohu-MXGuH5STKo2Juc2MAdxpANerLFSYnq5-UzJ_2ZbL5zOk5XFOmw2eOBY91oaNiWj3H4pZNzU7PmJk3D7xNb-71cyr83PinNQozHAKZ0EZ1R0");'></div>
+</div>
+</header>
+<div class="flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-1 max-w-[1200px] gap-8 px-6">
+<!-- Sidebar Navigation -->
+<aside class="flex w-64 flex-col justify-between bg-white dark:bg-slate-900 p-4 rounded-xl border border-[#dbdfe6] dark:border-slate-700 h-fit sticky top-24">
+<div class="flex flex-col gap-4">
+<div class="flex flex-col px-3 py-2">
+<h1 class="text-[#111318] dark:text-white text-base font-bold leading-normal">Settings</h1>
+<p class="text-[#616f89] dark:text-slate-400 text-xs font-normal leading-normal">Manage personal preferences</p>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] dark:text-slate-400 hover:bg-background-light dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-sm font-medium leading-normal">Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] dark:text-slate-400 hover:bg-background-light dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">security</span>
+<p class="text-sm font-medium leading-normal">Account Security</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<p class="text-sm font-bold leading-normal">Notification Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] dark:text-slate-400 hover:bg-background-light dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">lock</span>
+<p class="text-sm font-medium leading-normal">Privacy</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#616f89] dark:text-slate-400 hover:bg-background-light dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">language</span>
+<p class="text-sm font-medium leading-normal">Language</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-3 pb-6">
+<div class="flex flex-col gap-2">
+<p class="text-[#111318] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Notification Preferences</p>
+<p class="text-[#616f89] dark:text-slate-400 text-base font-normal leading-normal">Manage how you receive alerts for HR, Inventory, and other modules.</p>
+</div>
+<button class="flex min-w-[120px] cursor-pointer items-center gap-2 justify-center overflow-hidden rounded-lg h-10 px-4 bg-white dark:bg-slate-800 border border-[#dbdfe6] dark:border-slate-700 text-[#111318] dark:text-white text-sm font-bold leading-normal transition-all hover:bg-background-light">
+<span class="material-symbols-outlined text-lg">notifications_off</span>
+<span class="truncate">Mute All</span>
+</button>
+</div>
+<!-- HR Module Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-[#dbdfe6] dark:border-slate-700 overflow-hidden mb-6">
+<div class="flex items-center gap-3 px-6 pt-6 pb-2">
+<span class="material-symbols-outlined text-primary">groups</span>
+<h2 class="text-[#111318] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">HR Module</h2>
+</div>
+<div class="px-4 py-3">
+<div class="flex overflow-hidden rounded-lg border border-[#dbdfe6] dark:border-slate-700">
+<table class="flex-1 w-full border-collapse">
+<thead>
+<tr class="bg-background-light dark:bg-slate-800/50">
+<th class="px-4 py-3 text-left text-[#111318] dark:text-white text-sm font-semibold leading-normal">Activity / Event</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">In-app</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">Email</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">Push</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-slate-700">
+<tr>
+<td class="px-4 py-4 text-[#111318] dark:text-slate-200 text-sm font-medium">Leave Approval Status</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+</tr>
+<tr>
+<td class="px-4 py-4 text-[#111318] dark:text-slate-200 text-sm font-medium">Certification Expiry</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+</tr>
+<tr>
+<td class="px-4 py-4 text-[#111318] dark:text-slate-200 text-sm font-medium">Payroll Slip Ready</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Inventory Module Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-[#dbdfe6] dark:border-slate-700 overflow-hidden mb-6">
+<div class="flex items-center gap-3 px-6 pt-6 pb-2">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+<h2 class="text-[#111318] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Inventory Module</h2>
+</div>
+<div class="px-4 py-3">
+<div class="flex overflow-hidden rounded-lg border border-[#dbdfe6] dark:border-slate-700">
+<table class="flex-1 w-full border-collapse">
+<thead>
+<tr class="bg-background-light dark:bg-slate-800/50">
+<th class="px-4 py-3 text-left text-[#111318] dark:text-white text-sm font-semibold leading-normal">Activity / Event</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">In-app</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">Email</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">Push</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-slate-700">
+<tr>
+<td class="px-4 py-4 text-[#111318] dark:text-slate-200 text-sm font-medium">Stock Reorder Point</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+</tr>
+<tr>
+<td class="px-4 py-4 text-[#111318] dark:text-slate-200 text-sm font-medium">Asset Handover Confirmation</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Mess & Building Module Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-[#dbdfe6] dark:border-slate-700 overflow-hidden mb-12">
+<div class="flex items-center gap-3 px-6 pt-6 pb-2">
+<span class="material-symbols-outlined text-primary">apartment</span>
+<h2 class="text-[#111318] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Mess &amp; Building</h2>
+</div>
+<div class="px-4 py-3">
+<div class="flex overflow-hidden rounded-lg border border-[#dbdfe6] dark:border-slate-700">
+<table class="flex-1 w-full border-collapse">
+<thead>
+<tr class="bg-background-light dark:bg-slate-800/50">
+<th class="px-4 py-3 text-left text-[#111318] dark:text-white text-sm font-semibold leading-normal">Activity / Event</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">In-app</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">Email</th>
+<th class="px-4 py-3 text-center text-[#111318] dark:text-white text-sm font-semibold leading-normal w-32">Push</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-slate-700">
+<tr>
+<td class="px-4 py-4 text-[#111318] dark:text-slate-200 text-sm font-medium">Meal Schedule Changes</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+</tr>
+<tr>
+<td class="px-4 py-4 text-[#111318] dark:text-slate-200 text-sm font-medium">Maintenance Request Update</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+<td class="px-4 py-4 text-center">
+<input checked="" class="h-5 w-5 rounded border-[#dbdfe6] dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 checked:bg-primary" type="checkbox"/>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Fixed Action Footer -->
+<div class="flex items-center justify-end gap-4 pb-12 pt-4 border-t border-[#dbdfe6] dark:border-slate-700">
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-white dark:bg-slate-800 border border-[#dbdfe6] dark:border-slate-700 text-[#111318] dark:text-white text-sm font-bold leading-normal transition-all hover:bg-background-light">
+<span class="truncate">Reset to Default</span>
+</button>
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-primary text-white text-sm font-bold leading-normal transition-all hover:bg-primary/90 shadow-lg shadow-primary/20">
+<span class="truncate">Save Preferences</span>
+</button>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Asset Details &amp; Metadata Viewer | Bebang DAM</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-gray-900 px-6 lg:px-10 py-3 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang DAM</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-semibold leading-normal border-b-2 border-primary pb-1" href="#">Assets</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-gray-200 dark:border-gray-700">
+<div class="text-[#617589] flex bg-[#f0f2f4] dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg" data-icon="search">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#f0f2f4] dark:bg-gray-800 text-[#111418] dark:text-white focus:ring-0 h-full placeholder:text-[#617589] px-4 rounded-r-lg text-sm" placeholder="Search assets..."/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-gray-800 text-[#111418] dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-gray-800 text-[#111418] dark:text-white">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkjp3dQjrN_V3B4lkKviLZazkURKkJ52WFDg45bKmAI-VD84lRNd7hYTjLXv0uCSifJEn1jxflKnINWwFPZuHvRlpzCjCh0GQFk8vNi6ch1InGx_8lNb7uO2IREUkVDszJD8r-uQJhDF4DoQuCI5hlYVEoX5Qg88NCG-mBmo70g_sQq9Wck9ht2xugY8zaMDlCSwKgtGjBj3gQ-79SjqB0uhfTuWZKtszo3vMj5qUJdzfTgkAv8pYAfxrUjlJqGbdPzMpIw1plkUA");'></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col overflow-hidden max-w-[1600px] mx-auto w-full">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 px-6 py-4 items-center">
+<a class="text-[#617589] hover:text-primary text-sm font-medium transition-colors" href="#">Assets</a>
+<span class="material-symbols-outlined text-sm text-[#617589]">chevron_right</span>
+<a class="text-[#617589] hover:text-primary text-sm font-medium transition-colors" href="#">Heavy Equipment</a>
+<span class="material-symbols-outlined text-sm text-[#617589]">chevron_right</span>
+<span class="text-[#111418] dark:text-white text-sm font-semibold">Excavator_CAT_320_Main.mp4</span>
+</div>
+<!-- Main Content Area (Two Columns) -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Preview & Related -->
+<div class="flex-1 flex flex-col overflow-y-auto px-6 pb-6 gap-6">
+<!-- Profile/Asset Header -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex flex-col @[520px]:flex-row @[520px]:justify-between gap-4 items-start">
+<div class="flex gap-4 items-center">
+<div class="bg-primary/10 flex items-center justify-center rounded-lg h-14 w-14 text-primary">
+<span class="material-symbols-outlined text-3xl">movie</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#111418] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Excavator_CAT_320_Main.mp4</p>
+<div class="flex items-center gap-2">
+<p class="text-[#617589] text-sm font-normal">Uploaded on Oct 12, 2023 by</p>
+<span class="text-primary text-sm font-semibold cursor-pointer">Admin_Prima</span>
+<span class="px-2 py-0.5 rounded bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+</div>
+</div>
+<div class="flex w-full @[480px]:w-auto gap-3">
+<button class="flex-1 @[480px]:flex-auto flex items-center justify-center gap-2 rounded-lg h-10 px-4 border border-gray-200 dark:border-gray-700 text-[#111418] dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span>Edit info</span>
+</button>
+<button class="flex-1 @[480px]:flex-auto flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg">share</span>
+<span>Share Link</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Media Player -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-3 shadow-sm border border-gray-100 dark:border-gray-800 flex-1 min-h-[400px]">
+<div class="relative flex flex-col h-full bg-[#111418] rounded-lg overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center opacity-70" data-alt="Video preview of heavy equipment in action" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgVnfLX3xWka9DqIk7HJ4mmXCQCviOm_aRCd1GlMdfYJaTpskDkv1PvT-xngDl7DqlnhDEOj-LuY62dyf3cbEAU6E1OaH_J5rDJblrKzTDuenqlPWBZDy7r-7l2-tNrEWKW7-OULB_0fxBO__6m8R4gfDVkx-sbOf6pd-wqJATuxgC5ZhFJcWhAPaCX71GxbhWz43TJpMKKryNHP1hQhU-DgsvI3_WQi01ytbtRGb9WkGX_c3_trTYfMok29CxisOJ25gEPJZ0LOU");'></div>
+<div class="relative flex flex-1 items-center justify-center z-10">
+<button class="flex shrink-0 items-center justify-center rounded-full size-20 bg-primary/90 text-white hover:scale-110 transition-transform shadow-xl">
+<span class="material-symbols-outlined text-4xl fill-1">play_arrow</span>
+</button>
+</div>
+<!-- Video Controls Overlay -->
+<div class="absolute inset-x-0 bottom-0 px-6 py-4 bg-gradient-to-t from-black/80 to-transparent z-20">
+<div class="flex h-1.5 items-center justify-center mb-3">
+<div class="h-1.5 flex-[0.3] rounded-full bg-primary relative">
+<div class="absolute -right-1 -top-1 size-3.5 rounded-full bg-white border-2 border-primary shadow-lg cursor-pointer"></div>
+</div>
+<div class="h-1.5 flex-[0.7] rounded-full bg-white opacity-30 ml-0.5"></div>
+</div>
+<div class="flex items-center justify-between text-white">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer text-xl">play_circle</span>
+<span class="material-symbols-outlined cursor-pointer text-xl">volume_up</span>
+<p class="text-xs font-semibold tracking-wider">01:14 / 04:30</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer text-xl">settings</span>
+<span class="material-symbols-outlined cursor-pointer text-xl">fullscreen</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Assets Footer Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111418] dark:text-white">Related Assets</h3>
+<button class="text-primary text-sm font-semibold hover:underline">View Gallery</button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+<!-- Asset Card 1 -->
+<div class="min-w-[180px] group cursor-pointer">
+<div class="h-28 w-full rounded-lg bg-center bg-cover border border-gray-100 dark:border-gray-800 mb-2 relative overflow-hidden" data-alt="Thumbnail of excavator 02" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5VLiBjQOv0evTn5v7JNlBXTtlP-A_AuXj3t3FwBAxvrDjUUFtByRYkTMIj5AS5aOOr2TbUuVqQuJ5QR0PPJCY1dvzok4Y5XUvWzwMAd2c0muWjZ5tmbNyd3HEj8rjkUmH6Ufahqm8GO6RXuooPlyqf-KqnCyxlsbBOkwdt0ZpZxsOagD8AliEKDRi0oJfCm6rZkX6EOzuQPGWk_5MGF2w7qhsp3TkHbFH2TOt-EUt33Y1uiEqHBhqRKrtwLFP50FGQjiwv7iAmT4");'>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">visibility</span>
+</div>
+</div>
+<p class="text-xs font-bold truncate">CAT_Excavator_02.jpg</p>
+<p class="text-[10px] text-[#617589]">IMAGE • 2.4 MB</p>
+</div>
+<!-- Asset Card 2 -->
+<div class="min-w-[180px] group cursor-pointer">
+<div class="h-28 w-full rounded-lg bg-center bg-cover border border-gray-100 dark:border-gray-800 mb-2 relative overflow-hidden" data-alt="Thumbnail of site panorama" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBIDjSRaCP5oVPmnQxGCXRb8FgxRx045IOtyFwphsSL2Ywfdh1jnRTxWv6GIIjnHeOrsYhKuZ3zooEtmrFxoXX9ykyMghzAr8wEkGota0az4hMUGGIEcUiTPb94OZiAvvwMCOKJm171Dl-igEO1G5_XIBn4BxQqNWiwjsi9-lOYX5EvxKKFqaOT-uqOptQEpYZnlHj0RLh49-jGEkwgZOzNgtMDLdhSAsI0XG3hp8AFA0hJ_R7Yz2B-HKPUQ-LStoDWVPjDoCytJAg");'>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">visibility</span>
+</div>
+</div>
+<p class="text-xs font-bold truncate">Site_A_Aerial_View.png</p>
+<p class="text-[10px] text-[#617589]">IMAGE • 8.1 MB</p>
+</div>
+<!-- Asset Card 3 -->
+<div class="min-w-[180px] group cursor-pointer">
+<div class="h-28 w-full rounded-lg bg-center bg-cover border border-gray-100 dark:border-gray-800 mb-2 relative overflow-hidden" data-alt="Thumbnail of truck footage" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBrUsol9gF4o-zMP5PXSupHmdb9r_fC-HgdjA-2eH9bVWXjPKjIxtRqCXDQHpP2f30g_xaHB0lvwGJqC1wEZ86xdZgBVsgsd_Vq8EehEnvcvyyG7OHZbplwMrD2QYsnifHUvAh2oyqSJNeaIlfrehxYp_zBUTrdZxY23AABMglHslzZruPRKNL9LlKcpic0BW5kM1iTiFs3UNWPU8V_mV3kHSEpVyLGWnDei_XkHxsGGII_2zKE27x3PK0D2AFrJMSNsaDGooBKCf0");'>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white flex-col gap-1">
+<span class="material-symbols-outlined">play_circle</span>
+</div>
+</div>
+<p class="text-xs font-bold truncate">Haul_Truck_Cycle.mp4</p>
+<p class="text-[10px] text-[#617589]">VIDEO • 45.0 MB</p>
+</div>
+<!-- Asset Card 4 -->
+<div class="min-w-[180px] group cursor-pointer">
+<div class="h-28 w-full rounded-lg bg-center bg-cover border border-gray-100 dark:border-gray-800 mb-2 relative overflow-hidden" data-alt="Thumbnail of bulldozer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDDHw_a6yiAtj91rAKZVvWx2B91cGKi0w7ErtN22drNdTartGS62x-fSzknbl0IP3Sk8LxiDtTgIeNxu2I6mNf9Jz8ssFhjFWSpxMVpmFXZVIwW7a5ZPpnyMAiLzsORS28kIUFqQqx--utkPKyr5Rv0EPD14nOW9Zj7gdFpkd_rOSiA99FQp8LY6PYn_neO00pE6sTzo8EenDOkAHYkSB6SPVR7_wB_gNTZWs6zhWXvOPQH5WYSHGNxa-YKUQVgHRAyCoYcDMO96gU");'>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">visibility</span>
+</div>
+</div>
+<p class="text-xs font-bold truncate">D11_Dozer_Inspection.jpg</p>
+<p class="text-[10px] text-[#617589]">IMAGE • 4.5 MB</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Metadata & Sidebar -->
+<aside class="w-[400px] border-l border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-gray-900 overflow-y-auto flex flex-col">
+<!-- Download Action Card -->
+<div class="p-6 border-b border-[#f0f2f4] dark:border-gray-800">
+<h3 class="text-sm font-bold text-[#617589] uppercase tracking-wider mb-4">Download Asset</h3>
+<div class="flex flex-col gap-3">
+<div class="relative">
+<select class="w-full h-11 pl-4 pr-10 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm font-medium focus:ring-primary focus:border-primary appearance-none">
+<option>Original MP4 (4K High Res - 1.2 GB)</option>
+<option>MP4 (HD 1080p - 450 MB)</option>
+<option>Web Optimized (720p - 120 MB)</option>
+<option>Thumbnail (JPG - 240 KB)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-[#617589] pointer-events-none">expand_more</span>
+</div>
+<button class="w-full h-12 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined">download</span>
+                            Download Asset
+                        </button>
+</div>
+</div>
+<!-- Metadata List -->
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-base font-bold text-[#111418] dark:text-white">Metadata</h3>
+<span class="material-symbols-outlined text-primary cursor-pointer">info</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-start py-2 border-b border-gray-50 dark:border-gray-800">
+<span class="text-sm text-[#617589]">Resolution</span>
+<span class="text-sm font-semibold text-[#111418] dark:text-white text-right">3840 x 2160 (4K)</span>
+</div>
+<div class="flex justify-between items-start py-2 border-b border-gray-50 dark:border-gray-800">
+<span class="text-sm text-[#617589]">Photographer</span>
+<span class="text-sm font-semibold text-primary text-right cursor-pointer">Budi Santoso</span>
+</div>
+<div class="flex justify-between items-start py-2 border-b border-gray-50 dark:border-gray-800">
+<span class="text-sm text-[#617589]">Aspect Ratio</span>
+<span class="text-sm font-semibold text-[#111418] dark:text-white text-right">16:9</span>
+</div>
+<div class="flex justify-between items-start py-2 border-b border-gray-50 dark:border-gray-800">
+<span class="text-sm text-[#617589]">Color Space</span>
+<span class="text-sm font-semibold text-[#111418] dark:text-white text-right">sRGB Rec.709</span>
+</div>
+<div class="flex justify-between items-start py-2 border-b border-gray-50 dark:border-gray-800">
+<span class="text-sm text-[#617589]">Copyright</span>
+<span class="text-sm font-semibold text-red-600 dark:text-red-400 text-right">Internal Use Only</span>
+</div>
+</div>
+<!-- Tags Section -->
+<div class="mt-8">
+<h3 class="text-sm font-bold text-[#617589] uppercase tracking-wider mb-4">Tags</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-background-light dark:bg-gray-800 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer border border-transparent hover:border-primary/30">#Excavator</span>
+<span class="px-3 py-1.5 bg-background-light dark:bg-gray-800 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer border border-transparent hover:border-primary/30">#HeavyEquipment</span>
+<span class="px-3 py-1.5 bg-background-light dark:bg-gray-800 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer border border-transparent hover:border-primary/30">#SiteA</span>
+<span class="px-3 py-1.5 bg-background-light dark:bg-gray-800 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer border border-transparent hover:border-primary/30">#Project2023</span>
+<span class="px-3 py-1.5 bg-background-light dark:bg-gray-800 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer border border-transparent hover:border-primary/30">#CAT_320</span>
+<button class="px-2 py-1 border border-dashed border-primary text-primary rounded-full text-xs font-bold hover:bg-primary hover:text-white transition-colors">
+                                + Add Tag
+                            </button>
+</div>
+</div>
+<!-- Usage Guidelines -->
+<div class="mt-8 p-4 bg-primary/5 dark:bg-primary/10 rounded-xl border border-primary/20">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-xl">gavel</span>
+<h3 class="text-sm font-bold">Usage Guidelines</h3>
+</div>
+<p class="text-xs text-[#617589] dark:text-gray-400 leading-relaxed">
+                            This asset is licensed for internal PT Prima Sarana Gemilang communications only. Do not share on external social media without Corporate Relations approval. Asset expires Oct 2025.
+                        </p>
+</div>
+<!-- Archive Action -->
+<div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
+<button class="flex items-center gap-2 text-[#617589] hover:text-red-500 text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-lg">archive</span>
+                            Archive this asset
+                        </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Overlay Footer for Mobile/Small Screens -->
+<footer class="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sticky bottom-0 flex gap-4">
+<button class="flex-1 bg-primary text-white h-12 rounded-lg font-bold">Download</button>
+<button class="w-12 h-12 border border-gray-200 dark:border-gray-800 rounded-lg flex items-center justify-center text-[#111418] dark:text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+</footer>
+</body></html>

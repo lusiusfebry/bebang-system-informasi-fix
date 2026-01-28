@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Post Composer &amp; Multi-Platform Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] transition-colors duration-200">
+<div class="relative flex min-h-screen flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-solid border-gray-200 bg-white dark:bg-background-dark dark:border-gray-800 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.1173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Bebang Sistem Informasi</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium dark:text-gray-300" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary" href="#">Social Media</a>
+<a class="text-sm font-medium dark:text-gray-300" href="#">Campaigns</a>
+<a class="text-sm font-medium dark:text-gray-300" href="#">Reports</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIdjjNV23onOIQDiyzH0ebBhLL1G0ewRJxyjGjkQjLWKPo1m7unbMQz846D9CI9ypyzLi2d-8J5sUjO6N1u-cFgy1bXmwK_C2rc7MiRYIZcXFL1g6RpV6ae0piF02pyXRUgGLDGCjZmQ_yuUXxpayDEib4a35Y9Tx_jh8ezyl9IUvAUAswfGUayIU8XHzZIBXWD70qoP6VZu69_N33P46Xh9Aj3cQB9UXtmDGdsJRBV8v2RWsSv6_1xLBSKgemhPBC3e3esyNBZDQ");'>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col max-w-[1440px] mx-auto w-full px-10 py-6">
+<!-- Breadcrumbs & Heading -->
+<div class="mb-6">
+<div class="flex flex-wrap gap-2 py-2">
+<a class="text-gray-500 text-sm font-medium hover:text-primary transition-colors" href="#">Social Media</a>
+<span class="text-gray-400 text-sm font-medium">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-medium">Create Post</span>
+</div>
+<div class="flex flex-wrap justify-between items-end gap-3 py-2">
+<div>
+<h1 class="text-[#111418] dark:text-white text-3xl font-black leading-tight tracking-tight">Create Social Media Post</h1>
+<p class="text-gray-500 text-sm mt-1 font-medium">Marketing Module • PT Prima Sarana Gemilang</p>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<span class="truncate">Back to Dashboard</span>
+</button>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 flex-1">
+<!-- Side Navigation (Brief) -->
+<div class="lg:col-span-2 hidden lg:flex flex-col gap-4 border-r border-gray-200 dark:border-gray-800 pr-6">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined">edit_note</span>
+<p class="text-sm font-semibold">Composer</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">calendar_today</span>
+<p class="text-sm font-medium">Planner</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">analytics</span>
+<p class="text-sm font-medium">Analytics</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">folder_shared</span>
+<p class="text-sm font-medium">Asset Library</p>
+</div>
+</div>
+</div>
+<!-- Composer Column -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Platform Selection -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-sm">
+<h3 class="text-[#111418] dark:text-white text-sm font-bold mb-4 uppercase tracking-wider">Select Platforms</h3>
+<div class="flex gap-4">
+<button class="flex-1 flex items-center justify-center gap-3 p-3 rounded-lg border-2 border-primary bg-primary/5 text-primary">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-bold">LinkedIn</span>
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-3 p-3 rounded-lg border-2 border-primary bg-primary/5 text-primary">
+<span class="material-symbols-outlined">photo_camera</span>
+<span class="text-sm font-bold">Instagram</span>
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</button>
+</div>
+</div>
+<!-- Text Area -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-[#111418] dark:text-white text-sm font-bold uppercase tracking-wider">Post Content</h3>
+<span class="text-xs text-gray-500 font-medium">245 / 3000</span>
+</div>
+<div class="relative">
+<textarea class="w-full h-40 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:ring-primary focus:border-primary dark:text-gray-200 outline-none resize-none" placeholder="What would you like to share?"></textarea>
+<div class="absolute bottom-3 right-3 flex gap-2">
+<button class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-600 dark:text-gray-400">
+<span class="material-symbols-outlined text-xl">mood</span>
+</button>
+<button class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-600 dark:text-gray-400">
+<span class="material-symbols-outlined text-xl">tag</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Media Upload -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-[#111418] dark:text-white text-sm font-bold uppercase tracking-wider">Media</h3>
+<button class="text-primary text-xs font-bold hover:underline">Open Asset Library</button>
+</div>
+<div class="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-8 flex flex-col items-center justify-center gap-3 bg-gray-50 dark:bg-gray-800/50 hover:bg-primary/5 hover:border-primary transition-all cursor-pointer">
+<div class="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">upload_file</span>
+</div>
+<div class="text-center">
+<p class="text-sm font-bold dark:text-white">Click or drag to upload</p>
+<p class="text-xs text-gray-500 mt-1">Supports JPG, PNG, MP4 up to 50MB</p>
+</div>
+</div>
+<!-- Thumbnail Preview -->
+<div class="mt-4 flex gap-3 overflow-x-auto pb-2">
+<div class="relative size-20 shrink-0 group">
+<div class="w-full h-full rounded-lg bg-cover bg-center border border-gray-200" data-alt="Uploaded post image thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaqiCENqbWG5U4UqgahF8QyHV-dBQLWjwTuAYi4z2aLzXdN7eyBr3RmSq2t5S07H93dVgA0cOkPtdMcASOzLLnCg-RCptd3cCHAUgtQxQGZbOkk8usUZdHOx0zuJ9wBJWMdpDdBdUUQjK6VPitAly9DPyKWHtOT5bUYggmrIPJuyVyumTZpO7lEE4o0-oP_V7bJeT2hwQrV7-OT3BieH1kR0ellwPYbv_fLT466oEYb_HQxWIE8-HfIq6ap6Zn7a1yiO2WxetVRfw");'></div>
+<button class="absolute -top-1 -right-1 size-5 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<div class="relative size-20 shrink-0 border-2 border-gray-200 dark:border-gray-700 border-dashed rounded-lg flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary cursor-pointer">
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Preview Column -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-gray-100 dark:bg-gray-950 rounded-xl p-6 h-full flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-[#111418] dark:text-white text-sm font-bold uppercase tracking-wider">Live Preview</h3>
+<div class="flex bg-white dark:bg-gray-900 p-1 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+<button class="px-4 py-1.5 rounded-md bg-primary text-white text-xs font-bold shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">groups</span> LinkedIn
+                            </button>
+<button class="px-4 py-1.5 rounded-md text-gray-500 dark:text-gray-400 text-xs font-bold flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-sm">photo_camera</span> Instagram
+                            </button>
+</div>
+</div>
+<!-- LinkedIn Mockup -->
+<div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-xl overflow-hidden max-w-[400px] mx-auto w-full">
+<div class="p-3 flex items-center gap-2">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Company logo preview" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBF5yCOBi1dl2YRTLGDXyftlpwc5fKY3Yenctd_mlA_g-34_kfsUGSDXJk0eQqPvFLwhttt8LXZbBWJcwq73CilHNwl02H_oYdkC7SRYcNFqbcWu-dDh_Vp3RudV8bl1-MPyyAu0LpZ3qyxNZfrePnYaM-0QIVJ7XGmNvRuUO-CnRXIly30LsQyEYdQOsouZBs8lrscuxH06WgvQ4_qau25e9NogNyTlxvJylTt56_61Ry4MSjMvNTbuuT6nVK5frD6gfUyC6ZjmFE");'></div>
+<div class="flex-1">
+<div class="flex items-center gap-1">
+<p class="text-[14px] font-bold text-[#111418] dark:text-white">PT Prima Sarana Gemilang</p>
+<span class="text-gray-500 text-[12px]">• 1st</span>
+</div>
+<p class="text-[12px] text-gray-500 leading-tight">Construction &amp; Mining Services</p>
+<div class="flex items-center gap-1 text-gray-400">
+<span class="text-[10px]">Just now •</span>
+<span class="material-symbols-outlined text-[12px]">public</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400">more_horiz</span>
+</div>
+<div class="px-3 py-2">
+<p class="text-[14px] dark:text-gray-300 leading-normal">Excited to share our progress on the latest infrastructure project in North Sumatra! 🏗️ <span class="text-primary">#EngineeringExcellence #PTPSG #Sustainability</span></p>
+</div>
+<div class="aspect-video bg-gray-100 bg-cover bg-center" data-alt="Post image mockup" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAK5SC8LWPBFuxw5cFj7mKqoGuInG7M9FGZIVDXORqIS4i6iLpN8ogwOhZF1izWcr4pOXFfZwbxUCyLsGRvcaTd2UY3BN12wQwiXzCmSjtH3Twlvu8FVlqhT_Z7Nq6W5dcsgJfRWd8dOeLjZbTiYGauy90gLD_-k0JeMvsQ-ID5fxaQSjLBXOruDoA1BACJq_kdm2Id0O89XjJGpOVrmeD_yUwsS1enM8kbx6wuIbIOAWL52GrQgeJ9UQLamgk7NliZm6MoL91mYnM");'></div>
+<div class="p-3 flex flex-col gap-3">
+<div class="flex items-center justify-between text-[12px] text-gray-500 border-b border-gray-100 dark:border-gray-800 pb-2">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[14px] fill-current">thumb_up</span>
+<span class="material-symbols-outlined text-red-500 text-[14px] fill-current">favorite</span>
+<span>24</span>
+</div>
+<span>0 comments</span>
+</div>
+<div class="flex justify-between items-center px-2">
+<div class="flex items-center gap-1 text-gray-500 text-[13px] font-semibold">
+<span class="material-symbols-outlined">thumb_up</span> Like
+                                </div>
+<div class="flex items-center gap-1 text-gray-500 text-[13px] font-semibold">
+<span class="material-symbols-outlined">chat_bubble</span> Comment
+                                </div>
+<div class="flex items-center gap-1 text-gray-500 text-[13px] font-semibold">
+<span class="material-symbols-outlined">share</span> Share
+                                </div>
+<div class="flex items-center gap-1 text-gray-500 text-[13px] font-semibold">
+<span class="material-symbols-outlined">send</span> Send
+                                </div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6 text-center">
+<p class="text-xs text-gray-500 font-medium">Looking good! Review your tags before publishing.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Action Bar -->
+<div class="mt-8 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 shadow-lg sticky bottom-6 z-40">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-6">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-gray-500 uppercase">Scheduling</span>
+<div class="flex items-center gap-2 mt-1">
+<div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-sm text-primary">calendar_month</span>
+<span class="text-sm font-semibold dark:text-gray-200">Oct 24, 2023</span>
+</div>
+<div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-sm text-primary">schedule</span>
+<span class="text-sm font-semibold dark:text-gray-200">09:00 AM</span>
+</div>
+</div>
+</div>
+<div class="h-10 w-px bg-gray-200 dark:bg-gray-700"></div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-gray-500 uppercase">Approval</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="flex size-6 items-center justify-center rounded-full bg-green-100 text-green-600">
+<span class="material-symbols-outlined text-xs">done</span>
+</span>
+<span class="text-sm font-medium dark:text-gray-300">Ready to publish</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-[#111418] dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        Save as Draft
+                    </button>
+<button class="px-8 py-2.5 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 shadow-md shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+                        Schedule Post
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Quality Control (QC) Inspection Form</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-pass { background-color: #22c55e; color: white; }
+        .active-fail { background-color: #ef4444; color: white; }
+        .active-quarantine { background-color: #f59e0b; color: white; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-[#2a3541] bg-white dark:bg-[#1a242f] px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<span class="material-symbols-outlined text-3xl">verified</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+</div>
+<nav class="flex items-center gap-9">
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Inventory</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary" href="#">QC Management</a>
+<a class="text-[#111418] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] flex border-none bg-gray-100 dark:bg-[#2a3541] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-1 focus:ring-primary border-none bg-gray-100 dark:bg-[#2a3541] h-full placeholder:text-[#617589] px-4 rounded-l-none pl-2 text-sm font-normal" placeholder="Quick search..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-gray-100 dark:bg-[#2a3541] text-[#111418] dark:text-white">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-gray-100 dark:bg-[#2a3541] text-[#111418] dark:text-white">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDy0B5vQb9Fr3hXabtUFks4F-pJj57W9HsPVxHRanghl4dxyB40RH7j_45Ty9YSOPSxyhiS2uHFhNnIaOIvZbwCSo768b46GAvKwLFoXiIhlKlUDKUU0NrIwdSjOlwC_yw5zNYJpquvIk4KB-IyDCHlUsba9Y3DnRSmyardQ-sXetwzLb8Y9ULCZvVMxRpUfMesAdInlkZgSHxQXdMbuQ4NJ8b6aVRL6gcrikytvJAeCoDxxNrzY1kN3c4XmzCKVH7UoG-2I-ZiMac");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-6 px-4 md:px-10">
+<div class="max-w-[1100px] w-full flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-sm">
+<a class="text-[#617589] hover:text-primary transition-colors font-medium" href="#">Bebang Sistem Informasi</a>
+<span class="text-[#617589] material-symbols-outlined text-sm">chevron_right</span>
+<a class="text-[#617589] hover:text-primary transition-colors font-medium" href="#">Inventory</a>
+<span class="text-[#617589] material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-bold">New QC Inspection</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-3">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Quality Control Inspection</h1>
+<p class="text-[#617589] dark:text-gray-400 text-base font-normal">Record inspection results for batch-level compliance for PT Prima Sarana Gemilang.</p>
+</div>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary/10 text-primary hover:bg-primary/20 transition-all text-sm font-bold gap-2">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Inspection History</span>
+</button>
+</div>
+<!-- Info Card (Sticky Metadata) -->
+<div class="bg-white dark:bg-[#1a242f] rounded-xl border border-gray-200 dark:border-[#2a3541] shadow-sm overflow-hidden sticky top-[72px] z-40">
+<div class="p-5 flex flex-col md:flex-row gap-6">
+<div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="flex flex-col gap-1">
+<span class="text-[#617589] text-[11px] uppercase tracking-wider font-bold">Item &amp; Batch</span>
+<p class="text-[#111418] dark:text-white text-sm font-bold">Industrial Turbine Blade (ITB-99)</p>
+<p class="text-primary text-xs font-medium">Batch: #PSG-2023-08-12</p>
+</div>
+<div class="flex flex-col gap-1 border-l border-gray-100 dark:border-[#2a3541] pl-4">
+<span class="text-[#617589] text-[11px] uppercase tracking-wider font-bold">Supplier</span>
+<p class="text-[#111418] dark:text-white text-sm font-bold">MetalCorp Ltd.</p>
+<p class="text-[#617589] text-xs">Vendor Code: MC-902</p>
+</div>
+<div class="flex flex-col gap-1 border-l border-gray-100 dark:border-[#2a3541] pl-4">
+<span class="text-[#617589] text-[11px] uppercase tracking-wider font-bold">Inspection Date</span>
+<p class="text-[#111418] dark:text-white text-sm font-bold">Oct 24, 2023</p>
+<p class="text-[#617589] text-xs">Priority: High</p>
+</div>
+<div class="flex flex-col gap-1 border-l border-gray-100 dark:border-[#2a3541] pl-4">
+<span class="text-[#617589] text-[11px] uppercase tracking-wider font-bold">Inspector</span>
+<div class="flex items-center gap-2">
+<div class="size-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px] font-bold">JD</div>
+<p class="text-[#111418] dark:text-white text-sm font-bold">John Doe</p>
+</div>
+<p class="text-[#617589] text-xs">QC Lead Officer</p>
+</div>
+</div>
+<div class="w-full md:w-32 bg-center bg-no-repeat aspect-video md:aspect-square bg-cover rounded-lg border border-gray-100 dark:border-[#2a3541]" data-alt="Close up of a metallic turbine blade" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwcW2WIrDT1i9kqvNNI3RG1AxIpgUq9ULiLwtTsjEYJsNMa7VEP5uHf95yyQd4cghod1o_-y2V0r51UdgPAGxJ-_kEUe1j3_RZhRLazXer4wqHq364xSB6EKPvltq_5G9mZ2j-loosxCDy0rw2jqkTgigTbCNtUI3VGcefqZB7tcG1QdHGYokKPnvbvFiLO8gr7dAWpRFNS5sm9mjKTvL4-LmPfY1jnkb00wNw-xnKP273IxX5ZPpku11EeTTkqnqsVsQqmscwZWg");'></div>
+</div>
+</div>
+<!-- Inspection Checklist Section -->
+<div class="bg-white dark:bg-[#1a242f] rounded-xl border border-gray-200 dark:border-[#2a3541] shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-gray-100 dark:border-[#2a3541] bg-gray-50/50 dark:bg-[#1a242f]">
+<h2 class="text-[#111418] dark:text-white text-lg font-bold">Inspection Checkpoints</h2>
+</div>
+<!-- Category: Physical Dimensions -->
+<div class="p-6">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">straighten</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-[#617589]">Physical Dimensions</h3>
+</div>
+<div class="space-y-4">
+<!-- Checkpoint Row -->
+<div class="grid grid-cols-12 gap-4 items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors border border-transparent">
+<div class="col-span-4">
+<p class="text-sm font-semibold text-[#111418] dark:text-white">Blade Length Compliance</p>
+<p class="text-xs text-[#617589]">Standard: 450mm ± 0.5mm</p>
+</div>
+<div class="col-span-3 flex gap-1">
+<button class="flex-1 h-9 rounded bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border border-green-200 dark:border-green-800 text-xs font-bold active-pass">PASS</button>
+<button class="flex-1 h-9 rounded bg-gray-100 text-gray-500 dark:bg-[#2a3541] border border-gray-200 dark:border-gray-700 text-xs font-bold">FAIL</button>
+</div>
+<div class="col-span-3">
+<div class="relative">
+<input class="w-full h-9 rounded-lg border-gray-200 dark:border-gray-700 dark:bg-[#2a3541] text-sm pr-10" placeholder="450.2" type="text"/>
+<span class="absolute right-3 top-2 text-xs text-[#617589]">mm</span>
+</div>
+</div>
+<div class="col-span-2 flex justify-end">
+<button class="size-9 rounded-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#617589] hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">add_a_photo</span>
+</button>
+</div>
+</div>
+<!-- Checkpoint Row -->
+<div class="grid grid-cols-12 gap-4 items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors border border-transparent">
+<div class="col-span-4">
+<p class="text-sm font-semibold text-[#111418] dark:text-white">Root Thickness</p>
+<p class="text-xs text-[#617589]">Standard: 25mm ± 0.1mm</p>
+</div>
+<div class="col-span-3 flex gap-1">
+<button class="flex-1 h-9 rounded bg-gray-100 text-gray-500 dark:bg-[#2a3541] border border-gray-200 dark:border-gray-700 text-xs font-bold">PASS</button>
+<button class="flex-1 h-9 rounded bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-200 dark:border-red-800 text-xs font-bold active-fail">FAIL</button>
+</div>
+<div class="col-span-3">
+<div class="relative">
+<input class="w-full h-9 rounded-lg border-gray-200 dark:border-gray-700 dark:bg-[#2a3541] text-sm pr-10" placeholder="25.3" type="text"/>
+<span class="absolute right-3 top-2 text-xs text-[#617589]">mm</span>
+</div>
+</div>
+<div class="col-span-2 flex justify-end">
+<button class="size-9 rounded-lg border border-primary bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">image</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Category: Integrity -->
+<div class="mt-8">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-[#617589]">Packaging &amp; Integrity</h3>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-12 gap-4 items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<div class="col-span-4">
+<p class="text-sm font-semibold text-[#111418] dark:text-white">Packaging Seal Integrity</p>
+<p class="text-xs text-[#617589]">No visible punctures or moisture ingress.</p>
+</div>
+<div class="col-span-3 flex gap-1">
+<button class="flex-1 h-9 rounded bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border border-green-200 dark:border-green-800 text-xs font-bold active-pass">PASS</button>
+<button class="flex-1 h-9 rounded bg-gray-100 text-gray-500 dark:bg-[#2a3541] border border-gray-200 dark:border-gray-700 text-xs font-bold">FAIL</button>
+</div>
+<div class="col-span-3">
+<input class="w-full h-9 rounded-lg border-gray-200 dark:border-gray-700 dark:bg-[#2a3541] text-sm" placeholder="Visual OK" type="text"/>
+</div>
+<div class="col-span-2 flex justify-end">
+<button class="size-9 rounded-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#617589] hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">add_a_photo</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Category: Composition -->
+<div class="mt-8">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">biotech</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-[#617589]">Material Composition</h3>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-12 gap-4 items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<div class="col-span-4">
+<p class="text-sm font-semibold text-[#111418] dark:text-white">Titanium Alloy Grade</p>
+<p class="text-xs text-[#617589]">Grade 5 (Ti-6Al-4V) Certificate Check.</p>
+</div>
+<div class="col-span-3 flex gap-1">
+<button class="flex-1 h-9 rounded bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border border-green-200 dark:border-green-800 text-xs font-bold active-pass">PASS</button>
+<button class="flex-1 h-9 rounded bg-gray-100 text-gray-500 dark:bg-[#2a3541] border border-gray-200 dark:border-gray-700 text-xs font-bold">FAIL</button>
+</div>
+<div class="col-span-3">
+<input class="w-full h-9 rounded-lg border-gray-200 dark:border-gray-700 dark:bg-[#2a3541] text-sm" placeholder="Cert #9921" type="text"/>
+</div>
+<div class="col-span-2 flex justify-end">
+<button class="size-9 rounded-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center text-[#617589] hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">attach_file</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Final Decision & Notes -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-white dark:bg-[#1a242f] p-6 rounded-xl border border-gray-200 dark:border-[#2a3541] shadow-sm">
+<h3 class="text-[#111418] dark:text-white text-base font-bold mb-4">Add Inspection Notes</h3>
+<textarea class="w-full rounded-lg border-gray-200 dark:border-gray-700 dark:bg-[#2a3541] text-sm focus:ring-primary focus:border-primary min-h-[120px]" placeholder="Provide detailed observations or reasons for failure..."></textarea>
+</div>
+<div class="bg-white dark:bg-[#1a242f] p-6 rounded-xl border border-gray-200 dark:border-[#2a3541] shadow-sm">
+<h3 class="text-[#111418] dark:text-white text-base font-bold mb-4">Final Verdict</h3>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 p-3 rounded-lg border border-green-200 bg-green-50 dark:bg-green-900/10 dark:border-green-800 cursor-pointer">
+<input class="text-green-600 focus:ring-green-600" name="verdict" type="radio"/>
+<span class="text-sm font-bold text-green-700 dark:text-green-400">PASS FOR RELEASE</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-red-200 bg-red-50 dark:bg-red-900/10 dark:border-red-800 cursor-pointer">
+<input class="text-red-600 focus:ring-red-600" name="verdict" type="radio"/>
+<span class="text-sm font-bold text-red-700 dark:text-red-400">REJECT / FAIL</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-amber-200 bg-amber-50 dark:bg-amber-900/10 dark:border-amber-800 cursor-pointer">
+<input class="text-amber-600 focus:ring-amber-600" name="verdict" type="radio"/>
+<span class="text-sm font-bold text-amber-700 dark:text-amber-400">QUARANTINE</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Sticky Action Footer -->
+<div class="flex justify-end gap-4 pb-12 pt-4">
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-white dark:bg-transparent border border-gray-200 dark:border-gray-700 text-[#111418] dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-all">
+                        Save Draft
+                    </button>
+<button class="flex min-w-[200px] cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all">
+                        Submit QC Report
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

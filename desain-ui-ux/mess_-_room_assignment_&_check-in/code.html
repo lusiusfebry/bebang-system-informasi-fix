@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mess - Room Assignment &amp; Check-in</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-size: 20px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #dbdfe6; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white min-h-screen">
+<div class="flex flex-col min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbdfe6] dark:border-slate-800 bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"></path>
+</svg>
+</div>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-tight">Bebang Sistem Informasi</h2>
+</div>
+<nav class="flex items-center gap-9">
+<a class="text-[#616f89] dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-[#616f89] dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Employee Data</a>
+<a class="text-primary text-sm font-semibold border-b-2 border-primary py-1" href="#">Mess Management</a>
+<a class="text-[#616f89] dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-background-light dark:bg-slate-800 text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-slate-700">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-background-light dark:bg-slate-800 text-[#111318] dark:text-white border border-[#dbdfe6] dark:border-slate-700">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA2egDOMvX9gzOVsCLD64xwALkIbV9hVwAM8KkBZ1lZVREKurzk7t1XoJYJDJZa_nPDPS6tbsj2IOKLNXp38rfRO-I7EejQrPpjc0Gh5TlFLHVYbZYILWu-B--8MFvgg2GS3P4IQyXYJ7nBM6W37Du3DRthzaCXmO5xJxr6McRj0BjlkstgNvPPaV0TNNvHYqZYitNdf9s55oqhNK04n4mN9WCsyVYERQL9BG64OFVpavztd3R_MWQMYOvH7vonATsmqYCL63rOus8");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 max-w-[1440px] mx-auto w-full px-6 py-6 flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-sm">
+<a class="text-[#616f89] dark:text-slate-400 hover:text-primary" href="#">Mess Management</a>
+<span class="text-[#616f89] dark:text-slate-400">/</span>
+<span class="text-[#111318] dark:text-white font-medium">Room Assignment &amp; Check-in</span>
+</nav>
+<!-- Page Heading -->
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111318] dark:text-white text-3xl font-black tracking-tight">Room Assignment &amp; Check-in</h1>
+<p class="text-[#616f89] dark:text-slate-400 text-base">Assign employees to available rooms and beds for their scheduled stay.</p>
+</div>
+<!-- Two-Column Layout -->
+<div class="grid grid-cols-12 gap-8 items-start mb-20">
+<!-- Left Column: Check-in Form (40%) -->
+<aside class="col-span-12 lg:col-span-4 flex flex-col gap-6 bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-slate-800 shadow-sm">
+<h3 class="text-xl font-bold text-[#111318] dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person_add</span> Check-in Form
+                    </h3>
+<div class="space-y-5">
+<!-- Employee Search -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-slate-200 text-sm font-semibold">Employee Selection (NIK or Name)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#616f89]">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-primary focus:border-primary text-sm" placeholder="Search NIK or Full Name..." type="text"/>
+</div>
+</div>
+<!-- Date Range -->
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-slate-200 text-sm font-semibold">Check-in Date</label>
+<input class="w-full px-4 py-3 rounded-lg border border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-primary focus:border-primary text-sm" type="date"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-slate-200 text-sm font-semibold">Expected Checkout</label>
+<input class="w-full px-4 py-3 rounded-lg border border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-primary focus:border-primary text-sm" type="date"/>
+</div>
+</div>
+<!-- Stay Duration Info (Computed) -->
+<div class="p-3 bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/20 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<span class="text-xs font-medium text-primary uppercase tracking-wider">Stay Duration: 14 Days</span>
+</div>
+<!-- Purpose of Stay -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-slate-200 text-sm font-semibold">Purpose of Stay</label>
+<select class="w-full px-4 py-3 rounded-lg border border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-primary focus:border-primary text-sm appearance-none">
+<option>Select purpose...</option>
+<option>Site Visit</option>
+<option>Temporary Duty (ST)</option>
+<option>Shift Roster Stay</option>
+<option>Other</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-slate-200 text-sm font-semibold">Notes (Optional)</label>
+<textarea class="w-full px-4 py-3 rounded-lg border border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-primary focus:border-primary text-sm" placeholder="Add any specific requirements..." rows="3"></textarea>
+</div>
+</div>
+</aside>
+<!-- Right Column: Room Selector (60%) -->
+<section class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<h3 class="text-xl font-bold text-[#111318] dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">hotel</span> Available Rooms
+                        </h3>
+<!-- Filters -->
+<div class="flex gap-2 p-1 bg-white dark:bg-slate-800 rounded-lg border border-[#dbdfe6] dark:border-slate-700 shadow-sm">
+<button class="px-4 py-1.5 text-sm font-semibold rounded-md bg-primary text-white">All Rooms</button>
+<button class="px-4 py-1.5 text-sm font-medium text-[#616f89] dark:text-slate-400 hover:bg-background-light dark:hover:bg-slate-700 transition-colors">Standard</button>
+<button class="px-4 py-1.5 text-sm font-medium text-[#616f89] dark:text-slate-400 hover:bg-background-light dark:hover:bg-slate-700 transition-colors">VIP</button>
+<button class="px-4 py-1.5 text-sm font-medium text-[#616f89] dark:text-slate-400 hover:bg-background-light dark:hover:bg-slate-700 transition-colors">Supervisor</button>
+</div>
+</div>
+<!-- Room Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+<!-- Room Card (Available) -->
+<div class="bg-white dark:bg-background-dark border-2 border-primary rounded-xl p-4 shadow-md ring-4 ring-primary/10 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full dark:bg-green-900/30 dark:text-green-400">AVAILABLE</span>
+</div>
+<div class="flex flex-col gap-4">
+<div>
+<h4 class="text-lg font-bold">Room 102</h4>
+<p class="text-xs text-[#616f89] dark:text-slate-400">Wing A • Standard Double</p>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Bed A (Occupied) -->
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-[#dbdfe6] dark:border-slate-800 bg-background-light dark:bg-slate-900 opacity-60">
+<span class="material-symbols-outlined text-slate-400 mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Bed A</span>
+<span class="text-[9px] text-slate-400">Occupied</span>
+</div>
+<!-- Bed B (Selected) -->
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border-2 border-primary bg-primary/5 cursor-pointer relative">
+<span class="material-symbols-outlined text-primary mb-1">king_bed</span>
+<span class="text-[10px] font-bold text-primary uppercase">Bed B</span>
+<div class="absolute -top-2 -right-2 bg-primary text-white rounded-full p-0.5 shadow-sm">
+<span class="material-symbols-outlined !text-xs">check</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Room Card 2 -->
+<div class="bg-white dark:bg-background-dark border border-[#dbdfe6] dark:border-slate-800 rounded-xl p-4 shadow-sm hover:border-primary/50 transition-all cursor-pointer group">
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-lg font-bold">Room 105</h4>
+<p class="text-xs text-[#616f89] dark:text-slate-400">Wing A • Standard Double</p>
+</div>
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full dark:bg-green-900/30 dark:text-green-400 uppercase">2 Empty</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-dashed border-[#dbdfe6] dark:border-slate-700 hover:bg-primary/5 hover:border-primary group-hover:transition-colors">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-500 group-hover:text-primary uppercase">Bed A</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-dashed border-[#dbdfe6] dark:border-slate-700 hover:bg-primary/5 hover:border-primary">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-500 group-hover:text-primary uppercase">Bed B</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Room Card 3 -->
+<div class="bg-white dark:bg-background-dark border border-[#dbdfe6] dark:border-slate-800 rounded-xl p-4 shadow-sm hover:border-primary/50 transition-all cursor-pointer group">
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-lg font-bold">VIP 201</h4>
+<p class="text-xs text-[#616f89] dark:text-slate-400">Wing B • Executive Single</p>
+</div>
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full dark:bg-green-900/30 dark:text-green-400 uppercase">Empty</span>
+</div>
+<div class="grid grid-cols-1 gap-3 h-full">
+<div class="flex items-center justify-center gap-3 p-3 h-full rounded-lg border border-dashed border-[#dbdfe6] dark:border-slate-700 hover:bg-primary/5 hover:border-primary">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">king_bed</span>
+<span class="text-[10px] font-bold text-slate-500 group-hover:text-primary uppercase">Bed Single</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Room Card 4 (Almost Full) -->
+<div class="bg-white dark:bg-background-dark border border-[#dbdfe6] dark:border-slate-800 rounded-xl p-4 shadow-sm hover:border-primary/50 transition-all cursor-pointer group">
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-lg font-bold">Room 108</h4>
+<p class="text-xs text-[#616f89] dark:text-slate-400">Wing A • Standard Double</p>
+</div>
+<span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full dark:bg-amber-900/30 dark:text-amber-400 uppercase">1 Empty</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-[#dbdfe6] dark:border-slate-800 bg-background-light dark:bg-slate-900 opacity-60">
+<span class="material-symbols-outlined text-slate-400 mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Bed A</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-dashed border-[#dbdfe6] dark:border-slate-700 hover:bg-primary/5 hover:border-primary">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-500 group-hover:text-primary uppercase">Bed B</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Room Card 5 (Full) -->
+<div class="bg-background-light dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 opacity-75 grayscale cursor-not-allowed">
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-lg font-bold text-slate-400">Room 110</h4>
+<p class="text-xs text-slate-400">Wing A • Standard Double</p>
+</div>
+<span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">FULL</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50">
+<span class="material-symbols-outlined text-slate-300 mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-300 uppercase">Bed A</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50">
+<span class="material-symbols-outlined text-slate-300 mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-300 uppercase">Bed B</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Room Card 6 -->
+<div class="bg-white dark:bg-background-dark border border-[#dbdfe6] dark:border-slate-800 rounded-xl p-4 shadow-sm hover:border-primary/50 transition-all cursor-pointer group">
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-lg font-bold">Room 112</h4>
+<p class="text-xs text-[#616f89] dark:text-slate-400">Wing A • Standard Double</p>
+</div>
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full dark:bg-green-900/30 dark:text-green-400 uppercase">2 Empty</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-dashed border-[#dbdfe6] dark:border-slate-700 hover:bg-primary/5 hover:border-primary">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-500 group-hover:text-primary uppercase">Bed A</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-dashed border-[#dbdfe6] dark:border-slate-700 hover:bg-primary/5 hover:border-primary">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-1">bed</span>
+<span class="text-[10px] font-bold text-slate-500 group-hover:text-primary uppercase">Bed B</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Room Occupancy Map Placeholder -->
+<div class="bg-white dark:bg-background-dark border border-[#dbdfe6] dark:border-slate-800 rounded-xl p-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h5 class="text-sm font-bold uppercase tracking-widest text-[#616f89]">Mess Layout Overview</h5>
+<button class="text-primary text-xs font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined !text-sm">map</span> View Full Map
+                            </button>
+</div>
+<div class="w-full h-32 bg-background-light dark:bg-slate-900 rounded-lg flex items-center justify-center relative overflow-hidden" data-alt="Abstract schematic floor plan of the mess facility" data-location="Berau" style="">
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#135bec 1px, transparent 0); background-size: 10px 10px;"></div>
+<span class="text-xs text-slate-400 font-medium italic">Interactive Mess Floor Map Visual (Wing A &amp; B)</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Selection Bar -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-[#dbdfe6] dark:border-slate-800 p-4 z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex flex-col">
+<span class="text-[10px] uppercase font-bold text-[#616f89] dark:text-slate-400">Selected Employee</span>
+<span class="text-sm font-semibold">Not Selected</span>
+</div>
+<div class="h-8 w-[1px] bg-[#dbdfe6] dark:bg-slate-700 hidden sm:block"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-[#616f89] dark:text-slate-400">Target Assignment</span>
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-primary">Room 102 - Bed B</span>
+<span class="text-xs text-[#616f89]">(Standard)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-3 text-sm font-semibold text-[#616f89] dark:text-slate-400 hover:bg-background-light dark:hover:bg-slate-800 rounded-lg transition-colors">
+                        Cancel
+                    </button>
+<button class="px-8 py-3 bg-primary text-white text-sm font-bold rounded-lg shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all active:scale-95 flex items-center gap-2">
+                        Confirm Assignment <span class="material-symbols-outlined !text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

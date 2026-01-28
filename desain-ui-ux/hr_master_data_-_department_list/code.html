@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HR Master Data - Department List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white dark:bg-background-dark border-r border-gray-200 dark:border-gray-800 flex flex-col h-full">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-gray-100" data-alt="Company logo for PT Prima Sarana Gemilang" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmC9mSRtPuL6QkxYc1i8nj1s_R6ysWMO94SE9WpVJVJI3XwqIGLuy9GGSeFImVITDo0yi7fdyNzJjs_KpLqgnV0T53aNEHSvAAllQoBEIBPbFAwV7rAFDMqnps9LBu9K2j3d90Sw2WrZXqLTFIY-xa4AlN0UPLVtFwkgzcrtGU70prJNauzEls_iwHvbjTlnMXgv_c4qSngmY5cEDuSr1tpoSguTpoPwALjCeaZ5T-BJgIhap496kXfzR8YufWdfEccz5dVNcQxkU");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-sm font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-[#616f89] text-xs font-normal leading-normal">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+<div class="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+<p class="text-sm font-medium">Employee Data</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[20px] fill-current">database</span>
+<p class="text-sm font-semibold">HR Master Data</p>
+</div>
+<div class="ml-9 flex flex-col gap-1 border-l-2 border-gray-100 dark:border-gray-800 pl-4 py-1">
+<p class="text-sm text-primary font-semibold py-1">Departments</p>
+<p class="text-sm text-gray-500 hover:text-primary py-1 cursor-pointer transition-colors">Divisions</p>
+<p class="text-sm text-gray-500 hover:text-primary py-1 cursor-pointer transition-colors">Job Positions</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<p class="text-sm font-medium">Payroll</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</div>
+</nav>
+<div class="p-4 mt-auto border-t border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-3 px-2 py-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Profile picture of HR Administrator" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBVZ5rxe85ZV1ixz4_SvShuMfomOBfjYJqXv0mMdGRccWzGcrC6XWaNgkaBiLlArFPJbtLNtZ5kqE7iep7HOqh0vcGHm0fjapoMIB3xq-fKe9GRDErDcs3lpgMhVaM25SYJXBZgMkYfbmFCGdFURKNZ1LAGVIZWGzpoJ-WJ3kSs00IU5U1vHwTIUBNklk7Ap_PJQpvQxZ1d1mCPsplLe3DOKDJcTfzBhcFtweBsXTBreZiG7r1PEPyUkpze-JXr9hthd_0jSJH2Ex8");'></div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-semibold text-gray-900 dark:text-white truncate">Sarah Jenkins</p>
+<p class="text-xs text-gray-500 truncate">HR Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">corporate_fare</span>
+<h2 class="text-lg font-bold text-gray-900 dark:text-white">Department Management</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Viewport -->
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Breadcrumbs & Heading -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-sm text-gray-500">
+<a class="hover:text-primary transition-colors" href="#">Master Data</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-gray-900 dark:text-gray-300 font-medium">Departments</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<h1 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">Department List</h1>
+<p class="text-gray-500 dark:text-gray-400">Manage and organize company departments and their leadership roles.</p>
+</div>
+<button class="flex items-center justify-center gap-2 px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Add Department</span>
+</button>
+</div>
+</div>
+<!-- Search and Table Container -->
+<div class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden">
+<!-- Search Bar Area -->
+<div class="p-4 border-b border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/20">
+<div class="relative max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-sm" placeholder="Search by department name, manager..." type="text"/>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 uppercase text-[11px] font-bold tracking-wider">
+<th class="px-6 py-4 border-b border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-1 cursor-pointer hover:text-primary">
+                                                Department Name
+                                                <span class="material-symbols-outlined text-xs">unfold_more</span>
+</div>
+</th>
+<th class="px-6 py-4 border-b border-gray-200 dark:border-gray-800">Manager</th>
+<th class="px-6 py-4 border-b border-gray-200 dark:border-gray-800">Division</th>
+<th class="px-6 py-4 border-b border-gray-200 dark:border-gray-800">Description</th>
+<th class="px-6 py-4 border-b border-gray-200 dark:border-gray-800">Status</th>
+<th class="px-6 py-4 border-b border-gray-200 dark:border-gray-800 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors">
+<td class="px-6 py-4 font-semibold text-gray-900 dark:text-white text-sm">Human Resources</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-center bg-cover" data-alt="Employee profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlnPaZWzLcsFiXq5x3CnWDGY5vDmXZ6ZEVFJ2mY5ouN1cS3XsJPJyd-ZfY1_FuO7DNH6Dtb8j8l4CNHjHJm_avXWdOFX0rSXlsYbhqraHKUe5Z4DSOhPRLNKK6CQ3K1tVInB4q_I3-fFsdgwVT9HCbMBqwvJZSEg_2PFpDE7RymZ5Fo66p5hwFKPTTSEhgvPw1MiLOIW6Ow_xMoj6i5-9dqiPVjQ-wCt1O2QARZXzEfwf1eAShxlMQZ56458TtkWnv7qTN3rbDv-w");'></div>
+<span class="text-sm text-gray-700 dark:text-gray-300">Robert Fox</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-[11px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 rounded uppercase">Corporate</span>
+</td>
+<td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs truncate">Talent acquisition and employee relations management.</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors">
+<td class="px-6 py-4 font-semibold text-gray-900 dark:text-white text-sm">Finance &amp; Accounting</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-center bg-cover" data-alt="Employee profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFOm7K_oIbqzMkf_howKNGZYtF4GhkcavWh7FNlOfbC0UNTEWx9ilDNn0cNAdvZteY8SlJxz3RP3rvE9JtS1amB0tN_FZ5Pz76fgLMT2R-BFHYuDQFICYpBWLNv8mpqEBSoZ2cilVNR8Ue0AdidLOhkWW37tgLdVPxyubYa_cnRdb77LGaexHSnu-eTmg2jyKdmAA80DalhlS_-jKrMmB0DSoQGgm5-QZtg_1WYPt5SR4NUINoHQTiBmr8OieQVwNd1WJDEuHtRrk");'></div>
+<span class="text-sm text-gray-700 dark:text-gray-300">Bessie Cooper</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-[11px] font-bold bg-purple-50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400 rounded uppercase">Operations</span>
+</td>
+<td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs truncate">Financial reporting, budgeting, and audit control.</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors">
+<td class="px-6 py-4 font-semibold text-gray-900 dark:text-white text-sm">Technology Infrastructure</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-center bg-cover" data-alt="Employee profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoHmMM-m0TRrh9S8x1l45dqejcUgY6mC28PO_87H3QIRIl5e0qWWU2mn6oAPqCLQ3PEDCLu1QMmndKqlQ3RN0SMXcLrgHmdJQRBwEokmeYuLOh8X_BSRSwQ0HJrdj6wDK6E9skFrRMMYD05dIS49aU3fxu7DVr1qMolqbFwYAZLzezrWZWO3TV-SNzPBBdsX7seMGbQIV_YPTH5EeItydb52eOXwz4Yzlv4Y1DCdzUfkTcbbrp3ct6-4SkXxGCsIj0Kl68HzQFj_4");'></div>
+<span class="text-sm text-gray-700 dark:text-gray-300">Guy Hawkins</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-[11px] font-bold bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400 rounded uppercase">Engineering</span>
+</td>
+<td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs truncate">Network maintenance and hardware support services.</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors">
+<td class="px-6 py-4 font-semibold text-gray-900 dark:text-white text-sm">Strategic Marketing</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-center bg-cover" data-alt="Employee profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJz-_e23YeuCcKaduS4YUF5uuuSOJYQtRSv_VJlj8wtncKMbHcprNL2tPVBwQEJxKF6wZHyZ7bleJNFj3L02soIUh6tV67vpkDU2x7VtCKSt8k9W9yR_Z3YGzV3jYq80BKfPint3v2mGMnKWzkg4vhzpqPnod05G3EHAv4Ja_JB2zLn4RMFie0LsSavm_eEbjTlP9OPFkm7vET9Aj0VoVYkbs_tO7yIv6nc0-4x2EYSrnHX53UJo62r_3dSKuwxJhD0Mk0hRs4wtg");'></div>
+<span class="text-sm text-gray-700 dark:text-gray-300">Jane Cooper</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-[11px] font-bold bg-orange-50 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400 rounded uppercase">Sales &amp; Marketing</span>
+</td>
+<td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs truncate">Brand development and cross-channel marketing strategy.</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-gray-50 dark:bg-gray-800/50 flex items-center justify-between border-t border-gray-200 dark:border-gray-800">
+<div class="text-sm text-gray-500">
+                                Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to <span class="font-semibold text-gray-900 dark:text-white">4</span> of <span class="font-semibold text-gray-900 dark:text-white">12</span> results
+                            </div>
+<div class="flex items-center gap-2">
+<button class="p-1 px-3 text-sm font-medium text-gray-400 cursor-not-allowed bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded transition-all">Previous</button>
+<button class="p-1 px-3 text-sm font-bold text-white bg-primary rounded shadow-sm">1</button>
+<button class="p-1 px-3 text-sm font-medium text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">2</button>
+<button class="p-1 px-3 text-sm font-medium text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">3</button>
+<button class="p-1 px-3 text-sm font-medium text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">Next</button>
+</div>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="flex justify-between items-center text-xs text-gray-400 px-1 pb-4">
+<p>© 2024 Bebang Sistem Informasi. All rights reserved.</p>
+<p>v2.4.1-stable</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

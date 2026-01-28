@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Operations - Shift Handover Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-200">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 flex flex-col border-r border-[#dbe0e6] dark:border-gray-800 bg-white dark:bg-[#18222c] shrink-0">
+<div class="p-6 flex flex-col gap-6 h-full">
+<div class="flex items-center gap-3">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">factory</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111418] dark:text-white text-sm font-bold leading-tight">PSG Operations</h1>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-normal">Operational Mgmt</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<p class="text-sm font-semibold">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+<p class="text-sm font-medium">My Handovers</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<p class="text-sm font-medium">Dept Reports</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<p class="text-sm font-medium">Templates</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+<p class="text-sm font-medium">Log History</p>
+</a>
+</nav>
+<div class="flex flex-col gap-4 mt-auto">
+<button class="flex w-full items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide">
+<span>New Handover</span>
+</button>
+<div class="flex flex-col gap-1 border-t border-gray-100 dark:border-gray-800 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-[20px]">help_center</span>
+<p class="text-sm font-medium">Support</p>
+</a>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col overflow-y-auto">
+<!-- Top Navbar -->
+<header class="sticky top-0 z-10 flex items-center justify-between bg-white dark:bg-[#101922] border-b border-[#f0f2f4] dark:border-gray-800 px-8 py-3">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-2xl">shift</span>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold tracking-tight">Bebang Sistem Informasi</h2>
+</div>
+<div class="hidden md:flex relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary" placeholder="Search logs, supervisors..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1" href="#">Operations</a>
+<a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Maintenance</a>
+<a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Safety</a>
+<a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Production</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-[#111418] dark:text-gray-300 relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2.5 size-2 bg-red-500 rounded-full border-2 border-white dark:border-gray-800"></span>
+</button>
+<button class="p-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-[#111418] dark:text-gray-300">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+<div class="flex items-center gap-2 ml-2 pl-4 border-l border-gray-200 dark:border-gray-800">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Profile picture of shift supervisor" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDox9-I-6lednP3Zet6-7BZsj2Doa-ioZ9bhmuu5CwpUid0KklB9Fng-iWf758P583kY_gfG72T9aRPQIjzeujUscrRiV3PTWzurRM-Y9R7RBl6TVAL-ZH4EVShe1sJ6vLXLy3RsMyzEu2AwnrSh_8VkpfoVN1-UuKDhCo2utmiVCpvBYTUTMCauKzt3J-SQu7NOWawYNx3WFn6GBXGpg5sWCVbXEMDt3k91ypIPcnbrgDaUishZhwT6XFad0ADlW2HCr9bmgMdkLI')"></div>
+<span class="text-sm font-semibold hidden sm:inline">A. Wijaya</span>
+</div>
+</div>
+</div>
+</header>
+<main class="p-8 max-w-7xl mx-auto w-full">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-4 mb-8">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black tracking-tight">Shift Handover Dashboard</h1>
+<p class="text-[#617589] dark:text-gray-400 text-base">Monitor and manage operational transitions for PT Prima Sarana Gemilang.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#dbe0e6] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#111418] dark:text-white text-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Filter Date</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-[#dbe0e6] dark:border-gray-700 text-[#111418] dark:text-white text-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Export Report</span>
+</button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-[#dbe0e6] dark:border-gray-800 bg-white dark:bg-[#18222c]">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Current Shift</p>
+<p class="text-[#111418] dark:text-white text-2xl font-bold tracking-tight">Day (07:00-19:00)</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<p class="text-xs font-semibold">Ends in 4h 22m</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-[#dbe0e6] dark:border-gray-800 bg-white dark:bg-[#18222c]">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Handover Completion</p>
+<p class="text-[#111418] dark:text-white text-2xl font-bold tracking-tight">85.4%</p>
+<div class="w-full bg-gray-100 dark:bg-gray-700 h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-green-500 h-full w-[85%]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-[#dbe0e6] dark:border-gray-800 bg-white dark:bg-[#18222c]">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Active Incidents</p>
+<p class="text-[#111418] dark:text-white text-2xl font-bold tracking-tight">12</p>
+<p class="text-orange-500 text-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+2 from last shift</span>
+</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-[#e73908]/20 bg-red-50 dark:bg-red-900/10">
+<p class="text-[#e73908] text-sm font-medium">Critical Alerts</p>
+<p class="text-[#e73908] text-2xl font-bold tracking-tight">3</p>
+<p class="text-[#e73908] text-xs font-semibold animate-pulse uppercase tracking-wider">Requires Immediate Action</p>
+</div>
+</div>
+<!-- Recent Handover Logs Section -->
+<div class="bg-white dark:bg-[#18222c] rounded-xl border border-[#dbe0e6] dark:border-gray-800 overflow-hidden">
+<div class="px-6 py-5 border-b border-[#dbe0e6] dark:border-gray-800 flex justify-between items-center">
+<h2 class="text-[#111418] dark:text-white text-lg font-bold">Recent Handover Logs</h2>
+<div class="flex items-center gap-2">
+<span class="size-2 bg-green-500 rounded-full"></span>
+<span class="text-xs text-[#617589] dark:text-gray-400 font-medium">Live Update: Just now</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#f8f9fa] dark:bg-gray-800/50">
+<th class="px-6 py-3 text-[#617589] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Department</th>
+<th class="px-6 py-3 text-[#617589] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Supervisors (Out/In)</th>
+<th class="px-6 py-3 text-[#617589] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Summary of Issues</th>
+<th class="px-6 py-3 text-[#617589] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Status</th>
+<th class="px-6 py-3 text-[#617589] dark:text-gray-400 text-xs font-bold uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+</div>
+<span class="text-sm font-semibold">Production</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">John D. → Sarah M.</span>
+<span class="text-xs text-[#617589]">Today, 07:15 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] dark:text-gray-300 line-clamp-1 max-w-xs">Excavator EX-04 cooling system leak reported. Replacement parts ordered.</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Completed</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary text-sm font-bold hover:underline">View Full Log</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors border-l-4 border-orange-400">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-orange-100 dark:bg-orange-900/30 text-orange-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">build</span>
+</div>
+<span class="text-sm font-semibold">Maintenance</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Budi H. → Robert K.</span>
+<span class="text-xs text-[#617589]">Today, 06:45 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] dark:text-gray-300 line-clamp-1 max-w-xs font-medium">CRITICAL: Conveyor Belt 3 motor overheating. 40% speed restriction active.</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400">In Progress</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary text-sm font-bold hover:underline">View Full Log</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-red-100 dark:bg-red-900/30 text-red-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">health_and_safety</span>
+</div>
+<span class="text-sm font-semibold">Safety</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Siti A. → Hendra L.</span>
+<span class="text-xs text-[#617589]">Yesterday, 07:05 PM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] dark:text-gray-300 line-clamp-1 max-w-xs">All safety protocols met. No workplace accidents reported in the last 24h.</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Completed</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary text-sm font-bold hover:underline">View Full Log</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+</div>
+<span class="text-sm font-semibold">Production</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Sarah M. → Mike T.</span>
+<span class="text-xs text-[#617589]">Yesterday, 07:00 PM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] dark:text-gray-300 line-clamp-1 max-w-xs">Pit 2 excavation depth target reached. Moving to Sector B tomorrow.</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Completed</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary text-sm font-bold hover:underline">View Full Log</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-gray-50 dark:bg-gray-800/30 border-t border-[#dbe0e6] dark:border-gray-800 flex items-center justify-between">
+<p class="text-xs text-[#617589] dark:text-gray-400 font-medium">Showing 4 of 128 recent handovers</p>
+<div class="flex gap-2">
+<button class="size-8 flex items-center justify-center rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Alerts & Quick Links -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8 pb-12">
+<!-- Critical Alerts Panel -->
+<div class="lg:col-span-2 flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500">warning</span>
+<h3 class="text-[#111418] dark:text-white text-base font-bold">Priority Issue Tracking</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 rounded-lg bg-white dark:bg-[#18222c] border-l-4 border-red-500 shadow-sm border border-[#dbe0e6] dark:border-gray-800">
+<div class="flex justify-between mb-2">
+<span class="text-[10px] font-black uppercase text-red-500 tracking-widest">Urgent Safety</span>
+<span class="text-[10px] text-gray-400">2h ago</span>
+</div>
+<h4 class="text-sm font-bold mb-1">Sector 4 Flooding Risk</h4>
+<p class="text-xs text-[#617589] dark:text-gray-400 leading-relaxed">High water levels in sump pump area. Requires hourly monitoring and potential pump activation.</p>
+</div>
+<div class="p-4 rounded-lg bg-white dark:bg-[#18222c] border-l-4 border-primary shadow-sm border border-[#dbe0e6] dark:border-gray-800">
+<div class="flex justify-between mb-2">
+<span class="text-[10px] font-black uppercase text-primary tracking-widest">Maintenance</span>
+<span class="text-[10px] text-gray-400">4h ago</span>
+</div>
+<h4 class="text-sm font-bold mb-1">Fuel Delivery Delay</h4>
+<p class="text-xs text-[#617589] dark:text-gray-400 leading-relaxed">External supplier reports a 3-hour delay for diesel delivery. Re-routing reserves from Station B.</p>
+</div>
+</div>
+</div>
+<!-- Quick Tools -->
+<div class="flex flex-col gap-4">
+<h3 class="text-[#111418] dark:text-white text-base font-bold">Quick Access</h3>
+<div class="flex flex-col gap-3">
+<button class="flex items-center justify-between p-4 rounded-xl bg-primary text-white hover:bg-primary/90 transition-all group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">add_circle</span>
+<div class="text-left">
+<p class="text-sm font-bold">Initiate Handover</p>
+<p class="text-[10px] opacity-80">Start current shift sign-off</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-[#18222c] border border-[#dbe0e6] dark:border-gray-800 hover:border-primary transition-all group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+<div class="text-left text-[#111418] dark:text-white">
+<p class="text-sm font-bold">Handover Archive</p>
+<p class="text-[10px] text-[#617589] dark:text-gray-400">Browse historical data</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">folder_open</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-xl bg-white dark:bg-[#18222c] border border-[#dbe0e6] dark:border-gray-800 hover:border-primary transition-all group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<div class="text-left text-[#111418] dark:text-white">
+<p class="text-sm font-bold">Shift Performance</p>
+<p class="text-[10px] text-[#617589] dark:text-gray-400">View efficiency metrics</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">leaderboard</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

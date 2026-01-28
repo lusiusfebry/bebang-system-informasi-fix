@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Media Request Management Dashboard - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar-item-active { background-color: #f0f2f4; border-radius: 0.5rem; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] min-h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="w-72 bg-white border-r border-[#dbe0e6] flex flex-col h-screen sticky top-0">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-primary size-10 rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined">dataset</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111418] text-sm font-bold leading-none">Bebang Sistem</h1>
+<p class="text-[#617589] text-xs font-medium mt-1">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#617589] hover:bg-[#f0f2f4] rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 sidebar-item-active text-primary" href="#">
+<span class="material-symbols-outlined text-[24px]">description</span>
+<span class="text-sm font-bold">Media Requests</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#617589] hover:bg-[#f0f2f4] rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">image</span>
+<span class="text-sm font-medium">Marketing Assets</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#617589] hover:bg-[#f0f2f4] rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+<span class="text-sm font-medium">Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#617589] hover:bg-[#f0f2f4] rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">bar_chart</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-[#dbe0e6]">
+<button class="w-full bg-primary text-white font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 hover:bg-[#0e61b5] transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="text-sm">New Request</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col">
+<!-- Header / Search Bar Section -->
+<header class="bg-white border-b border-[#dbe0e6] px-8 py-4 flex items-center justify-between sticky top-0 z-10">
+<div class="w-1/2">
+<label class="flex flex-col min-w-40 h-10 w-full max-w-md">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] flex border-none bg-[#f0f2f4] items-center justify-center pl-4 rounded-l-lg" data-icon="MagnifyingGlass">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#f0f2f4] focus:ring-0 h-full placeholder:text-[#617589] px-4 rounded-r-lg text-sm font-normal" placeholder="Search by Stakeholder or Request ID..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#617589] hover:bg-[#f0f2f4] p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-px bg-[#dbe0e6]"></div>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 border border-[#dbe0e6]" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCEffeyiCsTm3r3ZxcCo4q_a0Orz2CrgvSDjOL8jP3VOClVUbeKYOF9FXtW8V2apRLWFWNBjAGbdGFpTp8hQcDMqS3C35R0xWtgtSfNbqmnGnibUwR0ZMTIK7vuz3hA3MvSmBIym8ezEzmSbmsqE9vtBtLT2YDTlk5ItSZX1k1SuW-Uwn8w6l0rq8zWjWunMSTNivSkP5-Aatlas9degwOkCMNcuIrIM8bdoXTyhHjf1HHyvckMiSo6IbDugcdR-5CJEbpJmhNa-Rk");'></div>
+<span class="text-sm font-medium text-[#111418]">Admin Portal</span>
+</div>
+</div>
+</header>
+<div class="p-8">
+<!-- Stats Grid -->
+<div class="grid grid-cols-4 gap-4 mb-8">
+<div class="bg-white flex flex-col gap-2 rounded-xl p-6 border border-[#dbe0e6] shadow-sm">
+<p class="text-[#617589] text-sm font-medium">Open Requests</p>
+<div class="flex items-baseline justify-between">
+<p class="text-[#111418] text-3xl font-bold">24</p>
+<p class="text-[#078838] text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>+5%
+                        </p>
+</div>
+</div>
+<div class="bg-white flex flex-col gap-2 rounded-xl p-6 border border-[#dbe0e6] shadow-sm">
+<p class="text-[#617589] text-sm font-medium">Awaiting Approval</p>
+<div class="flex items-baseline justify-between">
+<p class="text-[#111418] text-3xl font-bold">8</p>
+<p class="text-[#e73908] text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>-2%
+                        </p>
+</div>
+</div>
+<div class="bg-white flex flex-col gap-2 rounded-xl p-6 border border-[#dbe0e6] shadow-sm">
+<p class="text-[#617589] text-sm font-medium">Recent Deliveries</p>
+<div class="flex items-baseline justify-between">
+<p class="text-[#111418] text-3xl font-bold">115</p>
+<p class="text-[#078838] text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>+12%
+                        </p>
+</div>
+</div>
+<div class="bg-white flex flex-col gap-2 rounded-xl p-6 border border-[#dbe0e6] shadow-sm">
+<p class="text-[#617589] text-sm font-medium">Avg. Fulfillment Time</p>
+<div class="flex items-baseline justify-between">
+<p class="text-[#111418] text-3xl font-bold">2.4 Days</p>
+<p class="text-[#e73908] text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>-0.5%
+                        </p>
+</div>
+</div>
+</div>
+<!-- Content Area Header -->
+<div class="flex flex-col gap-4 mb-6">
+<div class="flex justify-between items-center">
+<h2 class="text-[#111418] text-2xl font-bold">External Media Requests</h2>
+<div class="flex gap-2">
+<button class="flex h-10 items-center justify-center gap-2 rounded-lg border border-[#dbe0e6] bg-white px-4 text-sm font-medium hover:bg-gray-50">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex h-10 items-center justify-center gap-2 rounded-lg border border-[#dbe0e6] bg-white px-4 text-sm font-medium hover:bg-gray-50">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                            Export CSV
+                        </button>
+</div>
+</div>
+<!-- Chips/Filters -->
+<div class="flex gap-2 flex-wrap">
+<button class="flex h-8 items-center justify-center gap-x-2 rounded-full bg-primary text-white px-4 text-sm font-medium">
+                        All Types
+                    </button>
+<button class="flex h-8 items-center justify-center gap-x-2 rounded-full bg-[#f0f2f4] text-[#111418] px-4 text-sm font-medium hover:bg-[#e4e6e8]">
+<span class="material-symbols-outlined text-[18px]">newspaper</span>
+                        Media
+                    </button>
+<button class="flex h-8 items-center justify-center gap-x-2 rounded-full bg-[#f0f2f4] text-[#111418] px-4 text-sm font-medium hover:bg-[#e4e6e8]">
+<span class="material-symbols-outlined text-[18px]">handshake</span>
+                        Partner
+                    </button>
+<button class="flex h-8 items-center justify-center gap-x-2 rounded-full bg-[#f0f2f4] text-[#111418] px-4 text-sm font-medium hover:bg-[#e4e6e8]">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+                        Government
+                    </button>
+</div>
+</div>
+<!-- Main Table -->
+<div class="bg-white border border-[#dbe0e6] rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#fcfcfd] border-b border-[#dbe0e6]">
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Request ID</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Stakeholder Name/Org</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Purpose</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Date Requested</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Deadline</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbe0e6]">
+<!-- Row 1 -->
+<tr class="hover:bg-[#f8f9fa] transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#REQ-8241</td>
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-[#111418]">Jakarta Post</p>
+<p class="text-xs text-[#617589]">Media Agency</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] truncate max-w-[200px]">Interview on sustainable logistics initiative...</p>
+</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Oct 12, 2023</td>
+<td class="px-6 py-4 text-sm text-[#111418] font-medium">Oct 15, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">New</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#f8f9fa] transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#REQ-8239</td>
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-[#111418]">Ministry of Industry</p>
+<p class="text-xs text-[#617589]">Government</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] truncate max-w-[200px]">Asset request for quarterly review</p>
+</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Oct 11, 2023</td>
+<td class="px-6 py-4 text-sm text-[#111418] font-medium">Oct 14, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">In Review</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#f8f9fa] transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#REQ-8235</td>
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-[#111418]">DHL Global Logistics</p>
+<p class="text-xs text-[#617589]">Partner</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] truncate max-w-[200px]">Co-branding marketing assets</p>
+</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Oct 10, 2023</td>
+<td class="px-6 py-4 text-sm text-[#111418] font-medium">Oct 12, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Approved</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-[#f8f9fa] transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#REQ-8230</td>
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-[#111418]">CNBC Indonesia</p>
+<p class="text-xs text-[#617589]">Media Agency</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] truncate max-w-[200px]">High-res corporate office photos</p>
+</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Oct 08, 2023</td>
+<td class="px-6 py-4 text-sm text-[#111418] font-medium">Oct 09, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">Link Sent</span>
+</td>
+</tr>
+<!-- Row 5 (Urgent/Overdue) -->
+<tr class="hover:bg-[#f8f9fa] transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#REQ-8225</td>
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-[#111418]">Antara News</p>
+<p class="text-xs text-[#617589]">Media Agency</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#111418] truncate max-w-[200px]">Press release kit request</p>
+</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Oct 05, 2023</td>
+<td class="px-6 py-4 text-sm text-red-600 font-bold">Overdue</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">Rejected</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 border-t border-[#dbe0e6] flex items-center justify-between bg-[#fcfcfd]">
+<p class="text-xs text-[#617589] font-medium">Showing 5 of 24 requests</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-xs border border-[#dbe0e6] rounded bg-white hover:bg-gray-50 text-[#111418] font-medium">Previous</button>
+<button class="px-3 py-1 text-xs border border-[#dbe0e6] rounded bg-white hover:bg-gray-50 text-[#111418] font-medium">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory - GRN Management Dashboard</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-200">
+<div class="flex h-screen overflow-hidden">
+<!-- Side Navigation -->
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-[#dbe0e6] dark:border-slate-800 flex flex-col justify-between p-4">
+<div class="flex flex-col gap-8">
+<!-- Brand -->
+<div class="flex items-center gap-3 px-2">
+<div class="bg-primary rounded-lg p-2 text-white">
+<span class="material-symbols-outlined text-2xl">warehouse</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111418] dark:text-white text-base font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-[#617589] dark:text-slate-400 text-xs font-normal">Warehouse Management</p>
+</div>
+</div>
+<!-- Nav Items -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#617589] dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#617589] dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-sm font-medium">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="text-sm font-medium">GRN Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#617589] dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">sync_alt</span>
+<span class="text-sm font-medium">Stock Transfers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#617589] dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add_box</span>
+<span>Create New GRN</span>
+</button>
+<div class="border-t border-[#dbe0e6] dark:border-slate-800 pt-4 flex items-center gap-3">
+<div class="size-9 rounded-full bg-cover bg-center" data-alt="User profile avatar circle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOakmkPMda9qjGewJe0b51syFLBfKsXD-2CID7z_CPOCaxcubUVe9F5N4QXkxzCSfKKL2XxCl2Ds5Pn8cP45h-1DNVWsoHezUGU-CugrNPvogd9RjZ4dcvnWtmRzdvu6-eLQHypHJe_MNSLybSXcO2DSSvD003sVzr219ngIMsdkKHep2KHQKkiLA4ve96kk_bE9nyWs9LwK6lUby7mD8BJqt1t4WKeSznnONklSfmCTh7LYSdnv5k6mWVzup9jXXJ5L9xT-w7Koc')"></div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold truncate">Admin User</p>
+<p class="text-[10px] text-[#617589] truncate">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Top Header -->
+<header class="bg-white dark:bg-slate-900 border-b border-[#dbe0e6] dark:border-slate-800 h-16 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold tracking-tight">GRN Management</h2>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex items-center gap-2">
+<span class="text-[#617589] text-sm">Bebang Sistem Informasi</span>
+<span class="text-[#617589] text-xs">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-medium">Warehouse</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center bg-background-light dark:bg-slate-800 rounded-lg px-3 py-1.5 border border-transparent focus-within:border-primary">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64 placeholder:text-slate-500" placeholder="Search PO, Supplier..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-7xl w-full mx-auto flex flex-col gap-8">
+<!-- Page Title -->
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-black tracking-tight">Goods Received Notes (GRN)</h1>
+<p class="text-[#617589] dark:text-slate-400">Manage and track incoming goods against purchase orders for PT Prima Sarana Gemilang.</p>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-[#dbe0e6] dark:border-slate-800 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-slate-500">Pending Deliveries</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">local_shipping</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">24</p>
+<p class="text-xs text-green-600 font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12% from yesterday
+                        </p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-[#dbe0e6] dark:border-slate-800 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-slate-500">GRNs Completed Today</p>
+<span class="material-symbols-outlined text-green-600 bg-green-50 p-1.5 rounded-lg">task_alt</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">12</p>
+<p class="text-xs text-red-600 font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_down</span> -3% from avg
+                        </p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-[#dbe0e6] dark:border-slate-800 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-slate-500">Partial Shipments</p>
+<span class="material-symbols-outlined text-amber-600 bg-amber-50 p-1.5 rounded-lg">inventory</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">5</p>
+<p class="text-xs text-green-600 font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +2% month-on-month
+                        </p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-[#dbe0e6] dark:border-slate-800 ring-2 ring-red-100 dark:ring-red-900/20 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-slate-500">Discrepancy Alerts</p>
+<span class="material-symbols-outlined text-red-600 bg-red-50 p-1.5 rounded-lg">warning</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">2</p>
+<p class="text-xs text-red-600 font-semibold">Requires immediate review</p>
+</div>
+</div>
+<!-- Main Data Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-[#dbe0e6] dark:border-slate-800 flex flex-col">
+<!-- Tabs -->
+<div class="flex border-b border-[#dbe0e6] dark:border-slate-800 px-6 overflow-x-auto">
+<button class="px-4 py-4 border-b-2 border-primary text-primary font-bold text-sm whitespace-nowrap">
+                            Open Purchase Orders
+                        </button>
+<button class="px-4 py-4 border-b-2 border-transparent text-[#617589] font-medium text-sm hover:text-primary whitespace-nowrap">
+                            GRN History
+                        </button>
+</div>
+<!-- Filter Bar -->
+<div class="p-4 flex flex-wrap items-center justify-between gap-4">
+<div class="flex gap-2">
+<select class="rounded-lg border-[#dbe0e6] dark:border-slate-700 dark:bg-slate-800 text-sm font-medium focus:ring-primary">
+<option>All Warehouses</option>
+<option>Main HQ</option>
+<option>Satellite A</option>
+</select>
+<select class="rounded-lg border-[#dbe0e6] dark:border-slate-700 dark:bg-slate-800 text-sm font-medium focus:ring-primary">
+<option>Priority: High</option>
+<option>Priority: All</option>
+</select>
+</div>
+<div class="text-xs font-medium text-[#617589]">Showing 1-10 of 42 results</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-background-light dark:bg-slate-800/50 text-[#617589] uppercase text-[11px] font-bold tracking-wider">
+<tr>
+<th class="px-6 py-4">PO Number</th>
+<th class="px-6 py-4">Supplier</th>
+<th class="px-6 py-4">Expected Date</th>
+<th class="px-6 py-4">Total Items</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#f0f2f4] dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-primary">PO-2023-0892</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<p class="text-sm font-medium">Bina Sarana Mandiri</p>
+<p class="text-xs text-[#617589]">Industrial Parts</p>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm">Oct 24, 2023</p>
+</td>
+<td class="px-6 py-4 text-sm">450 Units</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-500">PENDING</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all">Receive Items</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-primary">PO-2023-0914</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<p class="text-sm font-medium">Global Steel Corp</p>
+<p class="text-xs text-[#617589]">Raw Materials</p>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-red-500 font-semibold">Overdue (Oct 21)</p>
+</td>
+<td class="px-6 py-4 text-sm">12.5 Tons</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-500">DELAYED</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all">Receive Items</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-primary">PO-2023-0944</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<p class="text-sm font-medium">Logistics Pro Ltd</p>
+<p class="text-xs text-[#617589]">Equipment</p>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm">Oct 25, 2023</p>
+</td>
+<td class="px-6 py-4 text-sm">24 Units</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-500">IN TRANSIT</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all">Receive Items</button>
+</td>
+</tr>
+<!-- Row 4 (Partial Shipment Example) -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-primary">PO-2023-0877</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<p class="text-sm font-medium">Tekno Solusi Utama</p>
+<p class="text-xs text-[#617589]">Electronics</p>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm">Oct 26, 2023</p>
+</td>
+<td class="px-6 py-4 text-sm">1,200 Units</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-500">PARTIAL</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all">Complete Rec.</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors border-b-0">
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-primary">PO-2023-1001</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<p class="text-sm font-medium">Surya Graha Abadi</p>
+<p class="text-xs text-[#617589]">Construction Mats</p>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm">Oct 28, 2023</p>
+</td>
+<td class="px-6 py-4 text-sm">80 Bags</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-500">PENDING</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all">Receive Items</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer / Pagination -->
+<div class="px-6 py-4 border-t border-[#dbe0e6] dark:border-slate-800 flex items-center justify-between">
+<button class="px-3 py-1 border border-[#dbe0e6] dark:border-slate-700 rounded text-sm hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50" disabled="">Previous</button>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-primary text-white rounded text-sm font-bold">1</button>
+<button class="px-3 py-1 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 rounded">2</button>
+<button class="px-3 py-1 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 rounded">3</button>
+<span class="px-2">...</span>
+<button class="px-3 py-1 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 rounded">5</button>
+</div>
+<button class="px-3 py-1 border border-[#dbe0e6] dark:border-slate-700 rounded text-sm hover:bg-slate-50 dark:hover:bg-slate-800">Next</button>
+</div>
+</div>
+<!-- Recent History / Alerts Section (Secondary Tab Content Preview) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-[#dbe0e6] dark:border-slate-800">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Recent GRN History</h3>
+<a class="text-primary text-xs font-bold hover:underline" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Item 1 -->
+<div class="flex items-center gap-4 p-3 rounded-lg bg-background-light dark:bg-slate-800/50">
+<div class="bg-green-100 text-green-700 dark:bg-green-900/40 p-2 rounded">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">GRN-2023-4552</p>
+<p class="text-xs text-slate-500">Stocked: 2,400 Units</p>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500 text-white uppercase">Stocked</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-4 p-3 rounded-lg bg-background-light dark:bg-slate-800/50">
+<div class="bg-blue-100 text-blue-700 dark:bg-blue-900/40 p-2 rounded">
+<span class="material-symbols-outlined text-lg">verified</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">GRN-2023-4551</p>
+<p class="text-xs text-slate-500">Verified: 120 Units</p>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary text-white uppercase">Verified</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-4 p-3 rounded-lg bg-background-light dark:bg-slate-800/50">
+<div class="bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300 p-2 rounded">
+<span class="material-symbols-outlined text-lg">edit_note</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">GRN-2023-4550</p>
+<p class="text-xs text-slate-500">Draft - Warehouse B</p>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-400 text-white uppercase">Draft</span>
+</div>
+</div>
+</div>
+<!-- Warehouse Activity / Alerts -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-[#dbe0e6] dark:border-slate-800">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Urgent Alerts</h3>
+<span class="size-5 bg-red-100 dark:bg-red-900/40 text-red-600 flex items-center justify-center text-[10px] font-bold rounded-full">2</span>
+</div>
+<div class="flex flex-col gap-4">
+<div class="border-l-4 border-red-500 bg-red-50 dark:bg-red-900/10 p-4 rounded-r-lg">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-red-500">error</span>
+<div>
+<p class="text-sm font-bold text-red-800 dark:text-red-400">Quantity Discrepancy</p>
+<p class="text-xs text-red-700 dark:text-red-500/80">GRN-4548 mismatch of -20 units for SKU: #IP-449. Immediate investigation required.</p>
+</div>
+</div>
+</div>
+<div class="border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-900/10 p-4 rounded-r-lg">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-amber-600">report_problem</span>
+<div>
+<p class="text-sm font-bold text-amber-800 dark:text-amber-400">Damaged Goods Reported</p>
+<p class="text-xs text-amber-700 dark:text-amber-500/80">3 boxes of Glass Panels reported damaged on PO-2023-0914 delivery. Awaiting QC.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

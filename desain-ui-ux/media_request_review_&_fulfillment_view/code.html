@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Media Request Review &amp; Fulfillment | Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-display min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-slate-700 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-4 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary py-1" href="#">Requests</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Asset Library</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 bg-[#f0f2f4] dark:bg-slate-800 text-[#111418] dark:text-white px-2.5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 bg-[#f0f2f4] dark:bg-slate-800 text-[#111418] dark:text-white px-2.5">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1400px] mx-auto w-full px-10 py-6">
+<!-- Breadcrumbs & Status -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex flex-wrap gap-2 py-2">
+<a class="text-[#617589] text-sm font-medium leading-normal hover:text-primary" href="#">Requests</a>
+<span class="text-[#617589] text-sm font-medium leading-normal">/</span>
+<span class="text-[#111418] dark:text-slate-300 text-sm font-medium leading-normal">REQ-2023-084</span>
+</div>
+<span class="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 border border-yellow-200">
+                Pending Review
+            </span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between gap-3 mb-8">
+<div class="flex min-w-72 flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Media Request: New Fleet Photos</h1>
+<p class="text-[#617589] text-sm font-normal leading-normal">Submitted on Oct 12, 2023 • High Priority</p>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#111418] dark:text-white text-sm font-bold leading-normal transition-all hover:bg-slate-50">
+<span class="material-symbols-outlined mr-2 text-sm">history</span>
+                View Audit Log
+            </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+<!-- Left Side: Request Details -->
+<div class="flex flex-col gap-6">
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight">Request Details</h3>
+</div>
+<div class="p-6 space-y-6">
+<!-- Stakeholder Info -->
+<div class="flex items-start gap-4">
+<div class="size-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-[#111418] dark:text-white">Aditiya Pratama</p>
+<p class="text-xs text-[#617589]">Marketing Department • Corporate Communication</p>
+<p class="text-xs text-[#617589] mt-1">aditiya.p@psg.co.id</p>
+</div>
+</div>
+<!-- Message -->
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-[#617589]">Stakeholder Message</label>
+<p class="text-[#111418] dark:text-slate-300 text-sm leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg italic">
+                                "We need high-resolution photos of the new mining fleet delivered last week for the upcoming Company Profile update. Please include both wide shots and close-ups. These will be used for high-quality print brochures and digital banners."
+                            </p>
+</div>
+<!-- Details Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-xs font-bold uppercase tracking-wider text-[#617589]">Desired Assets</label>
+<p class="text-sm font-medium text-[#111418] dark:text-white">Photography (RAW/TIFF)</p>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold uppercase tracking-wider text-[#617589]">Intended Usage</label>
+<p class="text-sm font-medium text-[#111418] dark:text-white">Company Profile Update</p>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold uppercase tracking-wider text-[#617589]">Deadline</label>
+<p class="text-sm font-medium text-red-600">Oct 20, 2023</p>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold uppercase tracking-wider text-[#617589]">Asset Scope</label>
+<p class="text-sm font-medium text-[#111418] dark:text-white">New Mining Fleet (Site A)</p>
+</div>
+</div>
+<!-- Visual Reference -->
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-[#617589]">Visual Context</label>
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg border border-slate-200 dark:border-slate-700" data-alt="Modern mining fleet in a quarry during sunset" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgsb4I1QSmcHRRjeiVWQn3sVUheZaYT5CIGQOM00fwI4cPgxnrvuhhSWpS8-JdNuc05LDck0jkbF1leyPBsCVfNJW59ipcbAnq0VK9fOJhu5qixYv4DwqBLxvFIKPsMpxFTyIr9wze_Sb9cIvmjrTTFAWNJ--3MQ_liNqpg9AePLCmenQ9Q58iP_6DLDsAQwE7GcI9qtLpHdg1z6wU11G05Brhq_wHrqjk9kq1pZxcURRlMegndqJdaz64Z25pjITkK_Ns6GWxlaw");'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Fulfillment Panel -->
+<div class="flex flex-col gap-6 lg:sticky lg:top-24">
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-primary/30 dark:border-primary/50 overflow-hidden shadow-md">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-primary/5">
+<h3 class="text-primary text-lg font-bold leading-tight">Fulfillment Panel</h3>
+<span class="text-xs font-bold text-primary px-2 py-1 bg-primary/10 rounded-full">Digital Asset Library</span>
+</div>
+<div class="p-6 space-y-6">
+<!-- Search Assets -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary focus:border-primary" placeholder="Search library for 'New Fleet'..." type="text"/>
+</div>
+<!-- Selected Assets -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-xs font-bold uppercase tracking-wider text-[#617589]">Selected Assets (4)</label>
+<button class="text-xs font-semibold text-primary hover:underline">Clear all</button>
+</div>
+<!-- Asset List -->
+<div class="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+<!-- Asset Item 1 -->
+<div class="flex items-center gap-3 p-2 rounded-lg border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 group">
+<div class="size-12 rounded bg-cover bg-center flex-shrink-0" data-alt="Close up of mining truck wheel" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBH5m21lH_7To8G1nNmuCTA_3Usx8XjzbgLOeGC4HGyt3rJRlCTgqBSMUIF_D9ucMlR7zi_Nstc8wx-0QUO-Jiqgiw79se06lcX-ZTgngn8ag10GA_n724TvFj_OGDoaBo6xqs9TNnOCCWKKCbI1IUWyW13EzjSDXzC3HpPVCA1KIbCuyIWEDv2xh1F_21swRmGLvJtxK8vQuT9eHyNN2tQw7ufCz2ASdfPDvNRXJZxK4qbV7Sp6hTkMNKIa2eCUXvtUFwZIA2cEDg");'></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Fleet_A_CloseUp_01.raw</p>
+<p class="text-xs text-slate-500">42.5 MB • 7800 x 5200</p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500 transition-all">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Asset Item 2 -->
+<div class="flex items-center gap-3 p-2 rounded-lg border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 group">
+<div class="size-12 rounded bg-cover bg-center flex-shrink-0" data-alt="Wide shot of mining site" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6G6BdnKPzc3Cg4ODLHCRjgWYe456_NMV3eqbxbWBAIvZdwTxuH4TwkKwQeetTBdhK1ADIeKGi6DMP8qgtLeqJ3bqycz-Tiy0VStaFDAjlQ0UDbEFUmmrp7VDLooDU1SSmrSQprNZc-eWtSXzExx_rtpEPuBSkXNi0VDSf-1KVXJ_aAfm5HqTGD_FBacNw1j4SKg7N5Dfqae_5w27vQzgmgMkTKAUxbr0VpkBQRLBgGImqytwjth70wHI6xYUOjeUKPf2czG2BZLw");'></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Fleet_A_Wide_Panorama.raw</p>
+<p class="text-xs text-slate-500">68.2 MB • 12000 x 4000</p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500 transition-all">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Asset Item 3 -->
+<div class="flex items-center gap-3 p-2 rounded-lg border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 group">
+<div class="size-12 rounded bg-cover bg-center flex-shrink-0" data-alt="Mining excavator action" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBfamd1dhAIFv0TIs9gu3A5TExcLEbuoPq42aA2_x2tmW6toJbfFtU0axVgzRuy7TP-P1_TyZlT6oUAkQKbfzjSl1-CQK0YooBO5ZNskO50jPNWLanZZw7oa1n4uRzP6wQjSMZmaQ8AJdCDkUioVJxHCHQRPooQYxkbvg9vQTlzSuUuzNv5gOK_RrHwvWSW2NFD8crJgXrVp4YY-xVC2NuAYBwGAI-rWdlsiEbRImWZqeZdEoXIY2sY8GOhaPk4LIyC-pv8hpTvjWk");'></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Excavator_CAT_009.raw</p>
+<p class="text-xs text-slate-500">38.1 MB • 6000 x 4000</p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500 transition-all">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Settings -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-[#111418] dark:text-slate-300">Link Expiry Date</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">calendar_today</span>
+<input class="w-full pl-9 py-1.5 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm" type="date" value="2023-11-12"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-[#111418] dark:text-slate-300">Download Limit</label>
+<select class="w-full py-1.5 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm">
+<option>No limit</option>
+<option>1 time</option>
+<option>5 times</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Decision Section -->
+<div class="mt-12 sticky bottom-6 z-40">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl shadow-xl flex flex-col md:flex-row items-end gap-6">
+<div class="flex-1 w-full space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-[#617589]">Internal Review Notes (Optional)</label>
+<textarea class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm h-20 focus:ring-primary focus:border-primary" placeholder="Add a note for the stakeholder or internal records..."></textarea>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 h-12 rounded-lg border border-red-200 dark:border-red-900/30 bg-red-50 dark:bg-red-900/10 text-red-600 font-bold text-sm hover:bg-red-100 transition-colors">
+                        Decline Request
+                    </button>
+<button class="flex-1 md:flex-none px-8 h-12 rounded-lg bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                        Approve &amp; Send Link
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<footer class="py-10 text-center">
+<p class="text-xs text-slate-400">© 2023 PT Prima Sarana Gemilang • Bebang Sistem Informasi v2.4.0</p>
+</footer>
+</body></html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Organizational Structure Tree-View - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .tree-connector {
+            position: absolute;
+            border-color: #cbd5e1;
+            border-style: solid;
+            pointer-events: none;
+        }
+        .canvas-grid {
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex h-16 items-center justify-between whitespace-nowrap border-b border-solid border-[#dbdfe6] dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+</div>
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#616f89] flex border-none bg-[#f0f2f4] dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#f0f2f4] dark:bg-slate-800 focus:border-none h-full placeholder:text-[#616f89] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal" placeholder="Search hierarchy..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Employee Data</a>
+<a class="text-primary text-sm font-bold" href="#">HR Module</a>
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Payroll</a>
+</nav>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBl8mvoMnpPkMfnrasX_jRqqBOtH8UywtV9BMDLfHDeWKdF4dliQ3jt2h2V-0L_0PYu9v9t3LP-RNGkssuJEwAOr357WL2dmJ2kDtA88VdafDpdXpk-sHZXKH42hWAwfuciJdwSu0PtFBbhiXHy_zEljvX4D7be8x3gHL_yWC00onh9DkqrgvFKoy5jlX09NknKsPUIU59bUaTeEEDbtQLpXH00pgpo77jGC5YUwOmSNjrg_DIGRsySGQsMwfxxbvSaeY-YGs-qrwQ");'></div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-80 border-r border-[#dbdfe6] dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col p-6 overflow-y-auto">
+<div class="mb-6">
+<div class="flex flex-wrap gap-1 text-xs mb-2">
+<a class="text-[#616f89] hover:underline" href="#">HR Module</a>
+<span class="text-[#616f89]">/</span>
+<span class="text-primary font-medium">Org Structure</span>
+</div>
+<h1 class="text-[#111318] dark:text-white text-xl font-bold">Organizational Controls</h1>
+<p class="text-[#616f89] text-sm">Manage PT PSG reporting lines and positions</p>
+</div>
+<div class="space-y-6">
+<!-- Actions -->
+<div class="flex flex-col gap-3">
+<button class="flex items-center justify-center gap-2 rounded-lg bg-primary text-white h-11 px-4 font-bold text-sm shadow-md hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Add Position</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg border border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-800 text-[#111318] dark:text-white h-11 px-4 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span>Manage Relations</span>
+</button>
+</div>
+<!-- Filter Section -->
+<div class="pt-4 border-t border-[#f0f2f4] dark:border-slate-800">
+<p class="text-[#111318] dark:text-white text-sm font-semibold mb-3">View Filters</p>
+<div class="space-y-4">
+<label class="flex flex-col gap-1.5">
+<span class="text-[#616f89] text-xs font-medium">Department</span>
+<select class="form-input rounded-lg border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white text-sm focus:ring-primary h-11">
+<option>All Departments</option>
+<option>Operations</option>
+<option>Human Resources</option>
+<option>Finance &amp; Accounting</option>
+<option>Information Technology</option>
+</select>
+</label>
+<label class="flex flex-col gap-1.5">
+<span class="text-[#616f89] text-xs font-medium">Division</span>
+<select class="form-input rounded-lg border-[#dbdfe6] dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white text-sm focus:ring-primary h-11">
+<option>All Divisions</option>
+<option>Site Alpha (Kutai)</option>
+<option>Site Bravo (Berau)</option>
+<option>Head Office</option>
+</select>
+</label>
+</div>
+</div>
+<!-- Visual Settings -->
+<div class="pt-4 border-t border-[#f0f2f4] dark:border-slate-800">
+<p class="text-[#111318] dark:text-white text-sm font-semibold mb-3">Layout Orientation</p>
+<div class="flex p-1 bg-[#f0f2f4] dark:bg-slate-800 rounded-lg">
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-md bg-white dark:bg-slate-700 shadow-sm text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">south</span>
+                                Vertical
+                            </button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-md text-[#616f89] text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">east</span>
+                                Horizontal
+                            </button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Interactive Canvas -->
+<div class="relative flex-1 bg-[#f6f6f8] dark:bg-slate-950 canvas-grid overflow-hidden">
+<!-- Toolbar Overlay -->
+<div class="absolute bottom-8 right-8 flex flex-col gap-2 z-10">
+<button class="size-10 flex items-center justify-center bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-[#dbdfe6] dark:border-slate-700 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-10 flex items-center justify-center bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-[#dbdfe6] dark:border-slate-700 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-10 flex items-center justify-center bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-[#dbdfe6] dark:border-slate-700 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_center_focus</span>
+</button>
+</div>
+<!-- Legend / Status -->
+<div class="absolute top-8 left-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur rounded-lg p-3 border border-[#dbdfe6] dark:border-slate-800 shadow-sm z-10">
+<div class="flex items-center gap-4 text-xs font-medium">
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-green-500"></span>
+<span>Active (42)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-amber-500"></span>
+<span>Vacant (3)</span>
+</div>
+</div>
+</div>
+<!-- Tree Diagram Content (Visualized Layout) -->
+<div class="absolute inset-0 flex flex-col items-center pt-20 p-10 overflow-auto">
+<!-- Root Node: CEO -->
+<div class="relative flex flex-col items-center">
+<div class="w-64 bg-white dark:bg-slate-900 border-2 border-primary rounded-xl shadow-xl p-4 transition-transform hover:scale-105 cursor-pointer z-20 group">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full border-2 border-primary overflow-hidden bg-slate-100" data-alt="CEO Portrait">
+<img alt="CEO" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwc3G_DWE37PQYw1YoHfRGjuHbnCuh6dNMTTOEoysq5KtqZTKML9JaY7JDO8k1ltfqTyMcsSfk43IKugz1IVxHqV9RhtsrXmXp7EWk_YGX87FNVW5b6dmvkLi25zlguPfGebvf3eGj4uoiA3a7ZwmfkhbgaWgMfOHjt0ATcqopOjLAjEoousspmE0-KBxvcysRmAR-A4GITVO0caG5--S6kfWpz02s20oZ0Tg6VGx9YvX8xPFyuWiObt-OaBPngHafvISprw02CC0"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-primary uppercase tracking-wider">Chief Executive Officer</p>
+<p class="text-sm font-semibold text-[#111318] dark:text-white">Bambang Wijaya</p>
+</div>
+<button class="text-slate-400 group-hover:text-primary">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+</div>
+<!-- Connector down from CEO -->
+<div class="h-12 w-0.5 bg-slate-300 dark:bg-slate-700"></div>
+<div class="w-[800px] h-0.5 bg-slate-300 dark:bg-slate-700"></div>
+<!-- Level 2 Containers -->
+<div class="flex gap-20 pt-0">
+<!-- Branch 1: Operations -->
+<div class="flex flex-col items-center">
+<div class="h-8 w-0.5 bg-slate-300 dark:bg-slate-700"></div>
+<div class="w-60 bg-white dark:bg-slate-900 border border-[#dbdfe6] dark:border-slate-800 rounded-xl shadow-md p-4 transition-all hover:border-primary cursor-pointer z-20">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full overflow-hidden bg-slate-100" data-alt="COO Portrait">
+<img alt="COO" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClgEpcxCAFhtj4LTJbAB3bxu8f7UX6lOa2wzRjQeGWEQWe6Dod18kDaYSDbEG_dqU3b4HIGzGNbmf2mu1VcM_vTAPMKmL1v4Z3blH0vFoisCpd6e5fZG-giB2v4ahSFIzx-UX7C7b3-_xBotUCzMj_inWeud40hWKr7QnTiR4qOaDhQhx9dBTorZ7z8kFPzGAg3TX7u4yhLSrwBF5w377a9YttqEfn5GSdysTTEMfAI_frLqrwGGmQSwGdtDHE-xvomVaMcK3-4w0"/>
+</div>
+<div class="flex-1">
+<p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">COO</p>
+<p class="text-sm font-semibold">Aditya Pratama</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Children of Operations -->
+<div class="h-8 w-0.5 bg-slate-300 dark:bg-slate-700"></div>
+<div class="w-full flex justify-center gap-8">
+<div class="flex flex-col items-center">
+<div class="w-48 bg-white dark:bg-slate-900 border border-[#dbdfe6] dark:border-slate-800 rounded-lg shadow p-3 hover:shadow-lg transition-shadow">
+<p class="text-[10px] font-bold text-slate-500 uppercase">Site Manager</p>
+<p class="text-xs font-semibold">Rian Hidayat</p>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-48 bg-white dark:bg-slate-900 border border-dashed border-amber-400 rounded-lg shadow p-3 bg-amber-50/30">
+<p class="text-[10px] font-bold text-amber-600 uppercase">Safety Officer</p>
+<p class="text-xs font-semibold italic text-slate-400">Position Vacant</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Branch 2: HR -->
+<div class="flex flex-col items-center">
+<div class="h-8 w-0.5 bg-slate-300 dark:bg-slate-700"></div>
+<div class="w-60 bg-white dark:bg-slate-900 border border-[#dbdfe6] dark:border-slate-800 rounded-xl shadow-md p-4 transition-all hover:border-primary cursor-pointer z-20">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full overflow-hidden bg-slate-100" data-alt="HR Director Portrait">
+<img alt="HRD" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbTWVAZPp0BjLOxsepNkgRROvjq_2ghiebyQfq76uoSiSmbwUi8htAwmzhkceVd_aeA6QDUtvkTbeX17kS1zhxHr3F2jVj3jeAN6T0WYaetD2CTw-hcuWypWIpIeeHk9tAtKJ03nMKc9C09Lx8Z3xB1tRg2K8WyYV2IwpXHq-SX2UAYX-AUnDKTa2-P7--HVEK2Q5ndXHdvi2rmgLgRiOMblSMKKtcqrciTVbJ5dp693kt7knICkKm-Est77SELf-QJhNpocbcUys"/>
+</div>
+<div class="flex-1">
+<p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">HR Director</p>
+<p class="text-sm font-semibold">Siti Aminah</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">expand_less</span>
+</div>
+</div>
+</div>
+<!-- Branch 3: Finance -->
+<div class="flex flex-col items-center">
+<div class="h-8 w-0.5 bg-slate-300 dark:bg-slate-700"></div>
+<div class="w-60 bg-white dark:bg-slate-900 border border-[#dbdfe6] dark:border-slate-800 rounded-xl shadow-md p-4 transition-all hover:border-primary cursor-pointer z-20">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full overflow-hidden bg-slate-100" data-alt="CFO Portrait">
+<img alt="CFO" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjQLHaovFYGamRMxej8lC-oXh4cDtbXp7lOC0kfkfeKeMK0u3Nf2--M8w_NjjWnymSuiCFnEw8hlmFIPMs_Lio0fWPe9LR_vPjiJCFGdKTLIfOQN7WXaEbF6Ale5QXBdZWi1h9WtuSx0W0_EP0iNpo6hMDHtEB-pLOIdx6SNd4zw9pCCgUstfzjbqHS9V_vTGYTK6jlWC88QzbNPDeY28gH82FwcR0TboV_CiAQwVaUgZU4bcOfkJlCSaXphA6wM8YzSxiuoRBH8U"/>
+</div>
+<div class="flex-1">
+<p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">CFO</p>
+<p class="text-sm font-semibold">Eko Prasetyo</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Placeholder for larger scroll area -->
+<div class="h-40 w-full"></div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

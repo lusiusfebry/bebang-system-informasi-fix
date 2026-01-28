@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employee Profile - Personal Info | Bebang Sistem</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318]">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex flex-col bg-white dark:bg-background-dark border-r border-[#dbdfe6] dark:border-gray-800">
+<div class="flex flex-col h-full p-4 gap-6">
+<!-- Logo/Brand -->
+<div class="flex items-center gap-3 px-2">
+<div class="bg-primary rounded-lg p-1.5">
+<span class="material-symbols-outlined text-white">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-base font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-[#616f89] text-xs font-normal">HR Module</p>
+</div>
+</div>
+<!-- Nav Items -->
+<nav class="flex flex-col gap-2 grow">
+<div class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
+<p class="text-sm font-bold">Employee Management</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">payments</span>
+<p class="text-sm font-medium">Payroll</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">event_available</span>
+<p class="text-sm font-medium">Attendance</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</div>
+</nav>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-[0.015em] hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Quick Action</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<!-- Header Section -->
+<div class="bg-white dark:bg-background-dark border-b border-[#dbdfe6] dark:border-gray-800 px-8 py-6">
+<div class="max-w-6xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex items-start gap-5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl w-32 h-32 border-4 border-[#f0f2f4] dark:border-gray-700 shadow-sm" data-alt="professional corporate headshot of a male employee" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB1D2ywlsEuEMDr7YfNp4nZ6vGLfOrlMJztapRTh11vXpS87LcnNYmGqItK6iPt0c_Wn-js0PPKclcBywT9P4g4i1XrWj_TQddIUVoCZ5g6hHS8UPIydeSYeZ8gIB_oaM-fNEKQq1Y7hnHSMB0J14ryop7tkyuMBgaEhWfGYbqtpFCuDVQL4Y30L3tMPavIHSt7RqFn1risqgjPghSCCPZnS6n7EW6xc8ebuM5Gvw80zgREcnSPl0t6TWJm7Cexkxxb9sgldTDeuZ0");'>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-3 mb-1">
+<h2 class="text-[#111318] dark:text-white text-3xl font-bold tracking-tight">Budi Setiawan</h2>
+<div class="flex items-center gap-1.5 rounded-full bg-green-100 px-3 py-0.5 border border-green-200">
+<div class="size-2 rounded-full bg-green-500"></div>
+<p class="text-green-700 text-xs font-bold uppercase tracking-wider">Active</p>
+</div>
+</div>
+<p class="text-[#616f89] dark:text-gray-400 text-base font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">fingerprint</span>
+                                    NIK: 2023001
+                                </p>
+<div class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+<div class="flex items-center gap-2 text-[#111318] dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">hub</span>
+<span class="text-sm font-medium">Division: Operations</span>
+</div>
+<div class="flex items-center gap-2 text-[#111318] dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">corporate_fare</span>
+<span class="text-sm font-medium">Dept: Fleet Management</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 rounded-lg h-10 px-5 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white text-sm font-bold border border-[#dbdfe6] dark:border-gray-700 hover:bg-gray-200 transition-all">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span>Edit Profile</span>
+</button>
+<button class="flex items-center gap-2 rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Export PDF</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs Section -->
+<div class="max-w-6xl mx-auto px-8">
+<div class="border-b border-[#dbdfe6] dark:border-gray-800 flex gap-10 mt-6">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-primary pb-3 pt-2" href="#">
+<p class="text-sm font-bold tracking-tight">Personal Information</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-[#616f89] pb-3 pt-2 hover:text-[#111318] transition-colors" href="#">
+<p class="text-sm font-bold tracking-tight">Employment</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-[#616f89] pb-3 pt-2 hover:text-[#111318] transition-colors" href="#">
+<p class="text-sm font-bold tracking-tight">Payroll</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-[#616f89] pb-3 pt-2 hover:text-[#111318] transition-colors" href="#">
+<p class="text-sm font-bold tracking-tight">Documents</p>
+</a>
+</div>
+<!-- Tab Content -->
+<div class="py-8 space-y-8">
+<!-- Biodata Karyawan -->
+<section class="bg-white dark:bg-background-dark rounded-xl border border-[#dbdfe6] dark:border-gray-800 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                                Biodata Karyawan
+                            </h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Place &amp; Date of Birth</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">Jakarta, 12 March 1992</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Gender</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">Laki-laki (Male)</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Religion</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">Islam</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Marital Status</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">Menikah (Married)</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Nationality</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">WNI (Indonesian)</p>
+</div>
+</div>
+</section>
+<!-- Identifikasi -->
+<section class="bg-white dark:bg-background-dark rounded-xl border border-[#dbdfe6] dark:border-gray-800 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">id_card</span>
+                                Identifikasi
+                            </h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">KTP Number</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium tracking-widest">3174011203920005</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">NPWP</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">92.123.456.7-890.000</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">BPJS Ketenagakerjaan</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">20019238475</p>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Alamat Domisili -->
+<section class="bg-white dark:bg-background-dark rounded-xl border border-[#dbdfe6] dark:border-gray-800 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+                                    Alamat Domisili
+                                </h3>
+</div>
+<div class="p-6 space-y-4">
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Street Address</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-relaxed">Jl. Kebon Jeruk No. 45, RT 003/005, Jakarta Barat</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">City</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">Jakarta Barat</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Postal Code</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">11530</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Rekening Bank -->
+<section class="bg-white dark:bg-background-dark rounded-xl border border-[#dbdfe6] dark:border-gray-800 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-[#f0f2f4] dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_balance</span>
+                                    Rekening Bank
+                                </h3>
+</div>
+<div class="p-6 space-y-4">
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Bank Name</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">Bank Central Asia (BCA)</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Account Number</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium tracking-widest">883-049-2122</p>
+</div>
+<div class="space-y-1">
+<p class="text-[#616f89] text-xs font-semibold uppercase tracking-wider">Account Holder</p>
+<p class="text-[#111318] dark:text-gray-200 text-sm font-medium">Budi Setiawan</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

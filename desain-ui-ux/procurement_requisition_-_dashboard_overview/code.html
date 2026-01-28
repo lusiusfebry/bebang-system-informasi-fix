@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Procurement Requisition - Dashboard Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white antialiased">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="flex w-72 flex-col bg-white dark:bg-[#1a242f] border-r border-[#dbe0e6] dark:border-gray-800">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-8">
+<!-- Brand Info -->
+<div class="flex items-center gap-3 px-2">
+<div class="bg-primary rounded-lg flex items-center justify-center p-2 text-white">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111418] dark:text-white text-base font-bold leading-none">PT Prima Sarana</h1>
+<p class="text-[#617589] dark:text-gray-400 text-[11px] font-medium uppercase tracking-wider mt-1">Bebang Sistem Informasi</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-gray-400 hover:bg-background-light dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard Overview</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<p class="text-sm font-bold">Requisitions</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-gray-400 hover:bg-background-light dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<p class="text-sm font-medium">Purchase Orders</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-gray-400 hover:bg-background-light dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">warehouse</span>
+<p class="text-sm font-medium">Inventory Control</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-gray-400 hover:bg-background-light dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium">Suppliers</p>
+</a>
+</nav>
+</div>
+<!-- Bottom Nav -->
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] dark:text-gray-400 hover:bg-background-light dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+<div class="mt-4 pt-4 border-t border-[#dbe0e6] dark:border-gray-800 flex items-center gap-3 px-2">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="Profile picture of Procurement Manager" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqargIpdPSW1IVzyM7FaKhnDdGTyJrcsXmEyLEWVUQ_6GKnVUu_LYF0zUUqco3NJy9hjPoK1Ylw3JNyOJpLUwB3nqEOUYnHG1NCgQ3yh2att8h4UoKdOhXwg8blDqjJUYdPyDhoXf9tMEcaa-JlWWIMgFCa05yv68sk7t8gaoei6AShwHZ1MygFjnO-dzB0JkkcN5LABgy3KBNG8h5Xo6osd-KvlI2P7grxraLak49vjJrcTxmpV7toqwx4sDai3Uw9LOM1_QBWiw')"></div>
+<div class="flex flex-col">
+<p class="text-[#111418] dark:text-white text-sm font-bold">Budi Santoso</p>
+<p class="text-[#617589] text-xs">Procurement Manager</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#1a242f] px-8">
+<div class="flex items-center gap-8">
+<h2 class="text-[#111418] dark:text-white text-xl font-bold tracking-tight">Procurement Requisition</h2>
+<div class="relative w-72">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-symbols-outlined text-[#617589] text-xl">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border-none bg-background-light dark:bg-gray-800 rounded-lg text-sm placeholder-[#617589] focus:ring-2 focus:ring-primary transition-all" placeholder="Search requisitions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Create New Requisition</span>
+</button>
+<div class="h-8 w-[1px] bg-[#dbe0e6] dark:bg-gray-700 mx-2"></div>
+<button class="relative p-2 text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 rounded-lg">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500 border-2 border-white dark:border-gray-900"></span>
+</button>
+<button class="p-2 text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 rounded-lg">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</header>
+<div class="p-8 space-y-6">
+<!-- Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-[#1a242f] p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-800 flex flex-col gap-2 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Total Requisitions</p>
+<span class="p-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg material-symbols-outlined">assignment</span>
+</div>
+<p class="text-3xl font-bold text-[#111418] dark:text-white">1,284</p>
+<p class="flex items-center gap-1 text-[#078838] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span> +5.2%
+                        <span class="text-[#617589] font-normal ml-1">from last month</span>
+</p>
+</div>
+<div class="bg-white dark:bg-[#1a242f] p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-800 flex flex-col gap-2 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Awaiting Approval</p>
+<span class="p-2 bg-orange-50 dark:bg-orange-900/20 text-orange-600 rounded-lg material-symbols-outlined">pending_actions</span>
+</div>
+<p class="text-3xl font-bold text-[#111418] dark:text-white">42</p>
+<p class="flex items-center gap-1 text-[#e73908] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">priority_high</span> High Priority
+                        <span class="text-[#617589] font-normal ml-1">requires action</span>
+</p>
+</div>
+<div class="bg-white dark:bg-[#1a242f] p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-800 flex flex-col gap-2 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Converted to PO</p>
+<span class="p-2 bg-green-50 dark:bg-green-900/20 text-green-600 rounded-lg material-symbols-outlined">check_circle</span>
+</div>
+<p class="text-3xl font-bold text-[#111418] dark:text-white">856</p>
+<p class="flex items-center gap-1 text-[#078838] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span> +8.4%
+                        <span class="text-[#617589] font-normal ml-1">conversion rate</span>
+</p>
+</div>
+<div class="bg-white dark:bg-[#1a242f] p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-800 flex flex-col gap-2 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Rejected/Cancelled</p>
+<span class="p-2 bg-red-50 dark:bg-red-900/20 text-red-600 rounded-lg material-symbols-outlined">cancel</span>
+</div>
+<p class="text-3xl font-bold text-[#111418] dark:text-white">12</p>
+<p class="flex items-center gap-1 text-[#e73908] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_down</span> -0.5%
+                        <span class="text-[#617589] font-normal ml-1">reduction</span>
+</p>
+</div>
+</div>
+<!-- Table Section Header -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111418] dark:text-white">Recent Requisition Requests</h3>
+<div class="flex items-center gap-2">
+<button class="p-2 border border-[#dbe0e6] dark:border-gray-800 rounded-lg bg-white dark:bg-[#1a242f] hover:bg-background-light dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-xl">filter_list</span>
+</button>
+<button class="p-2 border border-[#dbe0e6] dark:border-gray-800 rounded-lg bg-white dark:bg-[#1a242f] hover:bg-background-light dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-xl">file_download</span>
+</button>
+</div>
+</div>
+<!-- Chips/Filters -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white text-sm font-medium shadow-sm">
+                        All Requests
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-[#1a242f] border border-[#dbe0e6] dark:border-gray-800 text-[#111418] dark:text-white text-sm font-medium hover:border-primary transition-colors">
+                        Pending Approval <span class="bg-[#f0f2f4] dark:bg-gray-800 px-1.5 py-0.5 rounded text-xs">42</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-[#1a242f] border border-[#dbe0e6] dark:border-gray-800 text-[#111418] dark:text-white text-sm font-medium hover:border-primary transition-colors">
+                        Manager Approved
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-[#1a242f] border border-[#dbe0e6] dark:border-gray-800 text-[#111418] dark:text-white text-sm font-medium hover:border-primary transition-colors">
+                        Procurement Review
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-[#1a242f] border border-[#dbe0e6] dark:border-gray-800 text-[#111418] dark:text-white text-sm font-medium hover:border-primary transition-colors">
+                        Urgent Only
+                    </button>
+</div>
+<!-- Main Data Table -->
+<div class="bg-white dark:bg-[#1a242f] rounded-xl border border-[#dbe0e6] dark:border-gray-800 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#f0f2f4] dark:border-gray-800 bg-[#fafbfc] dark:bg-[#1e2a38]">
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">PR Number</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Requester</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Department</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Estimated Value</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Priority</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#f0f2f4] dark:divide-gray-800">
+<tr class="hover:bg-background-light dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">PR-2023-0842</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-xs" data-alt="Avatar for John Doe" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuALoPaJuT30P2bNBerzdJvpzcOMbJcuW3a1e3i9Sa5Y4rI9JQBTYiZHMxVNJgBKWggm7Pc9o600WpVQRpNUnhCXUIWh6zahFnhGncdf-xolt5SqJA4VT28DRAFA0rp9bEZEv4ojZsrxU0YuP1KEXmOzN2u9g21nwXOjisg52VME3K2crSg3IZmzvqd8uSyfNnbjZVxXKPvGB1spFpA2r8OnY2mp-ts2hMcFhqx-8jNb-ne6UaN3RhU8vBxARBsgwkqr7YycGnbQFh0')"></div>
+<span class="text-sm font-medium">Andi Wijaya</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Operations</td>
+<td class="px-6 py-4 text-sm font-semibold">Rp 12.500.000</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400">
+                                            Urgent
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400">
+                                            Pending Approval
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#617589] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">PR-2023-0841</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-xs" data-alt="Avatar for Sarah Smith" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDAYvME9fHZug4keAQrkk8kcsLJhKA4-ZMgRkiR6Y6saR2Ep-8VMz66e1G_3s145zDFQlZ4Vztc9ngf6f9amuJlxU0E4uD5uPpSLpRblgf02gpsozU00ueSAUK9eF72v0wt7S8BBNwerEEmhpTOWgQi9e8WZ0NclvUbRQ_-ewNby3p3BeHULn2l8SrqUNddTbwKQhKhhi6Le2CfFmh4-9uaM58N7uT4TI14A2cgtjjauopxe0cHMAPiJl1u7SN50cW2CP3hjrg9Js')"></div>
+<span class="text-sm font-medium">Siska Amalia</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Human Resources</td>
+<td class="px-6 py-4 text-sm font-semibold">Rp 2.450.000</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                                            Normal
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
+                                            PO Issued
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#617589] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">PR-2023-0840</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-xs" data-alt="Avatar for Mike Johnson" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBt7-YoBjbUx80Fov_xDWb0sDo87faW2Jiv7Kd9eOESHSILOaZ8t_JY1kL4CPBw7sXVIdfawXlA55DKPKo6YCxMhTHnsuSwHVHI07E8Pxb6I0KBtAObX0adT5bBGmPrG7RPHlXn6gJAXDDQrj-enO-4XMoy_HgsHON-B9MRmv2Z5R1mrg3_HcrdFoauOscy1bgtL0z6QYDfEjz1KNeTXvJChjG7oAcM48Ib8Fc1sWD5Sbqro6BbjsffAfDUDEYm2CFjGVjukRdXkqk')"></div>
+<span class="text-sm font-medium">Hendra Kurnia</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">IT Support</td>
+<td class="px-6 py-4 text-sm font-semibold">Rp 45.900.000</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                                            Normal
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400">
+                                            Procurement Review
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#617589] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">PR-2023-0839</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-xs" data-alt="Avatar for Sarah Miller" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuADgSp6WCT1yVuTLwdYSzuNLMa223QuzVNjA4G5eKJz1kcizYc6JnkLbgZ88NefTvVpXag4-mZHBQbV00ncJsm1aE-FlosQR9rvBT6jF3gQMxk3XvUrgvcJwpn06UiYqKswar1A-9RmYKloxcGPIuJhX_yN-CF53nXSiIU3UlDJL1M1pXnZXQRx8-XihveEpQ4mDIvRXIkCoTgRukIsogGFp4HJO_k9LQtJOpsP4wdCpXFmaws9K_XAyZ06eqiZtPVmZ1fooDSof3o')"></div>
+<span class="text-sm font-medium">Ratna Dewi</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Finance</td>
+<td class="px-6 py-4 text-sm font-semibold">Rp 1.200.000</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                                            Normal
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                                            Draft
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#617589] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">PR-2023-0838</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-xs" data-alt="Avatar for Kevin Hart" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9p_KMF36r7e9JpSTg1-Q3xwYFTXS26madNvoLb_sUzge6YuChwWj0jL0xMZ1Nwp8-Ds0e1-DCRJQxrplHvcPPrluSCMvuMz4mSKLIKfw8c2Q0qdwEZs-Latcs4x33TGbDWS0_l03XAI_awys3Z3WxkigBtvbtfSyVFzixt3x07XxnVrGXwwjN6P2WQXumBdOk5Qu3MH2XK1_6mekyK4IHDyWG_gQyOYAQ7psFkkDh5X9iTmeHq2dGfh8jHKO5IIp0ijs7I80GMsU')"></div>
+<span class="text-sm font-medium">Bambang S.</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">Maintenance</td>
+<td class="px-6 py-4 text-sm font-semibold">Rp 8.900.000</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400">
+                                            Urgent
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                                            Manager Approved
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#617589] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="px-6 py-4 bg-[#fafbfc] dark:bg-[#1e2a38] border-t border-[#f0f2f4] dark:border-gray-800 flex items-center justify-between">
+<p class="text-sm text-[#617589] dark:text-gray-400">Showing 1 to 5 of 1,284 results</p>
+<div class="flex items-center gap-2">
+<button class="p-1 text-[#617589] hover:bg-white dark:hover:bg-gray-800 rounded transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-3 py-1 bg-primary text-white text-sm font-bold rounded">1</button>
+<button class="px-3 py-1 text-sm font-medium hover:bg-white dark:hover:bg-gray-800 rounded">2</button>
+<button class="px-3 py-1 text-sm font-medium hover:bg-white dark:hover:bg-gray-800 rounded">3</button>
+<span class="text-[#617589]">...</span>
+<button class="px-3 py-1 text-sm font-medium hover:bg-white dark:hover:bg-gray-800 rounded">257</button>
+<button class="p-1 text-[#617589] hover:bg-white dark:hover:bg-gray-800 rounded transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interview Scheduling &amp; Calendar Sync - Bebang</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(5, 1fr);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Bebang Sistem Informasi</h2>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Recruitment</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Employees</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Payroll</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex items-center gap-2 text-xs text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-sm">sync</span>
+                Synced with Outlook 2 mins ago
+            </div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-slate-200" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeRSPF_zY1WUq4i3vnsFeaQrt8iBfcvyGFZDNRykfdERguzxzTCECCxUxFqmvovulkFS48Qssp8QjSVJK8n_kPfOZ5qgzM3u_mIwHaeZMA-ALeP0UCZ7HMu60jKW0ByVERGsaJaVGou0x3yFVwhWVppHJAJGhP3GVpGEzT4sHdXZIm6bjlo5kXEI031UD4U6LxfMS84cTXE3VBKT-SndpXctm_ok4DI88wczhMMDULYydXOVUYIXMN3tqvFiLtbBc_iwOTUG9aHRg");'></div>
+</div>
+</header>
+<main class="flex flex-col max-w-[1600px] mx-auto p-6 gap-6">
+<!-- Mode Switcher Section -->
+<div class="flex items-center justify-between bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div>
+<h1 class="text-xl font-bold text-slate-900 dark:text-white">Interview Scheduling</h1>
+<p class="text-sm text-slate-500">PT Prima Sarana Gemilang HR Services</p>
+</div>
+<div class="flex h-10 w-80 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-slate-700 has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 text-sm font-medium transition-all">
+<span class="truncate">Individual Scheduling</span>
+<input checked="" class="invisible w-0" name="scheduling_mode" type="radio" value="Individual"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-slate-700 has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 text-sm font-medium transition-all">
+<span class="truncate">Round Robin</span>
+<input class="invisible w-0" name="scheduling_mode" type="radio" value="Round Robin"/>
+</label>
+</div>
+<button class="bg-primary hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center gap-2 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm">send</span>
+                Send Invite
+            </button>
+</div>
+<!-- Three Column Layout -->
+<div class="grid grid-cols-12 gap-6 items-start">
+<!-- Left Panel: Selection -->
+<aside class="col-span-3 flex flex-col gap-6 bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm h-full">
+<section>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Selection Panel</h3>
+<div class="flex flex-col gap-4">
+<label class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Candidate</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary focus:border-primary" placeholder="Search candidate..." type="text"/>
+</div>
+</label>
+<div class="flex items-center gap-3 p-3 bg-blue-50 dark:bg-primary/10 rounded-lg border border-primary/20">
+<div class="size-10 bg-primary/20 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Budi Santoso</p>
+<p class="text-xs text-slate-500">Senior Dev Applicant</p>
+</div>
+</div>
+</div>
+</section>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-400">Interviewers</h3>
+<span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">Check Availability</span>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Interviewer Chips -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+<span class="text-sm font-medium">John Doe (Lead)</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm cursor-pointer">close</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500 text-sm">schedule</span>
+<span class="text-sm font-medium">Jane Smith (HR)</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm cursor-pointer">close</span>
+</div>
+</div>
+<button class="text-primary text-xs font-bold flex items-center gap-1 mt-2 hover:underline">
+<span class="material-symbols-outlined text-sm">add</span> Add Interviewer
+                        </button>
+</div>
+</section>
+<section class="mt-auto">
+<div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800">
+<div class="flex items-center gap-2 text-amber-700 dark:text-amber-400 mb-1">
+<span class="material-symbols-outlined text-sm">warning</span>
+<p class="text-xs font-bold">Conflict Alert</p>
+</div>
+<p class="text-[11px] text-amber-600 dark:text-amber-500">Jane Smith has a recurring "Weekly Sync" at 2:00 PM on Wednesday.</p>
+</div>
+</section>
+</aside>
+<!-- Center Panel: Calendar -->
+<section class="col-span-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col h-full">
+<div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<h2 class="text-lg font-bold">Oct 23 - Oct 27, 2023</h2>
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1 text-xs text-slate-500"><div class="size-2 rounded-full bg-primary"></div> Suggested</span>
+<span class="flex items-center gap-1 text-xs text-slate-500"><div class="size-2 rounded-full bg-slate-300"></div> Busy</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 overflow-y-auto min-h-[600px]">
+<!-- Calendar Header -->
+<div class="calendar-grid bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<div class="p-3 border-r border-slate-200 dark:border-slate-800"></div>
+<div class="p-3 text-center border-r border-slate-200 dark:border-slate-800"><p class="text-xs text-slate-500 font-bold">MON</p><p class="text-lg font-bold">23</p></div>
+<div class="p-3 text-center border-r border-slate-200 dark:border-slate-800"><p class="text-xs text-slate-500 font-bold">TUE</p><p class="text-lg font-bold">24</p></div>
+<div class="p-3 text-center border-r border-slate-200 dark:border-slate-800 bg-primary/5"><p class="text-xs text-primary font-bold">WED</p><p class="text-lg font-bold text-primary">25</p></div>
+<div class="p-3 text-center border-r border-slate-200 dark:border-slate-800"><p class="text-xs text-slate-500 font-bold">THU</p><p class="text-lg font-bold">26</p></div>
+<div class="p-3 text-center"><p class="text-xs text-slate-500 font-bold">FRI</p><p class="text-lg font-bold">27</p></div>
+</div>
+<!-- Calendar Body -->
+<div class="relative calendar-grid flex-1">
+<!-- Time Column -->
+<div class="flex flex-col border-r border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+<div class="h-20 p-2 text-[10px] text-slate-400 font-bold text-right border-b border-slate-100 dark:border-slate-800">09:00 AM</div>
+<div class="h-20 p-2 text-[10px] text-slate-400 font-bold text-right border-b border-slate-100 dark:border-slate-800">10:00 AM</div>
+<div class="h-20 p-2 text-[10px] text-slate-400 font-bold text-right border-b border-slate-100 dark:border-slate-800">11:00 AM</div>
+<div class="h-20 p-2 text-[10px] text-slate-400 font-bold text-right border-b border-slate-100 dark:border-slate-800">12:00 PM</div>
+<div class="h-20 p-2 text-[10px] text-slate-400 font-bold text-right border-b border-slate-100 dark:border-slate-800">01:00 PM</div>
+<div class="h-20 p-2 text-[10px] text-slate-400 font-bold text-right border-b border-slate-100 dark:border-slate-800">02:00 PM</div>
+<div class="h-20 p-2 text-[10px] text-slate-400 font-bold text-right border-b border-slate-100 dark:border-slate-800">03:00 PM</div>
+<div class="h-20 p-2 text-[10px] text-slate-400 font-bold text-right">04:00 PM</div>
+</div>
+<!-- Days Columns (Repeated content to simulate grid) -->
+<div class="border-r border-slate-100 dark:border-slate-800 relative">
+<div class="absolute top-20 left-1 right-1 h-16 bg-slate-200/50 dark:bg-slate-700/50 rounded p-1 text-[10px] font-medium text-slate-500">Board Meeting</div>
+</div>
+<div class="border-r border-slate-100 dark:border-slate-800"></div>
+<div class="border-r border-slate-100 dark:border-slate-800 bg-primary/5 relative">
+<!-- Suggested Slot -->
+<div class="absolute top-[280px] left-1 right-1 h-20 bg-primary text-white rounded-lg shadow-lg p-2 z-10 cursor-pointer">
+<p class="text-[10px] font-bold opacity-80 uppercase">Available Slot</p>
+<p class="text-xs font-bold">Interview: Budi S.</p>
+<p class="text-[10px] opacity-90 mt-1">02:30 PM - 03:30 PM</p>
+</div>
+<div class="absolute top-40 left-1 right-1 h-12 bg-slate-200/50 dark:bg-slate-700/50 rounded p-1 text-[10px] font-medium text-slate-500">Client Call</div>
+</div>
+<div class="border-r border-slate-100 dark:border-slate-800"></div>
+<div></div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Details -->
+<aside class="col-span-3 flex flex-col gap-6 bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm h-full">
+<section>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Interview Details</h3>
+<div class="space-y-4">
+<!-- Interview Type -->
+<label class="block">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Interview Type</span>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 py-3 px-2 border-2 border-primary bg-primary/5 text-primary rounded-lg flex flex-col items-center gap-1 transition-all">
+<span class="material-symbols-outlined">videocam</span>
+<span class="text-xs font-bold">Online</span>
+</button>
+<button class="flex-1 py-3 px-2 border-2 border-slate-100 dark:border-slate-800 text-slate-500 rounded-lg flex flex-col items-center gap-1 hover:border-slate-200 dark:hover:border-slate-700 transition-all">
+<span class="material-symbols-outlined">apartment</span>
+<span class="text-xs font-bold">In-Person</span>
+</button>
+</div>
+</label>
+<!-- Meeting Platform/Room -->
+<label class="block">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Meeting Platform</span>
+<select class="mt-2 w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary focus:border-primary">
+<option>Microsoft Teams</option>
+<option>Google Meet</option>
+<option>Zoom</option>
+<option>Office Room 402 (Resource Booking)</option>
+</select>
+</label>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- Evaluation Template -->
+<label class="block">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Evaluation Template</span>
+<div class="mt-2 flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:border-primary transition-all group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">description</span>
+<div>
+<p class="text-xs font-bold">Senior Software Dev</p>
+<p class="text-[10px] text-slate-500">Tech Skills + Cultural Fit</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</div>
+</label>
+<!-- Notes -->
+<label class="block">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Internal Notes</span>
+<textarea class="mt-2 w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary focus:border-primary resize-none" placeholder="Add specific focus areas for interviewers..." rows="4"></textarea>
+</label>
+</div>
+</section>
+<div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3">
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-500">Outlook Calendar Sync</span>
+<span class="text-green-500 font-bold flex items-center gap-1"><div class="size-1.5 rounded-full bg-green-500"></div> Active</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-500">Resource Booking</span>
+<span class="text-slate-400 italic">Not required (Online)</span>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer Status Bar -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-6 py-2 flex items-center justify-between text-[11px] text-slate-400 z-50">
+<div class="flex items-center gap-4">
+<span>PT Prima Sarana Gemilang HR Module v2.4.0</span>
+<span class="h-4 w-px bg-slate-200 dark:bg-slate-800"></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">vpn_key</span> Secure Connection</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">help_outline</span>
+<a class="hover:text-primary" href="#">Support &amp; Documentation</a>
+</div>
+</footer>
+</body></html>

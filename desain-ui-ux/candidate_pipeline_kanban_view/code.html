@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Candidate Pipeline - Bebang HRIS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .kanban-column {
+            min-width: 320px;
+            max-width: 320px;
+        }
+        /* Hide scrollbar but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white transition-colors duration-200">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbdfe6] dark:border-[#2d3748] bg-white dark:bg-[#1a202c] px-6 lg:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang HRIS</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary pb-1" href="#">Jobs</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Candidates</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#616f89] flex border-none bg-background-light dark:bg-background-dark items-center justify-center pl-4 rounded-l-lg" data-icon="search">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white focus:outline-0 focus:ring-0 border-none bg-background-light dark:bg-background-dark focus:border-none h-full placeholder:text-[#616f89] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal" placeholder="Search pipeline..." value=""/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white dark:border-gray-700" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNBupxgbz6X7juCe9AOLf45EodE6zQkkeAgdabwgkuePDp19Dypim6CPSvljOgd6uo1QNpDsiWOxNLq_M9kxLm7_CoxIvqX865jfqErNq_njwwjYG0txTU9GSgTfIhlSwll5l7DaFOdyYlO1blOhnC8YWUhBbsTOe3x1ow4Lb5lZrVOil50IEMBmcMLxU7NYc6SG75elwParS3I0AH813fsh8JB9M-VcUZSLNkUKN1AzW0ICSkc7ewjbWlZ_E2pVYNh9dDp6G0veU");'></div>
+</div>
+</header>
+<main class="flex flex-col h-[calc(100vh-64px)]">
+<!-- Page Header & Breadcrumbs -->
+<div class="px-6 lg:px-10 pt-6">
+<div class="flex flex-wrap gap-2 pb-2">
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium leading-normal hover:underline" href="#">Jobs</a>
+<span class="text-[#616f89] dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+<span class="text-primary text-sm font-medium leading-normal">Senior Frontend Developer</span>
+</div>
+<div class="flex flex-wrap justify-between items-end gap-3 pb-6 border-b border-[#dbdfe6] dark:border-[#2d3748]">
+<div class="flex min-w-72 flex-col gap-1">
+<h1 class="text-[#111318] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Senior Frontend Developer</h1>
+<div class="flex items-center gap-3">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Job ID: PSG-2023-001 • Jakarta, Indonesia</p>
+<span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+<span class="text-green-600 dark:text-green-400 text-sm font-bold uppercase tracking-wider">Active Pipeline</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-white dark:bg-[#1a202c] border border-[#dbdfe6] dark:border-[#2d3748] text-[#111318] dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined">share</span>
+<span>Share Job</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 shadow-sm transition-all">
+<span class="material-symbols-outlined">person_add</span>
+<span>Add Candidate</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="px-6 lg:px-10 py-4 flex flex-wrap items-center justify-between gap-4">
+<div class="flex gap-3 flex-wrap">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#1a202c] border border-[#dbdfe6] dark:border-[#2d3748] px-4 shadow-sm">
+<span class="text-[#616f89] text-xs font-bold uppercase tracking-wide">Dept:</span>
+<p class="text-[#111318] dark:text-white text-sm font-medium">Engineering</p>
+<span class="material-symbols-outlined text-[#616f89]">keyboard_arrow_down</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#1a202c] border border-[#dbdfe6] dark:border-[#2d3748] px-4 shadow-sm">
+<span class="text-[#616f89] text-xs font-bold uppercase tracking-wide">Recruiter:</span>
+<p class="text-[#111318] dark:text-white text-sm font-medium">All Recruiters</p>
+<span class="material-symbols-outlined text-[#616f89]">keyboard_arrow_down</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#1a202c] border border-[#dbdfe6] dark:border-[#2d3748] px-4 shadow-sm">
+<span class="material-symbols-outlined text-[#616f89]">filter_alt</span>
+<p class="text-[#111318] dark:text-white text-sm font-medium">More Filters</p>
+</button>
+</div>
+<div class="flex items-center gap-2 text-[#616f89] dark:text-gray-400">
+<span class="text-sm font-medium">31 Candidates found</span>
+</div>
+</div>
+<!-- Kanban Board Container -->
+<div class="flex-1 overflow-x-auto overflow-y-hidden px-6 lg:px-10 pb-6 no-scrollbar">
+<div class="flex gap-6 h-full items-start">
+<!-- Column: New Applications -->
+<div class="kanban-column flex flex-col h-full bg-gray-200/50 dark:bg-[#111827] rounded-xl border border-gray-200 dark:border-gray-800">
+<div class="p-4 flex items-center justify-between sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-sm text-[#111318] dark:text-white uppercase tracking-wider">New Applications</h3>
+<span class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs font-bold">12</span>
+</div>
+<button class="material-symbols-outlined text-gray-500 hover:text-primary">more_horiz</button>
+</div>
+<div class="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar">
+<!-- Candidate Card 1 -->
+<div class="bg-white dark:bg-[#1a202c] p-4 rounded-lg shadow-sm border border-transparent hover:border-primary/40 transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex items-start justify-between mb-3">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Candidate profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAPgmxxMgKFI_uiPoZFkVUOUX9luTiQKVOMMj2bT7_p3Cky1RcnkZ4UKQLyHvdqyLIstGPXNxokd0GP0yuZiMqjyFoJjzOSz8Zxc_9FfpzKqbGd1UQOHw35MZ_0pNSILyoJCuAGLEKSLdmMSGvDARUlYbQvWJZ-G14MBKJGN7mGsxH8S5dPCtZTMEDSGgm5FHzk1AxHLBvpbf32kWIXbp7q3sxI0j71s-_TNtkNMoPQWc4HgYLqn76ihAVtOtFQUijjDTulAsrbQxA');"></div>
+<div>
+<p class="font-bold text-sm text-[#111318] dark:text-white">Alex Rivera</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Product Designer</p>
+</div>
+</div>
+<div class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-1.5 py-0.5 rounded">98% MATCH</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">mail</span>
+</button>
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">description</span>
+</button>
+</div>
+<div class="text-[10px] text-[#616f89] dark:text-gray-500 font-medium">2 hours ago</div>
+</div>
+</div>
+<!-- Candidate Card 2 -->
+<div class="bg-white dark:bg-[#1a202c] p-4 rounded-lg shadow-sm border border-transparent hover:border-primary/40 transition-all cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between mb-3">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Candidate profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBeIVFLifaa3jnTZQsEvOM7Xnx3QUKm6-yuOjdShlCWrELXAQDKL380FW9Bz5d660mIhIJ6aALOuB0r2dtNwYq3e08q4toUh0Hb-6xYHP-roFN9BoeNC3pDRW-CvlxhvAlPYfRCChcdbO3zUNvZknJh_6MDbHI2Ht7tckVZOjKWIXUeTGOe5e43eGEmS_ygWQCgji-LGgdFUdIU1roWF066f8igGDj3DNx5mPM5bGEKitPn79MAvJPsws2Wmvpi_U9HWdyUIvWUjhA');"></div>
+<div>
+<p class="font-bold text-sm text-[#111318] dark:text-white">Sarah Jenkins</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Senior Dev</p>
+</div>
+</div>
+<div class="bg-primary/10 text-primary text-[10px] font-bold px-1.5 py-0.5 rounded">92% MATCH</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">mail</span>
+</button>
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">description</span>
+</button>
+</div>
+<div class="text-[10px] text-[#616f89] dark:text-gray-500 font-medium">Yesterday</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Screening -->
+<div class="kanban-column flex flex-col h-full bg-gray-200/50 dark:bg-[#111827] rounded-xl border border-gray-200 dark:border-gray-800">
+<div class="p-4 flex items-center justify-between sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-sm text-[#111318] dark:text-white uppercase tracking-wider">Screening</h3>
+<span class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs font-bold">8</span>
+</div>
+<button class="material-symbols-outlined text-gray-500 hover:text-primary">more_horiz</button>
+</div>
+<div class="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar">
+<!-- Candidate Card -->
+<div class="bg-white dark:bg-[#1a202c] p-4 rounded-lg shadow-sm border border-transparent hover:border-primary/40 transition-all cursor-grab">
+<div class="flex items-start justify-between mb-3">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Candidate profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAz0VnU8Cn7ga_mdPFw7GZx3kRGk7WHmQReRfZTyoeptK_wVBXhgPPi8s5z0--SUhnC-jo6I9xbejgUlF95y9ML3WALLepKQLUFb7988YA7LeexA5rk5uguUfDnSikhR9rZerV4lSlcU2VsUZQXGQYhLixjJH0fXs5jbVV5UQ61oRsjlwcmYNqfFayjErhugnlUVm9d0XfuFVx7z4VbY8vXanvSVGfwgKM__SzU--2km63O0EOlRfxvenF-JsrbTP5G9I4BLWqKUBA');"></div>
+<div>
+<p class="font-bold text-sm text-[#111318] dark:text-white">Mark Thompson</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Fullstack Eng</p>
+</div>
+</div>
+<div class="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 text-[10px] font-bold px-1.5 py-0.5 rounded">85% MATCH</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">mail</span>
+</button>
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">description</span>
+</button>
+</div>
+<div class="flex items-center gap-1 text-[10px] text-orange-600 font-bold uppercase tracking-tight">
+<span class="material-symbols-outlined !text-[12px]">schedule</span>
+                                    Needs Call
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Interview -->
+<div class="kanban-column flex flex-col h-full bg-gray-200/50 dark:bg-[#111827] rounded-xl border border-gray-200 dark:border-gray-800">
+<div class="p-4 flex items-center justify-between sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-sm text-[#111318] dark:text-white uppercase tracking-wider">Interview</h3>
+<span class="bg-primary text-white px-2 py-0.5 rounded-full text-xs font-bold shadow-sm">5</span>
+</div>
+<button class="material-symbols-outlined text-gray-500 hover:text-primary">more_horiz</button>
+</div>
+<div class="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar">
+<div class="bg-white dark:bg-[#1a202c] p-4 rounded-lg shadow-md border-l-4 border-primary transform scale-[1.02] cursor-grab">
+<div class="flex items-start justify-between mb-3">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Candidate profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6qV9HrFT3HRn4pg9N4v0IGpobOPqio_kiAjZpY6r3VfS88verHNV2ERtGffHrW6IlHQMcpaMqjT9K-zW6XGdj9oFY3cgZ1FASZeOlbZBYWDm-2aVhDuYaDeGK8uxRfwLpFeWbosF1KUVmstzUCqcEolWXVPbHsjXu_kkbSMyQ31tFIBqEDyzaF0uWsjLcTvmvqwnBw6tQm1j0eqA5O_pR2BkpJqxH2WrRj3d4fxs_qHGDubp2h__QGV80_QYy5YQzOkIUXihYuzk');"></div>
+<div>
+<p class="font-bold text-sm text-[#111318] dark:text-white">Elena Rodriguez</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Lead React Dev</p>
+</div>
+</div>
+<div class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-1.5 py-0.5 rounded">95% MATCH</div>
+</div>
+<div class="bg-primary/5 dark:bg-primary/10 rounded p-2 mb-3">
+<div class="flex items-center gap-2 text-xs font-semibold text-primary">
+<span class="material-symbols-outlined !text-[14px]">calendar_today</span>
+<span>Technical Interview II</span>
+</div>
+<div class="text-[10px] text-[#616f89] dark:text-gray-400 mt-1">Today at 2:00 PM • Zoom</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">mail</span>
+</button>
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">description</span>
+</button>
+</div>
+<div class="flex items-center -space-x-1.5">
+<div class="size-6 rounded-full border border-white bg-gray-400" data-alt="Interviewer 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMke6snJ2_62TBZ0rYNj4EmdxNIkJzmrpLXeV7s5J9TIZiyPlNWrdL9RV4g0H-vUEZfu6PKCHFSeHKUOEEVO_CA2aZ493vdVdC8V0vcbJbHViFWb6IQUXaWXg3ZzQARx0R6yGVFLSXwGcub73uQviWrWSUHSRpX1D_DBmXcfi9eYO0-ZWM3mt_3eAZpqUky0OXeMKw0sjZRzCVE3sAYxJAfcxdKek5X1vEXQTugZY_jUop8mHMp7PcI-9hcM_5FriwWG2vNPTCblo');"></div>
+<div class="size-6 rounded-full border border-white bg-gray-500" data-alt="Interviewer 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwaY16MDulC9_WMsb4IuY9j6HkNHOwU-18wI73mznYFSZBckwXzW9_A6C8E0UGMAebdGHVJDjKhIOEx1vxCJTdTS0lzcgBnQcvqcDLwsJI4YGmD1pvyU6U0SvtFsQGmt2Ax0nZJNuivMzfnE0fxpk1CfYgeJSeDyZwt4Bw7Pmm5Rbg0AYOGfrPA7yF_Hu3UAuQQq9rm-ihmg7R0lB6eCjwXY1q2_F1yYWuP2hTJYlstaSjjuFLRZkWbiTUPnoyun45bmTwtLN_gVM');"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Background Check -->
+<div class="kanban-column flex flex-col h-full bg-gray-200/50 dark:bg-[#111827] rounded-xl border border-gray-200 dark:border-gray-800">
+<div class="p-4 flex items-center justify-between sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-sm text-[#111318] dark:text-white uppercase tracking-wider">Background Check</h3>
+<span class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs font-bold">3</span>
+</div>
+<button class="material-symbols-outlined text-gray-500 hover:text-primary">more_horiz</button>
+</div>
+<div class="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar">
+<div class="bg-white dark:bg-[#1a202c] p-4 rounded-lg shadow-sm border border-transparent hover:border-primary/40 transition-all cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between mb-3">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Candidate profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAo1Y8ccT-kyMpeA1gY2jnGb_6_727wGdYQPBfKAsBN-YQaYQJdl1QmQ3IH8Pb4UPGC36b9ghJArF20Si-iJHo4KNDzVnwRgr3x87p36Mhy5oMZD7XcXlqzyme1-mRE_oe92x3qS7b5cGRIZHNJbSLDcXnQh4vApsiykzQIRldCbEz8OJSayeDGmbYWGsllK0AHIWKHnCEgomHtTvTVmCf6h5c1OXYhqNLZs0VNjzl-pCFgQ5_HtwaK5bOxsrA9b4hVEdK4NKaREJ8');"></div>
+<div>
+<p class="font-bold text-sm text-[#111318] dark:text-white">James Wilson</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Frontend Specialist</p>
+</div>
+</div>
+<div class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-[10px] font-bold px-1.5 py-0.5 rounded">88% MATCH</div>
+</div>
+<div class="flex items-center gap-2 text-[10px] font-bold text-gray-500 mb-3 bg-gray-50 dark:bg-gray-800/50 p-1.5 rounded">
+<span class="material-symbols-outlined !text-[14px]">verified_user</span>
+<span>Verification in Progress</span>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">mail</span>
+</button>
+</div>
+<div class="text-[10px] text-[#616f89] dark:text-gray-500 font-medium">3 days ago</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Offer Sent -->
+<div class="kanban-column flex flex-col h-full bg-gray-200/50 dark:bg-[#111827] rounded-xl border border-gray-200 dark:border-gray-800">
+<div class="p-4 flex items-center justify-between sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-sm text-[#111318] dark:text-white uppercase tracking-wider">Offer Sent</h3>
+<span class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs font-bold">2</span>
+</div>
+<button class="material-symbols-outlined text-gray-500 hover:text-primary">more_horiz</button>
+</div>
+<div class="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar">
+<div class="bg-white dark:bg-[#1a202c] p-4 rounded-lg shadow-sm border border-transparent hover:border-primary/40 transition-all cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between mb-3">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Candidate profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBr1JkhOiobnHI47Cp501H41qW6TrgFkBQreGGB6b_gKuTI1_9FSPVNEv__5W6J4lGI8tayxyqqfYINceFINPDV3Z4CjC6woNpsNJPMBUVM5gvpR8StTdXgDl5n_cWuZD-q0tJT87mRfKpD0eS9rFRj158sQQGNKkRStSMHYKTjGgdF84Qf4fso4zv_CgBdWGoqoAOiVjTuwPS8Y_r6w3L1b-EaCjVP55Jcb8R8pM87qAUIe65HCKbBueVi4gXXVUHEJJyYGteZybk');"></div>
+<div>
+<p class="font-bold text-sm text-[#111318] dark:text-white">Linda Chen</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Senior UX Eng</p>
+</div>
+</div>
+<div class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-1.5 py-0.5 rounded">96% MATCH</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">mail</span>
+</button>
+<button class="p-1.5 hover:bg-primary/10 rounded-md text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[18px]">description</span>
+</button>
+</div>
+<div class="flex items-center gap-1 text-[10px] text-primary font-bold uppercase tracking-tight">
+<span class="material-symbols-outlined !text-[12px]">send</span>
+                                    Waiting
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Hired -->
+<div class="kanban-column flex flex-col h-full bg-gray-200/50 dark:bg-[#111827] rounded-xl border border-gray-200 dark:border-gray-800">
+<div class="p-4 flex items-center justify-between sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-sm text-[#111318] dark:text-white uppercase tracking-wider">Hired</h3>
+<span class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs font-bold">1</span>
+</div>
+<button class="material-symbols-outlined text-gray-500 hover:text-primary">more_horiz</button>
+</div>
+<div class="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar">
+<div class="bg-white dark:bg-[#1a202c] p-4 rounded-lg shadow-sm border border-transparent hover:border-primary/40 transition-all opacity-70">
+<div class="flex items-start justify-between mb-3">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Candidate profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVr0-Iw9l2GnGqgwuT6fIGmepHuHZI6_nYUr09ZOn4yFQrAeou-7Q1rLTaqNvlPEeRGOx1gliFxKvK6BbEQZ_18FRoeohYvxhPLBR5jnv9nN5Uncc7tW3LKdaSdcSl42r7X-_rRyYfLATBW6kGqmV188646LZRvcyWhC4nM5nW0ANJAhrttukwgMeVJHgxMLktnG3Ahsrhn-JxL1Md4GY8-5O6g5V6pX8e61IdapeLWjUxAlAeIVzPx2dXhO6KJBkEEyJTDxvH4PE');"></div>
+<div>
+<p class="font-bold text-sm text-[#111318] dark:text-white">David Miller</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Frontend Developer</p>
+</div>
+</div>
+<div class="bg-green-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">HIRED</div>
+</div>
+<div class="text-[10px] text-[#616f89] dark:text-gray-500 text-center font-medium">Joined Oct 12, 2023</div>
+</div>
+<!-- Empty slot placeholder -->
+<div class="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg h-32 flex flex-col items-center justify-center gap-2 text-gray-400">
+<span class="material-symbols-outlined">add_circle</span>
+<p class="text-xs font-medium">Drop candidate here</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Quick Actions (Optional) -->
+<div class="fixed bottom-6 right-6 flex flex-col gap-3">
+<button class="size-12 rounded-full bg-white dark:bg-[#1a202c] shadow-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</body></html>

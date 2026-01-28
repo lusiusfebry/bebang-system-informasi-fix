@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ESS - New Leave Request Form</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Inter", sans-serif
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+select {
+    appearance: none;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDXjiLoew4LHBdRMFdxhm5uwGecAzQPUtD031tJ5RWfKiqwFQ3jYBr7ftOWHLpjV91Ag6VS3xxsfnFYA2TzFGIaqy86-9KheMhgSLMBPOr3RMy-i4l0TAqbKRlGkh4AC37iS7Hiz-iRnBWV4a26qHSGntaNrBOUy6oHFaNyZsG50hAzpi9--KHNkFL5ufXEopK-bEY9Ds3tzIccyx76VzBOZ_h7d4yo_1eMLYMlC53jdr-JAQY-8hJOM61cBuaX0PNNSeonhyxB-OA);
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111318] dark:text-white">
+<div class="flex flex-col min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-[#dbdfe6] dark:border-gray-800">
+<div class="max-w-[1200px] mx-auto px-4 lg:px-10 flex items-center justify-between py-3">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<svg class="size-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<h2 class="text-lg font-bold leading-none tracking-tight">Bebang Sistem Informasi</h2>
+<span class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">PT Prima Sarana Gemilang</span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-bold text-primary transition-colors border-b-2 border-primary py-1" href="#">Leave Management</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Payroll</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-3 border-l border-gray-200 dark:border-gray-700 pl-8">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold">John Doe</p>
+<p class="text-[11px] text-gray-500">Operation Dept.</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="Corporate headshot of employee John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGb_wTi7CPh7srYHhMPD614uNJTWWTTS8199LWDLQtOOh5mg2oUZHsBGwYLv8j8XXho3HDrb2x9UkdQYXVRo-5JbOWL3f8dJW9grCgG8eYKTfdRSu66wRavOPHTWVVrY8qguZ4KzygH2ZL6eCHN7mV7h3wVZL4SIyjxzgLX2xpABGq-FVEQ28RPPnLk6WWtymevddBIMjchB15lUvyznO_xWyQ7xADX6AsJEW-4r1uDBU84dMZfM487LTHPzMaO45fJ3TqOD0c9z4");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-[1200px] mx-auto w-full px-4 lg:px-10 py-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2 mb-6">
+<a class="text-gray-500 dark:text-gray-400 text-sm font-medium hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-sm text-gray-400">chevron_right</span>
+<a class="text-gray-500 dark:text-gray-400 text-sm font-medium hover:text-primary" href="#">Leave Management</a>
+<span class="material-symbols-outlined text-sm text-gray-400">chevron_right</span>
+<span class="text-primary text-sm font-semibold">New Request</span>
+</div>
+<!-- Page Heading -->
+<div class="mb-8">
+<h1 class="text-3xl font-black leading-tight tracking-tight">New Leave Request</h1>
+<p class="text-gray-500 dark:text-gray-400 text-base mt-2">Fill out the form below to submit your application for review and approval.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Form Column -->
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-white dark:bg-background-dark/50 border border-[#dbdfe6] dark:border-gray-800 rounded-xl overflow-hidden shadow-sm">
+<div class="p-6 md:p-8 space-y-8">
+<!-- Form Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Leave Type -->
+<div class="col-span-full">
+<label class="block mb-2 text-sm font-bold">Leave Type <span class="text-red-500">*</span></label>
+<select class="w-full rounded-lg border-[#dbdfe6] dark:border-gray-700 dark:bg-gray-800 h-12 px-4 focus:ring-primary focus:border-primary text-sm">
+<option value="">Select leave type</option>
+<option value="annual">Annual Leave</option>
+<option value="sick">Sick Leave</option>
+<option value="maternity">Maternity Leave</option>
+<option value="unpaid">Unpaid Leave</option>
+<option value="special">Special Leave</option>
+</select>
+</div>
+<!-- Date Range Picker -->
+<div>
+<label class="block mb-2 text-sm font-bold">Start Date <span class="text-red-500">*</span></label>
+<div class="relative">
+<input class="w-full rounded-lg border-[#dbdfe6] dark:border-gray-700 dark:bg-gray-800 h-12 px-4 focus:ring-primary focus:border-primary text-sm" type="date" value="2023-10-05"/>
+</div>
+</div>
+<div>
+<label class="block mb-2 text-sm font-bold">End Date <span class="text-red-500">*</span></label>
+<div class="relative">
+<input class="w-full rounded-lg border-[#dbdfe6] dark:border-gray-700 dark:bg-gray-800 h-12 px-4 focus:ring-primary focus:border-primary text-sm" type="date" value="2023-10-07"/>
+</div>
+</div>
+<!-- Total Days -->
+<div class="col-span-full md:col-span-1">
+<label class="block mb-2 text-sm font-bold">Total Days</label>
+<div class="flex items-center gap-3">
+<input class="w-full rounded-lg bg-background-light dark:bg-gray-900 border-[#dbdfe6] dark:border-gray-700 h-12 px-4 text-sm font-semibold text-primary cursor-not-allowed" readonly="" type="text" value="3 Days"/>
+<span class="text-[12px] text-gray-500 italic">Auto-calculated</span>
+</div>
+</div>
+<!-- Reason for Leave -->
+<div class="col-span-full">
+<label class="block mb-2 text-sm font-bold">Reason for Leave <span class="text-red-500">*</span></label>
+<textarea class="w-full rounded-lg border-[#dbdfe6] dark:border-gray-700 dark:bg-gray-800 px-4 py-3 focus:ring-primary focus:border-primary text-sm" placeholder="Briefly describe the reason for your leave request..." rows="4"></textarea>
+</div>
+<!-- File Upload -->
+<div class="col-span-full">
+<label class="block mb-2 text-sm font-bold">Supporting Documents</label>
+<div class="border-2 border-dashed border-[#dbdfe6] dark:border-gray-700 rounded-xl p-8 flex flex-col items-center justify-center bg-background-light/30 dark:bg-gray-900/30 group hover:border-primary/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary transition-colors mb-2">upload_file</span>
+<p class="text-sm font-medium mb-1">Click to upload or drag and drop</p>
+<p class="text-[11px] text-gray-500">PDF, JPG, or PNG (Max. 5MB). Required for Sick Leave &gt; 1 day.</p>
+<input class="hidden" type="file"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<button class="w-full sm:w-auto px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">send</span>
+                            Submit Request
+                        </button>
+<button class="w-full sm:w-auto px-8 py-3 bg-white dark:bg-transparent border border-[#dbdfe6] dark:border-gray-700 font-bold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            Cancel
+                        </button>
+</div>
+</div>
+<!-- Sidebar Workflow Column -->
+<div class="space-y-6">
+<!-- Workflow Card -->
+<div class="bg-white dark:bg-background-dark/50 border border-[#dbdfe6] dark:border-gray-800 rounded-xl overflow-hidden shadow-sm">
+<div class="p-6 border-b border-[#dbdfe6] dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
+<h3 class="text-base font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+                                Approval Workflow
+                            </h3>
+</div>
+<div class="p-6">
+<div class="relative flex flex-col gap-8">
+<!-- Vertical Line -->
+<div class="absolute left-[15px] top-2 bottom-2 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+<!-- Step 1 -->
+<div class="relative flex items-start gap-4 z-10">
+<div class="size-8 rounded-full bg-primary flex items-center justify-center text-white text-[12px] font-bold ring-4 ring-white dark:ring-background-dark">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<div>
+<p class="text-sm font-bold">Requester</p>
+<p class="text-xs text-gray-500">John Doe (You)</p>
+<span class="mt-1 inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase">Current Step</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex items-start gap-4 z-10">
+<div class="size-8 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-500 text-[12px] font-bold ring-4 ring-white dark:ring-background-dark">
+<span class="material-symbols-outlined text-sm">network_manage</span>
+</div>
+<div>
+<p class="text-sm font-bold text-gray-500">Direct Supervisor</p>
+<p class="text-xs text-gray-400">Sarah Wijaya</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex items-start gap-4 z-10">
+<div class="size-8 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-500 text-[12px] font-bold ring-4 ring-white dark:ring-background-dark">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+</div>
+<div>
+<p class="text-sm font-bold text-gray-500">HR Manager</p>
+<p class="text-xs text-gray-400">Human Resources Dept.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Leave Balance Info -->
+<div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6">
+<h4 class="text-sm font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+                            Leave Balance
+                        </h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-600 dark:text-gray-400">Annual Entitlement</span>
+<span class="font-bold">12 Days</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-600 dark:text-gray-400">Used this Year</span>
+<span class="font-bold">4 Days</span>
+</div>
+<div class="pt-2 border-t border-primary/10 flex justify-between items-center">
+<span class="text-sm font-bold">Remaining Balance</span>
+<span class="text-lg font-black text-primary">8 Days</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="mt-auto py-6 border-t border-[#dbdfe6] dark:border-gray-800 bg-white dark:bg-background-dark/50">
+<div class="max-w-[1200px] mx-auto px-4 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[11px] text-gray-500">© 2023 PT Prima Sarana Gemilang. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-[11px] text-gray-500 hover:text-primary" href="#">Help Center</a>
+<a class="text-[11px] text-gray-500 hover:text-primary" href="#">Terms of Service</a>
+<a class="text-[11px] text-gray-500 hover:text-primary" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

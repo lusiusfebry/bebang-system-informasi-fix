@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ESS - My Payslips History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background-color: rgba(19, 91, 236, 0.1);
+            color: #135bec;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Side Navigation -->
+<aside class="w-64 bg-white dark:bg-background-dark border-r border-[#dbdfe6] dark:border-gray-800 flex flex-col justify-between shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-sm font-bold leading-tight">PT Prima Sarana</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-normal">Sistem Informasi</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg active-nav" href="#">
+<span class="material-symbols-outlined">badge</span>
+<span class="text-sm font-medium">ESS Portal</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="text-sm font-medium">Attendance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">event_busy</span>
+<span class="text-sm font-medium">Leave &amp; Off</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-sm font-medium">Payroll</span>
+</a>
+<div class="mt-4 border-t border-[#dbdfe6] dark:border-gray-800 pt-4">
+<p class="px-3 text-[10px] font-bold text-[#616f89] uppercase tracking-wider mb-2">My Activities</p>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary bg-primary/10" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-sm font-medium">My Payslips</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="text-sm font-medium">Tax Documents</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="p-4 border-t border-[#dbdfe6] dark:border-gray-800">
+<div class="flex items-center gap-3 p-2">
+<div class="size-9 rounded-full bg-cover bg-center" data-alt="Employee profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATuvbAXIuH0nOPOaQQPLqW4G57eqCVyFk9GAJ-TSaR3eP7JzkyO9mnDcfHVxoZOS3XCKPA1sD6Z34MqOm4JSXetdSQG8qOA-oK20KPibu7PuyiWHD5bd4HJXbOrAThre_TLjyMTpHmGIYgXc7iuD3YHBKP0zfKjtcYRu-8tNfMepL1K5VRvSZE_vWWjjfk97NbkB1hqETEFv_UtoD_5Uhvb1UQ1BqxLKn6aiYpHwfcktf4Jp-UhUoy40oIUfRPw5NaWqM6BCJ9XHs')"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111318] dark:text-white">Alex Johnson</span>
+<span class="text-[10px] text-[#616f89] uppercase font-semibold tracking-tight">Software Engineer</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Top Navbar -->
+<header class="h-16 flex items-center justify-between border-b border-[#dbdfe6] dark:border-gray-800 bg-white dark:bg-background-dark px-8 shrink-0">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#616f89]">menu</span>
+<h2 class="text-lg font-bold">ESS Portal</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#616f89] text-xl">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary transition-all" placeholder="Search documents..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="relative text-[#616f89] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 border-2 border-white dark:border-background-dark rounded-full"></span>
+</button>
+<button class="text-[#616f89] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 flex overflow-hidden p-6 gap-6">
+<!-- Left: Payslip List -->
+<div class="flex-1 flex flex-col bg-white dark:bg-background-dark rounded-xl shadow-sm border border-[#dbdfe6] dark:border-gray-800 overflow-hidden">
+<!-- Breadcrumbs & Heading -->
+<div class="p-6 border-b border-[#dbdfe6] dark:border-gray-800">
+<div class="flex items-center gap-2 mb-4">
+<a class="text-xs font-medium text-[#616f89] hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px] text-[#616f89]">chevron_right</span>
+<a class="text-xs font-medium text-[#616f89] hover:text-primary" href="#">ESS</a>
+<span class="material-symbols-outlined text-[14px] text-[#616f89]">chevron_right</span>
+<span class="text-xs font-medium text-primary">My Payslips</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<h3 class="text-2xl font-black tracking-tight text-[#111318] dark:text-white">Payslips History</h3>
+<p class="text-sm text-[#616f89] dark:text-gray-400 mt-1">Review and manage your monthly earnings and deductions.</p>
+</div>
+<div class="flex items-center gap-3">
+<label class="flex flex-col">
+<span class="text-[10px] font-bold text-[#616f89] uppercase mb-1 ml-1">Fiscal Year</span>
+<select class="text-sm font-semibold border-[#dbdfe6] dark:border-gray-700 bg-[#f6f6f8] dark:bg-gray-800 rounded-lg focus:ring-primary py-1.5 pl-3 pr-8">
+<option>2024</option>
+<option>2023</option>
+<option>2022</option>
+</select>
+</label>
+</div>
+</div>
+</div>
+<!-- Table -->
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#fcfcfd] dark:bg-gray-800/50 sticky top-0 border-b border-[#dbdfe6] dark:border-gray-800">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] uppercase tracking-wider">Pay Period</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] uppercase tracking-wider text-right">Net Salary</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] uppercase tracking-wider">Payment Date</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#f0f2f4] dark:divide-gray-800">
+<tr class="hover:bg-primary/5 cursor-pointer group bg-primary/[0.02]">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</div>
+<span class="font-bold text-[#111318] dark:text-white">October 2024</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right font-semibold text-[#111318] dark:text-white">Rp 14.500.000</td>
+<td class="px-6 py-5 text-sm text-[#616f89] dark:text-gray-400">25 Oct 2024</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">DISBURSED</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-[#616f89] hover:text-primary transition-colors p-1 rounded-full group-hover:bg-white dark:group-hover:bg-gray-700">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-[#616f89] hover:text-primary transition-colors p-1 rounded-full group-hover:bg-white dark:group-hover:bg-gray-700">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 cursor-pointer group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</div>
+<span class="font-bold text-[#111318] dark:text-white">September 2024</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right font-semibold text-[#111318] dark:text-white">Rp 14.250.000</td>
+<td class="px-6 py-5 text-sm text-[#616f89] dark:text-gray-400">25 Sep 2024</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">DISBURSED</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-[#616f89] hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-[#616f89] hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 cursor-pointer group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</div>
+<span class="font-bold text-[#111318] dark:text-white">August 2024</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right font-semibold text-[#111318] dark:text-white">Rp 14.250.000</td>
+<td class="px-6 py-5 text-sm text-[#616f89] dark:text-gray-400">25 Aug 2024</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">DISBURSED</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-[#616f89] hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-[#616f89] hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 cursor-pointer group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</div>
+<span class="font-bold text-[#111318] dark:text-white">July 2024</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right font-semibold text-[#111318] dark:text-white">Rp 14.250.000</td>
+<td class="px-6 py-5 text-sm text-[#616f89] dark:text-gray-400">25 Jul 2024</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">DISBURSED</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-[#616f89] hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="text-[#616f89] hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right: Detailed Preview Sidepanel -->
+<div class="w-[420px] bg-white dark:bg-background-dark rounded-xl shadow-lg border border-[#dbdfe6] dark:border-gray-800 flex flex-col overflow-hidden">
+<div class="p-6 border-b border-[#dbdfe6] dark:border-gray-800 bg-[#fcfcfd] dark:bg-gray-800/30">
+<div class="flex justify-between items-start mb-6">
+<div class="flex flex-col">
+<span class="text-[10px] font-extrabold text-[#616f89] uppercase tracking-widest mb-1">Previewing</span>
+<h4 class="text-xl font-bold">October 2024</h4>
+</div>
+<button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>Download PDF</span>
+</button>
+</div>
+<div class="bg-white dark:bg-gray-900 border border-dashed border-[#dbdfe6] dark:border-gray-700 rounded-lg p-4">
+<div class="flex items-center gap-3 mb-4 border-b border-gray-100 dark:border-gray-800 pb-3">
+<div class="size-10 bg-[#f0f2f4] dark:bg-gray-800 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div>
+<p class="text-xs font-bold text-[#111318] dark:text-white">PT Prima Sarana Gemilang</p>
+<p class="text-[10px] text-[#616f89]">ID: PSG-8842-EM</p>
+</div>
+</div>
+<!-- Take Home Pay Highlight -->
+<div class="text-center py-2">
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-tighter">Total Take Home Pay</p>
+<p class="text-3xl font-black text-primary tracking-tight">Rp 14.500.000</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-auto p-6 space-y-6">
+<!-- Earnings -->
+<div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-green-600 text-lg">add_circle</span>
+<h5 class="text-xs font-black uppercase text-[#111318] dark:text-white tracking-widest">Earnings</h5>
+</div>
+<div class="space-y-3 bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg">
+<div class="flex justify-between text-sm">
+<span class="text-[#616f89]">Basic Salary</span>
+<span class="font-semibold">Rp 10.000.000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-[#616f89]">Position Allowance</span>
+<span class="font-semibold">Rp 2.500.000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-[#616f89]">Meal &amp; Transport</span>
+<span class="font-semibold">Rp 3.000.000</span>
+</div>
+<div class="pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-between text-sm font-bold">
+<span>Total Gross</span>
+<span class="text-green-600">Rp 15.500.000</span>
+</div>
+</div>
+</div>
+<!-- Deductions -->
+<div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-red-600 text-lg">remove_circle</span>
+<h5 class="text-xs font-black uppercase text-[#111318] dark:text-white tracking-widest">Deductions</h5>
+</div>
+<div class="space-y-3 bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg">
+<div class="flex justify-between text-sm">
+<span class="text-[#616f89]">BPJS Kesehatan</span>
+<span class="font-semibold text-red-500">- Rp 200.000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-[#616f89]">BPJS Ketenagakerjaan</span>
+<span class="font-semibold text-red-500">- Rp 300.000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-[#616f89]">Income Tax (PPH21)</span>
+<span class="font-semibold text-red-500">- Rp 500.000</span>
+</div>
+<div class="pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-between text-sm font-bold">
+<span>Total Deductions</span>
+<span class="text-red-600">- Rp 1.000.000</span>
+</div>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="text-[10px] text-[#616f89] italic leading-relaxed text-center px-4">
+                            This is an electronically generated payslip. For any inquiries regarding the breakdown, please contact the HR Department or Payroll Admin.
+                        </div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

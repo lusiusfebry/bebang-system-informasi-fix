@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Company News &amp; Announcements | Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-gray-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111318] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-9">
+<a class="text-[#111318] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary" href="#">Dashboard</a>
+<a class="text-[#111318] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary" href="#">Employee Data</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary" href="#">News</a>
+<a class="text-[#111318] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary" href="#">Attendance</a>
+<a class="text-[#111318] dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#616f89] flex border-none bg-[#f0f2f4] dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg" data-icon="MagnifyingGlass">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#f0f2f4] dark:bg-gray-800 dark:text-white focus:ring-0 px-4 rounded-r-lg text-base font-normal placeholder:text-[#616f89]" placeholder="Search news..." value=""/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbvoN0euYgxYNYaotoCma_T9k7ogTuw_o4qSYUJktec-972ElqL-Rm9-J-bkh_AIM7WEGmKGkOndYF9eCzdKa3MKJ5-4wGFW3YHfW2Vt1YYpcF3Zh8b7AlIfPQsra26x93IH1v0Xx5qkh4Rp3CGu4Ga4zFSrpSWQ_uso-P0h2ItD_pk5ECD5oEQK4nE-OTaEEVQuN1ajMLYXaK9dwRmEyP34PPxFtYhi2bLjo6ZJpVdkTXL1kAPO5y5GDsBzwQPV8TvXrxY5EGQZk");'></div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[1280px] w-full px-6 lg:px-10 gap-6">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-3 p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm">
+<div class="flex min-w-72 flex-col gap-1">
+<p class="text-primary text-sm font-bold uppercase tracking-wider">Internal Communications</p>
+<h1 class="text-[#111318] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Company News &amp; Announcements</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-base font-normal leading-normal">Stay updated with the latest updates from PT Prima Sarana Gemilang</p>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white text-sm font-bold leading-normal transition-colors hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="truncate">Mark all as read</span>
+</button>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Center Content: News Feed -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Filters -->
+<div class="flex gap-3 pb-2 flex-wrap items-center overflow-x-auto">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary px-5 text-white shadow-md">
+<p class="text-sm font-bold">All News</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-gray-800 px-5 text-[#111318] dark:text-white border border-[#f0f2f4] dark:border-gray-700 hover:bg-gray-50">
+<p class="text-sm font-medium">HR Update</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-gray-800 px-5 text-[#111318] dark:text-white border border-[#f0f2f4] dark:border-gray-700 hover:bg-gray-50">
+<p class="text-sm font-medium">Safety Alert</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-gray-800 px-5 text-[#111318] dark:text-white border border-[#f0f2f4] dark:border-gray-700 hover:bg-gray-50">
+<p class="text-sm font-medium">Site Event</p>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-gray-800 px-5 text-[#111318] dark:text-white border border-[#f0f2f4] dark:border-gray-700 hover:bg-gray-50">
+<p class="text-sm font-medium">Company Policy</p>
+</button>
+<div class="ml-auto flex items-center gap-2 text-[#616f89] cursor-pointer hover:text-primary">
+<span class="text-sm font-medium">Sort by: Latest</span>
+<span class="material-symbols-outlined text-lg">filter_list</span>
+</div>
+</div>
+<!-- News Card 1 -->
+<div class="group flex flex-col items-stretch justify-start rounded-xl shadow-sm border border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden transition-all hover:shadow-md">
+<div class="w-full bg-center bg-no-repeat aspect-[21/9] bg-cover" data-alt="Industrial mining site at sunset" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuASGFYuktxDx84GsvfC53YpphmSHH_x-8x_uxbXZUCpUUKKMjxSvyDMs2NM-3eObBT4fiv4p5cca_3kgizF1CiHYweZ1aSJnZ6kFF7C0msxXyqA1g_ilYQIuQJcAvZ900iaWlzrX3uVuqyqsk_6yadOHm25pFNKtaqcxhbTGa0fx6RVzEnM99WZgPW7-zpnNaq__jUXS3gur07LIY0pdqYczuv6UfjBd3RihwunkzxDMZHR9VRFFJ_FS-SYbJJNAyactFJHj7UEgMI");'></div>
+<div class="flex w-full flex-col gap-3 p-6">
+<div class="flex justify-between items-start">
+<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-primary text-xs font-bold rounded-full uppercase tracking-wider">Safety Alert</span>
+<span class="text-[#616f89] dark:text-gray-400 text-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 5 min read
+                                        </span>
+</div>
+<h3 class="text-[#111318] dark:text-white text-2xl font-bold leading-tight group-hover:text-primary transition-colors">Annual Safety Protocol Review 2024</h3>
+<p class="text-[#616f89] dark:text-gray-400 text-base font-normal leading-relaxed line-clamp-2">
+                                        Ensuring the highest standards of safety across all mining sites is our top priority. We have updated our Q4 protocols to include new machinery handling guidelines and emergency response steps.
+                                    </p>
+<div class="flex items-center justify-between pt-4 border-t border-[#f0f2f4] dark:border-gray-800">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Published on Oct 24, 2024</p>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform hover:scale-[1.02] active:scale-95 shadow-sm">
+                                            Read Full Article
+                                        </button>
+</div>
+</div>
+</div>
+<!-- News Card 2 -->
+<div class="group flex flex-col md:flex-row items-stretch justify-start rounded-xl shadow-sm border border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden transition-all hover:shadow-md">
+<div class="w-full md:w-64 shrink-0 bg-center bg-no-repeat aspect-square md:aspect-auto bg-cover" data-alt="Employees in a modern office lounge" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7L0EWat9a70_nXgOW8C5DOB6op5aIXbeGSQNLaCmmlXcsTE4YgH5ZVGiINw7vGXtim6pjtdt0lBXFvGhqTg0VRiCZVgGEYC3Cjom_3mzepeDvg3ZeJjBccPbvTogGqkwShkNztWxcenaipLxoawFx3YFFBTd15cgEEHQ3yTMM-SsxQxpdfoRhdjj6bTVexL3AQfTPMTvA1pw_y7IKyVRTxeAiX99RYFc05sqVqMgT1QcpYEoWgtfPYTWG69eauPwIt_Z6Z5k3i0Y");'></div>
+<div class="flex flex-1 flex-col gap-2 p-6">
+<div class="flex justify-between">
+<span class="px-3 py-1 bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 text-xs font-bold rounded-full uppercase tracking-wider">HR Update</span>
+<span class="text-[#616f89] dark:text-gray-400 text-sm font-medium">3 min read</span>
+</div>
+<h3 class="text-[#111318] dark:text-white text-xl font-bold leading-tight group-hover:text-primary transition-colors">New Employee Benefits Program Announced</h3>
+<p class="text-[#616f89] dark:text-gray-400 text-base font-normal leading-relaxed line-clamp-2">
+                                        We are excited to announce an enhanced healthcare package for all permanent employees starting next month. This includes dental, vision, and mental wellness support.
+                                    </p>
+<div class="flex items-center justify-between mt-auto pt-4">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Oct 22, 2024</p>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                                            Read More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- News Card 3 -->
+<div class="group flex flex-col md:flex-row items-stretch justify-start rounded-xl shadow-sm border border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden transition-all hover:shadow-md">
+<div class="w-full md:w-64 shrink-0 bg-center bg-no-repeat aspect-square md:aspect-auto bg-cover" data-alt="Community tree planting event" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBI52ZpDnPSMtW3R3Hjq1ibksaPcYDUOd7ZjbEGbDPAX9ChS-TJIir3TXPAGwGzmWcUtnLkl8lLYHZua1vvLLFxsUNM4xw57bzH2veckU9ZKv7cRujZHFP1hVUgH1TzpbPXaNiI0FMMKyhiog6Np9dypQPlNWTd-fAhHhZuNHAAvqr3pnVadzb2mffC1COmySPDrtbWuG6yHnkyuiCbFokL8E7Yk4u5o6TRpy5T0m6Lw7S2v39wURR2HRouGjwcoIyUk0HwQczZtmM");'></div>
+<div class="flex flex-1 flex-col gap-2 p-6">
+<div class="flex justify-between">
+<span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-400 text-xs font-bold rounded-full uppercase tracking-wider">Site Event</span>
+<span class="text-[#616f89] dark:text-gray-400 text-sm font-medium">2 min read</span>
+</div>
+<h3 class="text-[#111318] dark:text-white text-xl font-bold leading-tight group-hover:text-primary transition-colors">Q3 Sustainability Drive Success</h3>
+<p class="text-[#616f89] dark:text-gray-400 text-base font-normal leading-relaxed line-clamp-2">
+                                        Thanks to our dedicated team at the South Kalimantan site, we planted over 5,000 trees this quarter as part of our rehabilitation initiative.
+                                    </p>
+<div class="flex items-center justify-between mt-auto pt-4">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-normal">Oct 20, 2024</p>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                                            Read More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Load More -->
+<div class="flex justify-center py-4">
+<button class="flex h-11 items-center justify-center rounded-lg px-8 border-2 border-[#f0f2f4] dark:border-gray-800 text-[#111318] dark:text-white font-bold hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors">
+                                    Load Older Stories
+                                </button>
+</div>
+</div>
+<!-- Sidebar -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Important Announcements (Pinned) -->
+<div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary font-bold">push_pin</span>
+<h3 class="text-primary text-lg font-bold">Important / Pinned</h3>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1 p-3 bg-white dark:bg-gray-800 rounded-lg border-l-4 border-primary shadow-sm cursor-pointer hover:bg-gray-50 transition-colors">
+<p class="text-xs font-bold text-primary uppercase">Critical Alert</p>
+<h4 class="text-[#111318] dark:text-white font-bold text-sm">Emergency Drill: All Sites Q4</h4>
+<p class="text-[#616f89] dark:text-gray-400 text-xs">Mandatory safety drill scheduled for Oct 30, 09:00 AM.</p>
+</div>
+<div class="flex flex-col gap-1 p-3 bg-white dark:bg-gray-800 rounded-lg border-l-4 border-primary shadow-sm cursor-pointer hover:bg-gray-50 transition-colors">
+<p class="text-xs font-bold text-primary uppercase">Policy Update</p>
+<h4 class="text-[#111318] dark:text-white font-bold text-sm">Updated Travel Policy v2.4</h4>
+<p class="text-[#616f89] dark:text-gray-400 text-xs">Revised reimbursement rates for site visits.</p>
+</div>
+</div>
+</div>
+<!-- Upcoming Events -->
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 rounded-xl p-6">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold mb-4">Upcoming Site Events</h3>
+<div class="flex flex-col gap-5">
+<!-- Event 1 -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center justify-center min-w-[50px] h-[60px] bg-[#f0f2f4] dark:bg-gray-800 rounded-lg">
+<p class="text-xs font-bold text-primary">OCT</p>
+<p class="text-xl font-black text-[#111318] dark:text-white">28</p>
+</div>
+<div class="flex flex-col">
+<h4 class="text-[#111318] dark:text-white font-bold text-sm">Town Hall Meeting Q3</h4>
+<p class="text-[#616f89] dark:text-gray-400 text-xs">Main Office Hall • 10:00 AM</p>
+<a class="text-primary text-xs font-bold mt-1" href="#">Join Virtually →</a>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center justify-center min-w-[50px] h-[60px] bg-[#f0f2f4] dark:bg-gray-800 rounded-lg">
+<p class="text-xs font-bold text-primary">NOV</p>
+<p class="text-xl font-black text-[#111318] dark:text-white">02</p>
+</div>
+<div class="flex flex-col">
+<h4 class="text-[#111318] dark:text-white font-bold text-sm">Health Screening Day</h4>
+<p class="text-[#616f89] dark:text-gray-400 text-xs">On-site Medical Center • All Day</p>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center justify-center min-w-[50px] h-[60px] bg-[#f0f2f4] dark:bg-gray-800 rounded-lg">
+<p class="text-xs font-bold text-primary">NOV</p>
+<p class="text-xl font-black text-[#111318] dark:text-white">15</p>
+</div>
+<div class="flex flex-col">
+<h4 class="text-[#111318] dark:text-white font-bold text-sm">Mining Safety Workshop</h4>
+<p class="text-[#616f89] dark:text-gray-400 text-xs">Training Room B • 02:00 PM</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border border-primary/20 text-primary text-sm font-bold rounded-lg hover:bg-primary/5 transition-colors">
+                                    View Calendar
+                                </button>
+</div>
+<!-- Suggestion / Newsletter box -->
+<div class="bg-gradient-to-br from-primary to-blue-700 rounded-xl p-6 text-white">
+<h3 class="text-lg font-bold mb-2">Have a story?</h3>
+<p class="text-sm text-blue-100 mb-4 leading-relaxed">Share your site's success stories or updates with the whole company.</p>
+<button class="w-full py-2 bg-white text-primary text-sm font-bold rounded-lg shadow-lg hover:bg-blue-50 transition-colors">
+                                    Submit News Idea
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-12 py-10 border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-gray-900">
+<div class="max-w-[1280px] mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="size-5 text-gray-400">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<p class="text-[#616f89] text-sm">© 2024 PT Prima Sarana Gemilang. All rights reserved.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-[#616f89] text-sm hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-[#616f89] text-sm hover:text-primary" href="#">Contact HR</a>
+<a class="text-[#616f89] text-sm hover:text-primary" href="#">IT Support</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

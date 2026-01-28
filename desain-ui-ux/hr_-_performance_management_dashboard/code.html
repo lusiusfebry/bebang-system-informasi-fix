@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HR - Performance Management Dashboard | Bebang Sistem</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white transition-colors duration-200">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-[#dbdfe6] dark:border-gray-800 bg-white dark:bg-background-dark flex flex-col fixed h-full z-20">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-base font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-normal">HR Admin Panel</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<p class="text-sm font-semibold">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">library_books</span>
+<p class="text-sm font-medium">KPI Library</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">groups_3</span>
+<p class="text-sm font-medium">360 Feedback</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">assessment</span>
+<p class="text-sm font-medium">Individual Reports</p>
+</a>
+<div class="my-4 border-t border-[#dbdfe6] dark:border-gray-800"></div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-4 bg-[#f8f9fb] dark:bg-gray-900 m-4 rounded-lg">
+<p class="text-xs text-[#616f89] mb-2 font-medium">SYSTEM STATUS</p>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-green-500"></div>
+<span class="text-xs font-semibold">Active: PT PSG</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-10 flex items-center justify-between border-b border-[#dbdfe6] dark:border-gray-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-8 py-4">
+<div class="flex items-center gap-4">
+<h2 class="text-[#111318] dark:text-white text-xl font-bold tracking-tight">Performance Management</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative min-w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#616f89] text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 text-sm bg-background-light dark:bg-gray-800 border-none rounded-lg focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-[#616f89] dark:text-white" placeholder="Search employee or cycle..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg bg-background-light dark:bg-gray-800 text-[#616f89] hover:bg-primary/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+<button class="p-2 rounded-lg bg-background-light dark:bg-gray-800 text-[#616f89] hover:bg-primary/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">mail</span>
+</button>
+</div>
+<div class="h-10 w-[1px] bg-[#dbdfe6] dark:bg-gray-800"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-semibold dark:text-white">Admin PSG</p>
+<p class="text-[10px] text-[#616f89] font-bold uppercase tracking-wider">Super Admin</p>
+</div>
+<div class="size-10 rounded-full bg-center bg-cover border-2 border-white dark:border-gray-700 shadow-sm" data-alt="Corporate professional user avatar profile photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBt58QwUDDsNhR9brWwMwN3SYm-dogVW0e_l7kXEDd6qiml40NatB8DGO_gFPV58RLDcRZEKksonqOJtFy7ckpYtfTHuDpOX01GwNSebAclUBXbJxB-9pQQ_T20GFneJX7ThDrhG5VDGp1deb1pGABwYCQ0OsqN3f58u0Ds1xLqJQrJezYBnacNfuGFM0bGwMb7GLB59yoWelqBia1khfyL4lO-72IyEBRVeSYntxuBEAAu1nu9yngUPhL3ZtgEGhDmrjKRSgt4ft0");'></div>
+</div>
+</div>
+</header>
+<!-- Dashboard Body -->
+<div class="p-8">
+<!-- Action Header -->
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="text-lg font-bold text-[#111318] dark:text-white">Dashboard Overview</h3>
+<p class="text-sm text-[#616f89]">Monitor and manage real-time performance evaluation metrics.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-white dark:bg-gray-800 border border-[#dbdfe6] dark:border-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+                            Export
+                        </button>
+<button class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 flex items-center gap-2 transition-transform active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                            New Review Cycle
+                        </button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg">sync_alt</span>
+<span class="text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded-full">+2%</span>
+</div>
+<p class="text-[#616f89] text-sm font-medium mb-1">Active Review Cycles</p>
+<p class="text-[#111318] dark:text-white text-3xl font-bold tracking-tight">12</p>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm flex items-center gap-4">
+<div class="relative size-20 shrink-0">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-[#f0f2f4] dark:stroke-gray-800" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="78, 100" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-xs font-bold text-primary">78%</span>
+</div>
+</div>
+<div>
+<p class="text-[#616f89] text-sm font-medium mb-1">Overall Progress</p>
+<p class="text-[#111318] dark:text-white text-lg font-bold">1,240 / 1,590</p>
+<p class="text-[10px] text-green-600 font-bold tracking-wide">ON TARGET</p>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-[20px] text-amber-500">military_tech</span>
+<p class="text-[#616f89] text-sm font-medium">Top Department</p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-sm font-bold">Logistics</span>
+<span class="text-xs text-[#616f89]">96% score</span>
+</div>
+<div class="w-full bg-[#f0f2f4] dark:bg-gray-800 rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 96%"></div>
+</div>
+<p class="text-[#616f89] text-[11px] mt-1">Leading for 3 consecutive months</p>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined p-2 bg-red-50 dark:bg-red-900/20 text-red-600 rounded-lg">pending_actions</span>
+<span class="text-xs font-bold text-red-600 bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-full">+12%</span>
+</div>
+<p class="text-[#616f89] text-sm font-medium mb-1">Pending Self-Assessments</p>
+<p class="text-[#111318] dark:text-white text-3xl font-bold tracking-tight">45</p>
+</div>
+</div>
+</div>
+<!-- Main Table Section -->
+<div class="bg-white dark:bg-background-dark rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm overflow-hidden">
+<div class="px-6 py-5 border-b border-[#dbdfe6] dark:border-gray-800 flex justify-between items-center">
+<h2 class="text-[#111318] dark:text-white text-lg font-bold">Active Review Cycles</h2>
+<div class="flex gap-2">
+<button class="p-2 text-[#616f89] hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"><span class="material-symbols-outlined text-[20px]">filter_list</span></button>
+<button class="p-2 text-[#616f89] hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50/50 dark:bg-gray-900/50 text-[#616f89] text-xs font-bold uppercase tracking-wider">
+<th class="px-6 py-4">Cycle Name</th>
+<th class="px-6 py-4">Period</th>
+<th class="px-6 py-4">Department</th>
+<th class="px-6 py-4">Participation Rate</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111318] dark:text-white">Annual Review 2023</span>
+<span class="text-[11px] text-[#616f89]">Internal Evaluation</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-[#616f89]">Jan - Dec 2023</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-gray-300 text-[11px] font-semibold rounded uppercase">All Departments</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="flex-1 max-w-[120px] bg-[#f0f2f4] dark:bg-gray-800 rounded-full h-1.5">
+<div class="bg-green-500 h-full rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-sm font-bold text-[#111318] dark:text-white">85%</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-600 text-xs font-bold rounded-full border border-amber-100 dark:border-amber-900/30">
+<div class="size-1.5 rounded-full bg-amber-600 animate-pulse"></div>
+                                            In Progress
+                                        </span>
+</td>
+<td class="px-6 py-5">
+<button class="text-primary text-sm font-bold hover:underline">Manage</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111318] dark:text-white">Q3 Probation Check</span>
+<span class="text-[11px] text-[#616f89]">Operations Unit</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-[#616f89]">Jul - Sep 2023</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-gray-300 text-[11px] font-semibold rounded uppercase">Operations</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="flex-1 max-w-[120px] bg-[#f0f2f4] dark:bg-gray-800 rounded-full h-1.5">
+<div class="bg-blue-500 h-full rounded-full" style="width: 100%"></div>
+</div>
+<span class="text-sm font-bold text-[#111318] dark:text-white">100%</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-600 text-xs font-bold rounded-full border border-green-100 dark:border-green-900/30">
+<div class="size-1.5 rounded-full bg-green-600"></div>
+                                            Completed
+                                        </span>
+</td>
+<td class="px-6 py-5">
+<button class="text-primary text-sm font-bold hover:underline">Report</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111318] dark:text-white">Mid-Year Tech Assessment</span>
+<span class="text-[11px] text-[#616f89]">Software &amp; Infra</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-[#616f89]">Jun - Jul 2023</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-gray-300 text-[11px] font-semibold rounded uppercase">Engineering</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="flex-1 max-w-[120px] bg-[#f0f2f4] dark:bg-gray-800 rounded-full h-1.5">
+<div class="bg-gray-300 dark:bg-gray-600 h-full rounded-full" style="width: 45%"></div>
+</div>
+<span class="text-sm font-bold text-[#111318] dark:text-white">45%</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs font-bold rounded-full border border-gray-200 dark:border-gray-700">
+<div class="size-1.5 rounded-full bg-gray-400"></div>
+                                            Scheduled
+                                        </span>
+</td>
+<td class="px-6 py-5">
+<button class="text-primary text-sm font-bold hover:underline">Setup</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111318] dark:text-white">Leadership Feedback</span>
+<span class="text-[11px] text-[#616f89]">Top Management</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-[#616f89]">Oct 2023</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-gray-300 text-[11px] font-semibold rounded uppercase">Management</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="flex-1 max-w-[120px] bg-[#f0f2f4] dark:bg-gray-800 rounded-full h-1.5">
+<div class="bg-primary h-full rounded-full" style="width: 12%"></div>
+</div>
+<span class="text-sm font-bold text-[#111318] dark:text-white">12%</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-600 text-xs font-bold rounded-full border border-amber-100 dark:border-amber-900/30">
+<div class="size-1.5 rounded-full bg-amber-600 animate-pulse"></div>
+                                            In Progress
+                                        </span>
+</td>
+<td class="px-6 py-5">
+<button class="text-primary text-sm font-bold hover:underline">Manage</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-[#dbdfe6] dark:border-gray-800 flex justify-between items-center bg-gray-50/30 dark:bg-gray-900/30">
+<span class="text-xs text-[#616f89] font-medium">Showing 1 to 4 of 12 cycles</span>
+<div class="flex gap-1">
+<button class="size-8 flex items-center justify-center rounded border border-[#dbdfe6] dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded border border-primary bg-primary text-white font-bold text-xs">1</button>
+<button class="size-8 flex items-center justify-center rounded border border-[#dbdfe6] dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 text-xs font-bold">2</button>
+<button class="size-8 flex items-center justify-center rounded border border-[#dbdfe6] dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 text-xs font-bold">3</button>
+<button class="size-8 flex items-center justify-center rounded border border-[#dbdfe6] dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

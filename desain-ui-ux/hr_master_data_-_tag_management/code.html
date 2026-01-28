@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HR Master Data - Tag Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-item-active {
+            background-color: #f0f2f4;
+            color: #111318;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex flex-col bg-white dark:bg-slate-900 border-r border-[#dbdfe6] dark:border-slate-800 shrink-0">
+<div class="p-6 flex flex-col gap-6 h-full justify-between">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Company profile picture logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA26faw8fYHbryMPXfG0_PdkUtIbSE3gC7hFBWQM2tGJNLvhoTvTESSawWr_xpIEakSFsJFuLgcGMG0oMlc_VGdEBnwPi79jpv_EceW_htxmTkrTU5j52wKTOqRz8w-w2sm5MQkkOA8gPrrJlsnIh919AR5wLYNZjW7vpvq9sSfF1gQKt0-sGqKY4j047W5OlDXrxK1v7uddOIdiCEx7P1mDb7hs5n2uXuCh5d34soW14DDPJcRXt-hoAGXtM3w15_l8ME_zS9r5mg");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#111318] dark:text-white text-base font-bold leading-normal">Bebang HRIS</h1>
+<p class="text-[#616f89] dark:text-slate-400 text-xs font-normal">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#616f89] dark:text-slate-400 hover:bg-[#f0f2f4] dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#616f89] dark:text-slate-400 hover:bg-[#f0f2f4] dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-medium">Employee Data</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg sidebar-item-active dark:bg-primary/20 dark:text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">database</span>
+<span class="text-sm font-bold">Master Data</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#616f89] dark:text-slate-400 hover:bg-[#f0f2f4] dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-sm font-medium">Payroll</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#616f89] dark:text-slate-400 hover:bg-[#f0f2f4] dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<button class="flex w-full cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-md hover:bg-blue-700 transition-colors">
+<span class="truncate">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Header Section -->
+<div class="px-8 pt-8 flex flex-col gap-1">
+<nav class="flex items-center gap-2 mb-2">
+<a class="text-[#616f89] dark:text-slate-400 text-sm font-medium hover:underline" href="#">Master Data</a>
+<span class="text-[#616f89] dark:text-slate-500 text-sm font-medium">/</span>
+<span class="text-primary dark:text-blue-400 text-sm font-medium">Tag Management</span>
+</nav>
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-[#111318] dark:text-white text-3xl font-black tracking-tight">Tag Management</h2>
+<p class="text-[#616f89] dark:text-slate-400 text-sm mt-1">Manage organizational tags for employee categorization.</p>
+</div>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg font-bold text-sm shadow-sm hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Tambah Tag</span>
+</button>
+</div>
+</div>
+<!-- Content Container -->
+<div class="px-8 py-6">
+<!-- Search and Filters -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-[#dbdfe6] dark:border-slate-800 shadow-sm p-4 mb-6">
+<div class="flex gap-4">
+<div class="flex-1">
+<label class="relative flex items-center">
+<span class="absolute left-4 material-symbols-outlined text-[#616f89]">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-slate-800 border-none rounded-lg py-2.5 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary dark:text-white placeholder:text-[#616f89]" placeholder="Search tag by name or description..."/>
+</label>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-[#dbdfe6] dark:border-slate-700 rounded-lg text-sm font-medium dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                            Filter
+                        </button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-[#dbdfe6] dark:border-slate-800 shadow-sm overflow-hidden">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-[#fcfcfd] dark:bg-slate-800/50 border-bottom border-[#dbdfe6] dark:border-slate-800">
+<th class="px-6 py-4 text-left text-xs font-bold text-[#616f89] dark:text-slate-400 uppercase tracking-wider">Nama Tag</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-[#616f89] dark:text-slate-400 uppercase tracking-wider">Warna Tag</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-[#616f89] dark:text-slate-400 uppercase tracking-wider">Keterangan</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-[#616f89] dark:text-slate-400 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-right text-xs font-bold text-[#616f89] dark:text-slate-400 uppercase tracking-wider">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="text-sm font-semibold text-[#111318] dark:text-white">Full-time</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 px-2 py-1 rounded-full border border-blue-200 bg-blue-50 dark:bg-blue-900/20 w-fit">
+<div class="size-3 rounded-full bg-blue-500 shadow-sm"></div>
+<span class="text-xs font-medium text-blue-700 dark:text-blue-300">Blue (#3b82f6)</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#616f89] dark:text-slate-400 line-clamp-1">Karyawan dengan status kontrak kerja waktu tidak tertentu (PKWTT).</p>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                        Aktif
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="text-sm font-semibold text-[#111318] dark:text-white">Probation</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 px-2 py-1 rounded-full border border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 w-fit">
+<div class="size-3 rounded-full bg-yellow-500 shadow-sm"></div>
+<span class="text-xs font-medium text-yellow-700 dark:text-yellow-300">Yellow (#f59e0b)</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#616f89] dark:text-slate-400 line-clamp-1">Masa percobaan 3 bulan untuk karyawan baru.</p>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                        Aktif
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="text-sm font-semibold text-[#111318] dark:text-white">Contract</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 px-2 py-1 rounded-full border border-red-200 bg-red-50 dark:bg-red-900/20 w-fit">
+<div class="size-3 rounded-full bg-red-500 shadow-sm"></div>
+<span class="text-xs font-medium text-red-700 dark:text-red-300">Red (#ef4444)</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#616f89] dark:text-slate-400 line-clamp-1">Karyawan kontrak waktu tertentu (PKWT).</p>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                                        Non-Aktif
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="text-sm font-semibold text-[#111318] dark:text-white">On-site</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 px-2 py-1 rounded-full border border-emerald-200 bg-emerald-50 dark:bg-emerald-900/20 w-fit">
+<div class="size-3 rounded-full bg-emerald-500 shadow-sm"></div>
+<span class="text-xs font-medium text-emerald-700 dark:text-emerald-300">Emerald (#10b981)</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-[#616f89] dark:text-slate-400 line-clamp-1">Bekerja penuh waktu dari kantor pusat atau site area.</p>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                        Aktif
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-[#fcfcfd] dark:bg-slate-800/30 border-t border-[#dbdfe6] dark:border-slate-800 flex items-center justify-between">
+<p class="text-sm text-[#616f89] dark:text-slate-400">Showing <span class="font-medium">1</span> to <span class="font-medium">4</span> of <span class="font-medium">12</span> results</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-[#dbdfe6] dark:border-slate-700 rounded-md text-sm font-medium disabled:opacity-50">Previous</button>
+<button class="px-3 py-1 bg-primary text-white rounded-md text-sm font-medium">1</button>
+<button class="px-3 py-1 border border-[#dbdfe6] dark:border-slate-700 rounded-md text-sm font-medium">2</button>
+<button class="px-3 py-1 border border-[#dbdfe6] dark:border-slate-700 rounded-md text-sm font-medium">3</button>
+<button class="px-3 py-1 border border-[#dbdfe6] dark:border-slate-700 rounded-md text-sm font-medium">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Modal Mockup: Tambah Tag (Hidden by default, shown here for visual context) -->
+<div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+<div class="bg-white dark:bg-slate-900 rounded-xl w-full max-w-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+<div class="px-6 py-4 border-b border-[#dbdfe6] dark:border-slate-800 flex items-center justify-between">
+<h3 class="text-lg font-bold dark:text-white">Tambah Tag Baru</h3>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 flex flex-col gap-5">
+<!-- Name Field -->
+<div>
+<label class="block text-sm font-semibold mb-1.5 text-[#111318] dark:text-slate-200">Nama Tag</label>
+<input class="w-full bg-[#f0f2f4] dark:bg-slate-800 border-none rounded-lg py-2.5 px-4 text-sm focus:ring-2 focus:ring-primary dark:text-white" placeholder="Misal: Freelance, Senior, WFH" type="text"/>
+</div>
+<!-- Description Field -->
+<div>
+<label class="block text-sm font-semibold mb-1.5 text-[#111318] dark:text-slate-200">Keterangan</label>
+<textarea class="w-full bg-[#f0f2f4] dark:bg-slate-800 border-none rounded-lg py-2.5 px-4 text-sm focus:ring-2 focus:ring-primary dark:text-white h-24" placeholder="Berikan deskripsi singkat tentang penggunaan tag ini..."></textarea>
+</div>
+<!-- Color Picker -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-semibold mb-1.5 text-[#111318] dark:text-slate-200">Pilih Warna</label>
+<div class="flex items-center gap-3">
+<input class="w-12 h-10 p-1 bg-white dark:bg-slate-800 border-none rounded-lg cursor-pointer" type="color" value="#135bec"/>
+<input class="flex-1 bg-[#f0f2f4] dark:bg-slate-800 border-none rounded-lg py-2 px-4 text-sm font-mono dark:text-white uppercase" type="text" value="#135bec"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-semibold mb-1.5 text-[#111318] dark:text-slate-200">Status</label>
+<select class="w-full bg-[#f0f2f4] dark:bg-slate-800 border-none rounded-lg py-2.5 px-4 text-sm focus:ring-2 focus:ring-primary dark:text-white">
+<option>Aktif</option>
+<option>Non-Aktif</option>
+</select>
+</div>
+</div>
+<!-- Preview Box -->
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-dashed border-[#dbdfe6] dark:border-slate-700">
+<p class="text-[11px] font-bold text-[#616f89] dark:text-slate-500 uppercase mb-2">Preview Tampilan</p>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 w-fit">
+<div class="size-3 rounded-full bg-primary shadow-sm"></div>
+<span class="text-xs font-bold text-primary">Contoh Tag</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800 border-t border-[#dbdfe6] dark:border-slate-800 flex justify-end gap-3">
+<button class="px-4 py-2 text-sm font-bold text-[#616f89] dark:text-slate-300 hover:text-[#111318] dark:hover:text-white transition-colors">Batal</button>
+<button class="px-6 py-2 bg-primary text-white rounded-lg font-bold text-sm shadow-lg shadow-primary/20 hover:bg-blue-700 transition-all">Simpan Tag</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification (Top Right) -->
+<div class="fixed top-4 right-4 z-[100] pointer-events-none">
+<div class="bg-white dark:bg-slate-900 border-l-4 border-green-500 shadow-xl rounded-lg p-4 flex items-center gap-3 animate-in slide-in-from-right duration-300">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<div>
+<p class="text-sm font-bold dark:text-white">Berhasil!</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Tag baru telah ditambahkan ke sistem.</p>
+</div>
+<button class="ml-4 text-slate-400">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</body></html>

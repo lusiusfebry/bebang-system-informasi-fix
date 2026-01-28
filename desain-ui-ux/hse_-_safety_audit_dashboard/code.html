@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HSE - Safety Audit Dashboard | PT Prima Sarana Gemilang</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#111318] dark:text-white antialiased">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="flex w-64 flex-col border-r border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-background-dark h-full">
+<div class="flex flex-col h-full justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- Brand Section -->
+<div class="flex items-center gap-3 px-2">
+<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-lg">shield</span>
+</div>
+<div>
+<h1 class="text-[#111318] dark:text-white text-sm font-bold leading-tight">HSE Module</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-xs">Bebang Sistem Informasi</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#f0f2f4] dark:bg-primary/20 text-primary dark:text-white" href="#">
+<span class="material-symbols-outlined text-xl">fact_check</span>
+<p class="text-sm font-semibold">Safety Audits</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">warning</span>
+<p class="text-sm font-medium">Incidents</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">clinical_notes</span>
+<p class="text-sm font-medium">Risk Assessment</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">school</span>
+<p class="text-sm font-medium">Training</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#616f89] hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">eco</span>
+<p class="text-sm font-medium">Environment</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<button class="flex w-full cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-[0.015em] hover:bg-blue-700 transition-all shadow-sm">
+<span class="truncate">Export Data</span>
+</button>
+<div class="border-t border-[#dbdfe6] dark:border-gray-700 pt-4 flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="User profile avatar circle" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBHx6DF-ku_tRLJDjLwv5Q0KJNLYXFpfjOZsl6_XtvxIM-AZRQf7ENvtItLZXc8lqyb7tzxDKfDrv31uAZzImDJsuyiyl6ZUJpTsQCl7_cca0bg3n7WPxkYkDNu9OHd3z_4XL95VXJ0KVf5tFR0NYYeP8t-8tI42leue_JpQJJYYV88tGXdYDv0me1tlNtvkzbIUtnOe619lBrBClKHrgdegKcj8nPIthe3bEPGFlPQKNpRrKmUC0Yzb_3vEkJzI2hzVL_UiPNUdXw");'></div>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">John Inspector</p>
+<p class="text-xs text-[#616f89] truncate">Safety Officer</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between border-b border-[#dbdfe6] dark:border-gray-700 bg-white dark:bg-background-dark px-8 py-3 sticky top-0 z-10">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-6">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z"></path></svg>
+</div>
+<h2 class="text-[#111318] dark:text-white text-lg font-black tracking-tight">PT Prima Sarana Gemilang</h2>
+</div>
+<div class="h-6 w-px bg-[#dbdfe6] dark:bg-gray-700"></div>
+<div class="relative flex items-center w-64">
+<span class="material-symbols-outlined absolute left-3 text-[#616f89] text-xl">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary placeholder:text-[#616f89]" placeholder="Search audits..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<nav class="hidden md:flex items-center gap-6 mr-4">
+<a class="text-[#111318] dark:text-white text-sm font-medium hover:text-primary" href="#">Dashboard</a>
+<a class="text-[#111318] dark:text-white text-sm font-medium hover:text-primary" href="#">Reports</a>
+<a class="text-[#111318] dark:text-white text-sm font-medium hover:text-primary" href="#">Settings</a>
+</nav>
+<button class="flex items-center justify-center rounded-lg size-10 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</header>
+<!-- Page Body -->
+<div class="p-8 max-w-[1200px] mx-auto w-full">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-4 mb-8">
+<div class="flex flex-col gap-1">
+<h2 class="text-[#111318] dark:text-white text-3xl font-black leading-tight tracking-tight">Safety Audit Dashboard</h2>
+<p class="text-[#616f89] dark:text-gray-400 text-base font-normal">Manage and monitor site safety inspections across all project areas</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex h-10 items-center justify-center rounded-lg bg-[#f0f2f4] dark:bg-gray-800 p-1 min-w-[240px]">
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-4 bg-white dark:bg-gray-700 shadow-sm text-primary dark:text-white text-sm font-semibold">
+<span class="material-symbols-outlined text-lg mr-2">list</span>
+<span class="truncate">Table View</span>
+<input checked="" class="hidden" name="view-toggle" type="radio" value="Table"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-4 text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary">
+<span class="material-symbols-outlined text-lg mr-2">calendar_month</span>
+<span class="truncate">Calendar</span>
+<input class="hidden" name="view-toggle" type="radio" value="Calendar"/>
+</label>
+</div>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold tracking-wide hover:shadow-lg hover:bg-blue-700 transition-all">
+<span class="material-symbols-outlined text-lg mr-2">add</span>
+<span class="truncate">New Audit</span>
+</button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-800 border border-[#dbdfe6] dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-1">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Audits Conducted</p>
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<p class="text-[#111318] dark:text-white tracking-tight text-3xl font-black leading-tight">128</p>
+<div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12.5%</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-800 border border-[#dbdfe6] dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-1">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Compliance Score</p>
+<span class="material-symbols-outlined text-primary">verified</span>
+</div>
+<p class="text-[#111318] dark:text-white tracking-tight text-3xl font-black leading-tight">94.2%</p>
+<div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+2.3%</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-800 border border-[#dbdfe6] dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-1">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">High Risk Findings</p>
+<span class="material-symbols-outlined text-red-500">warning</span>
+</div>
+<p class="text-[#111318] dark:text-white tracking-tight text-3xl font-black leading-tight">12</p>
+<div class="flex items-center gap-1 text-[#e73908] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span>-5%</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-800 border border-[#dbdfe6] dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-1">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Scheduled Audits</p>
+<span class="material-symbols-outlined text-primary">event</span>
+</div>
+<p class="text-[#111318] dark:text-white tracking-tight text-3xl font-black leading-tight">45</p>
+<div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+8%</span>
+</div>
+</div>
+</div>
+<!-- Recent Audits Table Section -->
+<div class="bg-white dark:bg-gray-800 rounded-xl border border-[#dbdfe6] dark:border-gray-700 shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-[#dbdfe6] dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
+<h3 class="text-[#111318] dark:text-white font-bold text-lg">Recent Audits</h3>
+<button class="text-primary text-sm font-bold hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#dbdfe6] dark:border-gray-700 bg-gray-50/30 dark:bg-gray-900/20">
+<th class="px-6 py-4 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Audit ID</th>
+<th class="px-6 py-4 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Date</th>
+<th class="px-6 py-4 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Inspector</th>
+<th class="px-6 py-4 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Area</th>
+<th class="px-6 py-4 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">Score</th>
+<th class="px-6 py-4 text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase tracking-wider text-center">Status</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-gray-700">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#AUD-2023-001</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Oct 24, 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-primary">JD</div>
+<span class="text-sm text-[#111318] dark:text-gray-300">John Doe</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Main Workshop</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-12 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+<div class="bg-green-500 h-full w-[96%]"></div>
+</div>
+<span class="text-xs font-bold text-green-600">96%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#f0f2f4] dark:bg-gray-700 text-[#616f89] dark:text-gray-300 uppercase tracking-tighter">Draft</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-gray-400 hover:text-primary">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#AUD-2023-002</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Oct 23, 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-purple-100 flex items-center justify-center text-[10px] font-bold text-purple-600">AS</div>
+<span class="text-sm text-[#111318] dark:text-gray-300">Ari Setiawan</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Open Pit A</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-12 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+<div class="bg-blue-500 h-full w-[88%]"></div>
+</div>
+<span class="text-xs font-bold text-blue-600">88%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-100 dark:bg-primary/20 text-primary dark:text-primary-400 uppercase tracking-tighter">Submitted</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-gray-400 hover:text-primary">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#AUD-2023-003</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Oct 22, 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-orange-100 flex items-center justify-center text-[10px] font-bold text-orange-600">SM</div>
+<span class="text-sm text-[#111318] dark:text-gray-300">Sarah Miller</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Mess Hall</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-12 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+<div class="bg-yellow-500 h-full w-[74%]"></div>
+</div>
+<span class="text-xs font-bold text-yellow-600">74%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-yellow-100 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-500 uppercase tracking-tighter">Review</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-gray-400 hover:text-primary">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#AUD-2023-004</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Oct 20, 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-pink-100 flex items-center justify-center text-[10px] font-bold text-pink-600">RT</div>
+<span class="text-sm text-[#111318] dark:text-gray-300">Ryan Taylor</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Fuel Station</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-12 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+<div class="bg-red-500 h-full w-[62%]"></div>
+</div>
+<span class="text-xs font-bold text-red-600">62%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-100 dark:bg-primary/20 text-primary dark:text-primary-400 uppercase tracking-tighter">Submitted</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-gray-400 hover:text-primary">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-primary">#AUD-2023-005</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Oct 19, 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-primary">JD</div>
+<span class="text-sm text-[#111318] dark:text-gray-300">John Doe</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-300">Warehouse B</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-12 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+<div class="bg-green-500 h-full w-[100%]"></div>
+</div>
+<span class="text-xs font-bold text-green-600">100%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#f0f2f4] dark:bg-gray-700 text-[#616f89] dark:text-gray-300 uppercase tracking-tighter">Draft</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="material-symbols-outlined text-gray-400 hover:text-primary">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-[#dbdfe6] dark:border-gray-700 flex justify-between items-center bg-white dark:bg-gray-800">
+<p class="text-xs text-[#616f89] dark:text-gray-400 font-medium">Showing 5 of 128 audits</p>
+<div class="flex items-center gap-2">
+<button class="size-8 flex items-center justify-center rounded border border-[#dbdfe6] dark:border-gray-700 text-[#616f89] dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<span class="text-xs font-bold px-3">1</span>
+<button class="size-8 flex items-center justify-center rounded border border-[#dbdfe6] dark:border-gray-700 text-[#616f89] dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Action Footer / Floating Section -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-[#dbdfe6] dark:border-gray-700 shadow-sm">
+<h4 class="font-bold text-[#111318] dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">priority_high</span>
+                            Critical Observations
+                        </h4>
+<div class="space-y-3">
+<div class="flex gap-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500">
+<div class="text-red-600 font-bold text-xs uppercase pt-1">High</div>
+<div>
+<p class="text-sm font-bold text-[#111318] dark:text-white">Improper scaffolding at Warehouse A</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Found in Audit #AUD-2023-012 by Ari S.</p>
+</div>
+</div>
+<div class="flex gap-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500">
+<div class="text-red-600 font-bold text-xs uppercase pt-1">High</div>
+<div>
+<p class="text-sm font-bold text-[#111318] dark:text-white">Oil spill near fuel terminal area</p>
+<p class="text-xs text-[#616f89] dark:text-gray-400">Found in Audit #AUD-2023-015 by Ryan T.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 dark:bg-primary/10 p-6 rounded-xl border border-primary/20 dark:border-primary/30 flex flex-col justify-between">
+<div>
+<h4 class="font-bold text-primary dark:text-white mb-2">Audit Compliance Goal</h4>
+<p class="text-sm text-primary/80 dark:text-gray-300 leading-relaxed mb-4">You have achieved 94.2% compliance this month. Complete 8 more scheduled audits to reach the 100% target.</p>
+</div>
+<div class="w-full bg-primary/20 rounded-full h-3">
+<div class="bg-primary h-full rounded-full w-[94.2%]"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

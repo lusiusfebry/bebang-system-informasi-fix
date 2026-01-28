@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vehicle Maintenance &amp; Fuel Log Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111318] dark:text-white">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-[#1a212f] border-b border-solid border-[#dbdfe6] dark:border-[#2d3748] px-4 md:px-10 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="size-6" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight hidden sm:block">Bebang Sistem Informasi</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Inventory</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Logistics</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end items-center gap-4">
+<div class="relative w-full max-w-xs hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#616f89] text-xl">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-[#2d3748] border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Search vehicle or driver..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-[#616f89] dark:text-gray-400 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border-2 border-primary/20" data-alt="User profile avatar of a manager" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIgoC4Myq6X4-dkp-M2fIxfC3AH4BmLvDOjtUVc9ocikwfJ0o2j2DrzcYX50iOftbK2TZMIz7wnmudsFIUFYR2vVfpbThg9al6IcbhhXgZi9a8p5Og_UEYpoUMbXRHvleSRlpCzOBMKc3PtsIZtLDdzlA8cScM67S2ap65HditMstGotdboeM9v1vnZyzsUq6AeUYMH9WjLUrbWB5dwXLFkc-_n57MLrtRQcwvy8HLnjJTAPygL7p3mn4AgCviAggH7aiOlGks9gM");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto p-4 md:p-10 space-y-6">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-sm">
+<a class="text-[#616f89] dark:text-gray-400 font-medium" href="#">Enterprise Management</a>
+<span class="text-[#616f89] dark:text-gray-500">/</span>
+<span class="text-primary font-semibold">Vehicle Maintenance &amp; Fuel Log</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dbdfe6] dark:border-[#2d3748] pb-6">
+<div class="space-y-1">
+<h1 class="text-3xl font-black tracking-tight">Fleet Maintenance Dashboard</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-base">Real-time fleet performance tracking for PT Prima Sarana Gemilang.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1a212f] border border-[#dbdfe6] dark:border-[#2d3748] rounded-lg text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+                    Export CSV
+                </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+                    Add New Record
+                </button>
+</div>
+</div>
+<!-- KPI Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-[#1a212f] p-6 rounded-xl border border-[#dbdfe6] dark:border-[#2d3748] shadow-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Active Vehicles</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">local_shipping</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">124</p>
+<div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+2.5%</span>
+<span class="text-[#616f89] font-normal ml-1">vs last month</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1a212f] p-6 rounded-xl border border-[#dbdfe6] dark:border-[#2d3748] shadow-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Pending Maintenance</p>
+<span class="material-symbols-outlined text-amber-500 bg-amber-500/10 p-1.5 rounded-lg">build</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">8</p>
+<div class="flex items-center gap-1 text-[#e73908] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">priority_high</span>
+<span>Action Required</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1a212f] p-6 rounded-xl border border-[#dbdfe6] dark:border-[#2d3748] shadow-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Avg. Fuel Consumption</p>
+<span class="material-symbols-outlined text-blue-500 bg-blue-500/10 p-1.5 rounded-lg">ev_station</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">8.5 km/L</p>
+<div class="flex items-center gap-1 text-[#e73908] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span>-0.8%</span>
+<span class="text-[#616f89] font-normal ml-1">efficiency drop</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1a212f] p-6 rounded-xl border border-[#dbdfe6] dark:border-[#2d3748] shadow-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Maintenance Cost</p>
+<span class="material-symbols-outlined text-emerald-600 bg-emerald-600/10 p-1.5 rounded-lg">payments</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">$42,500</p>
+<div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+5.4%</span>
+<span class="text-[#616f89] font-normal ml-1">MTD</span>
+</div>
+</div>
+</div>
+<!-- Fleet Status Horizontal List -->
+<div class="space-y-4">
+<h2 class="text-xl font-bold tracking-tight">Fleet Status Overview</h2>
+<div class="flex overflow-x-auto gap-4 pb-2 scrollbar-hide">
+<div class="min-w-[200px] bg-white dark:bg-[#1a212f] p-4 rounded-xl border-l-4 border-l-[#07883b] shadow-sm border border-[#dbdfe6] dark:border-[#2d3748]">
+<p class="text-xs text-[#616f89] dark:text-gray-400 uppercase font-bold tracking-wider">Hino Ranger FL-235</p>
+<p class="font-bold text-lg">B 9012 UUX</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wide">
+                        Operating
+                    </div>
+</div>
+<div class="min-w-[200px] bg-white dark:bg-[#1a212f] p-4 rounded-xl border-l-4 border-l-amber-500 shadow-sm border border-[#dbdfe6] dark:border-[#2d3748]">
+<p class="text-xs text-[#616f89] dark:text-gray-400 uppercase font-bold tracking-wider">Scania P360</p>
+<p class="font-bold text-lg">B 4410 SYA</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wide">
+                        Service Due
+                    </div>
+</div>
+<div class="min-w-[200px] bg-white dark:bg-[#1a212f] p-4 rounded-xl border-l-4 border-l-red-500 shadow-sm border border-[#dbdfe6] dark:border-[#2d3748]">
+<p class="text-xs text-[#616f89] dark:text-gray-400 uppercase font-bold tracking-wider">Volvo FMX 400</p>
+<p class="font-bold text-lg">B 7721 PKM</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-[10px] font-bold uppercase tracking-wide">
+                        In Repair
+                    </div>
+</div>
+<div class="min-w-[200px] bg-white dark:bg-[#1a212f] p-4 rounded-xl border-l-4 border-l-[#07883b] shadow-sm border border-[#dbdfe6] dark:border-[#2d3748]">
+<p class="text-xs text-[#616f89] dark:text-gray-400 uppercase font-bold tracking-wider">Isuzu Giga FVZ</p>
+<p class="font-bold text-lg">B 3312 TTY</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wide">
+                        Operating
+                    </div>
+</div>
+<div class="min-w-[200px] bg-white dark:bg-[#1a212f] p-4 rounded-xl border-l-4 border-l-[#07883b] shadow-sm border border-[#dbdfe6] dark:border-[#2d3748]">
+<p class="text-xs text-[#616f89] dark:text-gray-400 uppercase font-bold tracking-wider">Hino 500 FG</p>
+<p class="font-bold text-lg">B 1102 KKM</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wide">
+                        Operating
+                    </div>
+</div>
+</div>
+</div>
+<!-- Recent Records Table Section -->
+<div class="bg-white dark:bg-[#1a212f] rounded-xl border border-[#dbdfe6] dark:border-[#2d3748] shadow-sm overflow-hidden">
+<div class="p-6 border-b border-[#dbdfe6] dark:border-[#2d3748] flex flex-col md:flex-row md:items-center justify-between gap-4">
+<h2 class="text-lg font-bold">Recent Maintenance &amp; Fueling Records</h2>
+<div class="flex flex-wrap items-center gap-3">
+<select class="bg-[#f0f2f4] dark:bg-[#2d3748] border-none rounded-lg text-sm font-medium py-2 px-3 focus:ring-primary">
+<option>All Vehicles</option>
+<option>Heavy Trucks</option>
+<option>Support Vehicles</option>
+</select>
+<select class="bg-[#f0f2f4] dark:bg-[#2d3748] border-none rounded-lg text-sm font-medium py-2 px-3 focus:ring-primary">
+<option>Last 30 Days</option>
+<option>Last Quarter</option>
+<option>Custom Range</option>
+</select>
+<button class="flex items-center gap-1 text-[#616f89] hover:text-primary transition-colors px-2">
+<span class="material-symbols-outlined text-lg">filter_alt</span>
+<span class="text-sm font-semibold">More Filters</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#f8f9fb] dark:bg-[#141b29] text-[#616f89] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">
+<tr>
+<th class="px-6 py-4">Vehicle ID</th>
+<th class="px-6 py-4">Type</th>
+<th class="px-6 py-4">Date &amp; Time</th>
+<th class="px-6 py-4">Odometer (km)</th>
+<th class="px-6 py-4">Detail / Volume</th>
+<th class="px-6 py-4">Cost (USD)</th>
+<th class="px-6 py-4">Driver</th>
+<th class="px-6 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-[#2d3748] text-sm">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">B 9012 UUX</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-blue-600 font-semibold">
+<span class="material-symbols-outlined text-base">ev_station</span>
+                                    Fueling
+                                </span>
+</td>
+<td class="px-6 py-4 text-[#616f89] dark:text-gray-400">Oct 24, 2023 · 08:45 AM</td>
+<td class="px-6 py-4 font-medium">124,502</td>
+<td class="px-6 py-4">85.5 L (Bio Diesel)</td>
+<td class="px-6 py-4 font-bold">$112.40</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200" data-alt="Driver portrait thumbnail"></div>
+                                Ahmad Subarjo
+                            </td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#616f89] hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">B 4410 SYA</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-amber-600 font-semibold">
+<span class="material-symbols-outlined text-base">build</span>
+                                    Maintenance
+                                </span>
+</td>
+<td class="px-6 py-4 text-[#616f89] dark:text-gray-400">Oct 23, 2023 · 02:15 PM</td>
+<td class="px-6 py-4 font-medium">88,210</td>
+<td class="px-6 py-4">Brake Pad Replacement</td>
+<td class="px-6 py-4 font-bold">$420.00</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200" data-alt="Driver portrait thumbnail"></div>
+                                Bambang H.
+                            </td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#616f89] hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">B 7721 PKM</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-blue-600 font-semibold">
+<span class="material-symbols-outlined text-base">ev_station</span>
+                                    Fueling
+                                </span>
+</td>
+<td class="px-6 py-4 text-[#616f89] dark:text-gray-400">Oct 23, 2023 · 09:12 AM</td>
+<td class="px-6 py-4 font-medium">45,670</td>
+<td class="px-6 py-4">120.0 L (Bio Diesel)</td>
+<td class="px-6 py-4 font-bold">$158.50</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200" data-alt="Driver portrait thumbnail"></div>
+                                Surya Wijaya
+                            </td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#616f89] hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">B 1102 KKM</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-blue-600 font-semibold">
+<span class="material-symbols-outlined text-base">ev_station</span>
+                                    Fueling
+                                </span>
+</td>
+<td class="px-6 py-4 text-[#616f89] dark:text-gray-400">Oct 22, 2023 · 04:30 PM</td>
+<td class="px-6 py-4 font-medium">210,554</td>
+<td class="px-6 py-4">65.0 L (Pertamina Dex)</td>
+<td class="px-6 py-4 font-bold">$92.00</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200" data-alt="Driver portrait thumbnail"></div>
+                                Rahmat Illahi
+                            </td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#616f89] hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<td class="px-6 py-4 font-bold text-primary">B 3312 TTY</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-amber-600 font-semibold">
+<span class="material-symbols-outlined text-base">build</span>
+                                    Maintenance
+                                </span>
+</td>
+<td class="px-6 py-4 text-[#616f89] dark:text-gray-400">Oct 22, 2023 · 10:00 AM</td>
+<td class="px-6 py-4 font-medium">155,430</td>
+<td class="px-6 py-4">Oil &amp; Filter Change</td>
+<td class="px-6 py-4 font-bold">$285.00</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="size-6 rounded-full bg-gray-200" data-alt="Driver portrait thumbnail"></div>
+                                Joko S.
+                            </td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#616f89] hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 bg-[#f8f9fb] dark:bg-[#141b29] border-t border-[#dbdfe6] dark:border-[#2d3748] flex items-center justify-between">
+<p class="text-xs text-[#616f89] dark:text-gray-400 font-medium">Showing 1 to 5 of 42 records</p>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 bg-white dark:bg-[#2d3748] border border-[#dbdfe6] dark:border-[#4a5568] rounded text-xs font-bold disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 bg-primary text-white rounded text-xs font-bold">1</button>
+<button class="px-3 py-1 bg-white dark:bg-[#2d3748] border border-[#dbdfe6] dark:border-[#4a5568] rounded text-xs font-bold">2</button>
+<button class="px-3 py-1 bg-white dark:bg-[#2d3748] border border-[#dbdfe6] dark:border-[#4a5568] rounded text-xs font-bold">3</button>
+<button class="px-3 py-1 bg-white dark:bg-[#2d3748] border border-[#dbdfe6] dark:border-[#4a5568] rounded text-xs font-bold">Next</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

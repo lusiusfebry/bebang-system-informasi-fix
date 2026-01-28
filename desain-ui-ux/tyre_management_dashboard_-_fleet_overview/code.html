@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tyre Management Dashboard - Bebang Sistem Informasi</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e7eb] dark:border-[#2d3748] bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<span class="material-symbols-outlined text-3xl">tire_repair</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem</h2>
+</div>
+<label class="flex flex-col min-w-64 !h-10 max-w-96">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] dark:text-[#a0aec0] flex border-none bg-background-light dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-0 border-none bg-background-light dark:bg-slate-800 focus:border-none h-full placeholder:text-[#617589] dark:placeholder:text-[#a0aec0] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search Vehicle ID or Serial..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-6">
+<a class="text-primary text-sm font-semibold leading-normal border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="text-[#111418] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary" href="#">Fleet Inventory</a>
+<a class="text-[#111418] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary" href="#">Maintenance</a>
+<a class="text-[#111418] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary" href="#">Inspections</a>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-background-light dark:bg-slate-800 text-[#111418] dark:text-white hover:bg-slate-200">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-background-light dark:bg-slate-800 text-[#111418] dark:text-white hover:bg-slate-200">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200 dark:border-slate-700" data-alt="User avatar for profile section" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBm8BScmE270cykc_FsMYv4KwNO4NJdQA2V5QNrk7rYgB5hafipVrg-yp7xik34ZpMx5Gp_4cRpZA-HBcTKJZ9lQ-kiLgQD_zE9ZoGOSCl-dhaqDbnzTHDxPzP77-4_I064hrEQRl2N4Osxe8M_g4PL77Asl5dk_PC_80-Scct0djtKFvHvu0QiURtQoP2K4fK9p8ApOonc-FYSUfkgyFe3oC5xd1laUI6woPu2hx68MKBFoIAz9SnJIZ2K30c5qJ7vOEtDURRd8B4");'></div>
+</div>
+</header>
+<main class="flex flex-col flex-1 px-10 py-6 max-w-[1600px] mx-auto w-full gap-6">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-end gap-3 px-4">
+<div class="flex flex-col gap-1">
+<p class="text-[#111418] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Tyre Management - Fleet Overview</p>
+<p class="text-[#617589] dark:text-slate-400 text-base font-normal leading-normal">Real-time health monitoring for PT Prima Sarana Gemilang</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-background-light dark:bg-slate-800 text-[#111418] dark:text-white text-sm font-bold border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined mr-2 text-sm">filter_list</span>
+<span>Filters</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-blue-700 transition-colors">
+<span class="material-symbols-outlined mr-2 text-sm">download</span>
+<span>Export Report</span>
+</button>
+</div>
+</div>
+<!-- Stats KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-[#dbe0e6] dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-slate-400 text-sm font-medium leading-normal uppercase tracking-wider">Active Tyres in Service</p>
+<span class="material-symbols-outlined text-primary">tire_repair</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-tight text-3xl font-bold leading-tight">1,248</p>
+<p class="text-[#078838] text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +2.4% vs last month
+                    </p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-[#dbe0e6] dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-slate-400 text-sm font-medium leading-normal uppercase tracking-wider">Average Tyre Life (Hrs)</p>
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-tight text-3xl font-bold leading-tight">4,850 hrs</p>
+<p class="text-[#e73908] text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> -5.1% target 5k
+                    </p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-[#dbe0e6] dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-slate-400 text-sm font-medium leading-normal uppercase tracking-wider">Pending Checks</p>
+<span class="material-symbols-outlined text-primary">fact_check</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-tight text-3xl font-bold leading-tight">24 Units</p>
+<p class="text-[#078838] text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span> 88% completed
+                    </p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-[#dbe0e6] dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-[#617589] dark:text-slate-400 text-sm font-medium leading-normal uppercase tracking-wider">Tyre Costs (YTD)</p>
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<p class="text-[#111418] dark:text-white tracking-tight text-3xl font-bold leading-tight">IDR 450M</p>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-1">
+<div class="bg-primary h-1.5 rounded-full" style="width: 65%;"></div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">65% of Annual Budget</p>
+</div>
+</div>
+<!-- Content Area: Main Table + Sidebar -->
+<div class="flex flex-col lg:flex-row gap-6 px-4">
+<!-- Main Table Section (75%) -->
+<div class="flex-[3] flex flex-col gap-4">
+<div class="flex justify-between items-center pt-2">
+<h2 class="text-[#111418] dark:text-white text-[20px] font-bold leading-tight tracking-[-0.015em]">Fleet Status &amp; Tyre Positions</h2>
+<div class="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> Normal</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Check Required</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-red-500"></span> Critical</span>
+</div>
+</div>
+<!-- Fleet Table -->
+<div class="overflow-hidden rounded-xl border border-[#dbe0e6] dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-900/50 border-b border-[#dbe0e6] dark:border-slate-700">
+<th class="px-6 py-4 text-[#111418] dark:text-slate-200 text-xs font-bold uppercase tracking-wider">Vehicle ID</th>
+<th class="px-4 py-4 text-[#111418] dark:text-slate-200 text-xs font-bold uppercase tracking-wider">Front Left (FL)</th>
+<th class="px-4 py-4 text-[#111418] dark:text-slate-200 text-xs font-bold uppercase tracking-wider">Front Right (FR)</th>
+<th class="px-4 py-4 text-[#111418] dark:text-slate-200 text-xs font-bold uppercase tracking-wider">Rear Left (RL)</th>
+<th class="px-4 py-4 text-[#111418] dark:text-slate-200 text-xs font-bold uppercase tracking-wider">Rear Right (RR)</th>
+<th class="px-4 py-4 text-[#111418] dark:text-slate-200 text-xs font-bold uppercase tracking-wider">Avg PSI</th>
+<th class="px-6 py-4 text-[#111418] dark:text-slate-200 text-xs font-bold uppercase tracking-wider">Tread Health</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbe0e6] dark:divide-slate-700">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors group">
+<td class="px-6 py-4 font-bold text-primary cursor-pointer underline underline-offset-4 decoration-primary/30">DT-101</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-8821</span>
+<span class="text-sm font-semibold">Michelin XDR</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-8822</span>
+<span class="text-sm font-semibold">Michelin XDR</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-9931</span>
+<span class="text-sm font-semibold">Bridgestone</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-9932</span>
+<span class="text-sm font-semibold">Bridgestone</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                                32 PSI
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700 h-2">
+<div class="h-2 rounded-full bg-green-500" style="width: 82%;"></div>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-xs font-bold">82%</p>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors">
+<td class="px-6 py-4 font-bold text-primary cursor-pointer underline underline-offset-4 decoration-primary/30">DT-102</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-7741</span>
+<span class="text-sm font-semibold">Titan E4</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-7742</span>
+<span class="text-sm font-semibold">Titan E4</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-6611</span>
+<span class="text-sm font-semibold">Titan E4</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-6612</span>
+<span class="text-sm font-semibold">Titan E4</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 animate-pulse">
+                                                24 PSI
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700 h-2">
+<div class="h-2 rounded-full bg-red-500" style="width: 15%;"></div>
+</div>
+<p class="text-red-600 dark:text-red-400 text-xs font-bold">15%</p>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors">
+<td class="px-6 py-4 font-bold text-primary cursor-pointer underline underline-offset-4 decoration-primary/30">DT-105</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-5521</span>
+<span class="text-sm font-semibold">Bridgestone</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-5522</span>
+<span class="text-sm font-semibold">Bridgestone</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-4411</span>
+<span class="text-sm font-semibold">Bridgestone</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-4412</span>
+<span class="text-sm font-semibold">Bridgestone</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400">
+                                                28 PSI
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700 h-2">
+<div class="h-2 rounded-full bg-orange-500" style="width: 45%;"></div>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-xs font-bold">45%</p>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors">
+<td class="px-6 py-4 font-bold text-primary cursor-pointer underline underline-offset-4 decoration-primary/30">DT-108</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-3311</span>
+<span class="text-sm font-semibold">Michelin XDR</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-3312</span>
+<span class="text-sm font-semibold">Michelin XDR</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-2211</span>
+<span class="text-sm font-semibold">Michelin XDR</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<div class="flex flex-col">
+<span class="text-xs font-mono text-slate-500 dark:text-slate-400">SN-2212</span>
+<span class="text-sm font-semibold">Michelin XDR</span>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                                31 PSI
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700 h-2">
+<div class="h-2 rounded-full bg-green-500" style="width: 76%;"></div>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-xs font-bold">76%</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-[#dbe0e6] dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-slate-900/50">
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Showing 4 of 112 heavy equipment units</p>
+<div class="flex gap-2">
+<button class="p-1 px-3 border border-slate-200 dark:border-slate-700 rounded text-xs hover:bg-white transition-colors">Prev</button>
+<button class="p-1 px-3 bg-primary text-white rounded text-xs font-bold">Next</button>
+</div>
+</div>
+</div>
+<!-- Bottom Chart Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-6 bg-white dark:bg-slate-800 rounded-xl border border-[#dbe0e6] dark:border-slate-700 shadow-sm">
+<h3 class="text-sm font-bold mb-6 text-slate-800 dark:text-white uppercase tracking-wider">Tyre Life Distribution by Brand (Avg Hrs)</h3>
+<div class="flex flex-col gap-4">
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>Michelin</span>
+<span>5,240 hrs</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-6 rounded">
+<div class="bg-primary h-6 rounded" style="width: 95%;"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>Bridgestone</span>
+<span>4,810 hrs</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-6 rounded">
+<div class="bg-primary/70 h-6 rounded" style="width: 82%;"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>Titan</span>
+<span>3,920 hrs</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-6 rounded">
+<div class="bg-primary/50 h-6 rounded" style="width: 65%;"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>Yokohama</span>
+<span>4,150 hrs</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-6 rounded">
+<div class="bg-primary/40 h-6 rounded" style="width: 68%;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-slate-800 rounded-xl border border-[#dbe0e6] dark:border-slate-700 shadow-sm">
+<h3 class="text-sm font-bold mb-6 text-slate-800 dark:text-white uppercase tracking-wider">Operational Fleet Mix</h3>
+<div class="flex h-48 items-center justify-center">
+<div class="relative w-32 h-32 rounded-full border-[12px] border-primary flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-[12px] border-primary/20" style="clip-path: polygon(50% 50%, 0% 0%, 100% 0%, 100% 50%);"></div>
+<div class="text-center">
+<span class="block text-2xl font-bold">84%</span>
+<span class="block text-[10px] text-slate-500 uppercase">Available</span>
+</div>
+</div>
+<div class="ml-8 space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-xs font-medium">In Operation</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary/20"></span>
+<span class="text-xs font-medium">Maintenance</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-orange-400"></span>
+<span class="text-xs font-medium">Standby</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Critical Alerts Sidebar (25%) -->
+<div class="flex-[1] flex flex-col gap-4">
+<div class="pt-2">
+<h2 class="text-[#111418] dark:text-white text-[20px] font-bold leading-tight tracking-[-0.015em]">Critical Alerts</h2>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Alert Card 1 -->
+<div class="p-4 bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/30 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-red-700 dark:text-red-400 uppercase tracking-widest">Pressure Drop</span>
+<span class="text-[10px] text-slate-500">2 mins ago</span>
+</div>
+<p class="text-sm font-bold text-red-900 dark:text-red-300">Unit DT-102: RL Position</p>
+<p class="text-xs text-red-800 dark:text-red-400/80 mt-1">Pressure dropped below 25 PSI. Immediate inspection required.</p>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 h-8 bg-red-600 text-white text-[11px] font-bold rounded hover:bg-red-700 transition-colors uppercase">Schedule Check</button>
+<button class="w-8 h-8 flex items-center justify-center border border-red-200 rounded text-red-600 hover:bg-white"><span class="material-symbols-outlined text-sm">visibility</span></button>
+</div>
+</div>
+<!-- Alert Card 2 -->
+<div class="p-4 bg-orange-50 dark:bg-orange-900/10 border border-orange-200 dark:border-orange-900/30 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-orange-700 dark:text-orange-400 uppercase tracking-widest">Low Tread Depth</span>
+<span class="text-[10px] text-slate-500">1 hour ago</span>
+</div>
+<p class="text-sm font-bold text-orange-900 dark:text-orange-300">Unit DT-105: FR Position</p>
+<p class="text-xs text-orange-800 dark:text-orange-400/80 mt-1">Tread depth measured at 5.2mm. Plan for replacement within 48h.</p>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 h-8 bg-orange-600 text-white text-[11px] font-bold rounded hover:bg-orange-700 transition-colors uppercase">Order Tyre</button>
+</div>
+</div>
+<!-- Alert Card 3 -->
+<div class="p-4 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-900/30 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Scheduled PM</span>
+<span class="text-[10px] text-slate-500">Today</span>
+</div>
+<p class="text-sm font-bold text-slate-800 dark:text-slate-200">Unit DT-110: 5k Hr Inspection</p>
+<p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Tyre rotation and structural integrity check due for 4-wheel set.</p>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 h-8 bg-primary text-white text-[11px] font-bold rounded hover:bg-blue-700 transition-colors uppercase">Start Inspection</button>
+</div>
+</div>
+<button class="w-full py-3 text-xs font-bold text-slate-500 dark:text-slate-400 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+                            VIEW ALL ALERTS (12)
+                        </button>
+</div>
+<!-- Quick Tools -->
+<div class="mt-4 p-5 bg-slate-900 rounded-xl text-white">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Tyre Mapping Tool</h3>
+<div class="flex justify-center mb-6">
+<!-- Simple SVG Truck Representation -->
+<div class="w-32 h-44 border-2 border-slate-700 rounded-lg flex flex-col justify-between p-2 relative">
+<div class="flex justify-between">
+<div class="w-6 h-10 bg-green-500 rounded-sm shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+<div class="w-6 h-10 bg-green-500 rounded-sm shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] text-slate-500 font-bold">DT-101</div>
+<div class="flex justify-between">
+<div class="w-6 h-10 bg-green-500 rounded-sm shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+<div class="w-6 h-10 bg-green-500 rounded-sm shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+</div>
+</div>
+</div>
+<button class="w-full h-10 bg-primary/20 text-primary border border-primary/50 text-[11px] font-bold rounded hover:bg-primary/30 uppercase tracking-widest transition-colors">Launch Visual Mapper</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="px-10 py-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 dark:text-slate-400 text-sm">
+<div>
+<p>© 2024 Bebang Sistem Informasi. Powered by PSG Maintenance Hub.</p>
+</div>
+<div class="flex gap-6 font-medium">
+<a class="hover:text-primary" href="#">System Status</a>
+<a class="hover:text-primary" href="#">Documentation</a>
+<a class="hover:text-primary" href="#">Support Desk</a>
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+</div>
+</footer>
+</div>
+</body></html>

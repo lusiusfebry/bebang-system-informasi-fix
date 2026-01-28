@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HSE - Corrective Action Tracker</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white transition-colors duration-200">
+<div class="flex h-screen overflow-hidden">
+<!-- Side Navigation Bar -->
+<aside class="w-64 flex flex-col border-r border-[#dbdfe6] dark:border-gray-800 bg-white dark:bg-background-dark shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="bg-primary rounded-lg p-1 text-white">
+<span class="material-symbols-outlined text-2xl">safety_check</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<h1 class="text-[#111318] dark:text-white text-base font-bold leading-tight truncate">Bebang HSE</h1>
+<p class="text-[#616f89] dark:text-gray-400 text-xs font-medium truncate">PSG HSE Module</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary bg-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-sm font-medium">All Actions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<div class="pt-4 pb-2 px-3">
+<p class="text-[10px] font-bold text-[#616f89] dark:text-gray-500 uppercase tracking-wider">User Center</p>
+</div>
+<a class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">person_pin</span>
+<span class="text-sm font-medium text-[#111318] dark:text-gray-200">My Assigned Actions</span>
+</div>
+<span class="bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-[#dbdfe6] dark:border-gray-800">
+<div class="flex items-center gap-3 p-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6LHj0kUYuYowmLyaBVgqnHyV7L81UHLv07XuYZG-gKs10Tw3iPsLADcdpizaODmNDdGoNbSL1SQmZO9_90W5QQejyBw5z8V_n0oj23NsrOoh-q9uw_cIeY5SmU-gXOKAFWet1IOlFaJeeU5o0D-O6gZSc4po3e5thZ_Fer8tbnMtntb_GNkCPRnjgTNbGh_8y92Fwzg3gYKfsEjhUqH4GYibZkdJ50XSe3WMfVuFEOpTfMqSSKGlMT4OTLH6jKTOAk6iLGSmwJpI");'></div>
+<div class="flex flex-col">
+<p class="text-xs font-bold truncate">Ahmad Fauzi</p>
+<p class="text-[10px] text-[#616f89] dark:text-gray-400 truncate">HSE Supervisor</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-[#dbdfe6] dark:border-gray-800 bg-white dark:bg-background-dark px-6 py-3 shrink-0">
+<div class="flex items-center gap-6 flex-1">
+<h2 class="text-[#111318] dark:text-white text-xl font-bold tracking-tight">HSE Corrective Action Tracker</h2>
+<div class="max-w-md w-full relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#616f89] text-xl">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-[#616f89] dark:text-gray-200" placeholder="Search by Action ID or Source..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-blue-700 transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>New Action</span>
+</button>
+<div class="flex items-center border-l border-[#dbdfe6] dark:border-gray-800 ml-3 pl-3 gap-2">
+<button class="p-2 text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-[#616f89] dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Page Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Stats / Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-background-dark flex flex-col gap-2 rounded-xl p-6 border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Open Actions</p>
+<span class="material-symbols-outlined text-primary">pending_actions</span>
+</div>
+<div class="flex items-baseline gap-2">
+<p class="text-[#111318] dark:text-white text-3xl font-bold">124</p>
+<p class="text-[#07883b] text-xs font-bold">+5%</p>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark flex flex-col gap-2 rounded-xl p-6 border border-red-100 dark:border-red-900 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-[#111318] dark:text-white text-sm font-medium">Overdue</p>
+<span class="material-symbols-outlined text-red-500">error</span>
+</div>
+<div class="flex items-baseline gap-2">
+<p class="text-red-600 dark:text-red-400 text-3xl font-bold">18</p>
+<p class="text-red-500 text-xs font-bold">+2%</p>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark flex flex-col gap-2 rounded-xl p-6 border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Pending Verification</p>
+<span class="material-symbols-outlined text-orange-500">flaky</span>
+</div>
+<div class="flex items-baseline gap-2">
+<p class="text-[#111318] dark:text-white text-3xl font-bold">42</p>
+<p class="text-[#07883b] text-xs font-bold">+12%</p>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark flex flex-col gap-2 rounded-xl p-6 border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-[#616f89] dark:text-gray-400 text-sm font-medium">Completed This Month</p>
+<span class="material-symbols-outlined text-green-500">task_alt</span>
+</div>
+<div class="flex items-baseline gap-2">
+<p class="text-[#111318] dark:text-white text-3xl font-bold">85</p>
+<p class="text-[#07883b] text-xs font-bold">+20%</p>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex items-center justify-between bg-white dark:bg-background-dark p-4 rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm">
+<div class="flex gap-2 flex-wrap">
+<button class="flex items-center gap-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 px-3 py-1.5 border border-transparent hover:border-[#dbdfe6] transition-all">
+<span class="text-sm font-semibold">Status: All</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+<button class="flex items-center gap-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 px-3 py-1.5 border border-transparent hover:border-[#dbdfe6] transition-all">
+<span class="text-sm font-semibold">Priority: High</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+<button class="flex items-center gap-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 px-3 py-1.5 border border-transparent hover:border-[#dbdfe6] transition-all">
+<span class="text-sm font-semibold">Due: This Week</span>
+<span class="material-symbols-outlined text-sm">date_range</span>
+</button>
+<div class="h-8 w-px bg-[#dbdfe6] dark:bg-gray-800 mx-1"></div>
+<button class="flex items-center gap-2 px-3 py-1.5 text-[#616f89] dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span class="text-sm font-semibold">More Filters</span>
+</button>
+</div>
+<div class="text-[#616f89] text-xs font-medium">
+                        Showing 1-15 of 124 corrective actions
+                    </div>
+</div>
+<!-- Data Table -->
+<div class="bg-white dark:bg-background-dark rounded-xl border border-[#dbdfe6] dark:border-gray-800 shadow-sm overflow-hidden overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-gray-50 dark:bg-gray-900/50 border-b border-[#dbdfe6] dark:border-gray-800">
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] dark:text-gray-400 uppercase tracking-wider">Action ID</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] dark:text-gray-400 uppercase tracking-wider">Source</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] dark:text-gray-400 uppercase tracking-wider">Description of Action</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] dark:text-gray-400 uppercase tracking-wider">Priority</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] dark:text-gray-400 uppercase tracking-wider">Assigned To</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] dark:text-gray-400 uppercase tracking-wider">Due Date</th>
+<th class="px-6 py-4 text-xs font-bold text-[#616f89] dark:text-gray-400 uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdfe6] dark:divide-gray-800">
+<!-- Row 1: Overdue High Priority -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/30 transition-colors group">
+<td class="px-6 py-4 text-sm font-bold text-[#111318] dark:text-white">CA-1092</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400 font-medium">Incident Report #102</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-200">
+<p class="truncate max-w-xs" title="Repair broken scaffolding locks">Repair broken scaffolding locks</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400">
+                                        High
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">Budi Santoso</td>
+<td class="px-6 py-4 text-sm font-bold text-red-600 dark:text-red-400">2023-10-25</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-200 dark:border-red-900/50">
+<span class="size-1.5 rounded-full bg-red-600"></span>
+                                        Overdue
+                                    </span>
+</td>
+</tr>
+<!-- Row 2: In Progress -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-[#111318] dark:text-white">CA-1088</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400 font-medium">Safety Audit</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-200">
+<p class="truncate max-w-xs" title="Update fire extinguisher signage">Update fire extinguisher signage</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400">
+                                        Med
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">Siti Aminah</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">2023-11-20</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 border border-amber-200 dark:border-amber-900/50">
+<span class="size-1.5 rounded-full bg-amber-600"></span>
+                                        In Progress
+                                    </span>
+</td>
+</tr>
+<!-- Row 3: Awaiting Verification -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-[#111318] dark:text-white">CA-1080</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400 font-medium">Incident Report #098</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-200">
+<p class="truncate max-w-xs" title="Replace worn safety harnesses">Replace worn safety harnesses</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400">
+                                        Low
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">Rina Wijaya</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">2023-11-15</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-primary/5 text-primary dark:bg-primary/20 dark:text-blue-300 border border-primary/20">
+<span class="size-1.5 rounded-full bg-primary"></span>
+                                        Pending Verification
+                                    </span>
+</td>
+</tr>
+<!-- Row 4: Closed -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-[#111318] dark:text-white">CA-1075</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400 font-medium">Weekly Review</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-200">
+<p class="truncate max-w-xs" title="Fix oil leak in generator room">Fix oil leak in generator room</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400">
+                                        High
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">Dedi Kurniawan</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">2023-11-05</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border border-green-200 dark:border-green-900/50">
+<span class="size-1.5 rounded-full bg-green-600"></span>
+                                        Closed
+                                    </span>
+</td>
+</tr>
+<!-- Row 5: Open -->
+<tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-bold text-[#111318] dark:text-white">CA-1105</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400 font-medium">Site Walkthrough</td>
+<td class="px-6 py-4 text-sm text-[#111318] dark:text-gray-200">
+<p class="truncate max-w-xs" title="Install additional lighting at Sector C">Install additional lighting at Sector C</p>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400">
+                                        Med
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">Agus Prayogo</td>
+<td class="px-6 py-4 text-sm text-[#616f89] dark:text-gray-400">2023-12-05</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
+<span class="size-1.5 rounded-full bg-gray-400"></span>
+                                        Open
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 flex items-center justify-between bg-gray-50 dark:bg-gray-900/50 border-t border-[#dbdfe6] dark:border-gray-800">
+<div class="flex items-center gap-2">
+<span class="text-sm text-[#616f89] dark:text-gray-400">Rows per page:</span>
+<select class="text-xs font-bold bg-white dark:bg-gray-800 border-[#dbdfe6] dark:border-gray-700 rounded py-1">
+<option>15</option>
+<option>30</option>
+<option>50</option>
+</select>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-800 rounded">
+<span class="material-symbols-outlined text-sm">first_page</span>
+</button>
+<button class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-800 rounded">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<span class="px-3 py-1 text-sm font-bold bg-primary text-white rounded">1</span>
+<span class="px-3 py-1 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800 rounded cursor-pointer">2</span>
+<span class="px-3 py-1 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800 rounded cursor-pointer">3</span>
+<button class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-800 rounded">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+<button class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-800 rounded">
+<span class="material-symbols-outlined text-sm">last_page</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

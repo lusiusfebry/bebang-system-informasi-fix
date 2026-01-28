@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex items-stretch overflow-x-hidden">
+<div class="flex w-full min-h-screen">
+<!-- Left Side: Hero Industrial Background -->
+<div class="hidden lg:flex lg:w-3/5 relative bg-primary items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-primary/40 mix-blend-multiply z-10"></div>
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transform scale-105" data-alt="Modern mining operation with heavy machinery at sunset" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfR3yo7xvzdYcQyg51h4a_bDYasWqPMIpxMVwwmIfDY4QejeSdXCCDLDpFdZwKKi-3f2W7iRd2LsJWcBAvEQb8QpqGpJZBGb15xE7oz5FC2nPET2p5_pxep13qExLOm19Cb518pO7TNeehSTx6R-HbO6RWLZ3TSaEl0rmH-9exPpV8Ty4_IrrgkPaimLXWrQ5ILPyjPgQVHmNohlIWJJmKZNmqGqQU8NSMwqesMDB786XeXk9Ai9uvmqMAysWU8dstCRq65xM7hC8');">
+</div>
+</div>
+<div class="relative z-20 px-12 text-white max-w-2xl">
+<div class="flex items-center gap-4 mb-8">
+<div class="size-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+<svg class="text-primary size-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-3xl font-black tracking-tight">Bebang Sistem Informasi</h1>
+</div>
+<h2 class="text-5xl font-bold leading-tight mb-6">Layanan Data Terpadu PT Prima Sarana Gemilang</h2>
+<p class="text-xl font-light leading-relaxed text-white/90">
+                    Sistem informasi manajemen karyawan yang efisien, transparan, dan terintegrasi untuk mendukung operasional perusahaan di setiap lini.
+                </p>
+<div class="mt-12 flex gap-4">
+<div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
+<span class="material-symbols-outlined text-white">verified_user</span>
+<span class="text-sm font-medium">Secure Access</span>
+</div>
+<div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
+<span class="material-symbols-outlined text-white">monitoring</span>
+<span class="text-sm font-medium">Real-time Data</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-10 left-12 z-20">
+<p class="text-white/60 text-sm">© 2024 PT Prima Sarana Gemilang. All rights reserved.</p>
+</div>
+</div>
+<!-- Right Side: Login Form -->
+<div class="w-full lg:w-2/5 flex flex-col items-center justify-center p-8 bg-white dark:bg-background-dark">
+<div class="w-full max-w-md space-y-8">
+<div class="text-center lg:hidden flex flex-col items-center mb-10">
+<div class="size-12 bg-primary rounded-xl flex items-center justify-center mb-4">
+<svg class="text-white size-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Bebang Sistem Informasi</h2>
+</div>
+<div class="space-y-2">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Login ke Akun Anda</h2>
+<p class="text-slate-500 dark:text-slate-400">Silakan masukkan NIK dan kata sandi untuk melanjutkan.</p>
+</div>
+<form class="space-y-6 mt-8">
+<!-- NIK Field -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
+                            Nomor Induk Karyawan (NIK)
+                        </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-slate-400">badge</span>
+<input class="w-full h-14 pl-12 pr-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Masukkan NIK Anda" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
+                                Kata Sandi
+                            </label>
+<a class="text-xs font-bold text-primary hover:underline transition-all" href="#">Lupa Kata Sandi?</a>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-slate-400">lock</span>
+<input class="w-full h-14 pl-12 pr-12 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Masukkan kata sandi" type="password"/>
+<button class="absolute right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Login Button -->
+<button class="w-full h-14 bg-primary text-white font-bold rounded-lg shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+<span>Masuk ke Dashboard</span>
+<span class="material-symbols-outlined">login</span>
+</button>
+</form>
+<!-- Help Link -->
+<div class="pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
+<p class="text-sm text-slate-500 dark:text-slate-400">
+                        Mengalami masalah saat login? 
+                        <a class="text-primary font-bold hover:underline" href="#">Hubungi IT Support</a>
+</p>
+</div>
+</div>
+<!-- Mobile Footer -->
+<div class="mt-12 lg:hidden text-center">
+<p class="text-slate-400 text-xs">© 2024 PT Prima Sarana Gemilang</p>
+</div>
+</div>
+</div>
+</body></html>

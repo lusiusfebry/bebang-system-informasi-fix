@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Media Sharing - Link Management Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col shrink-0">
+<div class="p-6 flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<div class="bg-primary rounded-lg p-2 text-white">
+<span class="material-symbols-outlined">folder_shared</span>
+</div>
+<div>
+<h1 class="text-[#111418] dark:text-white text-base font-bold leading-tight">Bebang Sistem</h1>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-normal">Digital Asset Management</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-sm font-medium">Media Library</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="text-sm font-medium">Collections</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">link</span>
+<span class="text-sm font-medium">Shared Links</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<div class="my-4 border-t border-gray-100 dark:border-gray-800"></div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User profile avatar circle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCn9-tllsUTA-j1Yaodl05XxcrxrII3lrrW9_9LJV51CmpBljkJ2qBjCKYJn_zqkNdG8l1KYfAes2i67J5GQiqdU3t4gMXioCGytfFiqEDm5IuPTMoh4i57XnC7LkCQDYz8Dq3fJ-HCLI1oBLmlAVcy-_esFwBvKi_wNEd_K83R-YO-pj-ywq5adgS8vJUKb1TV9tQQzSL8aOiY0TdLJ5L0AD3FTySESYPgAJWDc-dHC1jtfrRLC-YPpuNTnyxd6oHvgxW0f1C7YXs')"></div>
+<div class="flex flex-col min-w-0">
+<p class="text-sm font-medium truncate dark:text-white">Admin PSG</p>
+<p class="text-xs text-gray-500 truncate dark:text-gray-400">admin@psg.co.id</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Top Nav Bar -->
+<header class="h-16 flex items-center justify-between px-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-10">
+<div class="flex items-center gap-4 flex-1">
+<div class="flex items-center gap-2 text-primary font-bold mr-4">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span class="hidden lg:inline text-sm">PT Prima Sarana Gemilang</span>
+</div>
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary dark:text-white" placeholder="Search links, assets, or recipients..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-300">
+<a class="hover:text-primary" href="#">Dashboard</a>
+<a class="hover:text-primary" href="#">Assets</a>
+<a class="hover:text-primary" href="#">Activity</a>
+</div>
+<button class="bg-primary text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">add_link</span>
+<span>Create Link</span>
+</button>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-8 max-w-[1280px] mx-auto w-full">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-4 text-sm font-medium">
+<a class="text-gray-500 hover:text-primary" href="#">Digital Asset Management</a>
+<span class="text-gray-400 material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary">Shareable Links</span>
+</nav>
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h2 class="text-3xl font-black tracking-tight text-[#111418] dark:text-white">Shareable Links</h2>
+<p class="text-gray-500 dark:text-gray-400 mt-1">Manage and monitor external media distribution channels and security.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-lg">download</span>
+                            Export Logs
+                        </button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Active Links</p>
+<span class="p-2 bg-green-50 dark:bg-green-900/20 text-green-600 rounded-lg material-symbols-outlined">link</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold dark:text-white">124</h3>
+<span class="text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/20 px-1.5 py-0.5 rounded">+5.2%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Expiring Soon</p>
+<span class="p-2 bg-orange-50 dark:bg-orange-900/20 text-orange-600 rounded-lg material-symbols-outlined">schedule</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold dark:text-white">12</h3>
+<span class="text-xs font-bold text-orange-600 bg-orange-50 dark:bg-orange-900/20 px-1.5 py-0.5 rounded">-2%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Downloads</p>
+<span class="p-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg material-symbols-outlined">download_for_offline</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold dark:text-white">1,450</h3>
+<span class="text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/20 px-1.5 py-0.5 rounded">+12%</span>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-800">
+<th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Link Name / Alias</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Shared Assets</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Recipient</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Expiry Date</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Access Level</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-gray-900 dark:text-white">Q4 Marketing Assets</span>
+<span class="text-xs text-gray-400 truncate max-w-[150px]">psg.co/s/q4-mkt-23...</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex -space-x-2">
+<div class="size-8 rounded border-2 border-white dark:border-gray-900 bg-cover bg-center" data-alt="Marketing photo thumbnail one" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCb2mbv2Ckw_gwCddtklmlDlzsdvHFcMG-vRDOOf-SC-2fUhWley2MEkRsRa8qz0FbezC4jE-kQonm0YsY0ORGoU_SYzw9jcaosL9cr9rbVMnurCjeLE3bW8T0JKZZdXQsK0O5YlF0nag99Vd3rv_R9ktVY8Y_FAEYBwQF2jsL3s4sxabGyHR1sLvjq_YHFCGwmHzSZOoKbi2IMkk65cw4M3uDoexyOVtkDp-jAGSKdLAK2yyDjp0JVolmUXnOmVQmk4r4W8xXJGMA')"></div>
+<div class="size-8 rounded border-2 border-white dark:border-gray-900 bg-cover bg-center" data-alt="Marketing photo thumbnail two" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjwvTMBO0A2dGwNMeSzs_wp8K_HwYsCHHYqOt9SulyIU5izp9CSigBkcLEDVCeOhHLfSOulNZ2C-X-dSpofJ9PuspaNqwC_9WsqLlIwELsWKychKwaJB0kQV3l-paQo9NTBbEr_B58uiLE6BqrnhKcqtfVqVr3y5kZ9ZeH3pp_XnwX-6dxIX6ErE9yflGFgOk6lbSd2RPqITvqthQJVk5fPlUSCJPiQdylJB6CeYVMna26uW5hna8gdBfshydOXevwuVHIKjs41xY')"></div>
+<div class="size-8 rounded border-2 border-white dark:border-gray-900 bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-[10px] font-bold">+12</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-xs font-medium text-gray-600 dark:text-gray-300">external-agency@mail.com</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-gray-600 dark:text-gray-400">Oct 24, 2023</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary">Download</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-green-500"></span>
+<span class="text-sm font-medium text-green-600">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-gray-900 dark:text-white">Site Safety Videos</span>
+<span class="text-xs text-gray-400 truncate max-w-[150px]">psg.co/s/site-safe...</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex -space-x-2">
+<div class="size-8 rounded border-2 border-white dark:border-gray-900 bg-cover bg-center" data-alt="Safety video thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZfs9BgfO-kdxmD1POvOD4p3Z17YEaopMOwWAJsVY7yjX8mV70d4GzvJF6zCIrn2h9eBaBB8a8ZARA6kOlD-BnGdUGT7IfowUdgVORqmJoAfm17hGE7oZv407bS17xt3ewdoPEYQFjikTfbiFjxw9cUqbCI3VwP1S6XB7pbmLZfTXh5XEpmsRW59ODcfQtlG5k2FqyfJQ0As88tsFcfkzryfulueUZC22-SWe5WRB-Bbzv1kXG7XiUg7jzl9Vq1lbBQiLlYrk51zY')"></div>
+<div class="size-8 rounded border-2 border-white dark:border-gray-900 bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-[10px] font-bold">1</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-xs font-medium text-gray-600 dark:text-gray-300">vendors-hub@psg.co.id</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-orange-600 font-medium">Oct 12, 2023</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">View Only</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-orange-500"></span>
+<span class="text-sm font-medium text-orange-600">Expiring Soon</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors bg-gray-50/30 dark:bg-gray-800/10">
+<td class="px-6 py-4 opacity-60">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-gray-900 dark:text-white line-through">Press Kit 2022</span>
+<span class="text-xs text-gray-400 truncate max-w-[150px]">psg.co/s/pk22-old...</span>
+</div>
+</td>
+<td class="px-6 py-4 opacity-60">
+<div class="flex -space-x-2">
+<div class="size-8 rounded border-2 border-white dark:border-gray-900 bg-cover bg-center" data-alt="Old press kit archive" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoChF-8s6MaRyKFPIWCgvzHuieeLXB_tZdEEzP_zpgYrq5yU2iLSdFTHDBFYKHwzDRTpIt50sJRk0UblPMxG7XRpztZtDF9tL2-SGwX4M9TRcO2i2E0XBFoQ4YpeTo5fzxzu048dxnT2pSmF7cRLkKmN89pOXXuasZHZovIj1Qb2pMVV2tMUT5c_C4M_CWPzrGIYaEg91esoUh8qWq6uBQhbctvd1ONOuOimedNC6ZvfS_e49UPEirYIcJK5IbpGkDkKBOhVH74k4')"></div>
+</div>
+</td>
+<td class="px-6 py-4 opacity-60">
+<span class="inline-flex items-center px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-xs font-medium text-gray-400">public@media.org</span>
+</td>
+<td class="px-6 py-4 opacity-60">
+<span class="text-sm text-gray-400">Jan 01, 2023</span>
+</td>
+<td class="px-6 py-4 opacity-60">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-400">Download</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-red-500"></span>
+<span class="text-sm font-medium text-red-600">Expired</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-gray-900 dark:text-white">Project Emerald Blueprints</span>
+<span class="text-xs text-gray-400 truncate max-w-[150px]">psg.co/s/emerald-dwg...</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex -space-x-2">
+<div class="size-8 rounded border-2 border-white dark:border-gray-900 bg-cover bg-center" data-alt="Engineering drawing thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfwbcYj3NPyMV0ERuOiQq_UZB9sJzDrNnd-KBLpER3lrYG_aZkH-Fdl6PH71v2AjYaBcha1JzQ-pLkhsSXjfGda6UpLtaV3gEJnUW1c-gSZAkYg94eRw-2D0x-Ivj1f-B0WWdi4_Dnyni0HQ5fNf99U-LQr8mWVbakqn2DO2sfLGMoLqIDssCbLSMDG1Tvl3BQtq677NCGgSIpZoSyJY3FxTAeZeNqueVZ5czAZbc9olm8U9G5_rIIGKG-1pFLtnTeqX1YmP7ZB30')"></div>
+<div class="size-8 rounded border-2 border-white dark:border-gray-900 bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-[10px] font-bold">+5</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-xs font-medium text-gray-600 dark:text-gray-300">arch-team-a@build.com</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-gray-600 dark:text-gray-400">Dec 31, 2023</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary">Download</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-gray-400"></span>
+<span class="text-sm font-medium text-gray-500">Revoked</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between">
+<p class="text-xs text-gray-500 dark:text-gray-400">Showing <span class="font-bold">1</span> to <span class="font-bold">10</span> of <span class="font-bold">124</span> links</p>
+<div class="flex items-center gap-2">
+<button class="p-2 border border-gray-200 dark:border-gray-700 rounded bg-white dark:bg-gray-800 text-gray-400 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="px-3 py-1 bg-primary text-white rounded text-xs font-bold">1</button>
+<button class="px-3 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-xs font-bold">2</button>
+<button class="px-3 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-xs font-bold">3</button>
+<span class="text-xs">...</span>
+<button class="px-3 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-xs font-bold">13</button>
+<button class="p-2 border border-gray-200 dark:border-gray-700 rounded bg-white dark:bg-gray-800 text-gray-400">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tyre Inventory &amp; Disposal Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#1173d4",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-300">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 border-r border-[#dbe0e6] dark:border-gray-700 bg-white dark:bg-background-dark flex flex-col justify-between py-6">
+<div class="flex flex-col gap-8">
+<div class="px-6 flex flex-col">
+<h1 class="text-primary text-xl font-bold leading-tight tracking-tight">Bebang SI</h1>
+<p class="text-[#617589] text-xs font-medium uppercase tracking-wider mt-1">Tyre Management System</p>
+</div>
+<nav class="flex flex-col gap-1 px-3">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-semibold" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-sm font-medium">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">delete_sweep</span>
+<span class="text-sm font-medium">Scrap Log</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium">Disposal Certificates</span>
+</a>
+<div class="my-4 border-t border-gray-100 dark:border-gray-800 mx-3"></div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<div class="px-6">
+<div class="flex items-center gap-3 p-3 rounded-xl border border-[#dbe0e6] dark:border-gray-700">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-xs font-bold truncate">PT Prima Sarana Gemilang</p>
+<p class="text-[10px] text-[#617589] truncate">Fleet Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between h-16 px-8 border-b border-[#dbe0e6] dark:border-gray-700 bg-white dark:bg-background-dark">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold">Tyre Inventory &amp; Disposal</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/50" placeholder="Search serial numbers..." type="text"/>
+</div>
+<button class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-gray-200 dark:bg-gray-700 mx-1"></div>
+<div class="size-8 rounded-full bg-cover bg-center border border-gray-200" data-alt="Corporate professional headshot for user profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZR8d4pF7KFjVp67myjQHpzpugoX9PifeskvdkN9ELEGFxhQ9F35_2x4FqjK6jULDELPpDYOUb6uJz6QTgGCGGKfalgOKbtEfHikjE8AG1r9yLhfGJhWPck3n0HyjqV8M7z20JyRn5ULt2Rego-JHsKZwgo_ExjpuMvAkCMT1xX0lpsG7aZZjxqDf0EGsPvRzKJccp5UDQtL8gJCvK_z3rxlhlnR-bO3ZRudvV5bx2x6fjZYlC3TEPrmpZkDHTf-gYmlyYvMOLI1k");'></div>
+</div>
+</header>
+<!-- Dashboard Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="text-[#617589] text-sm font-medium">New Tyres in Stock</span>
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<p class="text-3xl font-bold leading-tight">1,240 Units</p>
+<div class="flex items-center gap-1 text-[#078838] text-sm font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+5.2%</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="text-[#617589] text-sm font-medium">Scrapped This Month</span>
+<span class="material-symbols-outlined text-red-500">delete_forever</span>
+</div>
+<p class="text-3xl font-bold leading-tight">86 Units</p>
+<div class="flex items-center gap-1 text-[#e73908] text-sm font-semibold">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span>-2.1%</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="text-[#617589] text-sm font-medium">Pending Disposal</span>
+<span class="material-symbols-outlined text-orange-500">hourglass_empty</span>
+</div>
+<p class="text-3xl font-bold leading-tight">42 Units</p>
+<div class="flex items-center gap-1 text-[#e73908] text-sm font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12%</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="text-[#617589] text-sm font-medium">Total Salvage Value</span>
+<span class="material-symbols-outlined text-green-600">payments</span>
+</div>
+<p class="text-3xl font-bold leading-tight">IDR 15.2M</p>
+<div class="flex items-center gap-1 text-[#078838] text-sm font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+8.4%</span>
+</div>
+</div>
+</div>
+<!-- Main Grid: Tables -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+<!-- Table 1: New Tyre Inventory -->
+<div class="xl:col-span-5 flex flex-col bg-white dark:bg-gray-900 rounded-xl border border-[#dbe0e6] dark:border-gray-800 overflow-hidden shadow-sm">
+<div class="flex items-center justify-between px-6 py-5 border-b border-[#f0f2f4] dark:border-gray-800">
+<h3 class="text-base font-bold">New Tyre Inventory</h3>
+<button class="text-primary text-sm font-semibold flex items-center gap-1">
+<span>View All</span>
+<span class="material-symbols-outlined text-xs">arrow_forward_ios</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="bg-[#f8fafc] dark:bg-gray-800/50 text-[#617589] font-medium">
+<tr>
+<th class="px-6 py-3">Brand</th>
+<th class="px-6 py-3">Size</th>
+<th class="px-6 py-3 text-right">Stock</th>
+<th class="px-6 py-3">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 font-semibold">Bridgestone</td>
+<td class="px-6 py-4 text-gray-500">11.00R20</td>
+<td class="px-6 py-4 text-right">450</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-[10px] font-bold uppercase">Optimal</span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 font-semibold">Michelin</td>
+<td class="px-6 py-4 text-gray-500">12.00R24</td>
+<td class="px-6 py-4 text-right font-bold text-orange-600">32</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400 text-[10px] font-bold uppercase">Low Stock</span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 font-semibold">Goodyear</td>
+<td class="px-6 py-4 text-gray-500">11.00R20</td>
+<td class="px-6 py-4 text-right">470</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-[10px] font-bold uppercase">Optimal</span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 font-semibold">Hankook</td>
+<td class="px-6 py-4 text-gray-500">10.00R20</td>
+<td class="px-6 py-4 text-right">120</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400 text-[10px] font-bold uppercase">Stable</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Table 2: Scrap Log -->
+<div class="xl:col-span-7 flex flex-col bg-white dark:bg-gray-900 rounded-xl border border-[#dbe0e6] dark:border-gray-800 overflow-hidden shadow-sm">
+<div class="flex items-center justify-between px-6 py-5 border-b border-[#f0f2f4] dark:border-gray-800">
+<div>
+<h3 class="text-base font-bold">Recent Scrap Log</h3>
+<p class="text-xs text-gray-500 mt-0.5">Tracking lifecycle end for fleet units</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 border border-[#dbe0e6] dark:border-gray-700 rounded-lg text-xs font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">download</span>
+                                    Export CSV
+                                </button>
+<button class="px-3 py-1.5 bg-primary text-white rounded-lg text-xs font-semibold hover:bg-primary/90 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span>
+                                    Log Scrap
+                                </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="bg-[#f8fafc] dark:bg-gray-800/50 text-[#617589] font-medium">
+<tr>
+<th class="px-6 py-3">Serial Number</th>
+<th class="px-6 py-3">Equipment Origin</th>
+<th class="px-6 py-3">Scrap Reason</th>
+<th class="px-6 py-3">Disposal Status</th>
+<th class="px-6 py-3">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-xs">BT-99283-A</td>
+<td class="px-6 py-4 text-gray-600 dark:text-gray-400">Excavator EX-04</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-600 dark:bg-red-900/20 text-[11px] font-medium">Blowout</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-1.5 rounded-full bg-blue-500"></div>
+<span class="text-xs font-medium">In Yard</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<button class="text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-xs">MC-11029-B</td>
+<td class="px-6 py-4 text-gray-600 dark:text-gray-400">Dump Truck DT-21</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-600 dark:bg-amber-900/20 text-[11px] font-medium">Tread Wear</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-1.5 rounded-full bg-orange-500"></div>
+<span class="text-xs font-medium">Re-treaded</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<button class="text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-xs">GY-44582-K</td>
+<td class="px-6 py-4 text-gray-600 dark:text-gray-400">Hauler HL-09</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-600 dark:bg-red-900/20 text-[11px] font-medium">Side Cut</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-1.5 rounded-full bg-green-500"></div>
+<span class="text-xs font-medium">Disposed</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<button class="text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-xs">BT-12903-X</td>
+<td class="px-6 py-4 text-gray-600 dark:text-gray-400">Grader GR-02</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-600 dark:bg-amber-900/20 text-[11px] font-medium">Separation</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-1.5 rounded-full bg-blue-500"></div>
+<span class="text-xs font-medium">In Yard</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<button class="text-gray-400 hover:text-primary">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Disposal Certificates Preview -->
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-8 border border-primary/20 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-6">
+<div class="size-16 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-3xl font-light">verified_user</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">Disposal Certificates</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 mt-1">You have 12 pending certificates ready for verification and archival.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="bg-white dark:bg-gray-800 text-primary border border-primary/30 px-6 py-2.5 rounded-lg text-sm font-bold shadow-sm hover:bg-gray-50 transition-all">
+                            Review Certificates
+                        </button>
+<button class="bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold shadow-md shadow-primary/30 hover:bg-primary/90 transition-all">
+                            Generate New
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

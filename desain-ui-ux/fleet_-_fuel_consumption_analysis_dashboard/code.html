@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fleet - Fuel Consumption Analysis Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-grid-line { stroke: #e5e7eb; }
+        .dark .chart-grid-line { stroke: #374151; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-gray-100 min-h-screen font-display transition-colors duration-200">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a242d] px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">local_gas_station</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-tight">Bebang Fleet</h2>
+</div>
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden">
+<div class="text-gray-500 flex border-none bg-gray-100 dark:bg-gray-800 items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-gray-100 dark:bg-gray-800 focus:ring-0 text-sm h-full placeholder:text-gray-500" placeholder="Search fleet or asset..."/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="flex items-center gap-6">
+<a class="text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary py-1" href="#">Fuel Analysis</a>
+<a class="text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="#">Assets</a>
+<a class="text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+<div class="flex gap-2 border-l border-gray-200 dark:border-gray-700 pl-6">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90 transition-all">
+<span>Export Report</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white dark:border-gray-700" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr15gD6vqmJOiveyXaj63oaWyUuB9FA8SARQTRhZtRJH84ndzjzBu8rjFwYwoDq45ZMs6WFIcQtDcaYa6OeQhP8tfDI1_3ZtGO30E0NERX19hcUWYgcT4kD4u6XgmbGNngzm8HZ38qm_7WvSEq_dLUToddpRtPEiIeDlYCRo0qayIzisdyfKLwEXWrPpFkws2Xql2DGVygvQ-6Gbk514fEpvZm9K6j5nqTfbMTcNdoBgtd87rZy4pExIsK6bjzRKookH7X_xqjY0I");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a242d] hidden lg:flex flex-col justify-between p-4 min-h-[calc(100vh-65px)]">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col px-3">
+<h1 class="text-[#111418] dark:text-white text-base font-bold">PT Prima Sarana Gemilang</h1>
+<p class="text-gray-500 text-xs font-medium uppercase tracking-wider mt-1">Fleet Operations</p>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Overview</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">analytics</span>
+<p class="text-sm font-bold">Fuel Analysis</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined">settings_suggest</span>
+<p class="text-sm font-medium">Vehicle Health</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined">route</span>
+<p class="text-sm font-medium">Route Optimization</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined">warning</span>
+<p class="text-sm font-medium">Alerts</p>
+<span class="ml-auto bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">4</span>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-tighter">Current Plan</p>
+<p class="text-sm font-bold dark:text-white mt-1">Enterprise Fleet Pro</p>
+<div class="w-full bg-gray-200 dark:bg-gray-700 h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 75%"></div>
+</div>
+<p class="text-[10px] text-gray-500 mt-2">75,000 / 100,000 Liters tracked</p>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto px-8 py-8 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Section Header -->
+<div class="flex items-end justify-between">
+<div>
+<h2 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-tight">Fuel Consumption Analysis</h2>
+<p class="text-gray-500 text-sm">Monthly performance data and consumption efficiency reports.</p>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center bg-white dark:bg-[#1a242d] border border-gray-200 dark:border-gray-800 rounded-lg px-3 py-2 gap-2 text-sm font-medium">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">calendar_today</span>
+<span>Oct 1, 2023 - Oct 31, 2023</span>
+</div>
+<div class="flex items-center bg-white dark:bg-[#1a242d] border border-gray-200 dark:border-gray-800 rounded-lg px-3 py-2 gap-2 text-sm font-medium">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">filter_list</span>
+<span>All Fleets</span>
+</div>
+</div>
+</div>
+<!-- KPI Stats -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-[#1a242d] border border-gray-200 dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">local_gas_station</span>
+</div>
+<span class="text-[#078838] bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>+5.2%
+                            </span>
+</div>
+<p class="text-gray-500 text-sm font-medium">Total Fuel Consumed</p>
+<p class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold mt-1">1,240,500 L</p>
+</div>
+<div class="bg-white dark:bg-[#1a242d] border border-gray-200 dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-orange-500">
+<span class="material-symbols-outlined">speed</span>
+</div>
+<span class="text-[#e73908] bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_down</span>-1.8%
+                            </span>
+</div>
+<p class="text-gray-500 text-sm font-medium">Avg. Fuel Efficiency</p>
+<p class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold mt-1">2.4 L/km</p>
+</div>
+<div class="bg-white dark:bg-[#1a242d] border border-gray-200 dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg text-green-600">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-[#078838] bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>+3.1%
+                            </span>
+</div>
+<p class="text-gray-500 text-sm font-medium">Total Fuel Cost</p>
+<p class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold mt-1">$1.14M</p>
+</div>
+<div class="bg-white dark:bg-[#1a242d] border border-gray-200 dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-gray-50 dark:bg-gray-700 rounded-lg text-gray-500">
+<span class="material-symbols-outlined">co2</span>
+</div>
+<span class="text-[#078838] bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_flat</span>+0.5%
+                            </span>
+</div>
+<p class="text-gray-500 text-sm font-medium">Carbon Footprint</p>
+<p class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold mt-1">3,200 tCO2e</p>
+</div>
+</div>
+<!-- Main Charts Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- Fuel vs Production Chart -->
+<div class="xl:col-span-2 flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a242d] p-6 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-gray-500 text-sm font-medium">Consumption vs Production Output</p>
+<h3 class="text-[#111418] dark:text-white tracking-tight text-xl font-bold">Monthly Trend Analysis</h3>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-1.5">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-xs font-medium text-gray-500">Fuel (L)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+<span class="text-xs font-medium text-gray-500">Production (Tons)</span>
+</div>
+</div>
+</div>
+<div class="relative h-[280px] w-full pt-4">
+<!-- Simple SVG Visualization for Trend -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 280">
+<!-- Grid Lines -->
+<line class="chart-grid-line" stroke-width="1" x1="0" x2="1000" y1="280" y2="280"></line>
+<line class="chart-grid-line" stroke-width="1" x1="0" x2="1000" y1="210" y2="210"></line>
+<line class="chart-grid-line" stroke-width="1" x1="0" x2="1000" y1="140" y2="140"></line>
+<line class="chart-grid-line" stroke-width="1" x1="0" x2="1000" y1="70" y2="70"></line>
+<line class="chart-grid-line" stroke-width="1" x1="0" x2="1000" y1="0" y2="0"></line>
+<!-- Production Area (Gray) -->
+<path class="dark:fill-gray-700" d="M0,280 L0,150 L100,160 L200,140 L300,155 L400,130 L500,110 L600,120 L700,90 L800,105 L900,85 L1000,70 L1000,280 Z" fill="#e5e7eb" opacity="0.3"></path>
+<path d="M0,150 L100,160 L200,140 L300,155 L400,130 L500,110 L600,120 L700,90 L800,105 L900,85 L1000,70" fill="none" stroke="#9ca3af" stroke-dasharray="4" stroke-width="2"></path>
+<!-- Fuel Line (Primary Blue) -->
+<path d="M0,220 L100,210 L200,230 L300,200 L400,180 L500,160 L600,170 L700,140 L800,150 L900,120 L1000,100" fill="none" stroke="#1173d4" stroke-linecap="round" stroke-width="4"></path>
+<!-- Dots -->
+<circle cx="500" cy="160" fill="#1173d4" r="5"></circle>
+</svg>
+<div class="flex justify-between mt-4">
+<span class="text-[10px] text-gray-400 font-bold">JAN</span>
+<span class="text-[10px] text-gray-400 font-bold">MAR</span>
+<span class="text-[10px] text-gray-400 font-bold">MAY</span>
+<span class="text-[10px] text-gray-400 font-bold">JUL</span>
+<span class="text-[10px] text-gray-400 font-bold">SEP</span>
+<span class="text-[10px] text-gray-400 font-bold">OCT</span>
+</div>
+</div>
+</div>
+<!-- Discrepancy Alerts Sidebar -->
+<div class="flex flex-col rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a242d] shadow-sm">
+<div class="p-6 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold">Discrepancy Alerts</h3>
+<span class="text-xs text-primary font-bold cursor-pointer hover:underline">View All</span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Alert Item -->
+<div class="p-4 rounded-lg bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500">
+<div class="flex justify-between">
+<span class="text-red-700 dark:text-red-400 text-xs font-bold uppercase">Sudden Drop</span>
+<span class="text-gray-500 text-[10px]">02:15 AM</span>
+</div>
+<p class="text-sm font-bold mt-1 text-gray-900 dark:text-gray-100">DT-104 (Hauling)</p>
+<p class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">15.4L sudden fuel loss detected during idle period.</p>
+</div>
+<!-- Alert Item -->
+<div class="p-4 rounded-lg bg-orange-50 dark:bg-orange-900/10 border-l-4 border-orange-500">
+<div class="flex justify-between">
+<span class="text-orange-700 dark:text-orange-400 text-xs font-bold uppercase">Odometer Gap</span>
+<span class="text-gray-500 text-[10px]">Yesterday</span>
+</div>
+<p class="text-sm font-bold mt-1 text-gray-900 dark:text-gray-100">EX-302 (Excavator)</p>
+<p class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">50km variance between GPS and manual log.</p>
+</div>
+<!-- Alert Item -->
+<div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/10 border-l-4 border-primary">
+<div class="flex justify-between">
+<span class="text-primary dark:text-blue-400 text-xs font-bold uppercase">High Consumption</span>
+<span class="text-gray-500 text-[10px]">Yesterday</span>
+</div>
+<p class="text-sm font-bold mt-1 text-gray-900 dark:text-gray-100">LV-22 (Support)</p>
+<p class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">25% above baseline for Shift 2 route.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Top Consumers -->
+<div class="flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a242d] p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="text-[#111418] dark:text-white text-lg font-bold">Top Fuel Consumers</h3>
+<p class="text-xs text-gray-500">Breakdown by Vehicle Fleet</p>
+</div>
+<select class="form-select text-xs font-bold border-gray-200 dark:border-gray-700 bg-transparent rounded-lg focus:ring-primary">
+<option>By Liters</option>
+<option>By Efficiency</option>
+</select>
+</div>
+<div class="space-y-6 py-2">
+<div class="grid grid-cols-[100px_1fr_60px] items-center gap-4">
+<span class="text-xs font-bold text-gray-600 dark:text-gray-400">DT-Fleet</span>
+<div class="h-4 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 100%"></div>
+</div>
+<span class="text-xs font-bold text-right">450k L</span>
+</div>
+<div class="grid grid-cols-[100px_1fr_60px] items-center gap-4">
+<span class="text-xs font-bold text-gray-600 dark:text-gray-400">EX-Fleet</span>
+<div class="h-4 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 82%"></div>
+</div>
+<span class="text-xs font-bold text-right">369k L</span>
+</div>
+<div class="grid grid-cols-[100px_1fr_60px] items-center gap-4">
+<span class="text-xs font-bold text-gray-600 dark:text-gray-400">LV-Fleet</span>
+<div class="h-4 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 35%"></div>
+</div>
+<span class="text-xs font-bold text-right">158k L</span>
+</div>
+<div class="grid grid-cols-[100px_1fr_60px] items-center gap-4">
+<span class="text-xs font-bold text-gray-600 dark:text-gray-400">BG-Fleet</span>
+<div class="h-4 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 20%"></div>
+</div>
+<span class="text-xs font-bold text-right">90k L</span>
+</div>
+</div>
+</div>
+<!-- Fuel Efficiency Heatmap -->
+<div class="flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a242d] p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="text-[#111418] dark:text-white text-lg font-bold">Efficiency Heatmap</h3>
+<p class="text-xs text-gray-500">Intensity: L/km across shifts and zones</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-gray-400 uppercase">Efficiency:</span>
+<div class="flex gap-0.5">
+<div class="w-3 h-3 bg-blue-100"></div>
+<div class="w-3 h-3 bg-blue-300"></div>
+<div class="w-3 h-3 bg-blue-500"></div>
+<div class="w-3 h-3 bg-blue-700"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-6 gap-2 h-full">
+<!-- Heatmap Legend Rows -->
+<div class="col-span-1 flex flex-col justify-around text-[10px] font-bold text-gray-400">
+<span>Shift 1</span>
+<span>Shift 2</span>
+<span>Shift 3</span>
+</div>
+<!-- Grid -->
+<div class="col-span-5 grid grid-cols-5 gap-2">
+<!-- Shift 1 cells -->
+<div class="aspect-square bg-blue-500 rounded-lg" title="North Zone: 2.1 L/km"></div>
+<div class="aspect-square bg-blue-700 rounded-lg" title="East Zone: 2.8 L/km"></div>
+<div class="aspect-square bg-blue-300 rounded-lg" title="South Zone: 1.8 L/km"></div>
+<div class="aspect-square bg-blue-100 rounded-lg" title="West Zone: 1.2 L/km"></div>
+<div class="aspect-square bg-blue-500 rounded-lg" title="Main Pit: 2.3 L/km"></div>
+<!-- Shift 2 cells -->
+<div class="aspect-square bg-blue-300 rounded-lg"></div>
+<div class="aspect-square bg-blue-500 rounded-lg"></div>
+<div class="aspect-square bg-blue-700 rounded-lg"></div>
+<div class="aspect-square bg-blue-500 rounded-lg"></div>
+<div class="aspect-square bg-blue-300 rounded-lg"></div>
+<!-- Shift 3 cells -->
+<div class="aspect-square bg-blue-100 rounded-lg"></div>
+<div class="aspect-square bg-blue-300 rounded-lg"></div>
+<div class="aspect-square bg-blue-500 rounded-lg"></div>
+<div class="aspect-square bg-blue-300 rounded-lg"></div>
+<div class="aspect-square bg-blue-100 rounded-lg"></div>
+</div>
+<!-- Labels -->
+<div class="col-start-2 col-span-5 grid grid-cols-5 text-center mt-2">
+<span class="text-[10px] font-bold text-gray-400">North</span>
+<span class="text-[10px] font-bold text-gray-400">East</span>
+<span class="text-[10px] font-bold text-gray-400">South</span>
+<span class="text-[10px] font-bold text-gray-400">West</span>
+<span class="text-[10px] font-bold text-gray-400">Pit</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Table View -->
+<div class="bg-white dark:bg-[#1a242d] border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm overflow-hidden">
+<div class="p-6 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold">Latest Refuel Logs</h3>
+<button class="text-sm font-bold text-primary flex items-center gap-1">
+                            View All Logs <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-gray-50 dark:bg-gray-800/50">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">Vehicle ID</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">Date/Time</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">Volume (L)</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">Odometer</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">Operator</th>
+<th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-bold">DT-104</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Oct 24, 08:45 AM</td>
+<td class="px-6 py-4 text-sm font-medium">150.0 L</td>
+<td class="px-6 py-4 text-sm">45,680 km</td>
+<td class="px-6 py-4 text-sm">Bambang S.</td>
+<td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold rounded">Verified</span></td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-bold">EX-302</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Oct 24, 07:12 AM</td>
+<td class="px-6 py-4 text-sm font-medium">840.5 L</td>
+<td class="px-6 py-4 text-sm">12,450 hr</td>
+<td class="px-6 py-4 text-sm">Agus Wijaya</td>
+<td class="px-6 py-4"><span class="px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-xs font-bold rounded">Discrepancy</span></td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-bold">DT-201</td>
+<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">Oct 23, 11:30 PM</td>
+<td class="px-6 py-4 text-sm font-medium">120.0 L</td>
+<td class="px-6 py-4 text-sm">62,110 km</td>
+<td class="px-6 py-4 text-sm">Herman K.</td>
+<td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold rounded">Verified</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

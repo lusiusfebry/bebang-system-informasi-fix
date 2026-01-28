@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Safety Audit &amp; Inspection Form</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .form-input:focus { border-color: #1173d4 !important; ring: 0 !important; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-pass { background-color: #22c55e; color: white; }
+        .active-fail { background-color: #ef4444; color: white; }
+        .active-na { background-color: #94a3b8; color: white; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-solid border-[#f0f2f4] dark:border-[#2a3540] px-4 md:px-10 py-3">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between whitespace-nowrap">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Bebang HSE - PT Prima Sarana Gemilang</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#111418] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Inspections</a>
+<a class="text-[#111418] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Reports</a>
+<a class="text-[#111418] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDSPXl6nJiQR0lmiTkiWs8pli9XVYC7tAzBGd8cFN4A01tsavNj8vzVxqIaikgwE6xDd5upQRIgZXapHVFmAPHkIRioBPQAwsf9C4aD5rMIVAsMyLHdX6L0vwsUim2m8ohPWELrmCUxuDANVUaWKY8kOF5Ck7ZY_p7miw21EjkXao-J015A73O5o1K1g6ZqhRm3YEfhKjKWin17MrLspN8xJOldAUrdL5PSdpQp03YKjfqvYP6IMXZH4kr4ZN1v4szgzGnL99vHYWI");'></div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto p-4 md:p-8">
+<!-- Page Heading -->
+<div class="mb-8">
+<h1 class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-tight">New Safety Audit &amp; Inspection Form</h1>
+<p class="text-[#617589] dark:text-gray-400 text-base font-normal mt-2">Site Inspection &amp; Safety Audit for PT Prima Sarana Gemilang - General Safety Standards</p>
+</div>
+<!-- Inspection Header Card -->
+<div class="bg-white dark:bg-background-dark/50 border border-[#dbe0e6] dark:border-[#2a3540] rounded-xl p-6 mb-8 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-[#111418] dark:text-white text-sm font-semibold">Area/Location</label>
+<div class="relative">
+<select class="w-full rounded-lg border-[#dbe0e6] dark:border-[#2a3540] dark:bg-background-dark h-12 px-4 focus:ring-primary focus:border-primary appearance-none">
+<option>Main Processing Plant</option>
+<option>Maintenance Workshop A</option>
+<option>Storage Yard 3</option>
+<option>Administrative Building</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-[#617589] pointer-events-none">unfold_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[#111418] dark:text-white text-sm font-semibold">Inspector Name</label>
+<input class="w-full rounded-lg border-[#dbe0e6] dark:border-[#2a3540] dark:bg-background-dark h-12 px-4 focus:ring-primary focus:border-primary" type="text" value="John Doe (Safety Officer)"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[#111418] dark:text-white text-sm font-semibold">Inspection Date</label>
+<input class="w-full rounded-lg border-[#dbe0e6] dark:border-[#2a3540] dark:bg-background-dark h-12 px-4 focus:ring-primary focus:border-primary" type="date" value="2023-10-27"/>
+</div>
+</div>
+</div>
+<!-- Audit Sections -->
+<div class="space-y-6">
+<!-- Category: PPE Compliance -->
+<section class="bg-white dark:bg-background-dark/30 border border-[#dbe0e6] dark:border-[#2a3540] rounded-xl overflow-hidden shadow-sm">
+<div class="bg-[#f8fafc] dark:bg-primary/10 px-6 py-4 flex justify-between items-center border-b border-[#dbe0e6] dark:border-[#2a3540]">
+<h3 class="text-lg font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">engineering</span>
+                        1. PPE Compliance
+                    </h3>
+<button class="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Pass All</button>
+</div>
+<div class="divide-y divide-[#f0f2f4] dark:divide-[#2a3540]">
+<!-- Checkpoint Row -->
+<div class="p-6 flex flex-wrap lg:flex-nowrap items-center gap-6 hover:bg-[#fcfdfe] dark:hover:bg-white/5 transition-colors">
+<div class="flex-1 min-w-[300px]">
+<p class="font-semibold text-[#111418] dark:text-white">Hard Hat usage</p>
+<p class="text-sm text-[#617589]">Ensuring all personnel in the zone are wearing approved hard hats.</p>
+</div>
+<div class="flex items-center gap-4">
+<!-- Segmented Control -->
+<div class="flex bg-[#f0f2f4] dark:bg-background-dark p-1 rounded-lg border border-[#dbe0e6] dark:border-[#2a3540]">
+<button class="px-4 py-1.5 rounded active-pass text-sm font-bold transition-all">Pass</button>
+<button class="px-4 py-1.5 rounded hover:bg-white dark:hover:bg-gray-700 text-sm font-medium">Fail</button>
+<button class="px-4 py-1.5 rounded hover:bg-white dark:hover:bg-gray-700 text-sm font-medium">N/A</button>
+</div>
+<!-- Severity Selector (Hidden by default, shown if Fail selected) -->
+<select class="hidden w-32 rounded-lg border-[#dbe0e6] dark:border-[#2a3540] dark:bg-background-dark text-sm h-10 px-2 focus:ring-primary">
+<option>Severity</option>
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select>
+<!-- Action Buttons -->
+<div class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589] hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined text-xl">add_a_photo</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589] hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined text-xl">sticky_note_2</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Checkpoint Row (Example of a Fail state) -->
+<div class="p-6 flex flex-wrap lg:flex-nowrap items-center gap-6 bg-red-50/50 dark:bg-red-900/10">
+<div class="flex-1 min-w-[300px]">
+<p class="font-semibold text-[#111418] dark:text-white">High-Vis Vests</p>
+<p class="text-sm text-[#617589]">Reflective material in good condition and visible.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex bg-[#f0f2f4] dark:bg-background-dark p-1 rounded-lg border border-[#dbe0e6] dark:border-[#2a3540]">
+<button class="px-4 py-1.5 rounded hover:bg-white dark:hover:bg-gray-700 text-sm font-medium">Pass</button>
+<button class="px-4 py-1.5 rounded active-fail text-sm font-bold shadow-sm">Fail</button>
+<button class="px-4 py-1.5 rounded hover:bg-white dark:hover:bg-gray-700 text-sm font-medium">N/A</button>
+</div>
+<select class="w-32 rounded-lg border-red-300 dark:border-red-900 bg-white dark:bg-background-dark text-sm h-10 px-2 focus:ring-red-500 font-semibold text-red-600">
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+<option>Critical</option>
+</select>
+<div class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg border-primary bg-primary/10 text-primary relative">
+<span class="material-symbols-outlined text-xl">image</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold rounded-full size-4 flex items-center justify-center">1</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589]">
+<span class="material-symbols-outlined text-xl">sticky_note_2</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category: Tool Condition -->
+<section class="bg-white dark:bg-background-dark/30 border border-[#dbe0e6] dark:border-[#2a3540] rounded-xl overflow-hidden shadow-sm">
+<div class="bg-[#f8fafc] dark:bg-primary/10 px-6 py-4 flex justify-between items-center border-b border-[#dbe0e6] dark:border-[#2a3540]">
+<h3 class="text-lg font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">construction</span>
+                        2. Tool Condition
+                    </h3>
+<button class="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Pass All</button>
+</div>
+<div class="divide-y divide-[#f0f2f4] dark:divide-[#2a3540]">
+<div class="p-6 flex flex-wrap lg:flex-nowrap items-center gap-6 hover:bg-[#fcfdfe] transition-colors">
+<div class="flex-1 min-w-[300px]">
+<p class="font-semibold text-[#111418] dark:text-white">Power Tool Safety Tags</p>
+<p class="text-sm text-[#617589]">Current color code tag present and legible.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex bg-[#f0f2f4] dark:bg-background-dark p-1 rounded-lg border border-[#dbe0e6]">
+<button class="px-4 py-1.5 rounded hover:bg-white text-sm font-medium">Pass</button>
+<button class="px-4 py-1.5 rounded hover:bg-white text-sm font-medium">Fail</button>
+<button class="px-4 py-1.5 rounded active-na text-sm font-bold shadow-sm">N/A</button>
+</div>
+<div class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589]">
+<span class="material-symbols-outlined text-xl">add_a_photo</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589]">
+<span class="material-symbols-outlined text-xl">sticky_note_2</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-6 flex flex-wrap lg:flex-nowrap items-center gap-6 hover:bg-[#fcfdfe] transition-colors">
+<div class="flex-1 min-w-[300px]">
+<p class="font-semibold text-[#111418] dark:text-white">Hand Tool Integrity</p>
+<p class="text-sm text-[#617589]">Handles secure, no cracked or mushroomed heads.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex bg-[#f0f2f4] dark:bg-background-dark p-1 rounded-lg border border-[#dbe0e6]">
+<button class="px-4 py-1.5 rounded active-pass text-sm font-bold shadow-sm">Pass</button>
+<button class="px-4 py-1.5 rounded hover:bg-white text-sm font-medium">Fail</button>
+<button class="px-4 py-1.5 rounded hover:bg-white text-sm font-medium">N/A</button>
+</div>
+<div class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589]">
+<span class="material-symbols-outlined text-xl">add_a_photo</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589]">
+<span class="material-symbols-outlined text-xl">sticky_note_2</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category: Housekeeping -->
+<section class="bg-white dark:bg-background-dark/30 border border-[#dbe0e6] dark:border-[#2a3540] rounded-xl overflow-hidden shadow-sm">
+<div class="bg-[#f8fafc] dark:bg-primary/10 px-6 py-4 flex justify-between items-center border-b border-[#dbe0e6] dark:border-[#2a3540]">
+<h3 class="text-lg font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">cleaning_services</span>
+                        3. Housekeeping
+                    </h3>
+<button class="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Pass All</button>
+</div>
+<div class="divide-y divide-[#f0f2f4] dark:divide-[#2a3540]">
+<div class="p-6 flex flex-wrap lg:flex-nowrap items-center gap-6 hover:bg-[#fcfdfe] transition-colors">
+<div class="flex-1 min-w-[300px]">
+<p class="font-semibold text-[#111418] dark:text-white">Walkway Obstructions</p>
+<p class="text-sm text-[#617589]">Pathways are clear of cables, tools, and debris.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex bg-[#f0f2f4] dark:bg-background-dark p-1 rounded-lg border border-[#dbe0e6]">
+<button class="px-4 py-1.5 rounded active-pass text-sm font-bold shadow-sm">Pass</button>
+<button class="px-4 py-1.5 rounded hover:bg-white text-sm font-medium">Fail</button>
+<button class="px-4 py-1.5 rounded hover:bg-white text-sm font-medium">N/A</button>
+</div>
+<div class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589]">
+<span class="material-symbols-outlined text-xl">add_a_photo</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#dbe0e6] dark:border-[#2a3540] text-[#617589]">
+<span class="material-symbols-outlined text-xl">sticky_note_2</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- General Findings Summary -->
+<div class="mt-8 bg-white dark:bg-background-dark/50 border border-[#dbe0e6] dark:border-[#2a3540] rounded-xl p-6 shadow-sm">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                General Findings &amp; Summary
+            </h3>
+<textarea class="w-full h-32 rounded-lg border-[#dbe0e6] dark:border-[#2a3540] dark:bg-background-dark focus:ring-primary focus:border-primary p-4 text-base" placeholder="Enter overall observations, critical risks found, or recommendations..."></textarea>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<div class="mt-10 mb-20 flex flex-wrap gap-4 items-center justify-between border-t border-[#dbe0e6] dark:border-[#2a3540] pt-8">
+<div class="flex gap-4">
+<button class="bg-white dark:bg-transparent border border-[#dbe0e6] dark:border-[#2a3540] px-6 py-3 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-xl">save</span>
+                    Save Draft
+                </button>
+<button class="bg-red-50 text-red-600 border border-red-200 px-6 py-3 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-red-100 transition-colors">
+<span class="material-symbols-outlined text-xl">delete</span>
+                    Discard
+                </button>
+</div>
+<button class="bg-primary text-white px-10 py-3 rounded-lg font-bold text-lg shadow-lg hover:bg-[#0d61b5] transition-all flex items-center gap-3">
+<span class="material-symbols-outlined">send</span>
+                Submit Safety Audit
+            </button>
+</div>
+</main>
+<!-- Footer Meta -->
+<footer class="bg-white dark:bg-background-dark border-t border-[#f0f2f4] dark:border-[#2a3540] py-6 text-center text-sm text-[#617589]">
+<p>© 2023 Bebang Sistem Informasi - HSE Module. PT Prima Sarana Gemilang.</p>
+</footer>
+</body></html>

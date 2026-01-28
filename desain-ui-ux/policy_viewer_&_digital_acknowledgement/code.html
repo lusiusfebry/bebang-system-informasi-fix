@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Policy Viewer &amp; Digital Acknowledgement - PT Prima Sarana Gemilang</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbe0e6] dark:border-[#2d394a] bg-white dark:bg-[#1a2533] px-10 py-3 z-20">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"></path>
+</svg>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Documents</a>
+<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Departments</a>
+<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Help</a>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-[#2d394a] text-[#111418] dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-[#2d394a] text-[#111418] dark:text-white">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-gray-200" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBGICankUrKIOED_tFTFJVk7DAChDwkeQ8wWqOSS9l-UhHxEu8JY1lw7d98d3uTNWtiqy4tiE8IK_HEXK9NoUuKNtk6pPVdQBuoJ8-bzfY1BRB3xsG8TZgQfsgLmsFDa29El1C4e1V_uf0DujWpW5G3q-JLGIB99dFgBVI2RY8l9V4CBdu0CtM-eYtiQqGfDCQ4UcqYzlc8pjPU7ppxUBh4TmB6cHblQfbOHs66PFk-sI73zq63fcfDudJsyKzThPU481t-Tui8bQo");'>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Document View Column -->
+<div class="flex-1 flex flex-col min-w-0 bg-white dark:bg-[#141d28] overflow-hidden">
+<!-- Metadata & Breadcrumbs Header -->
+<div class="border-b border-solid border-[#f0f2f4] dark:border-[#2d394a] px-8 py-4">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-2">
+<a class="text-[#617589] dark:text-[#94a3b8] text-xs font-medium leading-normal hover:underline" href="#">Home</a>
+<span class="text-[#617589] dark:text-[#94a3b8] text-xs font-medium leading-normal">/</span>
+<a class="text-[#617589] dark:text-[#94a3b8] text-xs font-medium leading-normal hover:underline" href="#">Policies</a>
+<span class="text-[#617589] dark:text-[#94a3b8] text-xs font-medium leading-normal">/</span>
+<span class="text-[#111418] dark:text-white text-xs font-medium leading-normal">Safety Protocol v2.0</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-start gap-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Safety Protocol v2.0</h1>
+<p class="text-[#617589] dark:text-[#94a3b8] text-sm font-normal">Document ID: <span class="font-semibold">PSG-HSE-2023-001</span> | HSE Department</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-[#f0f2f4] dark:bg-[#2d394a] text-[#111418] dark:text-white text-sm font-bold transition-all hover:bg-gray-200">
+<span class="material-symbols-outlined mr-2 text-sm">history</span>
+<span class="truncate">Revision History</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-all hover:opacity-90">
+<span class="material-symbols-outlined mr-2 text-sm">print</span>
+<span>Print</span>
+</button>
+</div>
+</div>
+<!-- Compact Metadata -->
+<div class="mt-4 grid grid-cols-4 gap-4 border-t border-[#f0f2f4] dark:border-[#2d394a] pt-4">
+<div>
+<p class="text-[#617589] dark:text-[#94a3b8] text-[10px] uppercase font-bold tracking-wider">Owner Department</p>
+<p class="text-[#111418] dark:text-white text-sm font-medium">HSE Department</p>
+</div>
+<div>
+<p class="text-[#617589] dark:text-[#94a3b8] text-[10px] uppercase font-bold tracking-wider">Effective Date</p>
+<p class="text-[#111418] dark:text-white text-sm font-medium">October 12, 2023</p>
+</div>
+<div>
+<p class="text-[#617589] dark:text-[#94a3b8] text-[10px] uppercase font-bold tracking-wider">Review Cycle</p>
+<p class="text-[#111418] dark:text-white text-sm font-medium">Annual</p>
+</div>
+<div>
+<p class="text-[#617589] dark:text-[#94a3b8] text-[10px] uppercase font-bold tracking-wider">Status</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Active</span>
+</div>
+</div>
+</div>
+<!-- Document Toolbar -->
+<div class="flex items-center justify-between gap-4 px-8 py-2 bg-gray-50 dark:bg-[#1c2836] border-b border-[#dbe0e6] dark:border-[#2d394a]">
+<div class="flex items-center gap-1">
+<button class="p-2 text-[#111418] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="p-2 text-[#111418] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+<span class="material-symbols-outlined">zoom_out</span>
+</button>
+<div class="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-1"></div>
+<div class="flex items-center gap-2 px-2">
+<input class="w-10 h-7 text-center text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 dark:text-white" type="text" value="1"/>
+<span class="text-xs text-[#617589] dark:text-[#94a3b8]">/ 12</span>
+</div>
+</div>
+<div class="flex-1 max-w-md">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-gray-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white focus:ring-1 focus:ring-primary focus:border-primary" placeholder="Search within document..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-[#111418] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="p-2 text-[#111418] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- PDF Viewer Area -->
+<div class="flex-1 bg-[#525659] dark:bg-[#0b1219] p-8 overflow-y-auto custom-scrollbar flex flex-col items-center gap-8">
+<!-- Page 1 Shadow -->
+<div class="bg-white shadow-2xl w-full max-w-[800px] aspect-[1/1.41] flex flex-col p-16 relative">
+<div class="flex justify-between border-b-2 border-primary pb-6 mb-8">
+<div class="text-primary font-black text-2xl">PT PRIMA SARANA GEMILANG</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-gray-400 uppercase">Ref No</p>
+<p class="text-xs font-bold">PSG/HSE/PRO/2023/001</p>
+</div>
+</div>
+<div class="flex-1">
+<h2 class="text-3xl font-bold text-center mb-10 text-gray-800">SAFETY PROTOCOL &amp; COMPLIANCE</h2>
+<div class="space-y-6 text-gray-700 text-sm leading-relaxed">
+<section>
+<h3 class="font-bold text-gray-900 border-l-4 border-primary pl-4 mb-2 uppercase tracking-wide">1. Objective</h3>
+<p>The objective of this protocol is to establish a comprehensive framework for health, safety, and environmental protection across all operational sites of PT Prima Sarana Gemilang. This document outlines the mandatory requirements for personnel safety, equipment operation, and incident reporting.</p>
+</section>
+<section>
+<h3 class="font-bold text-gray-900 border-l-4 border-primary pl-4 mb-2 uppercase tracking-wide">2. Scope</h3>
+<p>This protocol applies to all employees, contractors, and visitors engaged in operations at any facility owned or managed by PT Prima Sarana Gemilang. Compliance is mandatory and is a condition of employment/contract.</p>
+</section>
+<section>
+<h3 class="font-bold text-gray-900 border-l-4 border-primary pl-4 mb-2 uppercase tracking-wide">3. Mandatory Protective Equipment (PPE)</h3>
+<p>Standard site PPE includes, but is not limited to: Hard hats, high-visibility vests, steel-toed boots, and safety glasses. Specialized operations (e.g., welding, chemical handling) require additional equipment as specified in the PPE Matrix Appendix B.</p>
+</section>
+<section>
+<h3 class="font-bold text-gray-900 border-l-4 border-primary pl-4 mb-2 uppercase tracking-wide">4. Incident Reporting</h3>
+<p>All incidents, including "near misses," must be reported immediately to the site supervisor and documented via the internal E-Incident portal within 24 hours of occurrence. Failure to report may result in disciplinary action.</p>
+</section>
+</div>
+</div>
+<div class="mt-auto pt-8 border-t border-gray-100 flex justify-between items-end text-[10px] text-gray-400">
+<div>Property of PT Prima Sarana Gemilang | Confidential</div>
+<div>Page 1 of 12</div>
+</div>
+</div>
+<!-- Page 2 Preview -->
+<div class="bg-white/90 shadow-lg w-full max-w-[800px] aspect-[1/1.41] flex flex-col p-16 opacity-80 pointer-events-none">
+<div class="h-8 w-48 bg-gray-200 mb-8"></div>
+<div class="h-4 w-full bg-gray-100 mb-4"></div>
+<div class="h-4 w-full bg-gray-100 mb-4"></div>
+<div class="h-4 w-3/4 bg-gray-100 mb-8"></div>
+<div class="h-40 w-full bg-gray-50 mb-8"></div>
+<div class="h-4 w-full bg-gray-100 mb-4"></div>
+<div class="h-4 w-full bg-gray-100 mb-4"></div>
+</div>
+</div>
+<!-- Persistent Acknowledgement Footer -->
+<div class="bg-white dark:bg-[#1a2533] border-t border-[#dbe0e6] dark:border-[#2d394a] px-8 py-5 z-30 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+<div class="flex items-center justify-between gap-6 max-w-5xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="relative flex items-center h-6">
+<input class="h-5 w-5 rounded text-primary focus:ring-primary border-gray-300 dark:border-gray-600 dark:bg-gray-800 cursor-pointer" id="policy-ack" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<label class="text-sm font-bold text-[#111418] dark:text-white cursor-pointer" for="policy-ack">
+                                    I have read and understood this policy
+                                </label>
+<p class="text-xs text-[#617589] dark:text-[#94a3b8]">By checking this box, you provide a digital acknowledgement of compliance.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold text-sm transition-all hover:bg-gray-200">
+                                Ask for Clarification
+                            </button>
+<button class="px-10 py-3 rounded-lg bg-primary text-white font-bold text-sm shadow-md transition-all hover:opacity-95 hover:translate-y-[-1px]">
+                                Confirm Acknowledgement
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Related Documents -->
+<aside class="w-80 border-l border-[#dbe0e6] dark:border-[#2d394a] bg-background-light dark:bg-[#0f1721] overflow-y-auto custom-scrollbar p-6 flex flex-col gap-6">
+<div>
+<h3 class="text-[#111418] dark:text-white text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">link</span>
+                        Related Documents
+                    </h3>
+<div class="space-y-3">
+<!-- Related Item 1 -->
+<div class="group cursor-pointer bg-white dark:bg-[#1c2836] p-4 rounded-xl border border-transparent hover:border-primary/30 transition-all shadow-sm">
+<p class="text-[#111418] dark:text-white text-xs font-bold leading-tight group-hover:text-primary mb-1">Emergency Contacts List</p>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-[#617589] dark:text-[#94a3b8]">HSE-REF-004</span>
+<span class="material-symbols-outlined text-xs text-[#617589] dark:text-[#94a3b8]">arrow_forward</span>
+</div>
+</div>
+<!-- Related Item 2 -->
+<div class="group cursor-pointer bg-white dark:bg-[#1c2836] p-4 rounded-xl border border-transparent hover:border-primary/30 transition-all shadow-sm">
+<p class="text-[#111418] dark:text-white text-xs font-bold leading-tight group-hover:text-primary mb-1">PPE Requirements Manual</p>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-[#617589] dark:text-[#94a3b8]">HSE-GUIDE-002</span>
+<span class="material-symbols-outlined text-xs text-[#617589] dark:text-[#94a3b8]">arrow_forward</span>
+</div>
+</div>
+<!-- Related Item 3 -->
+<div class="group cursor-pointer bg-white dark:bg-[#1c2836] p-4 rounded-xl border border-transparent hover:border-primary/30 transition-all shadow-sm">
+<p class="text-[#111418] dark:text-white text-xs font-bold leading-tight group-hover:text-primary mb-1">Incident Report Form</p>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-[#617589] dark:text-[#94a3b8]">FORM-HSE-001</span>
+<span class="material-symbols-outlined text-xs text-[#617589] dark:text-[#94a3b8]">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto">
+<div class="bg-primary/10 dark:bg-primary/5 rounded-xl p-5 border border-primary/20">
+<h4 class="text-primary text-xs font-bold mb-2">Need help?</h4>
+<p class="text-[#617589] dark:text-[#94a3b8] text-[11px] leading-normal mb-4">If you have questions regarding the content of this policy, please contact the HSE Compliance Officer.</p>
+<button class="w-full py-2 bg-white dark:bg-[#1c2836] text-primary text-xs font-bold rounded-lg border border-primary/30 hover:bg-primary hover:text-white transition-all">
+                            Message Compliance Officer
+                        </button>
+</div>
+<div class="mt-4 text-center">
+<p class="text-[10px] text-gray-400">System Version 4.2.1-stable</p>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

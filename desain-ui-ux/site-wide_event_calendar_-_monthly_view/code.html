@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Site-Wide Event Calendar - PT Prima Sarana Gemilang</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .day-box {
+            min-height: 120px;
+        }
+        /* Custom Checkbox Colors */
+        .check-training { accent-color: #22c55e; }
+        .check-safety { accent-color: #f97316; }
+        .check-social { accent-color: #135bec; }
+        .check-critical { accent-color: #ef4444; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f4] dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-[#111318] dark:text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">spark</span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Bebang Sistem Informasi</h2>
+<p class="text-xs text-slate-500 font-medium">PT Prima Sarana Gemilang</p>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Employee Data</a>
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Attendance</a>
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Payroll</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary py-1" href="#">Calendar</a>
+<a class="text-[#111318] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Training</a>
+</nav>
+<div class="flex gap-2 border-l border-slate-200 dark:border-slate-700 pl-8">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-slate-800 text-[#111318] dark:text-white hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f2f4] dark:bg-slate-800 text-[#111318] dark:text-white hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white dark:border-slate-700 shadow-sm" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0I3OVhqz9_D_SLwL7Ifrab8-iliI9d2CBaj9hJrfXtu5CJ4nfMurQExYfr1Is8gch7q5I8vqHdiwzT8JdRPnpB1u1t_2wbTg1nOK4atO0fj6jOEGlGURw87ReUFcSk1LbrQjdGd2fcjVEPTXfOaveLn4LKYmicBXj0sMB80YXT7YXPEWKldbmXxsHdBM6cAoml5VprTLSM_ZO7s5UFf5xHoac1figtmYr18QoHapvTbYX_vZcwgh1TW4RUu7p-DHUpP7l7c7PmP4");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-80 flex-shrink-0 bg-white dark:bg-slate-900 border-r border-[#f0f2f4] dark:border-slate-800 overflow-y-auto hidden lg:flex flex-col p-6 gap-8">
+<!-- Search Bar -->
+<div>
+<label class="flex flex-col w-full group">
+<div class="flex w-full items-stretch rounded-lg h-11 transition-all focus-within:ring-2 focus-within:ring-primary/50">
+<div class="text-slate-400 flex border-none bg-[#f0f2f4] dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#f0f2f4] dark:bg-slate-800 text-[#111318] dark:text-white focus:ring-0 h-full placeholder:text-slate-400 px-4 rounded-r-lg text-sm font-normal" placeholder="Search activities..."/>
+</div>
+</label>
+</div>
+<!-- Categories -->
+<div class="flex flex-col gap-3">
+<h3 class="text-[#111318] dark:text-white text-sm font-bold uppercase tracking-wider">Categories</h3>
+<div class="flex flex-col gap-1">
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-colors">
+<input checked="" class="h-5 w-5 rounded border-slate-300 dark:border-slate-600 text-green-500 focus:ring-green-500" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Training</span>
+<span class="ml-auto w-2 h-2 rounded-full bg-green-500"></span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-colors">
+<input checked="" class="h-5 w-5 rounded border-slate-300 dark:border-slate-600 text-orange-500 focus:ring-orange-500" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Safety Drills</span>
+<span class="ml-auto w-2 h-2 rounded-full bg-orange-500"></span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-colors">
+<input checked="" class="h-5 w-5 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Social Events</span>
+<span class="ml-auto w-2 h-2 rounded-full bg-primary"></span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-colors">
+<input checked="" class="h-5 w-5 rounded border-slate-300 dark:border-slate-600 text-red-500 focus:ring-red-500" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Critical Maintenance</span>
+<span class="ml-auto w-2 h-2 rounded-full bg-red-500"></span>
+</label>
+</div>
+</div>
+<!-- Mini Calendar View -->
+<div class="flex flex-col gap-3">
+<h3 class="text-[#111318] dark:text-white text-sm font-bold uppercase tracking-wider">Mini Calendar</h3>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="flex justify-between items-center mb-4">
+<span class="text-sm font-bold">October 2023</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-sm cursor-pointer hover:text-primary transition-colors">chevron_left</span>
+<span class="material-symbols-outlined text-sm cursor-pointer hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-[10px] text-center text-slate-400 font-bold mb-2">
+<span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-[11px] text-center">
+<span class="p-1 text-slate-300">28</span><span class="p-1 text-slate-300">29</span><span class="p-1 text-slate-300">30</span><span class="p-1 font-medium">1</span><span class="p-1 font-medium">2</span><span class="p-1 font-medium">3</span><span class="p-1 font-medium">4</span>
+<span class="p-1 font-medium">5</span><span class="p-1 font-medium">6</span><span class="p-1 font-medium">7</span><span class="p-1 font-medium">8</span><span class="p-1 font-medium">9</span><span class="p-1 font-medium">10</span><span class="p-1 font-medium">11</span>
+<span class="p-1 font-medium">12</span><span class="p-1 font-medium">13</span><span class="p-1 font-medium">14</span><span class="p-1 bg-primary text-white rounded-full font-bold">15</span><span class="p-1 font-medium">16</span><span class="p-1 font-medium">17</span><span class="p-1 font-medium">18</span>
+</div>
+</div>
+</div>
+<!-- Upcoming Events List -->
+<div class="flex flex-col gap-4 mt-auto">
+<h3 class="text-[#111318] dark:text-white text-sm font-bold uppercase tracking-wider">Next 7 Days</h3>
+<div class="flex flex-col gap-4">
+<div class="flex gap-3 items-start group">
+<div class="flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-base font-bold">16</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-xs font-bold truncate">HSE Safety Induction</span>
+<span class="text-[11px] text-slate-500">09:00 AM • Hall A</span>
+</div>
+</div>
+<div class="flex gap-3 items-start group">
+<div class="flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-base font-bold">18</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-xs font-bold truncate">Project Mgmt Workshop</span>
+<span class="text-[11px] text-slate-500">02:00 PM • Room 402</span>
+</div>
+</div>
+</div>
+</div>
+<button class="flex items-center justify-center gap-2 w-full py-3 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl hover:bg-slate-200 transition-colors text-sm font-bold">
+<span class="material-symbols-outlined text-lg">sync</span>
+                Sync Calendar
+            </button>
+</aside>
+<!-- Main Content (Calendar Grid) -->
+<main class="flex-1 flex flex-col min-w-0 bg-white dark:bg-slate-900">
+<!-- Calendar Controls -->
+<div class="p-6 border-b border-[#f0f2f4] dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<h1 class="text-2xl font-bold text-[#111318] dark:text-white">October 2023</h1>
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all shadow-sm">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-4 text-sm font-bold hover:bg-white dark:hover:bg-slate-700 py-1.5 rounded-md transition-all shadow-sm">Today</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md transition-all shadow-sm">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+<button class="px-5 py-1.5 text-xs font-bold bg-white dark:bg-slate-700 shadow-sm rounded-md text-primary">Month</button>
+<button class="px-5 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-700 transition-colors">Week</button>
+<button class="px-5 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-700 transition-colors">Day</button>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                        New Event
+                    </button>
+</div>
+</div>
+<!-- Calendar Header (Days) -->
+<div class="calendar-grid border-b border-[#f0f2f4] dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+<div class="py-3 text-center text-xs font-bold uppercase tracking-widest text-slate-500">Sun</div>
+<div class="py-3 text-center text-xs font-bold uppercase tracking-widest text-slate-500">Mon</div>
+<div class="py-3 text-center text-xs font-bold uppercase tracking-widest text-slate-500">Tue</div>
+<div class="py-3 text-center text-xs font-bold uppercase tracking-widest text-slate-500">Wed</div>
+<div class="py-3 text-center text-xs font-bold uppercase tracking-widest text-slate-500">Thu</div>
+<div class="py-3 text-center text-xs font-bold uppercase tracking-widest text-slate-500">Fri</div>
+<div class="py-3 text-center text-xs font-bold uppercase tracking-widest text-slate-500">Sat</div>
+</div>
+<!-- Calendar Grid Body -->
+<div class="flex-1 overflow-y-auto">
+<div class="calendar-grid bg-[#f0f2f4] dark:bg-slate-800 gap-[1px]">
+<!-- Row 1 -->
+<div class="day-box bg-white dark:bg-slate-900 p-2 opacity-40">
+<span class="text-sm font-medium">28</span>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2 opacity-40">
+<span class="text-sm font-medium">29</span>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2 opacity-40">
+<span class="text-sm font-medium">30</span>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">1</span>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">2</span>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">3</span>
+<div class="mt-2 flex flex-col gap-1">
+<div class="px-2 py-1 rounded bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-400 text-[10px] font-bold border-l-4 border-red-500 truncate" title="Main Boiler Maintenance">Boiler Mainten...</div>
+</div>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">4</span>
+</div>
+<!-- Row 2 -->
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">5</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">6</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">7</span>
+<div class="mt-2 flex flex-col gap-1">
+<div class="px-2 py-1 rounded bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 text-[10px] font-bold border-l-4 border-green-500 truncate">React Advanced</div>
+</div>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">8</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">9</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">10</span>
+<div class="mt-2 flex flex-col gap-1">
+<div class="px-2 py-1 rounded bg-blue-100 dark:bg-primary/20 text-primary dark:text-primary text-[10px] font-bold border-l-4 border-primary truncate">Monthly Townhall</div>
+</div>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">11</span></div>
+<!-- Row 3 -->
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">12</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">13</span>
+<div class="mt-2 flex flex-col gap-1">
+<div class="px-2 py-1 rounded bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-400 text-[10px] font-bold border-l-4 border-orange-500 truncate">Fire Drill Site B</div>
+</div>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">14</span></div>
+<div class="day-box bg-primary/5 dark:bg-primary/10 p-2 relative border-2 border-primary/20">
+<span class="text-sm font-bold text-primary">15</span>
+<span class="absolute top-2 right-2 flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<div class="mt-2 flex flex-col gap-1">
+<div class="px-2 py-1 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[10px] font-bold shadow-sm">Today View</div>
+</div>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">16</span>
+<div class="mt-2 flex flex-col gap-1">
+<div class="px-2 py-1 rounded bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-400 text-[10px] font-bold border-l-4 border-orange-500 truncate">HSE Induction</div>
+<div class="px-2 py-1 rounded bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 text-[10px] font-bold border-l-4 border-green-500 truncate">Manager Sync</div>
+</div>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">17</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">18</span>
+<div class="mt-2 flex flex-col gap-1">
+<div class="px-2 py-1 rounded bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 text-[10px] font-bold border-l-4 border-green-500 truncate">PM Workshop</div>
+<div class="text-[10px] text-slate-400 font-medium pl-1">+2 more</div>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">19</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">20</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">21</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">22</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2">
+<span class="text-sm font-medium">23</span>
+<div class="mt-2 flex flex-col gap-1">
+<div class="px-2 py-1 rounded bg-blue-100 dark:bg-primary/20 text-primary dark:text-primary text-[10px] font-bold border-l-4 border-primary truncate">Company Picnic</div>
+</div>
+</div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">24</span></div>
+<div class="day-box bg-white dark:bg-slate-900 p-2"><span class="text-sm font-medium">25</span></div>
+</div>
+</div>
+</main>
+</div>
+<!-- Map/Location Indicator (Placeholder as per instructions) -->
+<div class="fixed bottom-6 right-6" data-location="Jakarta, Indonesia" style="">
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-900 dark:bg-slate-50 text-white dark:text-slate-900 rounded-full shadow-2xl hover:scale-105 transition-transform text-sm font-medium">
+<span class="material-symbols-outlined">map</span>
+            Site Map View
+        </button>
+</div>
+</body></html>

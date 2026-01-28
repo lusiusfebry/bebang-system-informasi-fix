@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Asset Library - Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white min-h-screen">
+<div class="flex flex-col min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<h2 class="text-lg font-bold leading-tight tracking-tight">Bebang Sistem Informasi</h2>
+<span class="text-xs text-gray-500 uppercase font-semibold">Digital Asset Management</span>
+</div>
+</div>
+</div>
+<div class="flex flex-1 justify-end items-center gap-6">
+<nav class="hidden md:flex items-center gap-8 mr-4">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary py-4" href="#">Media Gallery</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Reports</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-3 border-l border-gray-200 dark:border-gray-800 pl-6">
+<div class="flex flex-col items-end">
+<span class="text-sm font-semibold">Admin User</span>
+<span class="text-xs text-gray-500">PT Prima Sarana Gemilang</span>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcQFhvYG6Q56_GmfVFaHNER-uSNPI4yB7TPf01uYRfjHbCVlnH3DAePXJ5jZSR9zzU3ixN3O4uCJe9h9Lzq-h7PphaIPu5c92iimBp0VyUY8VX6G0UwKFfBjlyniby-cYswFlQ5I6_eDqiwzIumZQ7jgOu-vy-r2O1aEHbDgsoegZ2KYnti9AAw7Nu-PvyFygHdBRabD1ueV8nJjoNExfRBRd09sxboWnUVjBwGcUD1My1QoORBMGzi3L-CyKo1-WAxXXuQB50SwU");'>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hidden lg:block overflow-y-auto">
+<div class="p-6 space-y-6">
+<div class="space-y-1">
+<h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider px-3 mb-2">Main Library</h3>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-background-light dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">folder</span>
+                            Site Events
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-bold bg-primary text-white rounded-lg shadow-sm" href="#">
+<span class="material-symbols-outlined text-xl">camera</span>
+                            Equipment Photos
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-background-light dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">corporate_fare</span>
+                            Corporate Branding
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-background-light dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+                            Workshop Gallery
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-background-light dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">landscape</span>
+                            Pit Operations
+                        </a>
+</div>
+<div class="space-y-1 pt-4 border-t border-gray-100 dark:border-gray-800">
+<h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider px-3 mb-2">Account</h3>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-background-light dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">star</span>
+                            Favorites
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-background-light dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">schedule</span>
+                            Recently Added
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-background-light dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">delete</span>
+                            Trash
+                        </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-white dark:bg-background-dark">
+<!-- Header Actions & Search -->
+<div class="p-6 border-b border-gray-100 dark:border-gray-800">
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<div class="flex flex-wrap items-center gap-2">
+<a class="text-gray-500 hover:text-primary text-sm font-medium flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-lg">home</span>
+                                    Home
+                                </a>
+<span class="text-gray-400 text-sm">/</span>
+<a class="text-gray-500 hover:text-primary text-sm font-medium" href="#">Media Gallery</a>
+<span class="text-gray-400 text-sm">/</span>
+<span class="text-gray-900 dark:text-white text-sm font-bold">Equipment Photos</span>
+</div>
+<button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-xl">upload</span>
+                                Upload New Asset
+                            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="md:col-span-2">
+<label class="relative flex w-full h-11">
+<div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all dark:text-white placeholder-gray-500" placeholder="Search assets by name, tag, or serial number..." type="text"/>
+</label>
+</div>
+<div class="flex gap-4 md:col-span-2">
+<button class="flex flex-1 h-11 items-center justify-between gap-x-2 rounded-lg bg-gray-100 dark:bg-gray-800 px-4 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-xl">category</span> Asset Type</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button class="flex flex-1 h-11 items-center justify-between gap-x-2 rounded-lg bg-gray-100 dark:bg-gray-800 px-4 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-xl">location_on</span> Site Area</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button class="flex h-11 w-11 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-xl">filter_list</span>
+</button>
+</div>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+<div class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold border border-primary/20 flex items-center gap-1">
+                                Photos <span class="material-symbols-outlined text-xs">close</span>
+</div>
+<div class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold flex items-center gap-1">
+                                Last 30 Days <span class="material-symbols-outlined text-xs cursor-pointer">close</span>
+</div>
+<button class="text-xs text-primary font-bold hover:underline px-2">Clear all filters</button>
+</div>
+</div>
+</div>
+<!-- Asset Grid -->
+<div class="p-6 overflow-y-auto">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+<!-- Asset Card 1 -->
+<div class="group relative flex flex-col bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all">
+<div class="relative aspect-[4/3] bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="Yellow heavy duty excavator in pit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoPZE-vdMWGY6egPZKKIrigsPC7MINQEyjqCG34CIUa9sLXQx4_dpmMUmwUD1xzwaw3zRBaINjohevS9bSo2T8JgaS-__s8OMXugEYzb_wG-I1SIliUU6KoBd3V7JiJ544ga5QsDBm0zZ1uuJ-qwcL43mKHYiWGI3ypTnPbAZ853Jdc9ngc2Rc1HVPtwyhImx39j0D_bycvqVMBUfvbnjLqOlfZLz4CyxKltyrliCyMsnGiSsq_e4VllXanvR9V4s86Pcvp4rgFv4"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg" title="Download">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg" title="Share">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+<div class="absolute top-2 left-2">
+<span class="bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">JPG</span>
+</div>
+<div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<input class="rounded border-white/40 bg-black/40 text-primary focus:ring-primary size-4" type="checkbox"/>
+</div>
+</div>
+<div class="p-4">
+<h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">Excavator_EX2000_Maintenance.jpg</h4>
+<p class="text-[11px] text-gray-500 mt-1 flex items-center justify-between uppercase font-semibold">
+<span>Pit Area A</span>
+<span>4.2 MB</span>
+</p>
+</div>
+</div>
+<!-- Asset Card 2 -->
+<div class="group relative flex flex-col bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all">
+<div class="relative aspect-[4/3] bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="Industrial workshop worker grinding metal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBosnhnbI4rb4sf4KeLZsmIAdgLrRj5UmBy3Athbo0vXnOFv1SPuz_xHCxFe3QpAIuJnxUy42TV78_839Wfy9_jSHIMzEru6AfevVyb72Reg9Db5XC8IP--QMIhE-fhFJxlM_GZEJCoFEL-Piyx-jcarth6ylmWKLnd7gydgj9zZWZDdRkv9z1lcQWiSLdnku4hHDPhzPXpPKi6bNCHbpMyisL6YT5RtbcT7LPGosWFB-61tT9wysv9Cp--LQ7_LlR6rYOfOkpLJr4"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+<div class="absolute top-2 left-2">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">NEW</span>
+</div>
+<div class="absolute top-2 left-14">
+<span class="bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">PNG</span>
+</div>
+</div>
+<div class="p-4">
+<h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">Workshop_Safety_Demo.png</h4>
+<p class="text-[11px] text-gray-500 mt-1 flex items-center justify-between uppercase font-semibold">
+<span>Main Workshop</span>
+<span>2.8 MB</span>
+</p>
+</div>
+</div>
+<!-- Asset Card 3 -->
+<div class="group relative flex flex-col bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all">
+<div class="relative aspect-[4/3] bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="Mining truck hauling materials on road" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXhPSKqQTIefDzV_j9qbD32AIPb5UTqkDVhNWO2f-5yNe6MSJCN5x56HQS3eC-ZQ_ZobzGuxQ6J42Kvkp2aMcC976oXz1ZxIXbHMLun_UEvzimvSieNl1kdTrPiZT-QxntjDvGOpAJg0koX3nZHJlzVaTcQz0dc-YwGhTeZBfkx5MeMJnL_vJHFWN_39e8loJes9PTbSSMO_rDHok3f_y2hfPiAZhYu0LMNJAh11alc1WU-k6tMHASrWVYG86bX97o2rBq4DvXqmA"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg">
+<span class="material-symbols-outlined">play_circle</span>
+</button>
+</div>
+<div class="absolute top-2 left-2">
+<span class="bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">MP4</span>
+</div>
+<div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded">02:45</div>
+</div>
+<div class="p-4">
+<h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">Hauling_Operations_Q3.mp4</h4>
+<p class="text-[11px] text-gray-500 mt-1 flex items-center justify-between uppercase font-semibold">
+<span>Road Area B</span>
+<span>124.5 MB</span>
+</p>
+</div>
+</div>
+<!-- Asset Card 4 -->
+<div class="group relative flex flex-col bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all">
+<div class="relative aspect-[4/3] bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="Close up of Caterpillar machinery logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnDuKmcO_O7I1op0kDzg1yiDKqpVHBj5vluwTunUg1sETSWyDQSv17HtenH7zcbi1hHSVW0QAoiKtMGbfUe4riaeDBp_PoGH6qMAMflxgINKUUKqsjdCUhNXgaEynTw_ouudKpKLQ9eFndIFybRiI_4iWNxVHj8uQYqUk-Tm19vjKcwjAou14U7RCY8g9pntFuspvVQ0fzBrz3PX320gQ94EXqAkDZbli2edVwQ2mmHv8Z2RbfMJcouN_JpgzkhPW-kgd71nK74k0"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="absolute top-2 left-2">
+<span class="bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">SVG</span>
+</div>
+</div>
+<div class="p-4">
+<h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">PSG_Corporate_Logo_Vector.svg</h4>
+<p class="text-[11px] text-gray-500 mt-1 flex items-center justify-between uppercase font-semibold">
+<span>Branding</span>
+<span>450 KB</span>
+</p>
+</div>
+</div>
+<!-- Asset Card 5 -->
+<div class="group relative flex flex-col bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all">
+<div class="relative aspect-[4/3] bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="Aerial view of mining facility" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfzmAKH7nlVidDpy7CKFiaSJHhaLdvyCWtO4k84xgFbj0mH3xvJSQULjcnyW2eRwp4fdG69lXuv7R1V-2LZ9os9N9ztwLt03Qt95lR1G5FJ5RWHtT1sZqw_O6LKL74SV83DO0JE5vYXvIwrn2SZ4blug9lwSe0wYORezwDkIjWOvuwanLVozNyBoMZVFpkeeRkJjvgVXgiQxgrrTZNkNv7bgx83t0ue-EBB2_kj1FqeJX0Wqau2DelWNEKfRKvG5jKzoIGCKnpMRI"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<div class="absolute top-2 left-2">
+<span class="bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">JPG</span>
+</div>
+</div>
+<div class="p-4">
+<h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">Aerial_Site_Survey_Full.jpg</h4>
+<p class="text-[11px] text-gray-500 mt-1 flex items-center justify-between uppercase font-semibold">
+<span>North Sector</span>
+<span>8.7 MB</span>
+</p>
+</div>
+</div>
+<!-- Asset Card 6 -->
+<div class="group relative flex flex-col bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all">
+<div class="relative aspect-[4/3] bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="Worker in high visibility gear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-EkYKORE8Lg5T6TJw-IrbRpH6mc_Xx9FYQJibSrpt31t3ZgGCsbc2Jd5SJBSEblCOfyH68lhnQBnvY8KMlzab2PA_IiJ3uAKLBPl3js255-g_6ku0xwsgJNM71UhGIleJ4PruviZ1b4eXmKryrQVgl_Cbq-07PJZPjIMdk11qhD9tqzuhlJOSJsm5h_99GHK-uRGpNKR8n74RAA5LiKzxdcKYRIn7fo4ktv6ygGssJWobxGwL0g2PDpavpsLsiaPqlg05HLpXgGg"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="absolute top-2 left-2">
+<span class="bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">JPG</span>
+</div>
+</div>
+<div class="p-4">
+<h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">Staff_Safety_Equipment.jpg</h4>
+<p class="text-[11px] text-gray-500 mt-1 flex items-center justify-between uppercase font-semibold">
+<span>General Site</span>
+<span>1.2 MB</span>
+</p>
+</div>
+</div>
+<!-- Asset Card 7 -->
+<div class="group relative flex flex-col bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all">
+<div class="relative aspect-[4/3] bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="Construction drill rig machinery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpTpNXGS-RN_NN0YljptClq9UD_lWTTRS7wicol6SSz2rcWJ-RXKaeV0nTh0O0QnVSk1xjGvyzflG1ty_LwKnUmAR9NL4H-GDwHzMAKRQ6cQtyyhPLi3PTTQFX37UGhzrmyc5QfE0Vdv0jmzKIGAeYY8c4FzKIBH7eFVovt8XjWRGTBCeqGmhLVv4XtfyTOKZn8WEvZRj5EcRLeUqdNjYx0PkU5WcCcEv1r6zFyYPYezEEIoNklptKqeDhhORq9VPj2DO9JEzNEss"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="absolute top-2 left-2">
+<span class="bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">JPG</span>
+</div>
+</div>
+<div class="p-4">
+<h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">Drilling_Rig_Unit04.jpg</h4>
+<p class="text-[11px] text-gray-500 mt-1 flex items-center justify-between uppercase font-semibold">
+<span>Drilling Site</span>
+<span>3.1 MB</span>
+</p>
+</div>
+</div>
+<!-- Asset Card 8 -->
+<div class="group relative flex flex-col bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all">
+<div class="relative aspect-[4/3] bg-gray-200">
+<img class="w-full h-full object-cover" data-alt="Modern corporate office interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQA6VO_MAS205eyVWhJD-ncT62fOSSHqQjt-LOCP4VAEo8tMGahjKY39RhzpnzHEYMqKv1wpQk2t1yOaVAfY28nNRIUrqDqgvUzTdmQv1OTSxSEI2NdlKcOIQfXaovLx8LW-YG9QtVxZPfiZkWb9TxSMbxbk9WohITopZNUchwFHCLS92FYQBKMMBIXZ2UyTg7CCN5-luV6WF_Aw9iR_KGfwLZSnoupq6pvYbaCZqiyvFt-jDTFxBLLpuckX5dI8bTOL89Eg2WM8c"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="size-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="absolute top-2 left-2">
+<span class="bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">JPG</span>
+</div>
+</div>
+<div class="p-4">
+<h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">Head_Office_Lobby.jpg</h4>
+<p class="text-[11px] text-gray-500 mt-1 flex items-center justify-between uppercase font-semibold">
+<span>Corporate</span>
+<span>5.2 MB</span>
+</p>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-6">
+<p class="text-sm text-gray-500">Showing 1 to 24 of 1,280 assets</p>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-8 rounded-lg bg-primary text-white text-sm font-bold">1</button>
+<button class="size-8 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">2</button>
+<button class="size-8 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">3</button>
+<span class="text-gray-400">...</span>
+<button class="size-8 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800">54</button>
+<button class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

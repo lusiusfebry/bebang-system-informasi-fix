@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employee Profile - Family Information | Bebang Sistem Informasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white transition-colors duration-200">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-[#f0f2f4] dark:border-gray-800">
+<div class="max-w-[1200px] mx-auto px-4 lg:px-10 flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-6">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"></path>
+</svg>
+</div>
+<h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-tight">Bebang SI</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary py-5" href="#">Employee</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Payroll</a>
+<a class="text-[#616f89] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="#">Leave</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-[#f0f2f4] dark:bg-gray-800 rounded-lg px-3 py-1.5 w-64">
+<span class="material-symbols-outlined text-[#616f89] text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-[#616f89]" placeholder="Search employee..." type="text"/>
+</div>
+<button class="p-2 text-[#616f89] hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="User avatar thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOE4QiUb7rUQpCMFP0qJz9HtHUeytWus7ZK_La1LKT8SMVh19rEFyXmECZhR1XX_-CdPTXJzyOdDLzpuwnh8QsWYdkhY1O0YYu5-2-n-BwwKUwSuglRI40YxijoYqOexwmKHOkaMou2kskMP8GTtUBx9h1EzGl7CGw7RpjDeQplMjLdok38D8xn1lqvjNzTJyTRYkXoZIEP8QD5O077TELihO3clKf2W2_ZjfY_V2xWMcaaC2bVs_01YlqwdwhKotiFreDPueU33g"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-4 lg:px-10 py-8">
+<!-- Profile Header Section -->
+<div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-[#f0f2f4] dark:border-gray-800 mb-6">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+<div class="relative">
+<div class="size-24 md:size-32 rounded-full border-4 border-white dark:border-gray-800 shadow-md overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover" data-alt="John Doe profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTVtMHYxaUQsYqzRCtdEggI7L5La6sRzOC49EEWSR5OBjvrT6wAR4t3QGouBten4qq7-Z9aahKyfvE6GRQmadwdwzR5USLSjWNorHhFfBt9gnU4kMnLlkt3EKS5kU3M-APn8KK5E16hdL_BuZqKO5sER3IsG3NC5ty-h6u7hWZhckl21_NwNIWqyx1kKBO8_5aHrJAFivGkf9Jc8FXxIbG6wYjEzZg8MSErgUqyozYo7fxJnEplPZOYWCMcFxxFoizkdxA7oJiQg8"/>
+</div>
+<div class="absolute bottom-1 right-1 bg-green-500 border-2 border-white size-5 rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<h1 class="text-2xl font-bold text-[#111318] dark:text-white">John Doe</h1>
+<p class="text-primary font-semibold text-sm mb-1 uppercase tracking-wider">PSG-2023-089</p>
+<p class="text-[#616f89] dark:text-gray-400 font-medium">Senior Mining Engineer • Operations Department</p>
+<p class="text-[#616f89] dark:text-gray-400 text-sm">PT Prima Sarana Gemilang - Site Office Sangatta</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-[#f0f2f4] dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[#111318] dark:text-white rounded-lg text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+                        Edit Profile
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-lg text-sm font-bold shadow-md shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-lg">file_download</span>
+                        Export PDF
+                    </button>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="border-b border-[#dbdfe6] dark:border-gray-800 mb-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+<div class="flex gap-8">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#616f89] dark:text-gray-400 pb-3 font-bold hover:text-primary transition-colors" href="#">
+                    Personal
+                </a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#616f89] dark:text-gray-400 pb-3 font-bold hover:text-primary transition-colors" href="#">
+                    Pekerjaan
+                </a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-primary pb-3 font-bold" href="#">
+                    Informasi Keluarga
+                </a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#616f89] dark:text-gray-400 pb-3 font-bold hover:text-primary transition-colors" href="#">
+                    Dokumen
+                </a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#616f89] dark:text-gray-400 pb-3 font-bold hover:text-primary transition-colors" href="#">
+                    Settings
+                </a>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-8">
+<!-- Pasangan dan Anak Group -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">family_history</span>
+<h2 class="text-xl font-bold text-[#111318] dark:text-white">Pasangan dan Anak</h2>
+</div>
+<button class="text-primary text-sm font-bold hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">add</span> Tambah Anggota
+                    </button>
+</div>
+<!-- Spouse Card -->
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 rounded-xl p-6 flex flex-col md:flex-row gap-6">
+<div class="flex-1 flex flex-col justify-between">
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">Status: Menikah</span>
+<span class="px-2.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 text-xs font-bold">Tanggungan HR</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-[#111318] dark:text-white mb-1">Jane Smith</h3>
+<p class="text-[#616f89] dark:text-gray-400 text-sm">Istri • NIK: 3171020033990001</p>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div>
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-wider">Pekerjaan</p>
+<p class="text-sm font-semibold">Ibu Rumah Tangga</p>
+</div>
+<div>
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-wider">Tanggal Menikah</p>
+<p class="text-sm font-semibold">12 September 2018</p>
+</div>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="px-4 py-1.5 bg-[#f0f2f4] dark:bg-gray-800 text-xs font-bold rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Edit Data</button>
+</div>
+</div>
+<div class="w-full md:w-1/3 h-48 rounded-lg overflow-hidden border border-gray-100 dark:border-gray-800">
+<div class="w-full h-full bg-gradient-to-br from-primary/5 to-primary/20 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Abstract couple placeholder illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGwT-DSJ0XOsQJhrmLV8Ic240HTpdmDM275ccU4yxdbUlGayT9r8ldWVY6nnIeu159v-tb7XUsx5rEDR4fxk2vn5yFcY0SKT0HixxFQU4i5dBQ6Aggr39v-HIzgdwjd48AquxmkkSHiI93uRUe6qn_4ZsJFxnEfOIBIoXsqjJ3V_-JCBInkMmr9E1KAE8vzsywJJzliqjWtV0bXYTf2kjRL4HdYdz7fwMU73TS2XKbWOIg_nQowhlYI9jARumuEhXoS-Ok2YB-qbM"/>
+</div>
+</div>
+</div>
+<!-- Children Repeatable List -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Child 1 -->
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 rounded-xl p-5 hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-500">boy</span>
+</div>
+<div>
+<h4 class="font-bold text-[#111318] dark:text-white">Liam Doe</h4>
+<p class="text-xs text-[#616f89]">Anak Pertama</p>
+</div>
+</div>
+<button class="text-[#616f89] hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="space-y-2 text-sm">
+<div class="flex justify-between">
+<span class="text-[#616f89]">TTL:</span>
+<span class="font-medium">Jakarta, 15 Jan 2020</span>
+</div>
+<div class="flex justify-between">
+<span class="text-[#616f89]">Pendidikan:</span>
+<span class="font-medium">Belum Sekolah</span>
+</div>
+<div class="flex justify-between">
+<span class="text-[#616f89]">Jenis Kelamin:</span>
+<span class="font-medium">Laki-laki</span>
+</div>
+</div>
+</div>
+<!-- Child 2 -->
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 rounded-xl p-5 hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-pink-500">child_care</span>
+</div>
+<div>
+<h4 class="font-bold text-[#111318] dark:text-white">Maya Doe</h4>
+<p class="text-xs text-[#616f89]">Anak Kedua</p>
+</div>
+</div>
+<button class="text-[#616f89] hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="space-y-2 text-sm">
+<div class="flex justify-between">
+<span class="text-[#616f89]">TTL:</span>
+<span class="font-medium">Jakarta, 22 Mei 2022</span>
+</div>
+<div class="flex justify-between">
+<span class="text-[#616f89]">Pendidikan:</span>
+<span class="font-medium">Belum Sekolah</span>
+</div>
+<div class="flex justify-between">
+<span class="text-[#616f89]">Jenis Kelamin:</span>
+<span class="font-medium">Perempuan</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Saudara Kandung Group -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">groups</span>
+<h2 class="text-xl font-bold text-[#111318] dark:text-white">Saudara Kandung</h2>
+</div>
+</div>
+<!-- Summary Counter Tiles -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="bg-primary text-white p-4 rounded-xl shadow-sm">
+<p class="text-primary-100 text-xs font-medium uppercase">Total Saudara</p>
+<h4 class="text-2xl font-bold">3 Orang</h4>
+</div>
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 p-4 rounded-xl shadow-sm">
+<p class="text-[#616f89] text-xs font-medium uppercase">Urutan Ke-</p>
+<h4 class="text-2xl font-bold text-primary">1 <span class="text-sm font-normal text-[#616f89]">dari 3</span></h4>
+</div>
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 p-4 rounded-xl shadow-sm">
+<p class="text-[#616f89] text-xs font-medium uppercase">Tanggungan</p>
+<h4 class="text-2xl font-bold text-gray-400">0 <span class="text-sm font-normal">Aktif</span></h4>
+</div>
+</div>
+<!-- Horizontal Sibling Grid -->
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-gray-50 dark:bg-gray-800 text-[#616f89] uppercase text-xs font-bold">
+<tr>
+<th class="px-6 py-4">Nama Saudara</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Pekerjaan</th>
+<th class="px-6 py-4 text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<tr>
+<td class="px-6 py-4 font-semibold">Robert Doe</td>
+<td class="px-6 py-4">Adik (L)</td>
+<td class="px-6 py-4">Mahasiswa</td>
+<td class="px-6 py-4 text-right"><button class="text-primary font-bold">Detail</button></td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-semibold">Sarah Doe</td>
+<td class="px-6 py-4">Adik (P)</td>
+<td class="px-6 py-4">Pelajar SMA</td>
+<td class="px-6 py-4 text-right"><button class="text-primary font-bold">Detail</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Orang Tua Mertua Group -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-primary">home_mini</span>
+<h2 class="text-xl font-bold text-[#111318] dark:text-white">Orang Tua Mertua</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Father-in-law -->
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 rounded-xl p-6">
+<div class="flex items-center gap-4 mb-6">
+<div class="size-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-gray-500">person</span>
+</div>
+<div>
+<h3 class="font-bold text-[#111318] dark:text-white">Bpk. Thomas Smith</h3>
+<p class="text-sm text-[#616f89]">Ayah Mertua</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-wider mb-1">Alamat Domisili</p>
+<p class="text-sm">Jl. Melati No. 45, Kebayoran Baru, Jakarta Selatan</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-wider mb-1">Kontak</p>
+<p class="text-sm font-semibold">+62 812-3456-7890</p>
+</div>
+<div>
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-wider mb-1">Status</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-xs font-bold">Hidup</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mother-in-law -->
+<div class="bg-white dark:bg-gray-900 border border-[#f0f2f4] dark:border-gray-800 rounded-xl p-6">
+<div class="flex items-center gap-4 mb-6">
+<div class="size-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-gray-500">person_3</span>
+</div>
+<div>
+<h3 class="font-bold text-[#111318] dark:text-white">Ibu Maria Smith</h3>
+<p class="text-sm text-[#616f89]">Ibu Mertua</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-wider mb-1">Alamat Domisili</p>
+<p class="text-sm">Jl. Melati No. 45, Kebayoran Baru, Jakarta Selatan</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-wider mb-1">Kontak</p>
+<p class="text-sm font-semibold">+62 812-9876-5432</p>
+</div>
+<div>
+<p class="text-xs text-[#616f89] font-medium uppercase tracking-wider mb-1">Status</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-xs font-bold">Hidup</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Bottom Action Bar (Floating mobile, anchored desktop) -->
+<div class="mt-12 py-6 border-t border-[#f0f2f4] dark:border-gray-800 flex justify-end gap-4">
+<button class="px-6 py-2.5 bg-gray-200 dark:bg-gray-800 text-[#111318] dark:text-white rounded-lg font-bold text-sm transition-all hover:bg-gray-300 dark:hover:bg-gray-700">Cancel Changes</button>
+<button class="px-8 py-2.5 bg-primary text-white rounded-lg font-bold text-sm shadow-lg shadow-primary/20 transition-all hover:translate-y-[-1px]">Save All Information</button>
+</div>
+</main>
+<footer class="bg-white dark:bg-background-dark py-10 border-t border-[#f0f2f4] dark:border-gray-800">
+<div class="max-w-[1200px] mx-auto px-4 lg:px-10 text-center">
+<p class="text-[#616f89] dark:text-gray-500 text-sm">© 2024 PT Prima Sarana Gemilang - Internal Employee Data Services</p>
+<p class="text-[#616f89] dark:text-gray-500 text-xs mt-1 italic">Version 2.4.0 (Progressive Web App)</p>
+</div>
+</footer>
+</body></html>
