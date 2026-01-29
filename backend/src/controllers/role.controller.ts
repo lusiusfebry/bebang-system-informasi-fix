@@ -7,8 +7,13 @@ export async function getAllRoles(req: AuthenticatedRequest, res: Response, next
     try {
         const roles = await prisma.role.findMany({
             include: {
+                rolePermissions: {
+                    include: {
+                        permission: true
+                    }
+                },
                 _count: {
-                    select: { users: true, rolePermissions: true }
+                    select: { users: true }
                 }
             },
             orderBy: { name: 'asc' }
@@ -56,7 +61,7 @@ export async function getRoleById(req: AuthenticatedRequest, res: Response, next
 
 export async function createRole(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {
-        const { name, code, description } = req.body;
+        const { name, code, description, permissionIds } = req.body;
 
         // Validate required fields
         if (!name || !code) {
@@ -69,8 +74,21 @@ export async function createRole(req: AuthenticatedRequest, res: Response, next:
             throw new ApiError('Kode role sudah digunakan', 400);
         }
 
-        const role = await prisma.role.create({
-            data: { name, code, description }
+        // Transaction to create role and assign permissions
+        const role = await prisma.$transaction(async (tx) => {
+            const newRole = await tx.role.create({
+                data: { name, code, description }
+            });
+
+            if (permissionIds && Array.isArray(permissionIds) && permissionIds.length > 0) {
+                const rolePermissions = permissionIds.map((permissionId: string) => ({
+                    roleId: newRole.id,
+                    permissionId
+                }));
+                await tx.rolePermission.createMany({ data: rolePermissions });
+            }
+
+            return newRole;
         });
 
         res.status(201).json({
@@ -86,11 +104,27 @@ export async function createRole(req: AuthenticatedRequest, res: Response, next:
 export async function updateRole(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {
         const { id } = req.params;
-        const { name, description, isActive } = req.body;
+        const { name, description, isActive, permissionIds } = req.body;
 
-        const role = await prisma.role.update({
-            where: { id },
-            data: { name, description, isActive }
+        const role = await prisma.$transaction(async (tx) => {
+            const updatedRole = await tx.role.update({
+                where: { id },
+                data: { name, description, isActive }
+            });
+
+            if (permissionIds && Array.isArray(permissionIds)) {
+                // Delete existing permissions
+                await tx.rolePermission.deleteMany({ where: { roleId: id } });
+
+                // Create new permissions
+                const rolePermissions = permissionIds.map((permissionId: string) => ({
+                    roleId: id,
+                    permissionId
+                }));
+                await tx.rolePermission.createMany({ data: rolePermissions });
+            }
+
+            return updatedRole;
         });
 
         res.json({

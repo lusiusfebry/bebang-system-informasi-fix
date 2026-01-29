@@ -1,6 +1,11 @@
 import api from './api';
 import { User, LoginResponse, AuthResponse } from '../types/auth';
 
+interface PermissionsResponse {
+    permissions: string[];
+    roleCode: string;
+}
+
 const TOKEN_KEY = 'token';
 const USER_KEY = 'user';
 
@@ -73,4 +78,15 @@ export function getToken(): string | null {
 export function isAuthenticated(): boolean {
     const token = getToken();
     return !!token;
+}
+
+/**
+ * Fetch permissions from API
+ */
+export async function fetchPermissions(): Promise<PermissionsResponse> {
+    const response = await api.get<{ success: boolean; data: PermissionsResponse }>('/auth/permissions');
+    if (response.data.success && response.data.data) {
+        return response.data.data;
+    }
+    return { permissions: [], roleCode: '' };
 }

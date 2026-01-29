@@ -30,7 +30,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 // Token exists, verify it's still valid by fetching profile
                 try {
                     const profile = await getProfile();
-                    setUser(profile);
+                    // Fetch permissions
+                    try {
+                        const { permissions, roleCode } = await import('../services/auth.service').then(s => s.fetchPermissions());
+                        setUser({ ...profile, permissions, roleCode });
+                    } catch (e) {
+                        // Fallback if permissions fetch fails, though it shouldn't
+                        console.error('Failed to fetch permissions', e);
+                        setUser(profile);
+                    }
                     setIsAuthenticated(true);
                 } catch {
                     // Token invalid, clear auth completely
@@ -53,7 +61,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const login = async (nik: string, password: string) => {
         const response = await authLogin(nik, password);
-        setUser(response.user);
+        // User from login might not have full permissions flattened yet depending on backend
+        // So let's fetch them to be safe and consistent
+        try {
+            const { permissions, roleCode } = await import('../services/auth.service').then(s => s.fetchPermissions());
+            setUser({ ...response.user, permissions, roleCode });
+        } catch (e) {
+            setUser(response.user);
+        }
         setIsAuthenticated(true);
     };
 

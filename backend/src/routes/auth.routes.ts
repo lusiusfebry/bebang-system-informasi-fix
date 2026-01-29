@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { login, getProfile, logout } from '../controllers/auth.controller';
+import { login, getProfile, logout, getPermissions } from '../controllers/auth.controller';
 import { authenticateAndValidate } from '../middleware/auth.middleware';
 
 const router = Router();
@@ -24,5 +24,12 @@ router.get('/profile', authenticateAndValidate, getProfile);
  * @access  Private (requires authentication and validates user is active)
  */
 router.post('/logout', authenticateAndValidate, logout);
+
+/**
+ * @route   GET /api/auth/permissions
+ * @desc    Get current user permissions
+ * @access  Private
+ */
+router.get('/permissions', authenticateAndValidate, getPermissions);
 
 export default router;

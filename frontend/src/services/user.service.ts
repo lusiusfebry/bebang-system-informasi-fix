@@ -36,7 +36,7 @@ export const userService = {
     },
 
     assignRole: async (userId: string, roleId: string) => {
-        const response = await api.put<{ success: boolean; data: SimpleUser }>(`/users/${userId}/role`, { roleId });
+        const response = await api.post<{ success: boolean; data: SimpleUser }>(`/users/${userId}/role`, { roleId });
         return response.data;
     }
 };
