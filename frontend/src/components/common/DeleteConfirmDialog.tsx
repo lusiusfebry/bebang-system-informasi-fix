@@ -10,8 +10,12 @@ interface DeleteConfirmDialogProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
-    itemName: string;
+    itemName?: string;
     loading?: boolean;
+    title?: string;
+    message?: string;
+    confirmLabel?: string;
+    confirmVariant?: 'danger' | 'warning';
 }
 
 export const DeleteConfirmDialog: React.FC<DeleteConfirmDialogProps> = ({
@@ -20,16 +24,31 @@ export const DeleteConfirmDialog: React.FC<DeleteConfirmDialogProps> = ({
     onConfirm,
     itemName,
     loading = false,
+    title = 'Konfirmasi Hapus',
+    message,
+    confirmLabel = 'Hapus',
+    confirmVariant = 'danger'
 }) => {
     const handleConfirm = () => {
         onConfirm();
     };
 
+    const isDanger = confirmVariant === 'danger';
+    const buttonColorClass = isDanger
+        ? 'bg-red-600 hover:bg-red-700 focus:ring-red-200'
+        : 'bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-200';
+    const iconColorClass = isDanger
+        ? 'text-red-600 dark:text-red-400'
+        : 'text-yellow-600 dark:text-yellow-400';
+    const iconBgClass = isDanger
+        ? 'bg-red-100 dark:bg-red-900/30'
+        : 'bg-yellow-100 dark:bg-yellow-900/30';
+
     return (
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            title="Konfirmasi Hapus"
+            title={title}
             size="sm"
             footer={
                 <div className="flex items-center justify-end gap-3">
@@ -48,10 +67,10 @@ export const DeleteConfirmDialog: React.FC<DeleteConfirmDialogProps> = ({
                         type="button"
                         onClick={handleConfirm}
                         disabled={loading}
-                        className="px-4 py-2 text-sm font-medium text-white bg-red-600 
-                            rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-red-200 
+                        className={`px-4 py-2 text-sm font-medium text-white 
+                            rounded-lg focus:ring-4 
                             disabled:opacity-50 disabled:cursor-not-allowed transition-colors
-                            inline-flex items-center gap-2"
+                            inline-flex items-center gap-2 ${buttonColorClass}`}
                     >
                         {loading && (
                             <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -70,16 +89,16 @@ export const DeleteConfirmDialog: React.FC<DeleteConfirmDialogProps> = ({
                                 />
                             </svg>
                         )}
-                        {loading ? 'Menghapus...' : 'Hapus'}
+                        {loading ? 'Memproses...' : confirmLabel}
                     </button>
                 </div>
             }
         >
             <div className="flex flex-col items-center gap-4 py-4">
                 {/* Warning Icon */}
-                <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center ${iconBgClass}`}>
                     <svg
-                        className="w-6 h-6 text-red-600 dark:text-red-400"
+                        className={`w-6 h-6 ${iconColorClass}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -96,12 +115,18 @@ export const DeleteConfirmDialog: React.FC<DeleteConfirmDialogProps> = ({
                 {/* Message */}
                 <div className="text-center">
                     <p className="text-gray-900 dark:text-white">
-                        Apakah Anda yakin ingin menghapus{' '}
-                        <span className="font-semibold">{itemName}</span>?
+                        {message ? message : (
+                            <>
+                                Apakah Anda yakin ingin menghapus{' '}
+                                <span className="font-semibold">{itemName}</span>?
+                            </>
+                        )}
                     </p>
-                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        Data akan dinonaktifkan dan tidak dapat digunakan lagi.
-                    </p>
+                    {!message && (
+                        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                            Data akan dinonaktifkan dan tidak dapat digunakan lagi.
+                        </p>
+                    )}
                 </div>
             </div>
         </Modal>

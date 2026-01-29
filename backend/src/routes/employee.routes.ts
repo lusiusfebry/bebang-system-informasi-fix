@@ -23,6 +23,8 @@ import {
     uploadKaryawanDocument,
     deleteKaryawanDocument,
     generateKaryawanQRCode,
+    bulkDeleteKaryawan,
+    exportKaryawan,
 } from '../controllers/employee.controller';
 
 const router = Router();
@@ -142,6 +144,52 @@ router.use(authenticate);
  *         description: Unauthorized
  */
 router.get('/', getAllKaryawan);
+
+/**
+ * @swagger
+ * /api/hr/employees/export:
+ *   get:
+ *     summary: Export employees to CSV
+ *     tags: [Employee Management]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: CSV file download
+ */
+router.get('/export', exportKaryawan);
+
+/**
+ * @swagger
+ * /api/hr/employees/bulk-delete:
+ *   post:
+ *     summary: Bulk delete employees
+ *     tags: [Employee Management]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - ids
+ *             properties:
+ *               ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Employees deleted
+ */
+router.post('/bulk-delete', bulkDeleteKaryawan);
 
 /**
  * @swagger

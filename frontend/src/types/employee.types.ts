@@ -44,10 +44,7 @@ export enum TingkatPendidikan {
     SD = 'SD',
     SMP = 'SMP',
     SMA = 'SMA',
-    D1 = 'D1',
-    D2 = 'D2',
     D3 = 'D3',
-    D4 = 'D4',
     S1 = 'S1',
     S2 = 'S2',
     S3 = 'S3',
@@ -56,7 +53,7 @@ export enum TingkatPendidikan {
 export enum StatusKelulusan {
     LULUS = 'LULUS',
     TIDAK_LULUS = 'TIDAK_LULUS',
-    MENUNGGU = 'MENUNGGU',
+    SEDANG_BELAJAR = 'SEDANG_BELAJAR',
 }
 
 // ==========================================
@@ -80,7 +77,7 @@ export interface PosisiJabatan {
 
 export interface StatusKaryawan {
     id: string;
-    namaStatusKaryawan: string;
+    namaStatus: string;
 }
 
 export interface LokasiKerja {
@@ -121,7 +118,19 @@ export interface SaudaraKandung {
     jenisKelamin: JenisKelamin;
     tanggalLahir?: string | null;
     pekerjaan?: string | null;
+    pendidikanTerakhir?: string | null;
 }
+
+export interface EmployeeFilterState {
+    search: string;
+    divisiId: string;
+    departmentId: string;
+    statusKaryawanId: string;
+    tagId: string;
+    lokasiKerjaId: string;
+    jenisHubunganKerjaId?: string;
+}
+
 
 export interface DokumenKaryawan {
     id: string;
@@ -166,6 +175,24 @@ export interface Employee {
     createdAt: string;
     updatedAt: string;
 
+    // Family Information
+    namaPasangan?: string | null;
+    tanggalLahirPasangan?: string | null;
+    pendidikanTerakhirPasangan?: string | null;
+    pekerjaanPasangan?: string | null;
+    jumlahAnak?: number | null;
+    keteranganPasangan?: string | null;
+    anakKe?: number | null;
+    jumlahSaudaraKandung?: number | null;
+    namaAyahMertua?: string | null;
+    tanggalLahirAyahMertua?: string | null;
+    pendidikanTerakhirAyahMertua?: string | null;
+    keteranganAyahMertua?: string | null;
+    namaIbuMertua?: string | null;
+    tanggalLahirIbuMertua?: string | null;
+    pendidikanTerakhirIbuMertua?: string | null;
+    keteranganIbuMertua?: string | null;
+
     // Relations
     divisiId?: string | null;
     departmentId?: string | null;
@@ -174,6 +201,8 @@ export interface Employee {
     lokasiKerjaId?: string | null;
     tagId?: string | null;
     jenisHubunganKerjaId?: string | null;
+    managerId?: string | null;
+    atasanLangsungId?: string | null;
 
     divisi?: Divisi | null;
     department?: Department | null;
@@ -182,6 +211,8 @@ export interface Employee {
     lokasiKerja?: LokasiKerja | null;
     tag?: Tag | null;
     jenisHubunganKerja?: JenisHubunganKerja | null;
+    manager?: Employee | null;
+    atasanLangsung?: Employee | null;
 
     // Child data
     anak?: Anak[];
@@ -231,6 +262,8 @@ export interface CreateEmployeeDTO {
     lokasiKerjaId?: string;
     tagId?: string;
     jenisHubunganKerjaId?: string;
+    managerId?: string;
+    atasanLangsungId?: string;
 
     // Additional Personal Info Fields
     nomorKartuKeluarga?: string;
@@ -242,13 +275,61 @@ export interface CreateEmployeeDTO {
     nomorTeleponRumah1?: string;
     nomorTeleponRumah2?: string;
     namaPasangan?: string;
+    tanggalLahirPasangan?: string;
     tanggalMenikah?: string;
     tanggalCerai?: string;
     tanggalWafatPasangan?: string;
-    pekerjaanPasangan?: string;
     jumlahAnak?: number;
     cabangBank?: string;
     namaPemegangRekening?: string;
+    pendidikanTerakhirPasangan?: string;
+    keteranganPasangan?: string;
+    pekerjaanPasangan?: string;
+    anakKe?: number;
+    jumlahSaudaraKandung?: number;
+    namaAyahMertua?: string;
+    tanggalLahirAyahMertua?: string;
+    pendidikanTerakhirAyahMertua?: string;
+    keteranganAyahMertua?: string;
+    namaIbuMertua?: string;
+    tanggalLahirIbuMertua?: string;
+    pendidikanTerakhirIbuMertua?: string;
+    keteranganIbuMertua?: string;
+
+    // HR Information Fields
+    tanggalMasukGroup?: string;
+    tanggalPermanent?: string;
+    tanggalKontrak?: string;
+    tanggalAkhirKontrak?: string;
+    tanggalBerhenti?: string;
+    tingkatPendidikan?: TingkatPendidikan;
+    bidangStudi?: string;
+    namaSekolah?: string;
+    kotaSekolah?: string;
+    statusKelulusan?: StatusKelulusan;
+    keteranganPendidikan?: string;
+    kategoriPangkatId?: string;
+    golonganPangkatId?: string;
+    subGolonganPangkatId?: string;
+    noDanaPensiun?: string;
+    namaKontakDarurat1?: string;
+    nomorTeleponKontakDarurat1?: string;
+    hubunganKontakDarurat1?: string;
+    alamatKontakDarurat1?: string;
+    namaKontakDarurat2?: string;
+    nomorTeleponKontakDarurat2?: string;
+    hubunganKontakDarurat2?: string;
+    alamatKontakDarurat2?: string;
+    pointOfOriginal?: string;
+    pointOfHire?: string;
+    ukuranSeragamKerja?: string;
+    ukuranSepatuKerja?: string;
+    lokasiSebelumnyaId?: string;
+    tanggalMutasi?: string;
+    siklusPembayaranGaji?: string;
+    costing?: string;
+    assign?: string;
+    actual?: string;
 }
 
 export interface UpdateEmployeeDTO extends Partial<Omit<CreateEmployeeDTO, 'nomorIndukKaryawan'>> { }
@@ -267,6 +348,7 @@ export interface CreateSaudaraKandungDTO {
     jenisKelamin: JenisKelamin;
     tanggalLahir?: string;
     pekerjaan?: string;
+    pendidikanTerakhir?: string;
 }
 
 // ==========================================

@@ -18,7 +18,7 @@ export interface SortState {
 
 // Column definition
 export interface TableColumn<T> {
-    header: string;
+    header: React.ReactNode;
     accessor: keyof T | string;
     render?: (item: T) => React.ReactNode;
     sortable?: boolean;
@@ -115,7 +115,10 @@ const getNestedValue = <T,>(obj: T, path: string): unknown => {
     return value;
 };
 
-export function DataTable<T extends { status?: StatusMaster }>({
+// Helper type to check if type has status property
+type WithStatus = { status?: StatusMaster };
+
+export function DataTable<T>({
     columns,
     data,
     loading = false,
@@ -127,6 +130,11 @@ export function DataTable<T extends { status?: StatusMaster }>({
     onSort,
 }: DataTableProps<T>) {
     const totalColumns = columns.length + (onEdit || onDelete ? 1 : 0);
+
+    // Helper to check if item has status
+    const hasStatus = (item: T): item is T & WithStatus => {
+        return 'status' in (item as object);
+    };
 
     // Handle sort click
     const handleSortClick = (column: TableColumn<T>) => {
@@ -210,7 +218,7 @@ export function DataTable<T extends { status?: StatusMaster }>({
                                     >
                                         {column.render ? (
                                             column.render(item)
-                                        ) : column.accessor === 'status' && item.status ? (
+                                        ) : column.accessor === 'status' && hasStatus(item) && item.status ? (
                                             <StatusBadge status={item.status} />
                                         ) : (
                                             String(getNestedValue(item, column.accessor as string) ?? '-')

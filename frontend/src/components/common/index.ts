@@ -11,4 +11,5 @@ export { DataTable } from './DataTable';
 export type { TableColumn, SortState, SortDirection } from './DataTable';
 export { DeleteConfirmDialog } from './DeleteConfirmDialog';
 export { ToastProvider, useToast } from './Toast';
+export { Avatar } from './Avatar';
 

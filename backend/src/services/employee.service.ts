@@ -173,6 +173,58 @@ export const employeeService = {
         });
     },
 
+    /**
+     * Bulk delete karyawan
+     */
+    bulkDelete: async (ids: string[]) => {
+        const result = await prisma.karyawan.deleteMany({
+            where: {
+                id: { in: ids },
+            },
+        });
+        return result.count;
+    },
+
+    /**
+     * Export data karyawan (no pagination)
+     */
+    exportData: async (params: KaryawanQueryInput) => {
+        const {
+            search,
+            divisiId,
+            departmentId,
+            statusKaryawanId,
+            lokasiKerjaId,
+            tagId,
+            jenisHubunganKerjaId,
+            sortBy = 'namaLengkap',
+            sortOrder = 'asc',
+        } = params;
+
+        const where: Prisma.KaryawanWhereInput = {
+            ...(divisiId && { divisiId }),
+            ...(departmentId && { departmentId }),
+            ...(statusKaryawanId && { statusKaryawanId }),
+            ...(lokasiKerjaId && { lokasiKerjaId }),
+            ...(tagId && { tagId }),
+            ...(jenisHubunganKerjaId && { jenisHubunganKerjaId }),
+            ...(search && {
+                OR: [
+                    { namaLengkap: { contains: search, mode: 'insensitive' } },
+                    { nomorIndukKaryawan: { contains: search, mode: 'insensitive' } },
+                    { emailPerusahaan: { contains: search, mode: 'insensitive' } },
+                    { emailPribadi: { contains: search, mode: 'insensitive' } },
+                ],
+            }),
+        };
+
+        return prisma.karyawan.findMany({
+            where,
+            orderBy: { [sortBy]: sortOrder },
+            include: karyawanListInclude,
+        });
+    },
+
     // ==========================================
     // Child Data Methods - Anak
     // ==========================================

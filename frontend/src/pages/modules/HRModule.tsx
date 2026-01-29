@@ -24,6 +24,8 @@ import TagList from '../hr/master-data/TagList';
 import LokasiKerjaList from '../hr/master-data/LokasiKerjaList';
 import StatusKaryawanList from '../hr/master-data/StatusKaryawanList';
 
+import EmployeeList from '../hr/employees/EmployeeList';
+
 export default function HRModule() {
     return (
         <MainLayout>
@@ -32,7 +34,8 @@ export default function HRModule() {
                 <Route index element={<HRDashboard />} />
                 <Route path="dashboard" element={<HRDashboard />} />
 
-                {/* Employee Profile Routes */}
+                {/* Employee Routes */}
+                <Route path="employees" element={<EmployeeList />} />
                 <Route path="employees/:id" element={<EmployeeProfile />} />
                 <Route path="employees/:id/:tab" element={<EmployeeProfile />} />
 

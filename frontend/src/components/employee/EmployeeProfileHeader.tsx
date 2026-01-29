@@ -32,7 +32,7 @@ export const EmployeeProfileHeader: React.FC<EmployeeProfileHeaderProps> = ({
     };
 
     const photoUrl = getPhotoUrl();
-    const status = employee.statusKaryawan?.namaStatusKaryawan === 'Aktif' ? StatusMaster.AKTIF : StatusMaster.TIDAK_AKTIF;
+    const status = employee.statusKaryawan?.namaStatus === 'Aktif' ? StatusMaster.AKTIF : StatusMaster.TIDAK_AKTIF;
 
     return (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
@@ -109,8 +109,8 @@ export const EmployeeProfileHeader: React.FC<EmployeeProfileHeaderProps> = ({
                         onClick={onExportPDF}
                         disabled={exportLoading}
                         className={`flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white rounded-lg transition-colors shadow-sm ${exportLoading
-                                ? 'bg-primary/60 cursor-not-allowed'
-                                : 'bg-primary hover:bg-primary-dark'
+                            ? 'bg-primary/60 cursor-not-allowed'
+                            : 'bg-primary hover:bg-primary-dark'
                             }`}
                     >
                         {exportLoading ? (

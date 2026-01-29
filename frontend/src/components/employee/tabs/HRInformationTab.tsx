@@ -38,10 +38,7 @@ const tingkatPendidikanOptions: SelectOption[] = [
     { value: TingkatPendidikan.SD, label: 'SD' },
     { value: TingkatPendidikan.SMP, label: 'SMP' },
     { value: TingkatPendidikan.SMA, label: 'SMA/SMK' },
-    { value: TingkatPendidikan.D1, label: 'D1' },
-    { value: TingkatPendidikan.D2, label: 'D2' },
     { value: TingkatPendidikan.D3, label: 'D3' },
-    { value: TingkatPendidikan.D4, label: 'D4' },
     { value: TingkatPendidikan.S1, label: 'S1' },
     { value: TingkatPendidikan.S2, label: 'S2' },
     { value: TingkatPendidikan.S3, label: 'S3' },
@@ -51,7 +48,7 @@ const statusKelulusanOptions: SelectOption[] = [
     { value: '', label: 'Pilih Status Kelulusan' },
     { value: StatusKelulusan.LULUS, label: 'Lulus' },
     { value: StatusKelulusan.TIDAK_LULUS, label: 'Tidak Lulus' },
-    { value: StatusKelulusan.MENUNGGU, label: 'Menunggu' },
+    { value: StatusKelulusan.SEDANG_BELAJAR, label: 'Sedang Belajar' },
 ];
 
 // Helper to format date for input
@@ -73,8 +70,8 @@ const createInitialFormData = (employee: Employee): HRInformationFormData => ({
     divisiId: employee.divisiId || '',
     departmentId: employee.departmentId || '',
     emailPerusahaan: employee.emailPerusahaan || '',
-    managerId: '',
-    atasanLangsungId: '',
+    managerId: employee.managerId || '',
+    atasanLangsungId: employee.atasanLangsungId || '',
 
     // Section 2: Kontrak
     jenisHubunganKerjaId: employee.jenisHubunganKerjaId || '',
@@ -140,6 +137,32 @@ export const HRInformationTab: React.FC<HRInformationTabProps> = ({
         createInitialFormData(employee)
     );
     const [errors, setErrors] = useState<FormErrors>({});
+    const [employeeOptions, setEmployeeOptions] = useState<SearchableSelectOption[]>([]);
+    const [employeeListLoading, setEmployeeListLoading] = useState(false);
+
+    // Fetch employee list for Manager/Atasan dropdowns
+    useEffect(() => {
+        const fetchEmployees = async () => {
+            setEmployeeListLoading(true);
+            try {
+                // Fetch all employees (using a large limit for now)
+                const response = await employeeService.getEmployees({ limit: 1000 });
+                const options = response.data
+                    .filter(emp => emp.id !== employee.id) // Exclude self
+                    .map(emp => ({
+                        value: emp.id,
+                        label: `${emp.namaLengkap} (${emp.nomorIndukKaryawan})`,
+                    }));
+                setEmployeeOptions(options);
+            } catch (err) {
+                console.error('Error fetching employee list:', err);
+            } finally {
+                setEmployeeListLoading(false);
+            }
+        };
+
+        fetchEmployees();
+    }, [employee.id]);
 
     // Fetch master data for dropdowns - using proper types from hr-master.types.ts
     const { data: divisiData, loading: divisiLoading } = useHRMasterData<Divisi>('divisi');
@@ -214,15 +237,63 @@ export const HRInformationTab: React.FC<HRInformationTabProps> = ({
 
         try {
             const updateData: UpdateEmployeeDTO = {
+                // Kepegawaian (Header fields - usually read only but included in case of updates)
+                // nomorIndukKaryawan: formData.nomorIndukKaryawan, // Cannot update NIK usually
+                posisiJabatanId: formData.posisiJabatanId || undefined,
+                divisiId: formData.divisiId || undefined,
+                departmentId: formData.departmentId || undefined,
+                emailPerusahaan: formData.emailPerusahaan || undefined,
+                managerId: formData.managerId || undefined,
+                atasanLangsungId: formData.atasanLangsungId || undefined,
+
                 // Kontrak
                 jenisHubunganKerjaId: formData.jenisHubunganKerjaId || undefined,
+                tanggalMasukGroup: formData.tanggalMasukGroup || undefined,
                 tanggalMasuk: formData.tanggalMasuk || undefined,
+                tanggalPermanent: formData.tanggalPermanent || undefined,
+                tanggalKontrak: formData.tanggalKontrak || undefined,
+                tanggalAkhirKontrak: formData.tanggalAkhirKontrak || undefined,
+                tanggalBerhenti: formData.tanggalBerhenti || undefined,
 
-                // Education (note: backend may need to add these fields)
-                // For now, we'll skip fields that don't exist in DTO
+                // Education
+                tingkatPendidikan: formData.tingkatPendidikan || undefined,
+                bidangStudi: formData.bidangStudi || undefined,
+                namaSekolah: formData.namaSekolah || undefined,
+                kotaSekolah: formData.kotaSekolah || undefined,
+                statusKelulusan: formData.statusKelulusan || undefined,
+                keteranganPendidikan: formData.keteranganPendidikan || undefined,
 
-                // Note: Many HR fields need to be added to UpdateEmployeeDTO
-                // This is a partial implementation - full implementation requires backend DTO updates
+                // Pangkat dan Golongan
+                kategoriPangkatId: formData.kategoriPangkatId || undefined,
+                golonganPangkatId: formData.golonganPangkatId || undefined,
+                subGolonganPangkatId: formData.subGolonganPangkatId || undefined,
+                noDanaPensiun: formData.noDanaPensiun || undefined,
+
+                // Kontak Darurat
+                namaKontakDarurat1: formData.namaKontakDarurat1 || undefined,
+                nomorTeleponKontakDarurat1: formData.nomorTeleponKontakDarurat1 || undefined,
+                hubunganKontakDarurat1: formData.hubunganKontakDarurat1 || undefined,
+                alamatKontakDarurat1: formData.alamatKontakDarurat1 || undefined,
+                namaKontakDarurat2: formData.namaKontakDarurat2 || undefined,
+                nomorTeleponKontakDarurat2: formData.nomorTeleponKontakDarurat2 || undefined,
+                hubunganKontakDarurat2: formData.hubunganKontakDarurat2 || undefined,
+                alamatKontakDarurat2: formData.alamatKontakDarurat2 || undefined,
+
+                // POO/POH & Seragam
+                pointOfOriginal: formData.pointOfOriginal || undefined,
+                pointOfHire: formData.pointOfHire || undefined,
+                ukuranSeragamKerja: formData.ukuranSeragamKerja || undefined,
+                ukuranSepatuKerja: formData.ukuranSepatuKerja || undefined,
+
+                // Pergerakan Karyawan
+                lokasiSebelumnyaId: formData.lokasiSebelumnyaId || undefined,
+                tanggalMutasi: formData.tanggalMutasi || undefined,
+
+                // Costing
+                siklusPembayaranGaji: formData.siklusPembayaranGaji || undefined,
+                costing: formData.costing || undefined,
+                assign: formData.assign || undefined,
+                actual: formData.actual || undefined,
             };
 
             await employeeService.updateEmployee(employee.id, updateData);
@@ -351,6 +422,22 @@ export const HRInformationTab: React.FC<HRInformationTabProps> = ({
                         onChange={(e) => handleChange('emailPerusahaan', e.target.value)}
                         error={errors.emailPerusahaan}
                         disabled
+                    />
+                    <SearchableSelect
+                        label="Manager"
+                        value={formData.managerId || ''}
+                        onChange={(val) => handleChange('managerId', val)}
+                        options={employeeOptions}
+                        loading={employeeListLoading}
+                        disabled={!isEditing}
+                    />
+                    <SearchableSelect
+                        label="Atasan Langsung"
+                        value={formData.atasanLangsungId || ''}
+                        onChange={(val) => handleChange('atasanLangsungId', val)}
+                        options={employeeOptions}
+                        loading={employeeListLoading}
+                        disabled={!isEditing}
                     />
                 </div>
             </div>

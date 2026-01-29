@@ -19,6 +19,16 @@ interface MasterDataCard {
 
 const masterDataCards: MasterDataCard[] = [
     {
+        id: 'karyawan' as any, // Not a master entity type, but compatible for UI
+        title: 'Data Karyawan',
+        description: 'Kelola data seluruh karyawan',
+        path: '/hr/employees',
+        color: 'from-blue-600 to-indigo-700',
+        icon: (
+            <span className="material-symbols-rounded text-3xl">badge</span>
+        ),
+    },
+    {
         id: 'divisi',
         title: 'Divisi',
         description: 'Kelola data divisi organisasi',

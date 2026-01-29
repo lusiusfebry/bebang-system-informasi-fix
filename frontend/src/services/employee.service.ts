@@ -230,6 +230,32 @@ export const exportEmployeePDF = async (id: string): Promise<Blob> => {
     return response.data;
 };
 
+/**
+ * Bulk delete employees
+ */
+export const bulkDeleteEmployees = async (ids: string[]): Promise<void> => {
+    await api.post(`${BASE_URL}/bulk-delete`, { ids });
+};
+
+/**
+ * Export employees to CSV
+ */
+export const exportEmployeesCSV = async (params: EmployeeQueryParams): Promise<Blob> => {
+    const queryParams = new URLSearchParams();
+    if (params.search) queryParams.append('search', params.search);
+    if (params.divisiId) queryParams.append('divisiId', params.divisiId);
+    if (params.departmentId) queryParams.append('departmentId', params.departmentId);
+    if (params.statusKaryawanId) queryParams.append('statusKaryawanId', params.statusKaryawanId);
+    if (params.lokasiKerjaId) queryParams.append('lokasiKerjaId', params.lokasiKerjaId);
+    if (params.tagId) queryParams.append('tagId', params.tagId);
+    if (params.jenisHubunganKerjaId) queryParams.append('jenisHubunganKerjaId', params.jenisHubunganKerjaId);
+
+    const response = await api.get(`${BASE_URL}/export?${queryParams.toString()}`, {
+        responseType: 'blob',
+    });
+    return response.data;
+};
+
 // Export as object for compatibility
 export const employeeService = {
     getEmployees,
@@ -250,6 +276,8 @@ export const employeeService = {
     getEmployeeQRCode,
     getEmployeeQRCodeBase64,
     exportEmployeePDF,
+    bulkDeleteEmployees,
+    exportEmployeesCSV,
 };
 
 export default employeeService;

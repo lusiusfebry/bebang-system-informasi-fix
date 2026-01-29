@@ -7,3 +7,5 @@ export { EmployeeProfileTabs } from './EmployeeProfileTabs';
 export { QRCodeDisplay } from './QRCodeDisplay';
 export { PersonalInformationTab } from './tabs/PersonalInformationTab';
 export { HRInformationTab } from './tabs/HRInformationTab';
+export { FamilyInformationTab } from './tabs/FamilyInformationTab';
+

@@ -15,6 +15,7 @@ import {
     updateSaudaraKandungSchema,
     karyawanQuerySchema,
 } from '../validators/employee.validator';
+import { generateEmployeeCSV } from '../utils/csv-export';
 import { getRelativePath } from '../config/upload';
 import { Prisma } from '@prisma/client';
 import { ZodError } from 'zod';
@@ -182,6 +183,47 @@ export async function deleteKaryawan(req: Request, res: Response, next: NextFunc
 
         await employeeService.delete(id);
         res.json(successResponse(null, 'Karyawan berhasil dihapus'));
+    } catch (error) {
+        handleError(error, res, next);
+    }
+}
+
+/**
+ * POST /api/hr/employees/bulk-delete
+ * Bulk delete employees
+ */
+export async function bulkDeleteKaryawan(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const { ids } = req.body;
+
+        if (!Array.isArray(ids) || ids.length === 0) {
+            res.status(400).json({ success: false, message: 'Invalid or empty IDs' });
+            return;
+        }
+
+        const count = await employeeService.bulkDelete(ids);
+        res.json(successResponse({ count }, `${count} karyawan berhasil dihapus`));
+    } catch (error) {
+        handleError(error, res, next);
+    }
+}
+
+/**
+ * GET /api/hr/employees/export
+ * Export employees to CSV
+ */
+export async function exportKaryawan(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const params = karyawanQuerySchema.parse(req.query);
+        const employees = await employeeService.exportData(params);
+
+        const csv = generateEmployeeCSV(employees);
+        const timestamp = new Date().toISOString().split('T')[0];
+        const filename = `karyawan-export-${timestamp}.csv`;
+
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+        res.send(csv);
     } catch (error) {
         handleError(error, res, next);
     }
