@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-hot-toast';
+import { useToast } from '../../../components/common';
 import { resignationService } from '../../../services/resignation.service';
 import { employeeService } from '../../../services/employee.service';
 import { ResignationType } from '../../../types/resignation.types';
@@ -11,6 +12,7 @@ interface ResignationFormProps {
 }
 
 export default function ResignationForm({ onClose, onSuccess }: ResignationFormProps) {
+    const { showToast } = useToast();
     const [loading, setLoading] = useState(false);
     const [employees, setEmployees] = useState<EmployeeListItem[]>([]);
 
@@ -33,7 +35,7 @@ export default function ResignationForm({ onClose, onSuccess }: ResignationFormP
             const response = await employeeService.getEmployees({ limit: 1000 }); // Basic "all" fetch
             setEmployees(response.data);
         } catch (error) {
-            toast.error('Gagal memuat daftar karyawan');
+            showToast('Gagal memuat daftar karyawan', 'error');
         }
     };
 
@@ -41,18 +43,18 @@ export default function ResignationForm({ onClose, onSuccess }: ResignationFormP
         e.preventDefault();
 
         if (!formData.karyawanId) {
-            toast.error('Pilih karyawan');
+            showToast('Pilih karyawan', 'error');
             return;
         }
 
         try {
             setLoading(true);
             await resignationService.create(formData);
-            toast.success('Pengajuan berhasil dibuat');
+            showToast('Pengajuan berhasil dibuat', 'success');
             onSuccess();
         } catch (error) {
             console.error(error);
-            toast.error('Gagal membuat pengajuan');
+            showToast('Gagal membuat pengajuan', 'error');
         } finally {
             setLoading(false);
         }

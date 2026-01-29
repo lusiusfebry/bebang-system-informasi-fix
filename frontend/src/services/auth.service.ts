@@ -1,29 +1,5 @@
 import api from './api';
-
-export interface User {
-    id: string;
-    nik: string;
-    email: string | null;
-    fullName: string;
-    role: 'ADMIN' | 'USER' | 'HR_MANAGER' | 'VIEWER';
-    isActive: boolean;
-    createdAt: string;
-    updatedAt: string;
-}
-
-export interface LoginResponse {
-    token: string;
-    user: User;
-}
-
-export interface AuthResponse {
-    success: boolean;
-    data?: LoginResponse;
-    message?: string;
-    error?: {
-        message: string;
-    };
-}
+import { User, LoginResponse, AuthResponse } from '../types/auth';
 
 const TOKEN_KEY = 'token';
 const USER_KEY = 'user';

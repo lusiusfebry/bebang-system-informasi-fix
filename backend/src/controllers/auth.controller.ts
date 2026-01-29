@@ -17,17 +17,10 @@ const loginSchema = z.object({
 /**
  * Remove password from user object
  */
-function excludePassword(user: {
-    id: string;
-    nik: string;
-    email: string | null;
-    password: string;
-    fullName: string;
-    role: 'ADMIN' | 'USER' | 'HR_MANAGER' | 'VIEWER';
-    isActive: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-}): SafeUser {
+/**
+ * Remove password from user object
+ */
+function excludePassword(user: any): SafeUser {
     const { password: _, ...userWithoutPassword } = user;
     return userWithoutPassword;
 }
@@ -46,9 +39,20 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
 
         const { nik, password }: LoginRequest = validationResult.data;
 
-        // Find user by NIK
+        // Find user by NIK with Role and Permissions
         const user = await prisma.user.findUnique({
             where: { nik },
+            include: {
+                role: {
+                    include: {
+                        rolePermissions: {
+                            include: {
+                                permission: true
+                            }
+                        }
+                    }
+                }
+            }
         });
 
         if (!user) {
@@ -66,11 +70,16 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
             throw new ApiError('NIK atau password salah', 401);
         }
 
-        // Generate JWT token
+        // Extract permissions from role
+        const permissions = user.role?.rolePermissions.map(rp => rp.permission.name) || [];
+
+        // Generate JWT token with permissions
         const token = generateToken({
             userId: user.id,
             nik: user.nik,
-            role: user.role,
+            roleId: user.roleId || '',
+            roleCode: user.role?.code || 'EMPLOYEE', // Fallback
+            permissions,
         });
 
         // Return token and user data (without password)
@@ -95,6 +104,9 @@ export async function getProfile(req: AuthenticatedRequest, res: Response, next:
         // Get fresh user data from database
         const user = await prisma.user.findUnique({
             where: { id: req.user.userId },
+            include: {
+                role: true
+            }
         });
 
         if (!user) {
@@ -107,6 +119,25 @@ export async function getProfile(req: AuthenticatedRequest, res: Response, next:
 
         const safeUser = excludePassword(user);
         res.json(successResponse(safeUser));
+    } catch (error) {
+        next(error);
+    }
+}
+
+/**
+ * Get current user permissions
+ * GET /api/auth/permissions
+ */
+export async function getPermissions(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+        if (!req.user) {
+            throw new ApiError('User tidak terautentikasi', 401);
+        }
+
+        res.json(successResponse({
+            permissions: req.user.permissions || [],
+            roleCode: req.user.roleCode,
+        }));
     } catch (error) {
         next(error);
     }

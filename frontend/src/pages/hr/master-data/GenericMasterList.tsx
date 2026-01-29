@@ -10,6 +10,8 @@ import type { TableColumn, SortState } from '../../../components/common';
 import { useHRMasterData } from '../../../hooks/useHRMasterData';
 import { GenericMasterFormModal } from './components/GenericMasterFormModal';
 import type { HRMasterEntityType, StatusMaster, HRMasterData } from '../../../types/hr-master.types';
+import { useAuth } from '../../../contexts/AuthContext';
+import { PERMISSIONS } from '../../../constants/permissions';
 
 interface FormField {
     name: string;
@@ -40,6 +42,12 @@ export function GenericMasterList<T extends HRMasterData>({
 }: GenericMasterListProps<T>) {
     const navigate = useNavigate();
     const { showToast } = useToast();
+    const { user } = useAuth();
+
+    // Permissions
+    const canCreate = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_CREATE);
+    const canUpdate = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_UPDATE);
+    const canDelete = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_DELETE);
 
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState<StatusMaster | ''>('');
@@ -159,10 +167,12 @@ export function GenericMasterList<T extends HRMasterData>({
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Daftar {title}</h1>
                     <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{subtitle}</p>
                 </div>
-                <button onClick={handleCreate} className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
-                    Tambah {title}
-                </button>
+                {canCreate && (
+                    <button onClick={handleCreate} className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                        Tambah {title}
+                    </button>
+                )}
             </div>
 
             <div className="mb-4">
@@ -174,8 +184,8 @@ export function GenericMasterList<T extends HRMasterData>({
                 data={data}
                 loading={loading}
                 keyExtractor={(item) => item.id}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
+                onEdit={canUpdate ? handleEdit : undefined}
+                onDelete={canDelete ? handleDelete : undefined}
                 emptyMessage={`Tidak ada data ${title.toLowerCase()}`}
                 sortState={sortState}
                 onSort={handleSort}

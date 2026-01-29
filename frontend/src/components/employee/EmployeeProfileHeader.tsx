@@ -6,6 +6,8 @@
 import React from 'react';
 import { Employee, StatusMaster } from '../../types/employee.types';
 import { EmployeeStatusBadge } from '../common/EmployeeStatusBadge';
+import { useAuth } from '../../contexts/AuthContext';
+import { PERMISSIONS } from '../../constants/permissions';
 
 interface EmployeeProfileHeaderProps {
     employee: Employee;
@@ -24,6 +26,13 @@ export const EmployeeProfileHeader: React.FC<EmployeeProfileHeaderProps> = ({
     exportLoading = false,
     exportError,
 }) => {
+    const { user } = useAuth();
+
+    // Permissions
+    const canEdit = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.EMPLOYEE_UPDATE);
+    const canExport = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.EMPLOYEE_EXPORT);
+    const canRead = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.EMPLOYEE_READ);
+
     const getPhotoUrl = () => {
         if (employee.fotoKaryawan) {
             // Handle relative path from backend
@@ -100,40 +109,49 @@ export const EmployeeProfileHeader: React.FC<EmployeeProfileHeaderProps> = ({
 
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row lg:flex-col gap-3 justify-center lg:justify-start">
-                    <button
-                        onClick={onEdit}
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
-                    >
-                        <span className="material-symbols-rounded text-lg">edit</span>
-                        Edit Profil
-                    </button>
-                    <button
-                        onClick={onExportPDF}
-                        disabled={exportLoading}
-                        className={`flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white rounded-lg transition-colors shadow-sm ${exportLoading
-                            ? 'bg-primary/60 cursor-not-allowed'
-                            : 'bg-primary hover:bg-primary-dark'
-                            }`}
-                    >
-                        {exportLoading ? (
-                            <>
-                                <span className="material-symbols-rounded text-lg animate-spin">sync</span>
-                                Mengekspor...
-                            </>
-                        ) : (
-                            <>
-                                <span className="material-symbols-rounded text-lg">file_download</span>
-                                Ekspor PDF
-                            </>
-                        )}
-                    </button>
-                    <button
-                        onClick={onPrintIDCard}
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm"
-                    >
-                        <span className="material-symbols-rounded text-lg">badge</span>
-                        Cetak ID Card
-                    </button>
+                    {canEdit && (
+                        <button
+                            onClick={onEdit}
+                            className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                        >
+                            <span className="material-symbols-rounded text-lg">edit</span>
+                            Edit Profil
+                        </button>
+                    )}
+
+                    {canExport && (
+                        <button
+                            onClick={onExportPDF}
+                            disabled={exportLoading}
+                            className={`flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white rounded-lg transition-colors shadow-sm ${exportLoading
+                                ? 'bg-primary/60 cursor-not-allowed'
+                                : 'bg-primary hover:bg-primary-dark'
+                                }`}
+                        >
+                            {exportLoading ? (
+                                <>
+                                    <span className="material-symbols-rounded text-lg animate-spin">sync</span>
+                                    Mengekspor...
+                                </>
+                            ) : (
+                                <>
+                                    <span className="material-symbols-rounded text-lg">file_download</span>
+                                    Ekspor PDF
+                                </>
+                            )}
+                        </button>
+                    )}
+
+                    {canRead && (
+                        <button
+                            onClick={onPrintIDCard}
+                            className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm"
+                        >
+                            <span className="material-symbols-rounded text-lg">badge</span>
+                            Cetak ID Card
+                        </button>
+                    )}
+
                     {exportError && (
                         <p className="text-xs text-red-500 dark:text-red-400 text-center lg:text-left">
                             {exportError}

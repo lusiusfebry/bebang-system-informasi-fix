@@ -10,6 +10,53 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Permission model untuk granular access control
+model Permission {
+  id          String   @id @default(uuid())
+  name        String   @unique // e.g., "employee.create", "employee.read"
+  description String?
+  module      String   // e.g., "HR", "INVENTORY"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  rolePermissions RolePermission[]
+
+  @@map("permissions")
+}
+
+// Role-Permission mapping (many-to-many)
+model RolePermission {
+  id           String   @id @default(uuid())
+  roleId       String
+  permissionId String
+  createdAt    DateTime @default(now())
+
+  // Relations
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@unique([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+// Role model untuk RBAC
+model Role {
+  id          String   @id @default(uuid())
+  name        String   @unique // e.g., "Admin", "HR Manager"
+  code        String   @unique // e.g., "ADMIN", "HR_MANAGER"
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  users           User[]
+  rolePermissions RolePermission[]
+
+  @@map("roles")
+}
+
 // User model for authentication
 model User {
   id        String   @id @default(uuid())
@@ -17,22 +64,16 @@ model User {
   email     String?  @unique
   password  String
   fullName  String
-  role      Role     @default(USER)
+  roleId    String?  // FK ke Role table
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relations
+  role               Role?       @relation(fields: [roleId], references: [id])
   managedDepartments Department[]
 
   @@map("users")
-}
-
-enum Role {
-  ADMIN
-  USER
-  HR_MANAGER
-  VIEWER
 }
 
 // Status untuk Master Data HR

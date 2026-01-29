@@ -1,8 +1,3 @@
-/**
- * DivisiList Component
- * Halaman daftar Divisi dengan CRUD functionality
- */
-
 import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -14,6 +9,8 @@ import {
 } from '../../../components/common';
 import type { TableColumn } from '../../../components/common';
 import { useHRMasterData } from '../../../hooks/useHRMasterData';
+import { useAuth } from '../../../contexts/AuthContext';
+import { PERMISSIONS } from '../../../constants/permissions';
 import DivisiFormModal from './components/DivisiFormModal';
 import type {
     Divisi,
@@ -42,6 +39,12 @@ const columns: TableColumn<Divisi>[] = [
 export const DivisiList: React.FC = () => {
     const navigate = useNavigate();
     const { showToast } = useToast();
+    const { user } = useAuth();
+
+    // Permissions
+    const canCreate = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_CREATE);
+    const canUpdate = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_UPDATE);
+    const canDelete = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_DELETE);
 
     // States
     const [searchTerm, setSearchTerm] = useState('');
@@ -213,17 +216,19 @@ export const DivisiList: React.FC = () => {
                         Kelola data divisi organisasi
                     </p>
                 </div>
-                <button
-                    onClick={handleCreate}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white 
-                        bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 
-                        transition-colors"
-                >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                    </svg>
-                    Tambah Divisi
-                </button>
+                {canCreate && (
+                    <button
+                        onClick={handleCreate}
+                        className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white 
+                            bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 
+                            transition-colors"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                        Tambah Divisi
+                    </button>
+                )}
             </div>
 
             {/* Search and Filter */}
@@ -243,8 +248,8 @@ export const DivisiList: React.FC = () => {
                 data={divisiList}
                 loading={loading}
                 keyExtractor={(item) => item.id}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
+                onEdit={canUpdate ? handleEdit : undefined}
+                onDelete={canDelete ? handleDelete : undefined}
                 emptyMessage="Tidak ada data divisi"
             />
 

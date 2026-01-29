@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { Role } from '@prisma/client';
+
 
 /**
  * Login request body
@@ -12,12 +12,21 @@ export interface LoginRequest {
 /**
  * User data without password (safe to return to client)
  */
+/**
+ * User data without password (safe to return to client)
+ */
 export interface SafeUser {
     id: string;
     nik: string;
     email: string | null;
     fullName: string;
-    role: Role;
+    roleId: string | null;
+    role: {
+        id: string;
+        name: string;
+        code: string;
+        description: string | null;
+    } | null;
     isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -37,7 +46,9 @@ export interface LoginResponse {
 export interface JwtPayload {
     userId: string;
     nik: string;
-    role: Role;
+    roleId: string;
+    roleCode: string;
+    permissions: string[]; // Array of permission names
     iat?: number;
     exp?: number;
 }

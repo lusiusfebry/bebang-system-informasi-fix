@@ -46,7 +46,6 @@ async function main() {
             email: DEV_CREDENTIALS.admin.email,
             password: adminHashedPassword,
             fullName: DEV_CREDENTIALS.admin.fullName,
-            role: 'ADMIN',
             isActive: true,
         },
     });
@@ -64,12 +63,168 @@ async function main() {
             email: DEV_CREDENTIALS.user.email,
             password: userHashedPassword,
             fullName: DEV_CREDENTIALS.user.fullName,
-            role: 'USER',
             isActive: true,
         },
     });
 
     console.log('✅ Created/Updated test user:', testUser.nik);
+
+    // ==========================================
+    // RBAC SEEDING - Roles & Permissions
+    // ==========================================
+
+    console.log('');
+    console.log('🔐 Seeding RBAC Data...');
+
+    // Seed Roles
+    const rolesData = [
+        { id: randomUUID(), name: 'Administrator', code: 'ADMIN', description: 'Full system access' },
+        { id: randomUUID(), name: 'HR Manager', code: 'HR_MANAGER', description: 'Manage HR module with full access' },
+        { id: randomUUID(), name: 'HR Staff', code: 'HR_STAFF', description: 'HR operations with limited access' },
+        { id: randomUUID(), name: 'Employee', code: 'EMPLOYEE', description: 'Basic employee access' },
+    ];
+
+    const createdRoles: Record<string, any> = {};
+
+    for (const role of rolesData) {
+        const existing = await prisma.role.findFirst({ where: { code: role.code } });
+        if (!existing) {
+            createdRoles[role.code] = await prisma.role.create({ data: role });
+        } else {
+            createdRoles[role.code] = existing;
+        }
+    }
+    console.log('  ✅ Roles: 4 records');
+
+    // Seed Permissions untuk HR Module
+    const permissionsData = [
+        // Employee Management
+        { name: 'employee.create', description: 'Create new employee', module: 'HR' },
+        { name: 'employee.read', description: 'View employee data', module: 'HR' },
+        { name: 'employee.update', description: 'Update employee data', module: 'HR' },
+        { name: 'employee.delete', description: 'Delete employee', module: 'HR' },
+        { name: 'employee.export', description: 'Export employee data', module: 'HR' },
+        { name: 'employee.import', description: 'Import employee data', module: 'HR' },
+
+        // HR Master Data
+        { name: 'hr_master.create', description: 'Create HR master data', module: 'HR' },
+        { name: 'hr_master.read', description: 'View HR master data', module: 'HR' },
+        { name: 'hr_master.update', description: 'Update HR master data', module: 'HR' },
+        { name: 'hr_master.delete', description: 'Delete HR master data', module: 'HR' },
+
+        // Resignation Management
+        { name: 'resignation.create', description: 'Create resignation request', module: 'HR' },
+        { name: 'resignation.read', description: 'View resignation data', module: 'HR' },
+        { name: 'resignation.approve', description: 'Approve/reject resignation', module: 'HR' },
+        { name: 'resignation.delete', description: 'Delete resignation', module: 'HR' },
+
+        // User Management
+        { name: 'user.create', description: 'Create new user', module: 'SYSTEM' },
+        { name: 'user.read', description: 'View user data', module: 'SYSTEM' },
+        { name: 'user.update', description: 'Update user data', module: 'SYSTEM' },
+        { name: 'user.delete', description: 'Delete user', module: 'SYSTEM' },
+
+        // Role Management
+        { name: 'role.create', description: 'Create new role', module: 'SYSTEM' },
+        { name: 'role.read', description: 'View role data', module: 'SYSTEM' },
+        { name: 'role.update', description: 'Update role', module: 'SYSTEM' },
+        { name: 'role.delete', description: 'Delete role', module: 'SYSTEM' },
+        { name: 'role.assign_permissions', description: 'Assign permissions to role', module: 'SYSTEM' },
+    ];
+
+    const createdPermissions: Record<string, any> = {};
+
+    for (const perm of permissionsData) {
+        const existing = await prisma.permission.findFirst({ where: { name: perm.name } });
+        if (!existing) {
+            createdPermissions[perm.name] = await prisma.permission.create({ data: { id: randomUUID(), ...perm } });
+        } else {
+            createdPermissions[perm.name] = existing;
+        }
+    }
+    console.log('  ✅ Permissions: 23 records');
+
+    // Assign Permissions to Roles
+    const rolePermissionMappings = [
+        // ADMIN - Full access
+        { roleCode: 'ADMIN', permissions: Object.keys(createdPermissions) },
+
+        // HR_MANAGER - Full HR access + limited system access
+        {
+            roleCode: 'HR_MANAGER',
+            permissions: [
+                'employee.create', 'employee.read', 'employee.update', 'employee.delete', 'employee.export', 'employee.import',
+                'hr_master.create', 'hr_master.read', 'hr_master.update', 'hr_master.delete',
+                'resignation.create', 'resignation.read', 'resignation.approve', 'resignation.delete',
+                'user.read',
+            ]
+        },
+
+        // HR_STAFF - Limited HR access
+        {
+            roleCode: 'HR_STAFF',
+            permissions: [
+                'employee.create', 'employee.read', 'employee.update', 'employee.export',
+                'hr_master.read',
+                'resignation.create', 'resignation.read',
+            ]
+        },
+
+        // EMPLOYEE - View only
+        {
+            roleCode: 'EMPLOYEE',
+            permissions: [
+                'employee.read',
+                'hr_master.read',
+                'resignation.create', 'resignation.read',
+            ]
+        },
+    ];
+
+    for (const mapping of rolePermissionMappings) {
+        const role = createdRoles[mapping.roleCode];
+        if (!role) continue;
+
+        for (const permName of mapping.permissions) {
+            const permission = createdPermissions[permName];
+            if (!permission) continue;
+
+            const existing = await prisma.rolePermission.findFirst({
+                where: { roleId: role.id, permissionId: permission.id }
+            });
+
+            if (!existing) {
+                await prisma.rolePermission.create({
+                    data: {
+                        id: randomUUID(),
+                        roleId: role.id,
+                        permissionId: permission.id,
+                    }
+                });
+            }
+        }
+    }
+    console.log('  ✅ Role-Permission Mappings: Created');
+
+    // Update existing users dengan roleId
+    const adminRole = createdRoles['ADMIN'];
+    const employeeRole = createdRoles['EMPLOYEE'];
+
+    if (adminRole) {
+        await prisma.user.update({
+            where: { nik: DEV_CREDENTIALS.admin.nik },
+            data: { roleId: adminRole.id }
+        });
+    }
+
+    if (employeeRole) {
+        await prisma.user.update({
+            where: { nik: DEV_CREDENTIALS.user.nik },
+            data: { roleId: employeeRole.id }
+        });
+    }
+
+    console.log('  ✅ Users updated with roles');
 
     // ==========================================
     // HR MASTER DATA SEEDING

@@ -5,8 +5,10 @@ import { ImportPreviewResponse, ParsedEmployeeData } from '../../../types/import
 import { ImportErrorDisplay } from '../../../components/employee/ImportErrorDisplay';
 import { ImportProgress } from '../../../components/employee/ImportProgress';
 import { useToast } from '../../../components/common';
+import { PermissionGuard } from '../../../components/auth/PermissionGuard';
+import { PERMISSIONS } from '../../../constants/permissions';
 
-const EmployeeImport: React.FC = () => {
+const EmployeeImportContent: React.FC = () => {
     const navigate = useNavigate();
     const { showToast } = useToast();
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -248,4 +250,10 @@ const EmployeeImport: React.FC = () => {
     );
 };
 
-export default EmployeeImport;
+export default function EmployeeImport() {
+    return (
+        <PermissionGuard permission={PERMISSIONS.EMPLOYEE_IMPORT} fallback={<div className="p-8 text-center">Access Denied</div>}>
+            <EmployeeImportContent />
+        </PermissionGuard>
+    );
+}

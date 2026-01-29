@@ -523,16 +523,28 @@ export async function generateKaryawanQRCode(req: Request, res: Response, next: 
  */
 export async function bulkGenerateQRCodes(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const { employeeIds } = req.body;
+        const { employeeIds, ids } = req.body;
+        const targetIds = ids || employeeIds;
 
-        if (!Array.isArray(employeeIds) || employeeIds.length === 0) {
-            res.status(400).json({ success: false, message: 'Invalid or empty employee IDs' });
+        if (!Array.isArray(targetIds) || targetIds.length === 0) {
+            res.status(400).json({ success: false, message: 'Invalid or empty IDs' });
             return;
         }
 
         // Initialize ZIP archive
         const archive = archiver('zip', {
             zlib: { level: 9 } // Sets the compression level
+        });
+
+        // Handle archive errors
+        archive.on('error', (err) => {
+            console.error('Archiver error:', err);
+            if (!res.headersSent) {
+                res.status(500).end();
+            } else {
+                res.end();
+            }
+            archive.abort();
         });
 
         // Set response headers for ZIP download
@@ -544,7 +556,7 @@ export async function bulkGenerateQRCodes(req: Request, res: Response, next: Nex
         archive.pipe(res);
 
         // Process each employee
-        for (const id of employeeIds) {
+        for (const id of targetIds) {
             try {
                 const karyawan = await employeeService.findById(id);
                 if (karyawan) {

@@ -26,7 +26,7 @@
  */
 
 import { Router } from 'express';
-import { authenticateAndValidate } from '../middleware/auth.middleware';
+import { authenticate, requirePermissions } from '../middleware/auth.middleware';
 import { validateBody, validateQuery, validateParams } from '../middleware/validation.middleware';
 import {
     createDivisiSchema,
@@ -102,7 +102,8 @@ const router = Router();
  *         description: Unauthorized
  */
 router.get('/divisi',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateQuery(masterDataQuerySchema),
     hrMasterController.getAllDivisi
 );
@@ -138,7 +139,8 @@ router.get('/divisi',
  *         description: Divisi not found
  */
 router.get('/divisi/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getDivisiById
 );
@@ -176,7 +178,8 @@ router.get('/divisi/:id',
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post('/divisi',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createDivisiSchema),
     hrMasterController.createDivisi
 );
@@ -209,7 +212,8 @@ router.post('/divisi',
  *         description: Divisi not found
  */
 router.put('/divisi/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateDivisiSchema),
     hrMasterController.updateDivisi
@@ -237,7 +241,8 @@ router.put('/divisi/:id',
  *         description: Divisi not found
  */
 router.delete('/divisi/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteDivisi
 );
@@ -284,8 +289,8 @@ router.delete('/divisi/:id',
  *         description: Paginated list of departments
  */
 router.get('/department',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllDepartment
 );
 
@@ -319,7 +324,8 @@ router.get('/department',
  *         description: Department not found
  */
 router.get('/department/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getDepartmentById
 );
@@ -345,7 +351,8 @@ router.get('/department/:id',
  *         description: Validation error
  */
 router.post('/department',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createDepartmentSchema),
     hrMasterController.createDepartment
 );
@@ -378,7 +385,8 @@ router.post('/department',
  *         description: Department not found
  */
 router.put('/department/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateDepartmentSchema),
     hrMasterController.updateDepartment
@@ -406,7 +414,8 @@ router.put('/department/:id',
  *         description: Department not found
  */
 router.delete('/department/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteDepartment
 );
@@ -447,8 +456,8 @@ router.delete('/department/:id',
  *         description: Paginated list of posisi jabatan
  */
 router.get('/posisi-jabatan',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllPosisiJabatan
 );
 
@@ -474,7 +483,8 @@ router.get('/posisi-jabatan',
  *         description: Posisi jabatan not found
  */
 router.get('/posisi-jabatan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getPosisiJabatanById
 );
@@ -500,7 +510,8 @@ router.get('/posisi-jabatan/:id',
  *         description: Validation error
  */
 router.post('/posisi-jabatan',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createPosisiJabatanSchema),
     hrMasterController.createPosisiJabatan
 );
@@ -533,7 +544,8 @@ router.post('/posisi-jabatan',
  *         description: Posisi jabatan not found
  */
 router.put('/posisi-jabatan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updatePosisiJabatanSchema),
     hrMasterController.updatePosisiJabatan
@@ -561,7 +573,8 @@ router.put('/posisi-jabatan/:id',
  *         description: Posisi jabatan not found
  */
 router.delete('/posisi-jabatan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deletePosisiJabatan
 );
@@ -600,8 +613,8 @@ router.delete('/posisi-jabatan/:id',
  *         description: Paginated list of kategori pangkat
  */
 router.get('/kategori-pangkat',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllKategoriPangkat
 );
 
@@ -627,7 +640,8 @@ router.get('/kategori-pangkat',
  *         description: Kategori pangkat not found
  */
 router.get('/kategori-pangkat/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getKategoriPangkatById
 );
@@ -653,7 +667,8 @@ router.get('/kategori-pangkat/:id',
  *         description: Validation error
  */
 router.post('/kategori-pangkat',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createKategoriPangkatSchema),
     hrMasterController.createKategoriPangkat
 );
@@ -686,7 +701,8 @@ router.post('/kategori-pangkat',
  *         description: Kategori pangkat not found
  */
 router.put('/kategori-pangkat/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateKategoriPangkatSchema),
     hrMasterController.updateKategoriPangkat
@@ -714,7 +730,8 @@ router.put('/kategori-pangkat/:id',
  *         description: Kategori pangkat not found
  */
 router.delete('/kategori-pangkat/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteKategoriPangkat
 );
@@ -753,8 +770,8 @@ router.delete('/kategori-pangkat/:id',
  *         description: Paginated list of golongan
  */
 router.get('/golongan',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllGolongan
 );
 
@@ -780,7 +797,8 @@ router.get('/golongan',
  *         description: Golongan not found
  */
 router.get('/golongan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getGolonganById
 );
@@ -806,7 +824,8 @@ router.get('/golongan/:id',
  *         description: Validation error
  */
 router.post('/golongan',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createGolonganSchema),
     hrMasterController.createGolongan
 );
@@ -839,7 +858,8 @@ router.post('/golongan',
  *         description: Golongan not found
  */
 router.put('/golongan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateGolonganSchema),
     hrMasterController.updateGolongan
@@ -867,7 +887,8 @@ router.put('/golongan/:id',
  *         description: Golongan not found
  */
 router.delete('/golongan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteGolongan
 );
@@ -906,8 +927,8 @@ router.delete('/golongan/:id',
  *         description: Paginated list of sub golongan
  */
 router.get('/sub-golongan',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllSubGolongan
 );
 
@@ -933,7 +954,8 @@ router.get('/sub-golongan',
  *         description: Sub golongan not found
  */
 router.get('/sub-golongan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getSubGolonganById
 );
@@ -959,7 +981,8 @@ router.get('/sub-golongan/:id',
  *         description: Validation error
  */
 router.post('/sub-golongan',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createSubGolonganSchema),
     hrMasterController.createSubGolongan
 );
@@ -992,7 +1015,8 @@ router.post('/sub-golongan',
  *         description: Sub golongan not found
  */
 router.put('/sub-golongan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateSubGolonganSchema),
     hrMasterController.updateSubGolongan
@@ -1020,7 +1044,8 @@ router.put('/sub-golongan/:id',
  *         description: Sub golongan not found
  */
 router.delete('/sub-golongan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteSubGolongan
 );
@@ -1059,8 +1084,8 @@ router.delete('/sub-golongan/:id',
  *         description: Paginated list of jenis hubungan kerja
  */
 router.get('/jenis-hubungan-kerja',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllJenisHubunganKerja
 );
 
@@ -1086,7 +1111,8 @@ router.get('/jenis-hubungan-kerja',
  *         description: Jenis hubungan kerja not found
  */
 router.get('/jenis-hubungan-kerja/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getJenisHubunganKerjaById
 );
@@ -1112,7 +1138,8 @@ router.get('/jenis-hubungan-kerja/:id',
  *         description: Validation error
  */
 router.post('/jenis-hubungan-kerja',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createJenisHubunganKerjaSchema),
     hrMasterController.createJenisHubunganKerja
 );
@@ -1145,7 +1172,8 @@ router.post('/jenis-hubungan-kerja',
  *         description: Jenis hubungan kerja not found
  */
 router.put('/jenis-hubungan-kerja/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateJenisHubunganKerjaSchema),
     hrMasterController.updateJenisHubunganKerja
@@ -1173,7 +1201,8 @@ router.put('/jenis-hubungan-kerja/:id',
  *         description: Jenis hubungan kerja not found
  */
 router.delete('/jenis-hubungan-kerja/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteJenisHubunganKerja
 );
@@ -1212,8 +1241,8 @@ router.delete('/jenis-hubungan-kerja/:id',
  *         description: Paginated list of tags
  */
 router.get('/tag',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllTag
 );
 
@@ -1247,7 +1276,8 @@ router.get('/tag',
  *         description: Tag not found
  */
 router.get('/tag/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getTagById
 );
@@ -1277,7 +1307,8 @@ router.get('/tag/:id',
  *         description: Validation error (e.g. invalid hex color)
  */
 router.post('/tag',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createTagSchema),
     hrMasterController.createTag
 );
@@ -1310,7 +1341,8 @@ router.post('/tag',
  *         description: Tag not found
  */
 router.put('/tag/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateTagSchema),
     hrMasterController.updateTag
@@ -1338,7 +1370,8 @@ router.put('/tag/:id',
  *         description: Tag not found
  */
 router.delete('/tag/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteTag
 );
@@ -1377,8 +1410,8 @@ router.delete('/tag/:id',
  *         description: Paginated list of lokasi kerja
  */
 router.get('/lokasi-kerja',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllLokasiKerja
 );
 
@@ -1404,7 +1437,8 @@ router.get('/lokasi-kerja',
  *         description: Lokasi kerja not found
  */
 router.get('/lokasi-kerja/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getLokasiKerjaById
 );
@@ -1430,7 +1464,8 @@ router.get('/lokasi-kerja/:id',
  *         description: Validation error
  */
 router.post('/lokasi-kerja',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createLokasiKerjaSchema),
     hrMasterController.createLokasiKerja
 );
@@ -1463,7 +1498,8 @@ router.post('/lokasi-kerja',
  *         description: Lokasi kerja not found
  */
 router.put('/lokasi-kerja/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateLokasiKerjaSchema),
     hrMasterController.updateLokasiKerja
@@ -1491,7 +1527,8 @@ router.put('/lokasi-kerja/:id',
  *         description: Lokasi kerja not found
  */
 router.delete('/lokasi-kerja/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteLokasiKerja
 );
@@ -1530,8 +1567,8 @@ router.delete('/lokasi-kerja/:id',
  *         description: Paginated list of status karyawan
  */
 router.get('/status-karyawan',
-    authenticateAndValidate,
-    validateQuery(masterDataQuerySchema),
+    authenticate,
+    requirePermissions('hr_master.read'),
     hrMasterController.getAllStatusKaryawan
 );
 
@@ -1557,7 +1594,8 @@ router.get('/status-karyawan',
  *         description: Status karyawan not found
  */
 router.get('/status-karyawan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.read'),
     validateParams(idParamsSchema),
     hrMasterController.getStatusKaryawanById
 );
@@ -1583,7 +1621,8 @@ router.get('/status-karyawan/:id',
  *         description: Validation error
  */
 router.post('/status-karyawan',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.create'),
     validateBody(createStatusKaryawanSchema),
     hrMasterController.createStatusKaryawan
 );
@@ -1616,7 +1655,8 @@ router.post('/status-karyawan',
  *         description: Status karyawan not found
  */
 router.put('/status-karyawan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.update'),
     validateParams(idParamsSchema),
     validateBody(updateStatusKaryawanSchema),
     hrMasterController.updateStatusKaryawan
@@ -1644,7 +1684,8 @@ router.put('/status-karyawan/:id',
  *         description: Status karyawan not found
  */
 router.delete('/status-karyawan/:id',
-    authenticateAndValidate,
+    authenticate,
+    requirePermissions('hr_master.delete'),
     validateParams(idParamsSchema),
     hrMasterController.deleteStatusKaryawan
 );

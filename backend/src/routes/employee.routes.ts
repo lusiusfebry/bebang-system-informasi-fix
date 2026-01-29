@@ -4,7 +4,7 @@
  */
 
 import { Router } from 'express';
-import { authenticate } from '../middleware/auth.middleware';
+import { authenticate, requirePermissions } from '../middleware/auth.middleware';
 import { uploadEmployeePhoto, uploadEmployeeDocument } from '../config/upload';
 import {
     getAllKaryawan,
@@ -31,7 +31,7 @@ import {
 const router = Router();
 
 // All routes require authentication
-router.use(authenticate);
+// All routes require authentication but permissions are specific per route
 
 // ==========================================
 // Main CRUD Routes
@@ -144,7 +144,7 @@ router.use(authenticate);
  *       401:
  *         description: Unauthorized
  */
-router.get('/', getAllKaryawan);
+router.get('/', authenticate, requirePermissions('employee.read'), getAllKaryawan);
 
 /**
  * @swagger
@@ -163,7 +163,7 @@ router.get('/', getAllKaryawan);
  *       200:
  *         description: CSV file download
  */
-router.get('/export', exportKaryawan);
+router.get('/export', authenticate, requirePermissions('employee.export'), exportKaryawan);
 
 /**
  * @swagger
@@ -190,7 +190,7 @@ router.get('/export', exportKaryawan);
  *       200:
  *         description: Employees deleted
  */
-router.post('/bulk-delete', bulkDeleteKaryawan);
+router.post('/bulk-delete', authenticate, requirePermissions('employee.delete'), bulkDeleteKaryawan);
 
 /**
  * @swagger
@@ -236,7 +236,7 @@ router.post('/bulk-delete', bulkDeleteKaryawan);
  *       500:
  *         description: Server error
  */
-router.post('/bulk-qrcode', bulkGenerateQRCodes);
+router.post('/bulk-qrcode', authenticate, requirePermissions('employee.read'), bulkGenerateQRCodes);
 
 /**
  * @swagger
@@ -258,7 +258,7 @@ router.post('/bulk-qrcode', bulkGenerateQRCodes);
  *       404:
  *         description: Karyawan not found
  */
-router.get('/nik/:nik', getKaryawanByNIK);
+router.get('/nik/:nik', authenticate, requirePermissions('employee.read'), getKaryawanByNIK);
 
 /**
  * @swagger
@@ -281,7 +281,7 @@ router.get('/nik/:nik', getKaryawanByNIK);
  *       404:
  *         description: Karyawan not found
  */
-router.get('/:id', getKaryawanById);
+router.get('/:id', authenticate, requirePermissions('employee.read'), getKaryawanById);
 
 /**
  * @swagger
@@ -314,7 +314,7 @@ router.get('/:id', getKaryawanById);
  *       400:
  *         description: Validation error
  */
-router.post('/', createKaryawan);
+router.post('/', authenticate, requirePermissions('employee.create'), createKaryawan);
 
 /**
  * @swagger
@@ -343,7 +343,7 @@ router.post('/', createKaryawan);
  *       404:
  *         description: Karyawan not found
  */
-router.put('/:id', updateKaryawan);
+router.put('/:id', authenticate, requirePermissions('employee.update'), updateKaryawan);
 
 /**
  * @swagger
@@ -366,7 +366,7 @@ router.put('/:id', updateKaryawan);
  *       404:
  *         description: Karyawan not found
  */
-router.delete('/:id', deleteKaryawan);
+router.delete('/:id', authenticate, requirePermissions('employee.delete'), deleteKaryawan);
 
 // ==========================================
 // Anak Routes
@@ -381,7 +381,7 @@ router.delete('/:id', deleteKaryawan);
  *     security:
  *       - bearerAuth: []
  */
-router.post('/:id/anak', createAnakKaryawan);
+router.post('/:id/anak', authenticate, requirePermissions('employee.update'), createAnakKaryawan);
 
 /**
  * @swagger
@@ -392,7 +392,7 @@ router.post('/:id/anak', createAnakKaryawan);
  *     security:
  *       - bearerAuth: []
  */
-router.put('/:id/anak/:anakId', updateAnakKaryawan);
+router.put('/:id/anak/:anakId', authenticate, requirePermissions('employee.update'), updateAnakKaryawan);
 
 /**
  * @swagger
@@ -403,7 +403,7 @@ router.put('/:id/anak/:anakId', updateAnakKaryawan);
  *     security:
  *       - bearerAuth: []
  */
-router.delete('/:id/anak/:anakId', deleteAnakKaryawan);
+router.delete('/:id/anak/:anakId', authenticate, requirePermissions('employee.update'), deleteAnakKaryawan);
 
 // ==========================================
 // Saudara Kandung Routes
@@ -418,7 +418,7 @@ router.delete('/:id/anak/:anakId', deleteAnakKaryawan);
  *     security:
  *       - bearerAuth: []
  */
-router.post('/:id/saudara-kandung', createSaudaraKandungKaryawan);
+router.post('/:id/saudara-kandung', authenticate, requirePermissions('employee.update'), createSaudaraKandungKaryawan);
 
 /**
  * @swagger
@@ -429,7 +429,7 @@ router.post('/:id/saudara-kandung', createSaudaraKandungKaryawan);
  *     security:
  *       - bearerAuth: []
  */
-router.put('/:id/saudara-kandung/:saudaraId', updateSaudaraKandungKaryawan);
+router.put('/:id/saudara-kandung/:saudaraId', authenticate, requirePermissions('employee.update'), updateSaudaraKandungKaryawan);
 
 /**
  * @swagger
@@ -440,7 +440,7 @@ router.put('/:id/saudara-kandung/:saudaraId', updateSaudaraKandungKaryawan);
  *     security:
  *       - bearerAuth: []
  */
-router.delete('/:id/saudara-kandung/:saudaraId', deleteSaudaraKandungKaryawan);
+router.delete('/:id/saudara-kandung/:saudaraId', authenticate, requirePermissions('employee.update'), deleteSaudaraKandungKaryawan);
 
 // ==========================================
 // File Upload Routes
@@ -463,7 +463,7 @@ router.delete('/:id/saudara-kandung/:saudaraId', deleteSaudaraKandungKaryawan);
  *         required: true
  *         description: Photo file (JPEG, PNG, max 5MB)
  */
-router.post('/:id/photo', uploadEmployeePhoto.single('photo'), uploadKaryawanPhoto);
+router.post('/:id/photo', authenticate, requirePermissions('employee.update'), uploadEmployeePhoto.single('photo'), uploadKaryawanPhoto);
 
 /**
  * @swagger
@@ -485,7 +485,7 @@ router.post('/:id/photo', uploadEmployeePhoto.single('photo'), uploadKaryawanPho
  *         type: string
  *         required: true
  */
-router.post('/:id/documents', uploadEmployeeDocument.single('document'), uploadKaryawanDocument);
+router.post('/:id/documents', authenticate, requirePermissions('employee.update'), uploadEmployeeDocument.single('document'), uploadKaryawanDocument);
 
 /**
  * @swagger
@@ -496,7 +496,7 @@ router.post('/:id/documents', uploadEmployeeDocument.single('document'), uploadK
  *     security:
  *       - bearerAuth: []
  */
-router.delete('/:id/documents/:documentId', deleteKaryawanDocument);
+router.delete('/:id/documents/:documentId', authenticate, requirePermissions('employee.update'), deleteKaryawanDocument);
 
 // ==========================================
 // QR Code Route
@@ -543,6 +543,6 @@ router.delete('/:id/documents/:documentId', deleteKaryawanDocument);
  *       404:
  *         description: Karyawan not found
  */
-router.get('/:id/qrcode', generateKaryawanQRCode);
+router.get('/:id/qrcode', authenticate, requirePermissions('employee.read'), generateKaryawanQRCode);
 
 export default router;

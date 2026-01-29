@@ -142,7 +142,7 @@ export default function TopNavBar({ onSearchChange, onMenuClick }: TopNavBarProp
                             <p className="text-sm font-medium text-gray-900 dark:text-white">
                                 {user?.fullName || 'User'}
                             </p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">{user?.role || 'Unknown'}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{user?.role?.name || 'Unknown'}</p>
                         </div>
                         <div className="w-9 h-9 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center">
                             <span className="material-symbols-outlined text-primary text-lg">person</span>

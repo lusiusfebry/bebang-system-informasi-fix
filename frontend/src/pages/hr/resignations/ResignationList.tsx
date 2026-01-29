@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { toast } from 'react-hot-toast';
+import { useState, useEffect } from 'react';
+import { useToast } from '../../../components/common';
 import { resignationService } from '../../../services/resignation.service';
 import { Resignation, ResignationStatus } from '../../../types/resignation.types';
 import ResignationForm from './ResignationForm';
 
 export default function ResignationList() {
+    const { showToast } = useToast();
     const [resignations, setResignations] = useState<Resignation[]>([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
@@ -44,7 +45,7 @@ export default function ResignationList() {
             }));
         } catch (error) {
             console.error('Error fetching resignations:', error);
-            toast.error('Gagal memuat data resignasi');
+            showToast('Gagal memuat data resignasi', 'error');
         } finally {
             setLoading(false);
         }
@@ -55,10 +56,10 @@ export default function ResignationList() {
 
         try {
             await resignationService.approve(id);
-            toast.success('Pengajuan disetujui');
+            showToast('Pengajuan disetujui', 'success');
             setRefreshTrigger(prev => prev + 1);
         } catch (error) {
-            toast.error('Gagal menyetujui pengajuan');
+            showToast('Gagal menyetujui pengajuan', 'error');
         }
     };
 
@@ -66,16 +67,16 @@ export default function ResignationList() {
         const reason = prompt('Masukkan alasan penolakan:');
         if (reason === null) return; // Cancelled
         if (!reason) {
-            toast.error('Alasan penolakan wajib diisi');
+            showToast('Alasan penolakan wajib diisi', 'error');
             return;
         }
 
         try {
             await resignationService.reject(id, reason);
-            toast.success('Pengajuan ditolak');
+            showToast('Pengajuan ditolak', 'success');
             setRefreshTrigger(prev => prev + 1);
         } catch (error) {
-            toast.error('Gagal menolak pengajuan');
+            showToast('Gagal menolak pengajuan', 'error');
         }
     };
 

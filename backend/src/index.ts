@@ -63,6 +63,15 @@ app.get('/api', (_req: Request, res: Response) => {
 // Auth routes
 app.use('/api/auth', authRoutes);
 
+// RBAC routes
+import roleRoutes from './routes/role.routes';
+import permissionRoutes from './routes/permission.routes';
+import userRoutes from './routes/user.routes';
+
+app.use('/api/roles', roleRoutes);
+app.use('/api/permissions', permissionRoutes);
+app.use('/api/users', userRoutes);
+
 // HR Master Data routes
 app.use('/api/hr/master', hrMasterRoutes);
 

@@ -1,5 +1,5 @@
 import { Response, NextFunction } from 'express';
-import { Role } from '@prisma/client';
+
 import { prisma } from '../config/database';
 import { verifyToken } from '../utils/jwt';
 import { ApiError } from './errorHandler';
@@ -102,18 +102,72 @@ export async function authenticateAndValidate(
 }
 
 /**
- * Authorization middleware factory
- * Checks if user has one of the allowed roles
+ * Authorization middleware factory - Role-based
+ * Checks if user has one of the allowed role codes
  */
-export function authorize(...allowedRoles: Role[]) {
+export function authorizeRoles(...allowedRoleCodes: string[]) {
     return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
         if (!req.user) {
             next(new ApiError('User tidak terautentikasi', 401));
             return;
         }
 
-        if (!allowedRoles.includes(req.user.role)) {
-            next(new ApiError('Akses ditolak. Anda tidak memiliki izin untuk mengakses resource ini.', 403));
+        if (!allowedRoleCodes.includes(req.user.roleCode)) {
+            next(new ApiError('Akses ditolak. Anda tidak memiliki role yang sesuai.', 403));
+            return;
+        }
+
+        next();
+    };
+}
+
+/**
+ * Authorization middleware factory - Permission-based
+ * Checks if user has ALL required permissions
+ */
+export function requirePermissions(...requiredPermissions: string[]) {
+    return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+        if (!req.user) {
+            next(new ApiError('User tidak terautentikasi', 401));
+            return;
+        }
+
+        const userPermissions = req.user.permissions || [];
+
+        // Check if user has all required permissions
+        const hasAllPermissions = requiredPermissions.every(perm =>
+            userPermissions.includes(perm)
+        );
+
+        if (!hasAllPermissions) {
+            next(new ApiError('Akses ditolak. Anda tidak memiliki izin yang diperlukan.', 403));
+            return;
+        }
+
+        next();
+    };
+}
+
+/**
+ * Authorization middleware factory - Permission-based (ANY)
+ * Checks if user has ANY of the required permissions
+ */
+export function requireAnyPermission(...requiredPermissions: string[]) {
+    return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+        if (!req.user) {
+            next(new ApiError('User tidak terautentikasi', 401));
+            return;
+        }
+
+        const userPermissions = req.user.permissions || [];
+
+        // Check if user has at least one required permission
+        const hasAnyPermission = requiredPermissions.some(perm =>
+            userPermissions.includes(perm)
+        );
+
+        if (!hasAnyPermission) {
+            next(new ApiError('Akses ditolak. Anda tidak memiliki izin yang diperlukan.', 403));
             return;
         }
 

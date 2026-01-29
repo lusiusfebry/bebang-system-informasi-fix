@@ -258,7 +258,7 @@ export const exportEmployeesCSV = async (params: EmployeeQueryParams): Promise<B
 
 export const bulkGenerateQRCodes = async (employeeIds: string[]): Promise<Blob> => {
     const response = await api.post(`${BASE_URL}/bulk-qrcode`,
-        { employeeIds },
+        { ids: employeeIds },
         { responseType: 'blob' }
     );
     return response.data;

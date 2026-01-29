@@ -15,6 +15,8 @@ import { EmployeeQuickViewModal } from '../../../components/employee/EmployeeQui
 import { BulkQRCodeGenerator } from '../../../components/employee';
 import { employeeService } from '../../../services/employee.service';
 import { Employee, EmployeeFilterState } from '../../../types/employee.types';
+import { PermissionGuard } from '../../../components/auth/PermissionGuard';
+import { PERMISSIONS } from '../../../constants/permissions';
 
 const EmployeeList: React.FC = () => {
     const navigate = useNavigate();
@@ -68,8 +70,6 @@ const EmployeeList: React.FC = () => {
                 setTotal(0);
                 setTotalPages(0);
             }
-            // Clear selection on page change/filter change if needed
-            // setSelectedIds(new Set()); 
         } catch (error) {
             console.error('Error fetching employees:', error);
             showToast('Gagal memuat data karyawan', 'error');
@@ -221,7 +221,7 @@ const EmployeeList: React.FC = () => {
         },
         {
             header: 'Aksi',
-            accessor: 'id', // Dummy accessor
+            accessor: 'id',
             className: 'text-right',
             render: (emp) => (
                 <div className="flex justify-end gap-2">
@@ -232,20 +232,26 @@ const EmployeeList: React.FC = () => {
                     >
                         <span className="material-symbols-rounded">visibility</span>
                     </button>
-                    <button
-                        onClick={() => navigate(`/hr/employees/${emp.id}`)}
-                        className="p-1 text-gray-400 hover:text-green-500 transition-colors"
-                        title="Edit Details"
-                    >
-                        <span className="material-symbols-rounded">edit_square</span>
-                    </button>
-                    <button
-                        onClick={() => setDeleteId(emp.id)}
-                        className="p-1 text-gray-400 hover:text-red-500 transition-colors"
-                        title="Hapus"
-                    >
-                        <span className="material-symbols-rounded">delete</span>
-                    </button>
+
+                    <PermissionGuard permission={PERMISSIONS.EMPLOYEE_UPDATE}>
+                        <button
+                            onClick={() => navigate(`/hr/employees/${emp.id}`)}
+                            className="p-1 text-gray-400 hover:text-green-500 transition-colors"
+                            title="Edit Details"
+                        >
+                            <span className="material-symbols-rounded">edit_square</span>
+                        </button>
+                    </PermissionGuard>
+
+                    <PermissionGuard permission={PERMISSIONS.EMPLOYEE_DELETE}>
+                        <button
+                            onClick={() => setDeleteId(emp.id)}
+                            className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                            title="Hapus"
+                        >
+                            <span className="material-symbols-rounded">delete</span>
+                        </button>
+                    </PermissionGuard>
                 </div>
             )
         }
@@ -259,19 +265,26 @@ const EmployeeList: React.FC = () => {
                     <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Daftar Karyawan</h1>
                     <p className="text-gray-500 dark:text-gray-400 mt-1">Kelola data seluruh karyawan perusahaan</p>
                 </div>
-                <button
-                    onClick={() => navigate('/hr/employees/create')} // Assuming create route exists or will exist
-                    className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors flex items-center gap-2"
-                >
-                    Tambah Karyawan
-                </button>
-                <button
-                    onClick={() => navigate('/hr/employees/import')}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
-                >
-                    <span className="material-symbols-rounded">upload</span>
-                    Import Excel
-                </button>
+                <div className="flex gap-2">
+                    <PermissionGuard permission={PERMISSIONS.EMPLOYEE_CREATE}>
+                        <button
+                            onClick={() => navigate('/hr/employees/create')}
+                            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors flex items-center gap-2"
+                        >
+                            Tambah Karyawan
+                        </button>
+                    </PermissionGuard>
+
+                    <PermissionGuard permission={PERMISSIONS.EMPLOYEE_IMPORT}>
+                        <button
+                            onClick={() => navigate('/hr/employees/import')}
+                            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
+                        >
+                            <span className="material-symbols-rounded">upload</span>
+                            Import Excel
+                        </button>
+                    </PermissionGuard>
+                </div>
             </div>
 
             {/* Filters */}
@@ -297,18 +310,22 @@ const EmployeeList: React.FC = () => {
                             Batal
                         </button>
                         <div className="h-4 w-px bg-gray-300 dark:bg-gray-600 mx-1"></div>
-                        <button
-                            onClick={handleExport}
-                            disabled={isExporting}
-                            className="px-3 py-1.5 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center gap-1"
-                        >
-                            {isExporting ? (
-                                <span className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></span>
-                            ) : (
-                                <span className="material-symbols-rounded text-base">download</span>
-                            )}
-                            Export CSV
-                        </button>
+
+                        <PermissionGuard permission={PERMISSIONS.EMPLOYEE_EXPORT}>
+                            <button
+                                onClick={handleExport}
+                                disabled={isExporting}
+                                className="px-3 py-1.5 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center gap-1"
+                            >
+                                {isExporting ? (
+                                    <span className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></span>
+                                ) : (
+                                    <span className="material-symbols-rounded text-base">download</span>
+                                )}
+                                Export CSV
+                            </button>
+                        </PermissionGuard>
+
                         <button
                             onClick={() => setIsBulkQROpen(true)}
                             className="px-3 py-1.5 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center gap-1"
@@ -316,13 +333,16 @@ const EmployeeList: React.FC = () => {
                             <span className="material-symbols-rounded text-base">qr_code_2</span>
                             Generate QR
                         </button>
-                        <button
-                            onClick={() => setIsBulkConfirmOpen(true)}
-                            className="px-3 py-1.5 text-sm bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50 border border-red-200 dark:border-red-800 rounded flex items-center gap-1"
-                        >
-                            <span className="material-symbols-rounded text-base">delete</span>
-                            Hapus
-                        </button>
+
+                        <PermissionGuard permission={PERMISSIONS.EMPLOYEE_DELETE}>
+                            <button
+                                onClick={() => setIsBulkConfirmOpen(true)}
+                                className="px-3 py-1.5 text-sm bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50 border border-red-200 dark:border-red-800 rounded flex items-center gap-1"
+                            >
+                                <span className="material-symbols-rounded text-base">delete</span>
+                                Hapus
+                            </button>
+                        </PermissionGuard>
                     </div>
                 </div>
             )}

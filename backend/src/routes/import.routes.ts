@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { importController } from '../controllers/import.controller';
 import { uploadExcelFile } from '../config/upload';
-import { authenticate, authorize } from '../middleware/auth.middleware';
+import { authenticate, requirePermissions } from '../middleware/auth.middleware';
 
 const router = Router();
 
@@ -32,6 +32,7 @@ const router = Router();
 router.get(
     '/template',
     authenticate,
+    requirePermissions('employee.import'),
     importController.downloadTemplate
 );
 
@@ -58,7 +59,7 @@ router.get(
 router.post(
     '/upload',
     authenticate,
-    // authorize(['ADMIN', 'HR_MANAGER']), // Role based access if needed
+    requirePermissions('employee.import'),
     uploadExcelFile.single('file'),
     importController.uploadAndPreviewExcel
 );
@@ -85,7 +86,7 @@ router.post(
 router.post(
     '/confirm',
     authenticate,
-    // authorize(['ADMIN', 'HR_MANAGER']),
+    requirePermissions('employee.import'),
     importController.confirmImport
 );
 

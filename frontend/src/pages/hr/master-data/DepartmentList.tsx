@@ -15,6 +15,8 @@ import {
 import type { TableColumn } from '../../../components/common';
 import { useHRMasterData } from '../../../hooks/useHRMasterData';
 import DepartmentFormModal from './components/DepartmentFormModal';
+import { useAuth } from '../../../contexts/AuthContext';
+import { PERMISSIONS } from '../../../constants/permissions';
 import type {
     Department,
     StatusMaster,
@@ -31,6 +33,13 @@ const columns: TableColumn<Department>[] = [
 ];
 
 export const DepartmentList: React.FC = () => {
+    const { user } = useAuth();
+
+    // Permissions
+    const canCreate = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_CREATE);
+    const canUpdate = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_UPDATE);
+    const canDelete = user?.roleCode === 'ADMIN' || user?.permissions?.includes(PERMISSIONS.HR_MASTER_DELETE);
+
     const navigate = useNavigate();
     const { showToast } = useToast();
 
@@ -103,17 +112,19 @@ export const DepartmentList: React.FC = () => {
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Daftar Department</h1>
                     <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Kelola data department organisasi</p>
                 </div>
-                <button onClick={handleCreate} className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors">
+                {canCreate && (
+<button onClick={handleCreate} className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
                     Tambah Department
                 </button>
+                )}
             </div>
 
             <div className="mb-4">
                 <SearchFilter onSearch={handleSearch} onFilterStatus={handleStatusFilter} placeholder="Cari department..." initialSearch={searchTerm} initialStatus={statusFilter} />
             </div>
 
-            <DataTable columns={columns} data={data} loading={loading} keyExtractor={(item) => item.id} onEdit={handleEdit} onDelete={handleDelete} emptyMessage="Tidak ada data department" />
+            <DataTable columns={columns} data={data} loading={loading} keyExtractor={(item) => item.id} onEdit={canUpdate ? handleEdit : undefined} onDelete={canDelete ? handleDelete : undefined} emptyMessage="Tidak ada data department" />
 
             {meta && meta.totalPages > 0 && (
                 <Pagination currentPage={currentPage} totalPages={meta.totalPages} totalItems={meta.total} itemsPerPage={limit} onPageChange={handlePageChange} onLimitChange={handleLimitChange} />

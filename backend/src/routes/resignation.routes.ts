@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { resignationController } from '../controllers/resignation.controller';
-import { authenticate, authorize } from '../middleware/auth.middleware';
-import { Role } from '@prisma/client';
+import { authenticate, requirePermissions } from '../middleware/auth.middleware';
 
 const router = Router();
 
@@ -9,12 +8,12 @@ const router = Router();
 router.use(authenticate);
 
 // View routes (HR & Admin)
-router.get('/', authorize(Role.ADMIN, Role.HR_MANAGER), resignationController.findAll);
-router.get('/:id', authorize(Role.ADMIN, Role.HR_MANAGER), resignationController.findById);
+router.get('/', requirePermissions('resignation.read'), resignationController.findAll);
+router.get('/:id', requirePermissions('resignation.read'), resignationController.findById);
 
 // Action routes
-router.post('/', authorize(Role.ADMIN, Role.HR_MANAGER), resignationController.create);
-router.patch('/:id/approve', authorize(Role.ADMIN, Role.HR_MANAGER), resignationController.approve);
-router.patch('/:id/reject', authorize(Role.ADMIN, Role.HR_MANAGER), resignationController.reject);
+router.post('/', requirePermissions('resignation.create'), resignationController.create);
+router.patch('/:id/approve', requirePermissions('resignation.approve'), resignationController.approve);
+router.patch('/:id/reject', requirePermissions('resignation.approve'), resignationController.reject);
 
 export default router;
