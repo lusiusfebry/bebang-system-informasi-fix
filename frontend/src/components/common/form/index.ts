@@ -7,3 +7,6 @@ export { TextArea } from './TextArea';
 export { Select } from './Select';
 export type { SelectOption } from './Select';
 export { ColorPicker } from './ColorPicker';
+export { DatePicker } from './DatePicker';
+export { SearchableSelect } from './SearchableSelect';
+export type { SearchableSelectOption } from './SearchableSelect';

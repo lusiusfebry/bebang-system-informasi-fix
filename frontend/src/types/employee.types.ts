@@ -40,6 +40,25 @@ export enum StatusMaster {
     TIDAK_AKTIF = 'TIDAK_AKTIF',
 }
 
+export enum TingkatPendidikan {
+    SD = 'SD',
+    SMP = 'SMP',
+    SMA = 'SMA',
+    D1 = 'D1',
+    D2 = 'D2',
+    D3 = 'D3',
+    D4 = 'D4',
+    S1 = 'S1',
+    S2 = 'S2',
+    S3 = 'S3',
+}
+
+export enum StatusKelulusan {
+    LULUS = 'LULUS',
+    TIDAK_LULUS = 'TIDAK_LULUS',
+    MENUNGGU = 'MENUNGGU',
+}
+
 // ==========================================
 // RELATED ENTITY INTERFACES
 // ==========================================
@@ -181,7 +200,6 @@ export interface EmployeeListItem {
     statusKaryawan?: StatusKaryawan | null;
 }
 
-// ==========================================
 // DTO INTERFACES
 // ==========================================
 
@@ -213,6 +231,24 @@ export interface CreateEmployeeDTO {
     lokasiKerjaId?: string;
     tagId?: string;
     jenisHubunganKerjaId?: string;
+
+    // Additional Personal Info Fields
+    nomorKartuKeluarga?: string;
+    kotaDomisili?: string;
+    provinsiDomisili?: string;
+    kotaKTP?: string;
+    provinsiKTP?: string;
+    nomorHandphone2?: string;
+    nomorTeleponRumah1?: string;
+    nomorTeleponRumah2?: string;
+    namaPasangan?: string;
+    tanggalMenikah?: string;
+    tanggalCerai?: string;
+    tanggalWafatPasangan?: string;
+    pekerjaanPasangan?: string;
+    jumlahAnak?: number;
+    cabangBank?: string;
+    namaPemegangRekening?: string;
 }
 
 export interface UpdateEmployeeDTO extends Partial<Omit<CreateEmployeeDTO, 'nomorIndukKaryawan'>> { }
@@ -275,4 +311,120 @@ export interface QRCodeResponse {
         nik: string;
     };
     message?: string;
+}
+
+// ==========================================
+// PERSONAL INFORMATION FORM DATA
+// ==========================================
+
+export interface PersonalInformationFormData {
+    // Group 1: Biodata
+    namaLengkap: string;
+    jenisKelamin: JenisKelamin | '';
+    tempatLahir: string;
+    tanggalLahir: string;
+    emailPribadi: string;
+
+    // Group 2: Identifikasi
+    agama: Agama | '';
+    golonganDarah: GolonganDarah | '';
+    nomorKartuKeluarga: string;
+    nomorKTP: string;
+    nomorNPWP: string;
+    nomorBPJS: string;
+
+    // Group 3: Alamat Domisili
+    alamatDomisili: string;
+    kotaDomisili: string;
+    provinsiDomisili: string;
+
+    // Group 4: Alamat KTP
+    alamatKTP: string;
+    kotaKTP: string;
+    provinsiKTP: string;
+
+    // Group 5: Kontak
+    nomorHandphone: string;
+    nomorHandphone2: string;
+    nomorTeleponRumah1: string;
+    nomorTeleponRumah2: string;
+
+    // Group 6: Status Pernikahan
+    statusPernikahan: StatusPernikahan | '';
+    namaPasangan: string;
+    tanggalMenikah: string;
+    tanggalCerai: string;
+    tanggalWafatPasangan: string;
+    pekerjaanPasangan: string;
+    jumlahAnak: number | '';
+
+    // Group 7: Rekening Bank
+    nomorRekening: string;
+    namaRekening: string;
+    namaBank: string;
+    cabangBank: string;
+}
+
+// ==========================================
+// HR INFORMATION FORM DATA
+// ==========================================
+
+export interface HRInformationFormData {
+    // Section 1: Kepegawaian (read-only from header)
+    nomorIndukKaryawan: string;
+    posisiJabatanId: string;
+    divisiId: string;
+    departmentId: string;
+    emailPerusahaan: string;
+    managerId: string;
+    atasanLangsungId: string;
+
+    // Section 2: Kontrak
+    jenisHubunganKerjaId: string;
+    tanggalMasukGroup: string;
+    tanggalMasuk: string;
+    tanggalPermanent: string;
+    tanggalKontrak: string;
+    tanggalAkhirKontrak: string;
+    tanggalBerhenti: string;
+
+    // Section 3: Education
+    tingkatPendidikan: TingkatPendidikan | '';
+    bidangStudi: string;
+    namaSekolah: string;
+    kotaSekolah: string;
+    statusKelulusan: StatusKelulusan | '';
+    keteranganPendidikan: string;
+
+    // Section 4: Pangkat dan Golongan
+    kategoriPangkatId: string;
+    golonganPangkatId: string;
+    subGolonganPangkatId: string;
+    noDanaPensiun: string;
+
+    // Section 5: Kontak Darurat
+    namaKontakDarurat1: string;
+    nomorTeleponKontakDarurat1: string;
+    hubunganKontakDarurat1: string;
+    alamatKontakDarurat1: string;
+    namaKontakDarurat2: string;
+    nomorTeleponKontakDarurat2: string;
+    hubunganKontakDarurat2: string;
+    alamatKontakDarurat2: string;
+
+    // Section 6: POO/POH & Seragam
+    pointOfOriginal: string;
+    pointOfHire: string;
+    ukuranSeragamKerja: string;
+    ukuranSepatuKerja: string;
+
+    // Section 7: Pergerakan Karyawan
+    lokasiSebelumnyaId: string;
+    tanggalMutasi: string;
+
+    // Section 8: Costing
+    siklusPembayaranGaji: string;
+    costing: string;
+    assign: string;
+    actual: string;
 }

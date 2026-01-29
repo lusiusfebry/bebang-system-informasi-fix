@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEmployee } from '../../../hooks/useEmployee';
-import { EmployeeProfileHeader, EmployeeProfileTabs, QRCodeDisplay } from '../../../components/employee';
+import { EmployeeProfileHeader, EmployeeProfileTabs, QRCodeDisplay, PersonalInformationTab, HRInformationTab } from '../../../components/employee';
 import { employeeService } from '../../../services/employee.service';
 
 // Allowed tab values
@@ -145,27 +145,17 @@ const EmployeeProfile: React.FC = () => {
                     {/* Tab Content */}
                     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 mt-6 p-6">
                         {tab === 'personal-info' && (
-                            <div className="text-center py-12">
-                                <span className="material-symbols-rounded text-5xl text-gray-400 mb-4">person</span>
-                                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                                    Informasi Pribadi
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400">
-                                    Tab content akan diimplementasikan di fase berikutnya.
-                                </p>
-                            </div>
+                            <PersonalInformationTab
+                                employee={employee}
+                                onUpdate={refetch}
+                            />
                         )}
 
                         {tab === 'hr-info' && (
-                            <div className="text-center py-12">
-                                <span className="material-symbols-rounded text-5xl text-gray-400 mb-4">badge</span>
-                                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                                    Informasi Kepegawaian
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400">
-                                    Tab content akan diimplementasikan di fase berikutnya.
-                                </p>
-                            </div>
+                            <HRInformationTab
+                                employee={employee}
+                                onUpdate={refetch}
+                            />
                         )}
 
                         {tab === 'family-info' && (
