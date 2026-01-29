@@ -10,10 +10,11 @@ import hrMasterRoutes from '../../routes/hr-master.routes';
 
 // Mock auth middleware to bypass authentication for tests
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticateAndValidate: (req: any, _res: any, next: any) => {
+    authenticate: (req: any, _res: any, next: any) => {
         req.user = { id: 'test-user-id', role: 'ADMIN' };
         next();
     },
+    requirePermissions: () => (req: any, _res: any, next: any) => next(),
 }));
 
 // Create test app
