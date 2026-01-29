@@ -74,6 +74,10 @@ app.use('/api/hr/employees', employeeRoutes);
 import importRoutes from './routes/import.routes';
 app.use('/api/hr/import', importRoutes);
 
+// Resignation routes
+import resignationRoutes from './routes/resignation.routes';
+app.use('/api/hr/resignations', resignationRoutes);
+
 // Setup Swagger documentation
 setupSwagger(app);
 

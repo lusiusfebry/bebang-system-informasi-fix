@@ -29,6 +29,16 @@ const masterDataCards: MasterDataCard[] = [
         ),
     },
     {
+        id: 'resignation' as any,
+        title: 'Resign & Terminasi',
+        description: 'Kelola pengunduran diri dan pemutusan hubungan kerja',
+        path: '/hr/resignations',
+        color: 'from-red-600 to-pink-700',
+        icon: (
+            <span className="material-symbols-rounded text-3xl">logout</span>
+        ),
+    },
+    {
         id: 'divisi',
         title: 'Divisi',
         description: 'Kelola data divisi organisasi',

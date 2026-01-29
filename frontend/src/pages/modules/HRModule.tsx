@@ -12,6 +12,10 @@ import HRDashboard from '../hr/HRDashboard';
 // Employee Pages
 import { EmployeeProfile } from '../hr/employees';
 import EmployeeImport from '../hr/employees/EmployeeImport';
+import EmployeeList from '../hr/employees/EmployeeList';
+
+// Resignation Pages
+import ResignationList from '../hr/resignations/ResignationList';
 
 // Master Data Pages
 import DivisiList from '../hr/master-data/DivisiList';
@@ -24,8 +28,6 @@ import JenisHubunganKerjaList from '../hr/master-data/JenisHubunganKerjaList';
 import TagList from '../hr/master-data/TagList';
 import LokasiKerjaList from '../hr/master-data/LokasiKerjaList';
 import StatusKaryawanList from '../hr/master-data/StatusKaryawanList';
-
-import EmployeeList from '../hr/employees/EmployeeList';
 
 export default function HRModule() {
     return (
@@ -40,6 +42,9 @@ export default function HRModule() {
                 <Route path="employees/import" element={<EmployeeImport />} />
                 <Route path="employees/:id" element={<EmployeeProfile />} />
                 <Route path="employees/:id/:tab" element={<EmployeeProfile />} />
+
+                {/* Resignation Routes */}
+                <Route path="resignations" element={<ResignationList />} />
 
                 {/* Master Data Routes */}
                 <Route path="master-data/divisi" element={<DivisiList />} />
@@ -59,4 +64,3 @@ export default function HRModule() {
         </MainLayout>
     );
 }
-
