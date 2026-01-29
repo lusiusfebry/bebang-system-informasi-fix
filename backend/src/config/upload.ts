@@ -12,9 +12,10 @@ const UPLOAD_DIR_NAME = process.env.UPLOAD_DIR || 'uploads';
 const UPLOAD_BASE_DIR = path.resolve(process.cwd(), UPLOAD_DIR_NAME);
 const EMPLOYEE_PHOTO_DIR = path.join(UPLOAD_BASE_DIR, 'employees', 'photos');
 const EMPLOYEE_DOC_DIR = path.join(UPLOAD_BASE_DIR, 'employees', 'documents');
+const EXCEL_IMPORT_DIR = path.join(UPLOAD_BASE_DIR, 'imports', 'excel');
 
 // Create directories if they don't exist
-[EMPLOYEE_PHOTO_DIR, EMPLOYEE_DOC_DIR].forEach(dir => {
+[EMPLOYEE_PHOTO_DIR, EMPLOYEE_DOC_DIR, EXCEL_IMPORT_DIR].forEach(dir => {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
     }
@@ -41,6 +42,18 @@ const documentStorage = multer.diskStorage({
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);
         cb(null, `doc-${uniqueSuffix}${ext}`);
+    }
+});
+
+// Storage configuration for Excel imports
+const excelStorage = multer.diskStorage({
+    destination: (_req, _file, cb) => {
+        cb(null, EXCEL_IMPORT_DIR);
+    },
+    filename: (_req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const ext = path.extname(file.originalname);
+        cb(null, `import-${uniqueSuffix}${ext}`);
     }
 });
 
@@ -72,6 +85,27 @@ const documentFileFilter = (
     }
 };
 
+// File filter for Excel files
+const excelFileFilter = (
+    _req: Express.Request,
+    file: Express.Multer.File,
+    cb: multer.FileFilterCallback
+) => {
+    const allowedTypes = [
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/octet-stream'
+    ];
+
+    const ext = path.extname(file.originalname).toLowerCase();
+
+    if (allowedTypes.includes(file.mimetype) || ['.xls', '.xlsx'].includes(ext)) {
+        cb(null, true);
+    } else {
+        cb(new Error('Tipe file tidak diizinkan. Hanya Excel (.xlsx, .xls) yang diperbolehkan.'));
+    }
+};
+
 // Multer instances
 export const uploadEmployeePhoto = multer({
     storage: photoStorage,
@@ -86,6 +120,14 @@ export const uploadEmployeeDocument = multer({
     fileFilter: documentFileFilter,
     limits: {
         fileSize: parseInt(process.env.MAX_FILE_SIZE || '5242880') // 5MB default
+    }
+});
+
+export const uploadExcelFile = multer({
+    storage: excelStorage,
+    fileFilter: excelFileFilter,
+    limits: {
+        fileSize: 10 * 1024 * 1024 // 10MB
     }
 });
 
@@ -112,4 +154,5 @@ export const UPLOAD_DIRS = {
     BASE: UPLOAD_BASE_DIR,
     EMPLOYEE_PHOTOS: EMPLOYEE_PHOTO_DIR,
     EMPLOYEE_DOCUMENTS: EMPLOYEE_DOC_DIR,
+    EXCEL_IMPORTS: EXCEL_IMPORT_DIR,
 };

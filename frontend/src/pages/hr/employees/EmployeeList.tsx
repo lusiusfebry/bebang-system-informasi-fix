@@ -261,8 +261,14 @@ const EmployeeList: React.FC = () => {
                     onClick={() => navigate('/hr/employees/create')} // Assuming create route exists or will exist
                     className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors flex items-center gap-2"
                 >
-                    <span className="material-symbols-rounded">add</span>
                     Tambah Karyawan
+                </button>
+                <button
+                    onClick={() => navigate('/hr/employees/import')}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
+                >
+                    <span className="material-symbols-rounded">upload</span>
+                    Import Excel
                 </button>
             </div>
 

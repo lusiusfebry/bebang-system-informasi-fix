@@ -70,6 +70,10 @@ app.use('/api/hr/master', hrMasterRoutes);
 import employeeRoutes from './routes/employee.routes';
 app.use('/api/hr/employees', employeeRoutes);
 
+// Import routes
+import importRoutes from './routes/import.routes';
+app.use('/api/hr/import', importRoutes);
+
 // Setup Swagger documentation
 setupSwagger(app);
 
