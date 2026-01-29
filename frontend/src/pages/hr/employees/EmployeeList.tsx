@@ -12,6 +12,7 @@ import {
 } from '../../../components/common';
 import { EmployeeAdvancedFilter } from '../../../components/employee/EmployeeAdvancedFilter';
 import { EmployeeQuickViewModal } from '../../../components/employee/EmployeeQuickViewModal';
+import { BulkQRCodeGenerator } from '../../../components/employee';
 import { employeeService } from '../../../services/employee.service';
 import { Employee, EmployeeFilterState } from '../../../types/employee.types';
 
@@ -42,6 +43,7 @@ const EmployeeList: React.FC = () => {
     const [deleteId, setDeleteId] = useState<string | null>(null);
     const [isBulkConfirmOpen, setIsBulkConfirmOpen] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
+    const [isBulkQROpen, setIsBulkQROpen] = useState(false);
 
     // Fetch Data
     const fetchEmployees = async () => {
@@ -308,6 +310,13 @@ const EmployeeList: React.FC = () => {
                             Export CSV
                         </button>
                         <button
+                            onClick={() => setIsBulkQROpen(true)}
+                            className="px-3 py-1.5 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center gap-1"
+                        >
+                            <span className="material-symbols-rounded text-base">qr_code_2</span>
+                            Generate QR
+                        </button>
+                        <button
                             onClick={() => setIsBulkConfirmOpen(true)}
                             className="px-3 py-1.5 text-sm bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50 border border-red-200 dark:border-red-800 rounded flex items-center gap-1"
                         >
@@ -371,7 +380,17 @@ const EmployeeList: React.FC = () => {
                 confirmLabel="Hapus Semua"
                 confirmVariant="danger"
             />
-        </div>
+
+            {
+                isBulkQROpen && (
+                    <BulkQRCodeGenerator
+                        selectedEmployeeIds={Array.from(selectedIds)}
+                        onClose={() => setIsBulkQROpen(false)}
+                        onSuccess={() => setSelectedIds(new Set())}
+                    />
+                )
+            }
+        </div >
     );
 };
 

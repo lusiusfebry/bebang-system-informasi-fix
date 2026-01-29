@@ -332,7 +332,7 @@ export interface CreateEmployeeDTO {
     actual?: string;
 }
 
-export interface UpdateEmployeeDTO extends Partial<Omit<CreateEmployeeDTO, 'nomorIndukKaryawan'>> { }
+export type UpdateEmployeeDTO = Partial<Omit<CreateEmployeeDTO, 'nomorIndukKaryawan'>>;
 
 export interface CreateAnakDTO {
     urutanAnak: number;

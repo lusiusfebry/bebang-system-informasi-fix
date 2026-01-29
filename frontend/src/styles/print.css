@@ -1,0 +1,45 @@
+@media print {
+
+    /* Hide all elements except ID card */
+    body * {
+        visibility: hidden;
+    }
+
+    .printable-id-card,
+    .printable-id-card * {
+        visibility: visible;
+    }
+
+    .printable-id-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hide navigation, buttons, headers */
+    .no-print {
+        display: none !important;
+    }
+
+    /* ID card sizing for print */
+    .id-card-container {
+        width: 85.6mm;
+        height: 53.98mm;
+        page-break-after: always;
+        /* Ensure each card is on a new page/cut */
+        border: 1px solid #000;
+        /* Optional: Remove shadow/border for actual printing if pre-printed cards used */
+        box-shadow: none !important;
+        print-color-adjust: exact;
+        /* Force background colors */
+        -webkit-print-color-adjust: exact;
+    }
+
+    /* Reset body margins */
+    @page {
+        margin: 0;
+        size: auto;
+    }
+}

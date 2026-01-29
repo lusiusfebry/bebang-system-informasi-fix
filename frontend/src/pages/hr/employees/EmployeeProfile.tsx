@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEmployee } from '../../../hooks/useEmployee';
-import { EmployeeProfileHeader, EmployeeProfileTabs, QRCodeDisplay, PersonalInformationTab, HRInformationTab, FamilyInformationTab } from '../../../components/employee';
+import { EmployeeProfileHeader, EmployeeProfileTabs, QRCodeDisplay, PersonalInformationTab, HRInformationTab, FamilyInformationTab, EmployeeIDCardPrintView } from '../../../components/employee';
 import { employeeService } from '../../../services/employee.service';
 
 // Allowed tab values
@@ -19,6 +19,7 @@ const EmployeeProfile: React.FC = () => {
     const { employee, loading, error, refetch } = useEmployee(id);
     const [exportLoading, setExportLoading] = useState(false);
     const [exportError, setExportError] = useState<string | null>(null);
+    const [showPrintModal, setShowPrintModal] = useState(false);
 
     // Normalize tab: use default if invalid
     const tab = tabParam && ALLOWED_TABS.has(tabParam) ? tabParam : DEFAULT_TAB;
@@ -132,6 +133,7 @@ const EmployeeProfile: React.FC = () => {
                         employee={employee}
                         onEdit={handleEdit}
                         onExportPDF={handleExportPDF}
+                        onPrintIDCard={() => setShowPrintModal(true)}
                         exportLoading={exportLoading}
                         exportError={exportError}
                     />
@@ -176,6 +178,14 @@ const EmployeeProfile: React.FC = () => {
                     />
                 </div>
             </div>
+
+            {/* Print ID Card Modal */}
+            {showPrintModal && employee && (
+                <EmployeeIDCardPrintView
+                    employee={employee}
+                    onClose={() => setShowPrintModal(false)}
+                />
+            )}
         </div>
     );
 };

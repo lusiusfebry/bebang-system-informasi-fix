@@ -6,6 +6,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { employeeService } from '../services/employee.service';
 import { successResponse, paginatedResponse } from '../utils/response';
+import archiver from 'archiver';
 import {
     createKaryawanSchema,
     updateKaryawanSchema,
@@ -513,5 +514,60 @@ export async function generateKaryawanQRCode(req: Request, res: Response, next: 
         }
     } catch (error) {
         handleError(error, res, next);
+    }
+}
+
+/**
+ * POST /api/hr/employees/bulk-qrcode
+ * Generate QR codes for multiple employees
+ */
+export async function bulkGenerateQRCodes(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const { employeeIds } = req.body;
+
+        if (!Array.isArray(employeeIds) || employeeIds.length === 0) {
+            res.status(400).json({ success: false, message: 'Invalid or empty employee IDs' });
+            return;
+        }
+
+        // Initialize ZIP archive
+        const archive = archiver('zip', {
+            zlib: { level: 9 } // Sets the compression level
+        });
+
+        // Set response headers for ZIP download
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        res.setHeader('Content-Type', 'application/zip');
+        res.setHeader('Content-Disposition', `attachment; filename="qrcodes-${timestamp}.zip"`);
+
+        // Pipe archive data to response
+        archive.pipe(res);
+
+        // Process each employee
+        for (const id of employeeIds) {
+            try {
+                const karyawan = await employeeService.findById(id);
+                if (karyawan) {
+                    const qrBuffer = await employeeService.generateQRCodeBuffer(karyawan.nomorIndukKaryawan);
+                    archive.append(qrBuffer, { name: `qrcode-${karyawan.nomorIndukKaryawan}.png` });
+                }
+            } catch (error) {
+                console.error(`Failed to generate QR for employee ${id}:`, error);
+                // Continue with other employees even if one fails
+            }
+        }
+
+        // Finalize the archive (this will finish the response)
+        await archive.finalize();
+
+    } catch (error) {
+        // If headers haven't been sent, we can send error JSON
+        if (!res.headersSent) {
+            handleError(error, res, next);
+        } else {
+            // Otherwise just log it, response stream might be corrupt
+            console.error('Error during bulk QR generation stream:', error);
+            res.end();
+        }
     }
 }

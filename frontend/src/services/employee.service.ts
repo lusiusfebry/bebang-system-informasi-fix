@@ -256,6 +256,14 @@ export const exportEmployeesCSV = async (params: EmployeeQueryParams): Promise<B
     return response.data;
 };
 
+export const bulkGenerateQRCodes = async (employeeIds: string[]): Promise<Blob> => {
+    const response = await api.post(`${BASE_URL}/bulk-qrcode`,
+        { employeeIds },
+        { responseType: 'blob' }
+    );
+    return response.data;
+};
+
 // Export as object for compatibility
 export const employeeService = {
     getEmployees,
@@ -278,6 +286,7 @@ export const employeeService = {
     exportEmployeePDF,
     bulkDeleteEmployees,
     exportEmployeesCSV,
+    bulkGenerateQRCodes,
 };
 
 export default employeeService;

@@ -24,6 +24,7 @@ import {
     deleteKaryawanDocument,
     generateKaryawanQRCode,
     bulkDeleteKaryawan,
+    bulkGenerateQRCodes,
     exportKaryawan,
 } from '../controllers/employee.controller';
 
@@ -190,6 +191,52 @@ router.get('/export', exportKaryawan);
  *         description: Employees deleted
  */
 router.post('/bulk-delete', bulkDeleteKaryawan);
+
+/**
+ * @swagger
+ * /api/hr/employees/bulk-qrcode:
+ *   post:
+ *     summary: Generate QR codes for multiple employees
+ *     tags: [Employee Management]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - ids
+ *             properties:
+ *               ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: uuid
+ *                 description: Array of employee IDs to generate QR codes for
+ *     responses:
+ *       200:
+ *         description: QR codes generated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: QR codes generated successfully
+ *       400:
+ *         description: Invalid request body
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Server error
+ */
+router.post('/bulk-qrcode', bulkGenerateQRCodes);
 
 /**
  * @swagger

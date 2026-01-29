@@ -37,6 +37,16 @@ bebang-information-system-fix/
 └── modules/           # Module documentation
 ```
 
+## Features
+
+- **Manajemen Karyawan**: 
+  - CRUD Data Karyawan (Personal, HR, Family)
+  - **Import Data Karyawan** via Excel
+  - **Cetak ID Card** Karyawan
+  - **Generator QR Code** (Single & Bulk)
+- **Struktur Organisasi**: Divisi, Departemen, Jabatan
+- **Role-Based Access Control** (Admin, HR, etc.)
+
 ## Prerequisites
 
 - Node.js 18+

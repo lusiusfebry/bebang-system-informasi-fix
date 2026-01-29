@@ -11,6 +11,7 @@ interface EmployeeProfileHeaderProps {
     employee: Employee;
     onEdit?: () => void;
     onExportPDF?: () => void;
+    onPrintIDCard?: () => void;
     exportLoading?: boolean;
     exportError?: string | null;
 }
@@ -19,6 +20,7 @@ export const EmployeeProfileHeader: React.FC<EmployeeProfileHeaderProps> = ({
     employee,
     onEdit,
     onExportPDF,
+    onPrintIDCard,
     exportLoading = false,
     exportError,
 }) => {
@@ -124,6 +126,13 @@ export const EmployeeProfileHeader: React.FC<EmployeeProfileHeaderProps> = ({
                                 Ekspor PDF
                             </>
                         )}
+                    </button>
+                    <button
+                        onClick={onPrintIDCard}
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm"
+                    >
+                        <span className="material-symbols-rounded text-lg">badge</span>
+                        Cetak ID Card
                     </button>
                     {exportError && (
                         <p className="text-xs text-red-500 dark:text-red-400 text-center lg:text-left">
