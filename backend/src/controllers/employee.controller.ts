@@ -15,6 +15,7 @@ import {
     updateSaudaraKandungSchema,
     karyawanQuerySchema,
 } from '../validators/employee.validator';
+import { getRelativePath } from '../config/upload';
 import { Prisma } from '@prisma/client';
 import { ZodError } from 'zod';
 
@@ -363,7 +364,8 @@ export async function uploadKaryawanPhoto(req: Request, res: Response, next: Nex
             return;
         }
 
-        const photoPath = req.file.path;
+        // Convert absolute path to relative path for proper static serving
+        const photoPath = getRelativePath(req.file.path);
         const updatedKaryawan = await employeeService.uploadPhoto(id, photoPath);
 
         res.json(successResponse(updatedKaryawan, 'Foto karyawan berhasil diupload'));
@@ -399,10 +401,12 @@ export async function uploadKaryawanDocument(req: Request, res: Response, next: 
             return;
         }
 
+        // Convert absolute path to relative path for proper static serving
+        const relativePath = getRelativePath(req.file.path);
         const dokumen = await employeeService.uploadDocument(id, {
             jenisDokumen,
             namaFile: req.file.originalname,
-            pathFile: req.file.path,
+            pathFile: relativePath,
             ukuranFile: req.file.size,
             mimeType: req.file.mimetype,
             keterangan,

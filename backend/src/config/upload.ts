@@ -64,11 +64,11 @@ const documentFileFilter = (
     file: Express.Multer.File,
     cb: multer.FileFilterCallback
 ) => {
-    const allowedTypes = (process.env.ALLOWED_DOCUMENT_TYPES || 'application/pdf').split(',');
+    const allowedTypes = (process.env.ALLOWED_DOCUMENT_TYPES || 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document').split(',');
     if (allowedTypes.includes(file.mimetype)) {
         cb(null, true);
     } else {
-        cb(new Error('Tipe file tidak diizinkan. Hanya PDF dan dokumen Word yang diperbolehkan.'));
+        cb(new Error('Tipe file tidak diizinkan. Hanya PDF, DOC, dan DOCX yang diperbolehkan.'));
     }
 };
 

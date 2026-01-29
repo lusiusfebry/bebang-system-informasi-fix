@@ -9,6 +9,9 @@ import MainLayout from '../../components/layout/MainLayout';
 // Dashboard
 import HRDashboard from '../hr/HRDashboard';
 
+// Employee Pages
+import { EmployeeProfile } from '../hr/employees';
+
 // Master Data Pages
 import DivisiList from '../hr/master-data/DivisiList';
 import DepartmentList from '../hr/master-data/DepartmentList';
@@ -29,6 +32,10 @@ export default function HRModule() {
                 <Route index element={<HRDashboard />} />
                 <Route path="dashboard" element={<HRDashboard />} />
 
+                {/* Employee Profile Routes */}
+                <Route path="employees/:id" element={<EmployeeProfile />} />
+                <Route path="employees/:id/:tab" element={<EmployeeProfile />} />
+
                 {/* Master Data Routes */}
                 <Route path="master-data/divisi" element={<DivisiList />} />
                 <Route path="master-data/department" element={<DepartmentList />} />
@@ -47,3 +54,4 @@ export default function HRModule() {
         </MainLayout>
     );
 }
+

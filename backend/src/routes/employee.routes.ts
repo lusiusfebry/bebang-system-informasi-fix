@@ -39,6 +39,7 @@ router.use(authenticate);
  * /api/hr/employees:
  *   get:
  *     summary: Get all karyawan
+ *     description: Get paginated list of karyawan with optional filters
  *     tags: [Employee Management]
  *     security:
  *       - bearerAuth: []
@@ -53,39 +54,92 @@ router.use(authenticate);
  *         schema:
  *           type: string
  *           format: uuid
+ *         description: Filter by divisi ID
  *       - in: query
  *         name: departmentId
  *         schema:
  *           type: string
  *           format: uuid
+ *         description: Filter by department ID
  *       - in: query
  *         name: statusKaryawanId
  *         schema:
  *           type: string
  *           format: uuid
+ *         description: Filter by status karyawan ID
+ *       - in: query
+ *         name: lokasiKerjaId
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: Filter by lokasi kerja ID
+ *       - in: query
+ *         name: tagId
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: Filter by tag ID
+ *       - in: query
+ *         name: jenisHubunganKerjaId
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: Filter by jenis hubungan kerja ID
  *       - in: query
  *         name: page
  *         schema:
  *           type: integer
  *           default: 1
+ *         description: Page number
  *       - in: query
  *         name: limit
  *         schema:
  *           type: integer
  *           default: 10
+ *           maximum: 100
+ *         description: Items per page
  *       - in: query
  *         name: sortBy
  *         schema:
  *           type: string
  *           enum: [namaLengkap, nomorIndukKaryawan, createdAt, tanggalMasuk]
+ *           default: namaLengkap
+ *         description: Sort field
  *       - in: query
  *         name: sortOrder
  *         schema:
  *           type: string
  *           enum: [asc, desc]
+ *           default: asc
+ *         description: Sort order
  *     responses:
  *       200:
  *         description: Paginated list of karyawan
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/KaryawanList'
+ *                 meta:
+ *                   type: object
+ *                   properties:
+ *                     page:
+ *                       type: integer
+ *                     limit:
+ *                       type: integer
+ *                     total:
+ *                       type: integer
+ *                     totalPages:
+ *                       type: integer
+ *       401:
+ *         description: Unauthorized
  */
 router.get('/', getAllKaryawan);
 
