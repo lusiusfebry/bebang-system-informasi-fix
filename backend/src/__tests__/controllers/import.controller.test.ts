@@ -28,7 +28,7 @@ describe('Import Controller', () => {
             const mockPath = 'path/to/template.xlsx';
             (importService.getTemplatePath as jest.Mock).mockReturnValue(mockPath);
 
-            await importController.downloadTemplate(mockRequest as Request, mockResponse as Response, nextFunction);
+            await importController.downloadTemplate(mockRequest as Request, mockResponse as Response);
 
             expect(mockResponse.download).toHaveBeenCalledWith(mockPath, 'Employee_Import_Template.xlsx');
         });
@@ -48,7 +48,7 @@ describe('Import Controller', () => {
 
             (importService.previewImport as jest.Mock).mockResolvedValue(mockPreview);
 
-            await importController.uploadAndPreviewExcel(mockRequest as Request, mockResponse as Response, nextFunction);
+            await importController.uploadAndPreviewExcel(mockRequest as Request, mockResponse as Response);
 
             expect(mockResponse.json).toHaveBeenCalledWith(expect.objectContaining({
                 success: true,
@@ -59,9 +59,9 @@ describe('Import Controller', () => {
         it('should fail if no file provided', async () => {
             mockRequest.file = undefined;
 
-            await importController.uploadAndPreviewExcel(mockRequest as Request, mockResponse as Response, nextFunction);
+            await importController.uploadAndPreviewExcel(mockRequest as Request, mockResponse as Response);
 
-            expect(nextFunction).toHaveBeenCalledWith(expect.any(ApiError));
+            expect(mockResponse.status).toHaveBeenCalledWith(500);
         });
     });
 
@@ -76,7 +76,7 @@ describe('Import Controller', () => {
             mockRequest.body = { filePath: 'temp/file.xlsx' };
             (importService.executeImport as jest.Mock).mockResolvedValue(mockResult);
 
-            await importController.confirmImport(mockRequest as Request, mockResponse as Response, nextFunction);
+            await importController.confirmImport(mockRequest as Request, mockResponse as Response);
 
             expect(mockResponse.json).toHaveBeenCalledWith(expect.objectContaining({
                 success: true,

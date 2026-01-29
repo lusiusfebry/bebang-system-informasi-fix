@@ -36,7 +36,7 @@ describe('Auth Middleware', () => {
             await authenticate(mockRequest as Request, mockResponse as Response, nextFunction);
 
             expect(nextFunction).toHaveBeenCalled();
-            expect(mockRequest.user).toBeDefined();
+            expect((mockRequest as any).user).toBeDefined();
         });
 
         it('should return 401 if no token', async () => {
@@ -47,7 +47,7 @@ describe('Auth Middleware', () => {
 
     describe('requirePermissions', () => {
         it('should call next if user has permission', () => {
-            mockRequest.user = { permissions: ['user.read'] } as any;
+            (mockRequest as any).user = { permissions: ['user.read'] };
             const middleware = requirePermissions('user.read');
 
             middleware(mockRequest as Request, mockResponse as Response, nextFunction);
@@ -56,7 +56,7 @@ describe('Auth Middleware', () => {
         });
 
         it('should return 403 if user lacks permission', () => {
-            mockRequest.user = { permissions: [] } as any;
+            (mockRequest as any).user = { permissions: [] };
             const middleware = requirePermissions('user.read');
 
             middleware(mockRequest as Request, mockResponse as Response, nextFunction);

@@ -7,7 +7,8 @@ import path from 'path';
 
 import { connectDatabase, disconnectDatabase } from './config/database';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
-import { requestLogger } from './middleware/logger';
+import { loggerMiddleware } from './middleware/logger.middleware';
+import logger from './utils/logger';
 import authRoutes from './routes/auth.routes';
 import hrMasterRoutes from './routes/hr-master.routes';
 import { setupSwagger } from './config/swagger';
@@ -39,7 +40,7 @@ const uploadDir = process.env.UPLOAD_DIR || 'uploads';
 app.use('/uploads', express.static(path.resolve(process.cwd(), uploadDir)));
 
 // Request logging
-app.use(requestLogger);
+app.use(loggerMiddleware);
 
 // Health check endpoint
 app.get('/health', (_req: Request, res: Response) => {
@@ -98,13 +99,13 @@ app.use(errorHandler);
 
 // Graceful shutdown
 process.on('SIGTERM', async () => {
-    console.log('🛑 SIGTERM received, shutting down gracefully...');
+    logger.info('🛑 SIGTERM received, shutting down gracefully...');
     await disconnectDatabase();
     process.exit(0);
 });
 
 process.on('SIGINT', async () => {
-    console.log('🛑 SIGINT received, shutting down gracefully...');
+    logger.info('🛑 SIGINT received, shutting down gracefully...');
     await disconnectDatabase();
     process.exit(0);
 });
@@ -117,12 +118,12 @@ async function startServer(): Promise<void> {
 
         // Start listening
         app.listen(PORT, () => {
-            console.log(`🚀 Server is running on http://localhost:${PORT}`);
-            console.log(`📋 Health check: http://localhost:${PORT}/health`);
-            console.log(`🔧 Environment: ${process.env.NODE_ENV}`);
+            logger.info(`🚀 Server is running on http://localhost:${PORT}`);
+            logger.info(`📋 Health check: http://localhost:${PORT}/health`);
+            logger.info(`🔧 Environment: ${process.env.NODE_ENV}`);
         });
     } catch (error) {
-        console.error('❌ Failed to start server:', error);
+        logger.error('❌ Failed to start server:', error);
         process.exit(1);
     }
 }

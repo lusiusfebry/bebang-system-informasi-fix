@@ -125,7 +125,7 @@ export default function Login() {
 
                             {/* NIK Field */}
                             <div className="space-y-2">
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300">
+                                <label htmlFor="nik" className="block text-sm font-semibold text-slate-700 dark:text-slate-300">
                                     Nomor Induk Karyawan (NIK)
                                 </label>
                                 <div className="relative flex items-center">
@@ -133,6 +133,7 @@ export default function Login() {
                                         badge
                                     </span>
                                     <input
+                                        id="nik"
                                         type="text"
                                         placeholder="Masukkan NIK Anda"
                                         className="w-full h-14 pl-12 pr-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
@@ -150,7 +151,7 @@ export default function Login() {
                             {/* Password Field */}
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
-                                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300">
+                                    <label htmlFor="password" className="block text-sm font-semibold text-slate-700 dark:text-slate-300">
                                         Kata Sandi
                                     </label>
                                     <a
@@ -166,6 +167,7 @@ export default function Login() {
                                         lock
                                     </span>
                                     <input
+                                        id="password"
                                         type={showPassword ? 'text' : 'password'}
                                         placeholder="Masukkan kata sandi"
                                         className="w-full h-14 pl-12 pr-12 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"

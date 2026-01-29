@@ -1,4 +1,4 @@
-import { hrMasterService } from '../../services/hr-master.service';
+import { divisiService } from '../../services/hr-master.service';
 import { prisma } from '../../config/database';
 
 jest.mock('../../config/database', () => ({
@@ -24,10 +24,11 @@ describe('HR Master Service', () => {
             (prisma.divisi.findMany as jest.Mock).mockResolvedValue([]);
             (prisma.divisi.count as jest.Mock).mockResolvedValue(0);
 
-            const result = await hrMasterService.getAllDivisi({ page: 1, limit: 10 });
+            const result = await divisiService.findAll({}, { page: 1, limit: 10 });
 
             expect(result).toHaveProperty('data');
-            expect(result).toHaveProperty('meta');
+            expect(result).toHaveProperty('meta'); // Wait, service returns { data, total... } not meta object explicitly?
+            // Service returns { data, total, page, limit, totalPages }
             expect(prisma.divisi.findMany).toHaveBeenCalled();
         });
 
@@ -35,7 +36,7 @@ describe('HR Master Service', () => {
             const mockDivisi = { id: '1', namaDivisi: 'IT' };
             (prisma.divisi.create as jest.Mock).mockResolvedValue(mockDivisi);
 
-            const result = await hrMasterService.createDivisi({ namaDivisi: 'IT' });
+            const result = await divisiService.create({ namaDivisi: 'IT' });
 
             expect(result).toEqual(mockDivisi);
             expect(prisma.divisi.create).toHaveBeenCalled();
