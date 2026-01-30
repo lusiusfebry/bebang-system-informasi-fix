@@ -1,0 +1,781 @@
+{
+  "profil_mapping": [
+    {
+      "No": 1,
+      "Header Excel": "NOMIR INDUK KARYAWAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_induk_karyawan"
+    },
+    {
+      "No": 2,
+      "Header Excel": "NAMA LENGKAP",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_lengkap"
+    },
+    {
+      "No": 3,
+      "Header Excel": "POSISI JABATAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "posisi_jabatan"
+    },
+    {
+      "No": 4,
+      "Header Excel": "LOKASI COSTING",
+      "Field Profil Karyawan (### Profil Karyawan)": "costing"
+    },
+    {
+      "No": 5,
+      "Header Excel": "ACTUAL",
+      "Field Profil Karyawan (### Profil Karyawan)": "actual"
+    },
+    {
+      "No": 6,
+      "Header Excel": "ASSIGN",
+      "Field Profil Karyawan (### Profil Karyawan)": "assign"
+    },
+    {
+      "No": 7,
+      "Header Excel": "PANGKAT KATEGORI",
+      "Field Profil Karyawan (### Profil Karyawan)": "kategori_pangkat"
+    },
+    {
+      "No": 8,
+      "Header Excel": "GOLONGAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "golongan_pangkat"
+    },
+    {
+      "No": 9,
+      "Header Excel": "SUB GOLONGAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "sub_golongan_pangkat"
+    },
+    {
+      "No": 10,
+      "Header Excel": "TEMPAT LAHIR",
+      "Field Profil Karyawan (### Profil Karyawan)": "tempat_lahir"
+    },
+    {
+      "No": 11,
+      "Header Excel": "TANGGAL LAHIR",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_lahir"
+    },
+    {
+      "No": 12,
+      "Header Excel": "TANGGAL JOIN GROUP",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_masuk"
+    },
+    {
+      "No": 13,
+      "Header Excel": "TANGGAL MASUK",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_masuk_group"
+    },
+    {
+      "No": 14,
+      "Header Excel": "JENIS HUBUNGAN KERJA",
+      "Field Profil Karyawan (### Profil Karyawan)": "jenis_hubungan_kerja"
+    },
+    {
+      "No": 15,
+      "Header Excel": "TANGGAL AWAL KONTRAK",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_kontrak"
+    },
+    {
+      "No": 16,
+      "Header Excel": "TANGGAL AKHIR KONTRAK",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_akhir_kontrak"
+    },
+    {
+      "No": 17,
+      "Header Excel": "TANGGAL TETAP",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_permanent"
+    },
+    {
+      "No": 18,
+      "Header Excel": "TANGGAL KELUAR",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_berhenti"
+    },
+    {
+      "No": 19,
+      "Header Excel": "JENIS KELAMIN",
+      "Field Profil Karyawan (### Profil Karyawan)": "jenis_kelamin"
+    },
+    {
+      "No": 20,
+      "Header Excel": "AGAMA",
+      "Field Profil Karyawan (### Profil Karyawan)": "agama"
+    },
+    {
+      "No": 21,
+      "Header Excel": "ALAMAT DOMISILI",
+      "Field Profil Karyawan (### Profil Karyawan)": "alamat_domisili"
+    },
+    {
+      "No": 22,
+      "Header Excel": "KOTA DOMISILI",
+      "Field Profil Karyawan (### Profil Karyawan)": "kota_domisili"
+    },
+    {
+      "No": 23,
+      "Header Excel": "PROPINSI DOMISILI",
+      "Field Profil Karyawan (### Profil Karyawan)": "provinsi_domisili"
+    },
+    {
+      "No": 24,
+      "Header Excel": "NOMOR TELEPON RUMAH 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_telepon_rumah_1"
+    },
+    {
+      "No": 25,
+      "Header Excel": "NOMOR TELEPON RUMAJ 2",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_telepon_rumah_2"
+    },
+    {
+      "No": 26,
+      "Header Excel": "NOMOR HP 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_handphone"
+    },
+    {
+      "No": 27,
+      "Header Excel": "NOMOR JP 2",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_handphone_2"
+    },
+    {
+      "No": 28,
+      "Header Excel": "GOLOGAN DARAH",
+      "Field Profil Karyawan (### Profil Karyawan)": "golongan_darah"
+    },
+    {
+      "No": 29,
+      "Header Excel": "NOMOR KTP",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_ktp"
+    },
+    {
+      "No": 30,
+      "Header Excel": "ALAMAT KTP",
+      "Field Profil Karyawan (### Profil Karyawan)": "alamat_ktp"
+    },
+    {
+      "No": 31,
+      "Header Excel": "NOMOR NPWP",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_npwp"
+    },
+    {
+      "No": 32,
+      "Header Excel": "NOMOR BPJS-TK",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_bpjs"
+    },
+    {
+      "No": 33,
+      "Header Excel": "NOMOR DANA PENSIUN",
+      "Field Profil Karyawan (### Profil Karyawan)": "no_dana_pensiun"
+    },
+    {
+      "No": 34,
+      "Header Excel": "NOMOR REKENING",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_rekening"
+    },
+    {
+      "No": 35,
+      "Header Excel": "NAMA PEMILIK REKENING",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_pemegang_rekening"
+    },
+    {
+      "No": 36,
+      "Header Excel": "STATUS PERKAWINAN (PAJAK)",
+      "Field Profil Karyawan (### Profil Karyawan)": "status_pajak"
+    },
+    {
+      "No": 37,
+      "Header Excel": "JUMLAH ANAK",
+      "Field Profil Karyawan (### Profil Karyawan)": "jumlah_anak"
+    },
+    {
+      "No": 38,
+      "Header Excel": "STATUS PAJAK",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 39,
+      "Header Excel": "PENDIDIKAN TERAKHIR",
+      "Field Profil Karyawan (### Profil Karyawan)": "tingkat_pendidikan"
+    },
+    {
+      "No": 40,
+      "Header Excel": "JURUSAN PENDIDIKAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "bidang_studi"
+    },
+    {
+      "No": 41,
+      "Header Excel": "NAMA SEKOLAH",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_sekolah"
+    },
+    {
+      "No": 42,
+      "Header Excel": "KOTA SEKOLAH",
+      "Field Profil Karyawan (### Profil Karyawan)": "kota_sekolah"
+    },
+    {
+      "No": 43,
+      "Header Excel": "STATUS PENDIDIKAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "status_kelulusan"
+    },
+    {
+      "No": 44,
+      "Header Excel": "KETERANGAN PENDIDIKAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "keterangan (**Group: Education**)"
+    },
+    {
+      "No": 45,
+      "Header Excel": "KODE PENDIDIKAN",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 46,
+      "Header Excel": "STATUS PERNIKAHAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "status_pernikahan"
+    },
+    {
+      "No": 47,
+      "Header Excel": "TANGGAL MENIKAH",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_menikah"
+    },
+    {
+      "No": 48,
+      "Header Excel": "TANGGAL CERAI",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_cerai"
+    },
+    {
+      "No": 49,
+      "Header Excel": "TANGGAL WAFAT PASANGAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_wafat_pasangan"
+    },
+    {
+      "No": 50,
+      "Header Excel": "NAMA PASANGAN NIKAH",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_pasangan*"
+    },
+    {
+      "No": 51,
+      "Header Excel": "TANGGAL LAHIR PASANGAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_lahir_pasangan"
+    },
+    {
+      "No": 52,
+      "Header Excel": "PENDIDIKAN TERAKHIR PASANGAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "pendidikan_terakhir_pasangan"
+    },
+    {
+      "No": 53,
+      "Header Excel": "PEKERJAAN PASANGAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "pekerjaan_pasangan"
+    },
+    {
+      "No": 54,
+      "Header Excel": "KETERANGAN PASANGAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "keterangan_pasangan"
+    },
+    {
+      "No": 55,
+      "Header Excel": "NAMA ANAK 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_anak_1"
+    },
+    {
+      "No": 56,
+      "Header Excel": "JENIS KELAMIN ANAK 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "jenis_kelamin_anak_1"
+    },
+    {
+      "No": 57,
+      "Header Excel": "TANGGAL LAHIR ANAK 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_lahir_anak_1"
+    },
+    {
+      "No": 58,
+      "Header Excel": "KETERANGAN ANAK 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "keterangan_anak_1"
+    },
+    {
+      "No": 59,
+      "Header Excel": "NAMA ANAK 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 60,
+      "Header Excel": "JENIS KELAMIN ANAK 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 61,
+      "Header Excel": "TANGGAL LAHIR ANAK 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 62,
+      "Header Excel": "KETERANGAN ANAK 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 63,
+      "Header Excel": "NAMA ANAK 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 64,
+      "Header Excel": "JENIS KELAMIN ANAK 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 65,
+      "Header Excel": "TANGGAL LAHIR ANAK 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 66,
+      "Header Excel": "KETERANGAN ANAK 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 67,
+      "Header Excel": "NAMA ANAK 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 68,
+      "Header Excel": "JENIS KELAMIN ANAK 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 69,
+      "Header Excel": "TANGGAL LAHIR ANAK 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 70,
+      "Header Excel": "KETERANGAN ANAK 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 71,
+      "Header Excel": "NAMA BAPAK KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 72,
+      "Header Excel": "TANGGAL LAHUR BAPAK KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 73,
+      "Header Excel": "PENDIDIKAN TERAKHIR BAPAK KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 74,
+      "Header Excel": "PEKERJAAN BAPAK KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 75,
+      "Header Excel": "KETERANGAN BAPAK KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 76,
+      "Header Excel": "NAMA IBU KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 77,
+      "Header Excel": "TANGGAL LAHIR IBU KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 78,
+      "Header Excel": "PENDIDIKAN TERAKHIR IBU KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 79,
+      "Header Excel": "PEKERJAAN IBU KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 80,
+      "Header Excel": "KETERANGAN IBU KANDUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 81,
+      "Header Excel": "NAMA SAUDARA KANDUNG 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_saudara_kandung_1"
+    },
+    {
+      "No": 82,
+      "Header Excel": "JENIS KELELAMIN SAUDARA KANDUNG 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "jenis_kelamin_saudara_kandung_1"
+    },
+    {
+      "No": 83,
+      "Header Excel": "TANGGAL LAHUR SAUDARA KANDUNG 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_lahir_saudara_kandung_1"
+    },
+    {
+      "No": 84,
+      "Header Excel": "PENDIDIKAN TERAKHIR SAUDARA KANDUNG 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "pendidikan_terakhir_saudara_kandung_1"
+    },
+    {
+      "No": 85,
+      "Header Excel": "PEKERJAAN SAUDARA KANDUNG 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "pekerjaan_saudara_kandung_1"
+    },
+    {
+      "No": 86,
+      "Header Excel": "KETERANGAN SAUDARA KANDUNG 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "keterangan_saudara_kandung_1"
+    },
+    {
+      "No": 87,
+      "Header Excel": "NAMA SAUDARA KANDUNG 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 88,
+      "Header Excel": "JENIS KELELAMIN SAUDARA KANDUNG 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 89,
+      "Header Excel": "TANGGAL LAHUR SAUDARA KANDUNG 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 90,
+      "Header Excel": "PENDIDIKAN TERAKHIR SAUDARA KANDUNG 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 91,
+      "Header Excel": "PEKERJAAN SAUDARA KANDUNG 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 92,
+      "Header Excel": "KETERANGAN SAUDARA KANDUNG 2",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 93,
+      "Header Excel": "NAMA SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 94,
+      "Header Excel": "JENIS KELELAMIN SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 95,
+      "Header Excel": "TANGGAL LAHUR SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 96,
+      "Header Excel": "PENDIDIKAN TERAKHIR SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 97,
+      "Header Excel": "PEKERJAAN SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 98,
+      "Header Excel": "KETERANGAN SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 99,
+      "Header Excel": "NAMA SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 100,
+      "Header Excel": "JENIS KELELAMIN SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 101,
+      "Header Excel": "TANGGAL LAHUR SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 102,
+      "Header Excel": "PENDIDIKAN TERAKHIR SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 103,
+      "Header Excel": "PEKERJAAN SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 104,
+      "Header Excel": "KETERANGAN SAUDARA KANDUNG 3",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 105,
+      "Header Excel": "NAMA SAUDARA KANDUNG 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 106,
+      "Header Excel": "JENIS KELELAMIN SAUDARA KANDUNG 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 107,
+      "Header Excel": "TANGGAL LAHUR SAUDARA KANDUNG 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 108,
+      "Header Excel": "PENDIDIKAN TERAKHIR SAUDARA KANDUNG 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 109,
+      "Header Excel": "PEKERJAAN SAUDARA KANDUNG 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 110,
+      "Header Excel": "KETERANGAN SAUDARA KANDUNG 4",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 111,
+      "Header Excel": "SIKLUS PEMBAYARAN",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 112,
+      "Header Excel": "NAMA BANK",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_bank"
+    },
+    {
+      "No": 113,
+      "Header Excel": "CABANG BANK",
+      "Field Profil Karyawan (### Profil Karyawan)": "cabang_bank"
+    },
+    {
+      "No": 114,
+      "Header Excel": "NAMA BAPAK MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_ayah_mertua"
+    },
+    {
+      "No": 115,
+      "Header Excel": "TANGGAL LAHUR BAPAK MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_lahir_ayah_mertua"
+    },
+    {
+      "No": 116,
+      "Header Excel": "PENDIDKAN TERAKHIR BAPAK MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "pendidikan_terakhir_ayah_mertua"
+    },
+    {
+      "No": 117,
+      "Header Excel": "PEKERJAAN BAPAK MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "pekerjaan_ayah_mertua"
+    },
+    {
+      "No": 118,
+      "Header Excel": "KETERANGAN BAPAK MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "keterangan_ayah_mertua"
+    },
+    {
+      "No": 119,
+      "Header Excel": "NAMA IBU MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_ibu_mertua"
+    },
+    {
+      "No": 120,
+      "Header Excel": "TANGGAL LAHIR IBU MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_lahir_ibu_mertua"
+    },
+    {
+      "No": 121,
+      "Header Excel": "PENDIDIKAN TERAKHIR IBU MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "pendidikan_terakhir_ibu_mertua"
+    },
+    {
+      "No": 122,
+      "Header Excel": "PEKERJAAN IBU MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "pekerjaan_ibu_mertua"
+    },
+    {
+      "No": 123,
+      "Header Excel": "KETERANGAN IBU MERTUA",
+      "Field Profil Karyawan (### Profil Karyawan)": "keterangan_ibu_mertua"
+    },
+    {
+      "No": 124,
+      "Header Excel": "ORGANISSASI SUB DEPARTMENT",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 125,
+      "Header Excel": "DEPARTMENT",
+      "Field Profil Karyawan (### Profil Karyawan)": "department"
+    },
+    {
+      "No": 126,
+      "Header Excel": "DIVISI",
+      "Field Profil Karyawan (### Profil Karyawan)": "divisi"
+    },
+    {
+      "No": 127,
+      "Header Excel": "NAMA KONTAK DARURAT 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "nama_kontak_darurat_1"
+    },
+    {
+      "No": 128,
+      "Header Excel": "HUNGAN KONTRAK DARURAT 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "hubungan_kontak_darurat_1"
+    },
+    {
+      "No": 129,
+      "Header Excel": "ALAMAT KONTAK DARURAT 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "alamat_kontak_darurat_1"
+    },
+    {
+      "No": 130,
+      "Header Excel": "NOMOR HP1 KONTAK DARURAT 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_telepon_kontak_darurat_1"
+    },
+    {
+      "No": 131,
+      "Header Excel": "NOMOR HP2 KONTAK DARURAT 1",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_telepon_kontak_darurat_2"
+    },
+    {
+      "No": 132,
+      "Header Excel": "UKURAN SEPATU",
+      "Field Profil Karyawan (### Profil Karyawan)": "ukuran_sepatu_kerja"
+    },
+    {
+      "No": 133,
+      "Header Excel": "UKURAN BAJU",
+      "Field Profil Karyawan (### Profil Karyawan)": "ukuran_seragam_kerja"
+    },
+    {
+      "No": 134,
+      "Header Excel": "LOKASI SEBELUMNYA",
+      "Field Profil Karyawan (### Profil Karyawan)": "lokasi_sebelumnya"
+    },
+    {
+      "No": 135,
+      "Header Excel": "TANGGAL MUTASI",
+      "Field Profil Karyawan (### Profil Karyawan)": "tanggal_mutasi"
+    },
+    {
+      "No": 136,
+      "Header Excel": "UNIT YANG DI BAWAH",
+      "Field Profil Karyawan (### Profil Karyawan)": NaN
+    },
+    {
+      "No": 137,
+      "Header Excel": "POINT OF ORIGINAL",
+      "Field Profil Karyawan (### Profil Karyawan)": "point_of_original"
+    },
+    {
+      "No": 138,
+      "Header Excel": "POINT OF HIRE",
+      "Field Profil Karyawan (### Profil Karyawan)": "point_of_hire"
+    },
+    {
+      "No": 139,
+      "Header Excel": "NOMOR KARTU KELUARGA",
+      "Field Profil Karyawan (### Profil Karyawan)": "nomor_kartu_keluarga"
+    },
+    {
+      "No": 140,
+      "Header Excel": "NOMOR NIK KK",
+      "Field Profil Karyawan (### Profil Karyawan)": "no_nik_kk"
+    },
+    {
+      "No": 141,
+      "Header Excel": "LOKASI KERJA",
+      "Field Profil Karyawan (### Profil Karyawan)": "lokasi_kerja"
+    },
+    {
+      "No": 142,
+      "Header Excel": "STATUS KARYAWAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "status_karyawan"
+    },
+    {
+      "No": 143,
+      "Header Excel": "TAG",
+      "Field Profil Karyawan (### Profil Karyawan)": "tag"
+    },
+    {
+      "No": 144,
+      "Header Excel": "MANAGER",
+      "Field Profil Karyawan (### Profil Karyawan)": "manager"
+    },
+    {
+      "No": 145,
+      "Header Excel": "ATASAN LANGSUNG",
+      "Field Profil Karyawan (### Profil Karyawan)": "atasan_langsung"
+    },
+    {
+      "No": 146,
+      "Header Excel": "EMAIL PERUSAHAAN",
+      "Field Profil Karyawan (### Profil Karyawan)": "email_perusahaan"
+    },
+    {
+      "No": 147,
+      "Header Excel": "EMAIL PRIBADI",
+      "Field Profil Karyawan (### Profil Karyawan)": "email_pribadi"
+    }
+  ],
+  "master_mapping": [
+    {
+      "Header Excel": "PANGKAT KATEGORI",
+      "Field Master Data (## 1. Master Data)": "nama kategori pangkat"
+    },
+    {
+      "Header Excel": "GOLONGAN",
+      "Field Master Data (## 1. Master Data)": "nama golongan"
+    },
+    {
+      "Header Excel": "SUB GOLONGAN",
+      "Field Master Data (## 1. Master Data)": "nama sub golongan"
+    },
+    {
+      "Header Excel": "JENIS HUBUNGAN KERJA",
+      "Field Master Data (## 1. Master Data)": "nama jenis hubungan kerja"
+    },
+    {
+      "Header Excel": "TAG",
+      "Field Master Data (## 1. Master Data)": "nama tag"
+    },
+    {
+      "Header Excel": "LOKASI KERJA",
+      "Field Master Data (## 1. Master Data)": "nama lokasi kerja"
+    },
+    {
+      "Header Excel": "STATUS KARYAWAB",
+      "Field Master Data (## 1. Master Data)": "nama status"
+    },
+    {
+      "Header Excel": "DIVISI",
+      "Field Master Data (## 1. Master Data)": "nama divisi"
+    },
+    {
+      "Header Excel": "DEPARTMENT",
+      "Field Master Data (## 1. Master Data)": "nama departmen"
+    },
+    {
+      "Header Excel": "POSISI JABATAN (MASTER)",
+      "Field Master Data (## 1. Master Data)": "nama posisi jabatan"
+    }
+  ]
+}

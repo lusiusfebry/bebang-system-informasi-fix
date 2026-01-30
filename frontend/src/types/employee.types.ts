@@ -175,6 +175,7 @@ export interface Employee {
     createdAt: string;
     updatedAt: string;
 
+
     // Family Information
     namaPasangan?: string | null;
     tanggalLahirPasangan?: string | null;
@@ -187,10 +188,12 @@ export interface Employee {
     namaAyahMertua?: string | null;
     tanggalLahirAyahMertua?: string | null;
     pendidikanTerakhirAyahMertua?: string | null;
+    pekerjaanAyahMertua?: string | null;
     keteranganAyahMertua?: string | null;
     namaIbuMertua?: string | null;
     tanggalLahirIbuMertua?: string | null;
     pendidikanTerakhirIbuMertua?: string | null;
+    pekerjaanIbuMertua?: string | null;
     keteranganIbuMertua?: string | null;
 
     // Relations
@@ -290,10 +293,12 @@ export interface CreateEmployeeDTO {
     namaAyahMertua?: string;
     tanggalLahirAyahMertua?: string;
     pendidikanTerakhirAyahMertua?: string;
+    pekerjaanAyahMertua?: string;
     keteranganAyahMertua?: string;
     namaIbuMertua?: string;
     tanggalLahirIbuMertua?: string;
     pendidikanTerakhirIbuMertua?: string;
+    pekerjaanIbuMertua?: string;
     keteranganIbuMertua?: string;
 
     // HR Information Fields
@@ -504,9 +509,41 @@ export interface HRInformationFormData {
     lokasiSebelumnyaId: string;
     tanggalMutasi: string;
 
+
     // Section 8: Costing
     siklusPembayaranGaji: string;
     costing: string;
     assign: string;
     actual: string;
+}
+
+export interface FamilyInformationFormData {
+    // Section 1: Pasangan
+    statusPernikahan: StatusPernikahan | '';
+    namaPasangan: string;
+    tanggalLahirPasangan: string;
+    pendidikanTerakhirPasangan: string;
+    pekerjaanPasangan: string;
+    keteranganPasangan: string;
+    tanggalMenikah: string;
+    tanggalCerai: string;
+    tanggalWafatPasangan: string;
+
+    // Section 2: Anak (List managed separately but here for completeness of form)
+    anak: Anak[];
+
+    // Section 3: Orang Tua Mertua
+    namaAyahMertua: string;
+    tanggalLahirAyahMertua: string;
+    pendidikanTerakhirAyahMertua: string;
+    pekerjaanAyahMertua: string;
+    keteranganAyahMertua: string;
+    namaIbuMertua: string;
+    tanggalLahirIbuMertua: string;
+    pendidikanTerakhirIbuMertua: string;
+    pekerjaanIbuMertua: string;
+    keteranganIbuMertua: string;
+
+    // Section 4: Saudara Kandung (List managed separately)
+    saudaraKandung: SaudaraKandung[];
 }

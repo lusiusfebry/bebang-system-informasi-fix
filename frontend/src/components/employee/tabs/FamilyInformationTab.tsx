@@ -39,10 +39,12 @@ interface FamilyInformationFormData {
     namaAyahMertua: string;
     tanggalLahirAyahMertua: string;
     pendidikanTerakhirAyahMertua: string;
+    pekerjaanAyahMertua: string;
     keteranganAyahMertua: string;
     namaIbuMertua: string;
     tanggalLahirIbuMertua: string;
     pendidikanTerakhirIbuMertua: string;
+    pekerjaanIbuMertua: string;
     keteranganIbuMertua: string;
 }
 
@@ -80,10 +82,12 @@ const createInitialFormData = (employee: Employee): FamilyInformationFormData =>
     namaAyahMertua: employee.namaAyahMertua || '',
     tanggalLahirAyahMertua: formatDateForInput(employee.tanggalLahirAyahMertua),
     pendidikanTerakhirAyahMertua: employee.pendidikanTerakhirAyahMertua || '',
+    pekerjaanAyahMertua: employee.pekerjaanAyahMertua || '',
     keteranganAyahMertua: employee.keteranganAyahMertua || '',
     namaIbuMertua: employee.namaIbuMertua || '',
     tanggalLahirIbuMertua: formatDateForInput(employee.tanggalLahirIbuMertua),
     pendidikanTerakhirIbuMertua: employee.pendidikanTerakhirIbuMertua || '',
+    pekerjaanIbuMertua: employee.pekerjaanIbuMertua || '',
     keteranganIbuMertua: employee.keteranganIbuMertua || '',
 });
 
@@ -204,10 +208,12 @@ export const FamilyInformationTab: React.FC<FamilyInformationTabProps> = ({
                 namaAyahMertua: formData.namaAyahMertua || undefined,
                 tanggalLahirAyahMertua: formData.tanggalLahirAyahMertua || undefined,
                 pendidikanTerakhirAyahMertua: formData.pendidikanTerakhirAyahMertua || undefined,
+                pekerjaanAyahMertua: formData.pekerjaanAyahMertua || undefined,
                 keteranganAyahMertua: formData.keteranganAyahMertua || undefined,
                 namaIbuMertua: formData.namaIbuMertua || undefined,
                 tanggalLahirIbuMertua: formData.tanggalLahirIbuMertua || undefined,
                 pendidikanTerakhirIbuMertua: formData.pendidikanTerakhirIbuMertua || undefined,
+                pekerjaanIbuMertua: formData.pekerjaanIbuMertua || undefined,
                 keteranganIbuMertua: formData.keteranganIbuMertua || undefined,
             };
 
@@ -762,6 +768,12 @@ export const FamilyInformationTab: React.FC<FamilyInformationTabProps> = ({
                             onChange={(e) => handleChange('pendidikanTerakhirAyahMertua', e.target.value)}
                             disabled={!isEditing}
                         />
+                        <TextInput
+                            label="Pekerjaan"
+                            value={formData.pekerjaanAyahMertua}
+                            onChange={(e) => handleChange('pekerjaanAyahMertua', e.target.value)}
+                            disabled={!isEditing}
+                        />
                         <TextArea
                             label="Keterangan"
                             value={formData.keteranganAyahMertua}
@@ -790,6 +802,12 @@ export const FamilyInformationTab: React.FC<FamilyInformationTabProps> = ({
                             label="Pendidikan Terakhir"
                             value={formData.pendidikanTerakhirIbuMertua}
                             onChange={(e) => handleChange('pendidikanTerakhirIbuMertua', e.target.value)}
+                            disabled={!isEditing}
+                        />
+                        <TextInput
+                            label="Pekerjaan"
+                            value={formData.pekerjaanIbuMertua}
+                            onChange={(e) => handleChange('pekerjaanIbuMertua', e.target.value)}
                             disabled={!isEditing}
                         />
                         <TextArea

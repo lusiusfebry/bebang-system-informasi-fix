@@ -5,7 +5,7 @@
 
 import { Router } from 'express';
 import { authenticate, requirePermissions } from '../middleware/auth.middleware';
-import { uploadEmployeePhoto, uploadEmployeeDocument } from '../config/upload';
+import { uploadEmployeePhoto, uploadEmployeeDocument, uploadExcelFile } from '../config/upload';
 import {
     getAllKaryawan,
     getKaryawanById,
@@ -26,6 +26,7 @@ import {
     bulkDeleteKaryawan,
     bulkGenerateQRCodes,
     exportKaryawan,
+    importEmployees,
 } from '../controllers/employee.controller';
 
 const router = Router();
@@ -145,6 +146,29 @@ const router = Router();
  *         description: Unauthorized
  */
 router.get('/', authenticate, requirePermissions('employee.read'), getAllKaryawan);
+
+
+/**
+ * @swagger
+ * /api/hr/employees/import:
+ *   post:
+ *     summary: Import employees from Excel
+ *     tags: [Employee Management]
+ *     security:
+ *       - bearerAuth: []
+ *     consumes:
+ *       - multipart/form-data
+ *     parameters:
+ *       - in: formData
+ *         name: file
+ *         type: file
+ *         required: true
+ *         description: Excel file (.xlsx)
+ *     responses:
+ *       200:
+ *         description: Import result
+ */
+router.post('/import', authenticate, requirePermissions('employee.create'), uploadExcelFile.single('file'), importEmployees);
 
 /**
  * @swagger

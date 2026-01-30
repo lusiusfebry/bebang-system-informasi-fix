@@ -6,6 +6,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { employeeService } from '../services/employee.service';
 import { successResponse, paginatedResponse } from '../utils/response';
+import { importService } from '../services/import.service';
 import archiver from 'archiver';
 import {
     createKaryawanSchema,
@@ -478,6 +479,29 @@ export async function deleteKaryawanDocument(req: Request, res: Response, next: 
 
         await employeeService.deleteDocument(documentId);
         res.json(successResponse(null, 'Dokumen berhasil dihapus'));
+    } catch (error) {
+        handleError(error, res, next);
+    }
+}
+
+
+/**
+ * POST /api/hr/employees/import
+ * Import employees from Excel
+ */
+export async function importEmployees(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        if (!req.file) {
+            res.status(400).json({ success: false, message: 'File wajib diupload' });
+            return;
+        }
+
+        const result = await importService.executeImport(req.file.path);
+
+        // If partially successful or failed
+        const message = `Import selesai: ${result.successCount} sukses, ${result.errors.length} gagal`;
+
+        res.json(successResponse(result, message));
     } catch (error) {
         handleError(error, res, next);
     }

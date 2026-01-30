@@ -81,8 +81,6 @@ import employeeRoutes from './routes/employee.routes';
 app.use('/api/hr/employees', employeeRoutes);
 
 // Import routes
-import importRoutes from './routes/import.routes';
-app.use('/api/hr/import', importRoutes);
 
 // Resignation routes
 import resignationRoutes from './routes/resignation.routes';
