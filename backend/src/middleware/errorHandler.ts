@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import logger from '../utils/logger';
 
 interface AppError extends Error {
     statusCode?: number;
@@ -15,15 +16,14 @@ export function errorHandler(
     const message = err.message || 'Internal Server Error';
     const isOperational = err.isOperational || false;
 
-    // Log error for debugging (in development)
-    if (process.env.NODE_ENV === 'development') {
-        console.error('🚨 Error:', {
-            message: err.message,
-            stack: err.stack,
-            path: req.path,
-            method: req.method,
-        });
-    }
+    // Log error using Winston
+    logger.error('🚨 Error:', {
+        message: err.message,
+        stack: err.stack,
+        path: req.path,
+        method: req.method,
+        statusCode,
+    });
 
     // Send error response
     res.status(statusCode).json({

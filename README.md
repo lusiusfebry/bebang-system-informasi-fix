@@ -2,6 +2,16 @@
 
 Enterprise web application for organizational information management built with modern web technologies.
 
+## 📚 Dokumentasi
+Silakan baca dokumentasi lengkap di folder `docs/`:
+
+- [Panduan Instalasi](docs/INSTALLATION.md)
+- [Panduan Pengguna (HR)](docs/USER_GUIDE.md)
+- [Panduan Admin](docs/ADMIN_GUIDE.md)
+- [Panduan Testing](docs/TESTING_STRATEGY.md)
+- [Panduan Deployment](docs/DEPLOYMENT_GUIDE.md)
+- [FAQ & Troubleshooting](docs/FAQ.md)
+
 ## Tech Stack
 
 ### Backend
