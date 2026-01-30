@@ -11,6 +11,7 @@ import HRDashboard from '../hr/HRDashboard';
 
 // Employee Pages
 import { EmployeeProfile } from '../hr/employees';
+import EmployeeCreate from '../hr/employees/EmployeeCreate';
 import EmployeeImport from '../hr/employees/EmployeeImport';
 import EmployeeList from '../hr/employees/EmployeeList';
 
@@ -39,6 +40,7 @@ export default function HRModule() {
 
                 {/* Employee Routes */}
                 <Route path="employees" element={<EmployeeList />} />
+                <Route path="employees/create" element={<EmployeeCreate />} />
                 <Route path="employees/import" element={<EmployeeImport />} />
                 <Route path="employees/:id" element={<EmployeeProfile />} />
                 <Route path="employees/:id/:tab" element={<EmployeeProfile />} />

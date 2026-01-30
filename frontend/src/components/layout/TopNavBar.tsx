@@ -6,9 +6,11 @@ import { useTheme } from '../../contexts/ThemeContext';
 interface TopNavBarProps {
     onSearchChange?: (query: string) => void;
     onMenuClick?: () => void;
+    hideMenuButton?: boolean;
+    hideSearch?: boolean;
 }
 
-export default function TopNavBar({ onSearchChange, onMenuClick }: TopNavBarProps) {
+export default function TopNavBar({ onSearchChange, onMenuClick, hideMenuButton, hideSearch }: TopNavBarProps) {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
     const { isDarkMode, toggleTheme } = useTheme();
@@ -45,12 +47,14 @@ export default function TopNavBar({ onSearchChange, onMenuClick }: TopNavBarProp
             {/* Left Section */}
             <div className="flex items-center gap-4">
                 {/* Mobile Menu Button */}
-                <button
-                    onClick={onMenuClick}
-                    className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                >
-                    <span className="material-symbols-outlined text-gray-600 dark:text-gray-300">menu</span>
-                </button>
+                {!hideMenuButton && (
+                    <button
+                        onClick={onMenuClick}
+                        className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                        <span className="material-symbols-outlined text-gray-600 dark:text-gray-300">menu</span>
+                    </button>
+                )}
 
                 {/* Logo */}
                 <div className="flex items-center gap-3">
@@ -67,20 +71,22 @@ export default function TopNavBar({ onSearchChange, onMenuClick }: TopNavBarProp
             </div>
 
             {/* Center Section - Search */}
-            <div className="hidden md:flex flex-1 max-w-md mx-8">
-                <div className="relative w-full">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl">
-                        search
-                    </span>
-                    <input
-                        type="text"
-                        placeholder="Cari modul, karyawan, atau data..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full h-10 pl-10 pr-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    />
+            {!hideSearch && (
+                <div className="hidden md:flex flex-1 max-w-md mx-8">
+                    <div className="relative w-full">
+                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl">
+                            search
+                        </span>
+                        <input
+                            type="text"
+                            placeholder="Cari modul, karyawan, atau data..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full h-10 pl-10 pr-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Right Section */}
             <div className="flex items-center gap-2">

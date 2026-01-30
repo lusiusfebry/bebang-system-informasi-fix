@@ -73,10 +73,10 @@ const UserManagement: React.FC = () => {
     }, [fetchUsers]);
 
     // Handlers
-    const handleSearch = (search: string) => {
+    const handleSearch = useCallback((search: string) => {
         setFilters(prev => ({ ...prev, search }));
         setPage(1);
-    };
+    }, []);
 
     const handleAssignRole = (user: SimpleUser) => {
         setSelectedUser(user);

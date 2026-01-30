@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import MainLayout from '../components/layout/MainLayout';
+import LandingLayout from '../components/layout/LandingLayout';
 import ModuleCard from '../components/ModuleCard';
 
 interface Module {
@@ -54,7 +54,6 @@ const modules: Module[] = [
         description: 'Kelola hak akses, roles, dan permissions pengguna sistem',
         icon: 'admin_panel_settings',
         path: '/access-rights',
-        comingSoon: true,
     },
     {
         id: 'request-module',
@@ -88,7 +87,7 @@ export default function Welcome() {
     };
 
     return (
-        <MainLayout onSearchChange={setSearchQuery}>
+        <LandingLayout onSearchChange={setSearchQuery}>
             {/* Page Heading */}
             <div className="mb-8">
                 <h1 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-2">
@@ -154,6 +153,6 @@ export default function Welcome() {
                     </div>
                 </div>
             </div>
-        </MainLayout>
+        </LandingLayout>
     );
 }

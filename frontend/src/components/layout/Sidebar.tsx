@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { PERMISSIONS, PermissionString } from '../../constants/permissions';
@@ -15,6 +16,7 @@ interface MenuItem {
     isBottom?: boolean;
     isDanger?: boolean;
     permission?: PermissionString;
+    children?: MenuItem[];
 }
 
 const menuItems: MenuItem[] = [
@@ -25,32 +27,41 @@ const menuItems: MenuItem[] = [
         path: '/'
     },
     {
-        id: 'employees',
-        label: 'Karyawan',
-        icon: 'group',
-        path: '/hr/employees',
-        permission: PERMISSIONS.EMPLOYEE_READ
-    },
-    {
-        id: 'resignation',
-        label: 'Resignations',
-        icon: 'person_remove',
-        path: '/hr/resignations',
-        permission: PERMISSIONS.RESIGNATION_READ
-    },
-    {
         id: 'master-data',
         label: 'Master Data',
         icon: 'database',
-        path: '/hr/master-data/divisi',
-        permission: PERMISSIONS.HR_MASTER_READ
+        path: '/hr/master-data',
+        permission: PERMISSIONS.HR_MASTER_READ,
+        children: [
+            { id: 'divisi', label: 'Divisi', icon: 'domain', path: '/hr/master-data/divisi' },
+            { id: 'department', label: 'Department', icon: 'group_work', path: '/hr/master-data/department' },
+            { id: 'posisi', label: 'Posisi Jabatan', icon: 'work', path: '/hr/master-data/posisi-jabatan' },
+            { id: 'pangkat', label: 'Kategori Pangkat', icon: 'stars', path: '/hr/master-data/kategori-pangkat' },
+            { id: 'golongan', label: 'Golongan', icon: 'grade', path: '/hr/master-data/golongan' },
+            { id: 'sub-golongan', label: 'Sub Golongan', icon: 'hotel_class', path: '/hr/master-data/sub-golongan' },
+            { id: 'hubungan-kerja', label: 'Jenis Hub. Kerja', icon: 'handshake', path: '/hr/master-data/jenis-hubungan-kerja' },
+            { id: 'tag', label: 'Tag', icon: 'label', path: '/hr/master-data/tag' },
+            { id: 'lokasi', label: 'Lokasi Kerja', icon: 'location_on', path: '/hr/master-data/lokasi-kerja' },
+            { id: 'status-karyawan', label: 'Status Karyawan', icon: 'badge', path: '/hr/master-data/status-karyawan' },
+        ]
+    },
+    {
+        id: 'manajemen-karyawan',
+        label: 'Manajemen Karyawan',
+        icon: 'group',
+        path: '/hr/employees',
+        permission: PERMISSIONS.EMPLOYEE_READ,
+        children: [
+            { id: 'employees', label: 'Karyawan', icon: 'person', path: '/hr/employees' },
+            { id: 'resignation', label: 'Resignations', icon: 'person_remove', path: '/hr/resignations' }
+        ]
     },
     {
         id: 'access-rights',
         label: 'Hak Akses',
         icon: 'admin_panel_settings',
         path: '/access-rights',
-        permission: PERMISSIONS.ROLE_READ // Or USER_READ
+        permission: PERMISSIONS.ROLE_READ
     },
     {
         id: 'help',
@@ -65,10 +76,27 @@ export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
     const location = useLocation();
     const navigate = useNavigate();
     const { logout, user } = useAuth();
+    const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
+
+    useEffect(() => {
+        // Auto-expand menu based on current path
+        const matchingMenu = menuItems.find(item =>
+            item.children && item.children.some(child => location.pathname.startsWith(child.path))
+        );
+        if (matchingMenu) {
+            setExpandedMenus(prev => prev.includes(matchingMenu.id) ? prev : [...prev, matchingMenu.id]);
+        }
+    }, [location.pathname]);
 
     const handleNavigation = (path: string) => {
         navigate(path);
         onClose?.();
+    };
+
+    const toggleSubMenu = (menuId: string) => {
+        setExpandedMenus(prev =>
+            prev.includes(menuId) ? prev.filter(id => id !== menuId) : [...prev, menuId]
+        );
     };
 
     const handleLogout = () => {
@@ -77,18 +105,14 @@ export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
     };
 
     const isActive = (path: string) => {
-        if (path === '/') return location.pathname === '/';
-        // For sub-routes (e.g. /hr/employees/123 matches /hr/employees)
+        if (path === '/') return location.pathname === '/' || location.pathname === '/hr/dashboard';
         return location.pathname.startsWith(path);
     };
 
     const hasPermission = (permission?: PermissionString) => {
         if (!user) return false;
-        // Admin bypass
         if (user.roleCode === 'ADMIN') return true;
-        // No permission required
         if (!permission) return true;
-
         return user.permissions?.includes(permission);
     };
 
@@ -96,6 +120,53 @@ export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
         if (!hasPermission(item.permission)) return null;
 
         const active = isActive(item.path);
+        const hasChildren = item.children && item.children.length > 0;
+        const isExpanded = expandedMenus.includes(item.id);
+        const isChildActive = hasChildren && item.children?.some(child => isActive(child.path));
+
+        if (hasChildren) {
+            return (
+                <div key={item.id} className="space-y-1">
+                    <button
+                        onClick={() => toggleSubMenu(item.id)}
+                        className={`w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all ${isChildActive || active ? 'text-primary bg-primary/5' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                            }`}
+                    >
+                        <div className="flex items-center gap-3">
+                            <span className={`material-symbols-outlined text-xl ${(isChildActive || active) ? 'fill-icon' : ''}`}>
+                                {item.icon}
+                            </span>
+                            <span className="font-medium text-sm">{item.label}</span>
+                        </div>
+                        <span className={`material-symbols-outlined text-lg transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
+                            expand_more
+                        </span>
+                    </button>
+
+                    {/* Submenu */}
+                    {isExpanded && (
+                        <div className="pl-4 space-y-1 mt-1 border-l-2 border-gray-100 dark:border-gray-800 ml-4">
+                            {item.children?.map(child => (
+                                <button
+                                    key={child.id}
+                                    onClick={() => handleNavigation(child.path)}
+                                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-sm ${isActive(child.path)
+                                            ? 'text-primary font-medium bg-primary/10'
+                                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                        }`}
+                                >
+                                    <span className="material-symbols-outlined text-lg">
+                                        {child.icon}
+                                    </span>
+                                    <span>{child.label}</span>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
         return (
             <button
                 key={item.id}

@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Parser } from 'json2csv';
 
 export function generateEmployeeCSV(employees: any[]): string {
