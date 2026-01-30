@@ -25,7 +25,7 @@ const colors = {
 
 winston.addColors(colors);
 
-const format = winston.format.combine(
+const consoleFormat = winston.format.combine(
     winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
     winston.format.colorize({ all: true }),
     winston.format.printf(
@@ -33,8 +33,15 @@ const format = winston.format.combine(
     ),
 );
 
+const fileFormat = winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+);
+
 const transports = [
-    new winston.transports.Console(),
+    new winston.transports.Console({
+        format: consoleFormat,
+    }),
     new DailyRotateFile({
         filename: 'logs/error-%DATE%.log',
         datePattern: 'YYYY-MM-DD',
@@ -42,6 +49,7 @@ const transports = [
         maxSize: '20m',
         maxFiles: '14d',
         level: 'error',
+        format: fileFormat,
     }),
     new DailyRotateFile({
         filename: 'logs/all-%DATE%.log',
@@ -49,13 +57,13 @@ const transports = [
         zippedArchive: true,
         maxSize: '20m',
         maxFiles: '14d',
+        format: fileFormat,
     }),
 ];
 
 const logger = winston.createLogger({
     level: level(),
     levels,
-    format,
     transports,
 });
 

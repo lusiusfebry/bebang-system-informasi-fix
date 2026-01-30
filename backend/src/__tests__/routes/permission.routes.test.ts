@@ -1,28 +1,54 @@
 import request from 'supertest';
-import express from 'express';
+import express, { Express } from 'express';
+import { prismaMock } from '../../__mocks__/prisma';
 import permissionRoutes from '../../routes/permission.routes';
-import * as permissionController from '../../controllers/permission.controller';
-
-// Mock dependencies
-jest.mock('../../controllers/permission.controller', () => ({
-    getAllPermissions: jest.fn((req, res) => res.status(200).json({ success: true })),
-    getPermissionsByModule: jest.fn(),
-}));
+import { errorHandler } from '../../middleware/errorHandler';
 
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticate: jest.fn((req: any, res: any, next: any) => next()),
-    requirePermissions: jest.fn(() => (req: any, res: any, next: any) => next()),
+    authenticate: (req: any, _res: any, next: any) => {
+        req.user = { id: 'test-admin-id', role: 'ADMIN' };
+        next();
+    },
+    requirePermissions: () => (req: any, _res: any, next: any) => next(),
 }));
 
-const app = express();
-app.use(express.json());
-app.use('/api/permissions', permissionRoutes);
+const createTestApp = (): Express => {
+    const app = express();
+    app.use(express.json());
+    app.use('/api/permissions', permissionRoutes);
+    app.use(errorHandler);
+    return app;
+};
 
-describe('Permission Routes', () => {
+const mockPermission = {
+    id: 'perm-123',
+    name: 'user.create',
+    description: 'Create User',
+    module: 'USER',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+};
+
+describe('Permission Routes Integration', () => {
+    let app: Express;
+
+    beforeAll(() => {
+        app = createTestApp();
+    });
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     describe('GET /api/permissions', () => {
-        it('should call getAllPermissions', async () => {
-            await request(app).get('/api/permissions').expect(200);
-            expect(permissionController.getAllPermissions).toHaveBeenCalled();
+        it('should return list of permissions', async () => {
+            prismaMock.permission.findMany.mockResolvedValue([mockPermission] as any);
+
+            const response = await request(app).get('/api/permissions');
+
+            expect(response.status).toBe(200);
+            expect(response.body.success).toBe(true);
+            expect(response.body.data).toHaveLength(1);
         });
     });
 });

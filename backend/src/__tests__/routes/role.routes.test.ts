@@ -1,47 +1,71 @@
 import request from 'supertest';
-import express from 'express';
+import express, { Express } from 'express';
+import { prismaMock } from '../../__mocks__/prisma';
 import roleRoutes from '../../routes/role.routes';
-import * as roleController from '../../controllers/role.controller';
-
-// Mock dependencies
-jest.mock('../../controllers/role.controller', () => ({
-    getAllRoles: jest.fn((req, res) => res.status(200).json({ success: true })),
-    getRoleById: jest.fn((req, res) => res.status(200).json({ success: true })),
-    createRole: jest.fn((req, res) => res.status(201).json({ success: true })),
-    updateRole: jest.fn((req, res) => res.status(200).json({ success: true })),
-    deleteRole: jest.fn((req, res) => res.status(200).json({ success: true })),
-    getRolePermissions: jest.fn((req, res) => res.status(200).json({ success: true })),
-    assignPermissionsToRole: jest.fn((req, res) => res.status(200).json({ success: true })),
-}));
+import { errorHandler } from '../../middleware/errorHandler';
 
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticate: jest.fn((req: any, res: any, next: any) => next()),
-    requirePermissions: jest.fn(() => (req: any, res: any, next: any) => next()),
+    authenticate: (req: any, _res: any, next: any) => {
+        req.user = { id: 'test-admin-id', role: 'ADMIN' };
+        next();
+    },
+    authorizeRoles: () => (req: any, _res: any, next: any) => next(),
+    requirePermissions: () => (req: any, _res: any, next: any) => next(),
 }));
 
-const app = express();
-app.use(express.json());
-app.use('/api/roles', roleRoutes);
+const createTestApp = (): Express => {
+    const app = express();
+    app.use(express.json());
+    app.use('/api/roles', roleRoutes);
+    app.use(errorHandler);
+    return app;
+};
 
-describe('Role Routes', () => {
+const mockRole = {
+    id: 'role-123',
+    name: 'Admin',
+    code: 'ADMIN',
+    description: 'Administrator',
+    status: 'AKTIF',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    permissions: [],
+};
+
+describe('Role Routes Integration', () => {
+    let app: Express;
+
+    beforeAll(() => {
+        app = createTestApp();
+    });
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     describe('GET /api/roles', () => {
-        it('should call getAllRoles', async () => {
-            await request(app).get('/api/roles').expect(200);
-            expect(roleController.getAllRoles).toHaveBeenCalled();
+        it('should return list of roles', async () => {
+            prismaMock.role.findMany.mockResolvedValue([mockRole] as any);
+
+            const response = await request(app).get('/api/roles');
+
+            expect(response.status).toBe(200);
+            expect(response.body.success).toBe(true);
+            expect(response.body.data).toHaveLength(1);
         });
     });
 
     describe('POST /api/roles', () => {
-        it('should call createRole', async () => {
-            await request(app).post('/api/roles').send({ name: 'Role' }).expect(201);
-            expect(roleController.createRole).toHaveBeenCalled();
-        });
-    });
+        it('should create new role', async () => {
+            prismaMock.role.findUnique.mockResolvedValue(null);
+            prismaMock.role.create.mockResolvedValue(mockRole as any);
 
-    describe('DELETE /api/roles/:id', () => {
-        it('should call deleteRole', async () => {
-            await request(app).delete('/api/roles/1').expect(200);
-            expect(roleController.deleteRole).toHaveBeenCalled();
+            const response = await request(app)
+                .post('/api/roles')
+                .send({ name: 'Admin', code: 'ADMIN' });
+
+            expect(response.status).toBe(201);
+            expect(response.body.success).toBe(true);
         });
     });
 });

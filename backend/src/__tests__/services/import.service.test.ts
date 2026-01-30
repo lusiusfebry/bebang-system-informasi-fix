@@ -1,8 +1,8 @@
 import { importService } from '../../services/import.service';
-import { prisma } from '../../config/database';
+import { prisma } from '../../lib/prisma';
 
 
-jest.mock('../../config/database', () => ({
+jest.mock('../../lib/prisma', () => ({
     prisma: {
         employee: {
             findUnique: jest.fn(),
@@ -10,6 +10,7 @@ jest.mock('../../config/database', () => ({
         },
         divisi: { findFirst: jest.fn() },
         department: { findFirst: jest.fn() },
+        karyawan: { create: jest.fn() },
         $transaction: jest.fn((callback) => callback(prisma)),
     },
 }));

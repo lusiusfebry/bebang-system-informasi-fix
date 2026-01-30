@@ -1,18 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../lib/prisma';
 
-// Singleton pattern for Prisma Client
-declare global {
-    // eslint-disable-next-line no-var
-    var prisma: PrismaClient | undefined;
-}
-
-export const prisma = global.prisma || new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['query', 'info', 'warn', 'error'] : ['error'],
-});
-
-if (process.env.NODE_ENV !== 'production') {
-    global.prisma = prisma;
-}
+// Re-export prisma for use in other files
+export { prisma };
 
 // Connect to database
 export async function connectDatabase(): Promise<void> {

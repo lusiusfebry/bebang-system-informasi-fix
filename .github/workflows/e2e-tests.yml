@@ -10,23 +10,66 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: bebang_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
-        node-version: lts/*
-    - name: Install dependencies
+        node-version: 20
+
+    - name: Install Dependencies
       run: |
-        cd frontend
-        npm ci
+        npm install
+        cd frontend && npm install
+        cd ../backend && npm install
+
+    - name: Setup Backend Environment
+      run: |
+        cd backend
+        cp .env.example .env
+        # Override DB URL for test service
+        echo "DATABASE_URL=\"postgresql://postgres:password@localhost:5432/bebang_test?schema=public\"" >> .env
+        echo "JWT_SECRET=\"test-secret-key\"" >> .env
+        echo "PORT=3001" >> .env
+
+    - name: Run Database Migrations & Seed
+      run: |
+        cd backend
+        npx prisma migrate reset --force
+        npx prisma db push
+        npx prisma db seed
+
+    - name: Start Backend
+      run: |
+        cd backend
+        npm run dev &
+        npx wait-on http://localhost:3001/api/health
+
     - name: Install Playwright Browsers
       run: |
         cd frontend
         npx playwright install --with-deps
+
     - name: Run Playwright tests
       run: |
         cd frontend
         npm run test:e2e
+      env:
+        CI: true
     - uses: actions/upload-artifact@v4
       if: always()
       with:
