@@ -5,30 +5,90 @@ import { authenticateAndValidate } from '../middleware/auth.middleware';
 const router = Router();
 
 /**
- * @route   POST /api/auth/login
- * @desc    Login user and return JWT token
- * @access  Public
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: Login user and return JWT token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nik
+ *               - password
+ *             properties:
+ *               nik:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
+ *       401:
+ *         description: Invalid credentials
  */
 router.post('/login', login);
 
 /**
- * @route   GET /api/auth/profile
- * @desc    Get current user profile
- * @access  Private (requires authentication and validates user is active)
+ * @swagger
+ * /api/auth/profile:
+ *   get:
+ *     summary: Get current user profile
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User profile data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
+ *       401:
+ *         description: Unauthorized
  */
 router.get('/profile', authenticateAndValidate, getProfile);
 
 /**
- * @route   POST /api/auth/logout
- * @desc    Logout user (client-side token removal)
- * @access  Private (requires authentication and validates user is active)
+ * @swagger
+ * /api/auth/logout:
+ *   post:
+ *     summary: Logout user
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Logout successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  */
 router.post('/logout', authenticateAndValidate, logout);
 
 /**
- * @route   GET /api/auth/permissions
- * @desc    Get current user permissions
- * @access  Private
+ * @swagger
+ * /api/auth/permissions:
+ *   get:
+ *     summary: Get current user permissions
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User permissions list
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  */
 router.get('/permissions', authenticateAndValidate, getPermissions);
 

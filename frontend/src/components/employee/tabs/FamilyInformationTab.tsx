@@ -414,7 +414,7 @@ export const FamilyInformationTab: React.FC<FamilyInformationTabProps> = ({
                                                                     ...prev,
                                                                     jumlahAnak: prev.jumlahAnak === '' ? 0 : (Number(prev.jumlahAnak) - 1)
                                                                 }));
-                                                            } catch (err) {
+                                                            } catch {
                                                                 alert('Gagal menghapus data anak');
                                                             }
                                                         }
@@ -509,8 +509,7 @@ export const FamilyInformationTab: React.FC<FamilyInformationTabProps> = ({
                                             }));
                                         }
                                         setShowAnakForm(false);
-                                    } catch (err) {
-                                        console.error(err);
+                                    } catch {
                                         alert('Gagal menyimpan data anak');
                                     }
                                 }}
@@ -648,8 +647,7 @@ export const FamilyInformationTab: React.FC<FamilyInformationTabProps> = ({
                                                 }));
                                             }
                                             setShowSaudaraForm(false);
-                                        } catch (err) {
-                                            console.error(err);
+                                        } catch {
                                             alert('Gagal menyimpan data saudara');
                                         }
                                     }}
@@ -715,7 +713,7 @@ export const FamilyInformationTab: React.FC<FamilyInformationTabProps> = ({
                                                                     ...prev,
                                                                     jumlahSaudaraKandung: prev.jumlahSaudaraKandung === '' ? 0 : (Number(prev.jumlahSaudaraKandung) - 1)
                                                                 }));
-                                                            } catch (err) {
+                                                            } catch {
                                                                 alert('Gagal menghapus data saudara');
                                                             }
                                                         }

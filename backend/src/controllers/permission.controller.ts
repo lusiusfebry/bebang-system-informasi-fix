@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
 import { AuthenticatedRequest } from '../types/auth';
-import { prisma } from '../config/database';
+import { prisma } from '../lib/prisma';
 
 export async function getAllPermissions(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {

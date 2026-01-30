@@ -29,7 +29,7 @@ const EmployeeImportContent: React.FC = () => {
         try {
             await importService.downloadTemplate();
             showToast('Template downloaded successfully', 'success');
-        } catch (error) {
+        } catch {
             showToast('Failed to download template', 'error');
         }
     };

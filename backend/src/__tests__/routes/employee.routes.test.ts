@@ -9,10 +9,11 @@ import employeeRoutes from '../../routes/employee.routes';
 
 // Mock the auth middleware
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticate: jest.fn((req, res, next) => {
-        req.user = { id: 'test-user-id', email: 'test@example.com' };
+    authenticate: jest.fn((req: any, res: any, next: any) => {
+        (req as any).user = { id: 'test-user-id', email: 'test@example.com' };
         next();
     }),
+    requirePermissions: jest.fn(() => (req: any, res: any, next: any) => next()),
 }));
 
 // Mock employee service

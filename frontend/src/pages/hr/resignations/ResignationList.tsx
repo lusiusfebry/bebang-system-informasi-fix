@@ -58,7 +58,7 @@ export default function ResignationList() {
             await resignationService.approve(id);
             showToast('Pengajuan disetujui', 'success');
             setRefreshTrigger(prev => prev + 1);
-        } catch (error) {
+        } catch {
             showToast('Gagal menyetujui pengajuan', 'error');
         }
     };
@@ -75,7 +75,7 @@ export default function ResignationList() {
             await resignationService.reject(id, reason);
             showToast('Pengajuan ditolak', 'success');
             setRefreshTrigger(prev => prev + 1);
-        } catch (error) {
+        } catch {
             showToast('Gagal menolak pengajuan', 'error');
         }
     };

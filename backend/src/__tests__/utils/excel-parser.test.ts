@@ -1,8 +1,8 @@
-import { parseExcel } from '../../utils/excel-parser';
+import { parseEmployeeExcel } from '../../utils/excel-parser';
 
 describe('Excel Parser', () => {
     it('should exist', () => {
-        expect(parseExcel).toBeDefined();
+        expect(parseEmployeeExcel).toBeDefined();
     });
 
     // Detailed testing requires file buffer mocking similar to import service

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Login from '../../pages/Login';
 import { BrowserRouter } from 'react-router-dom';
@@ -19,11 +19,13 @@ const mockAuthDefaults = {
     login: vi.fn(),
     logout: vi.fn(),
     loading: false,
-    token: null
+    token: null,
+    isLoading: false,
+    checkAuthStatus: vi.fn()
 };
 
 const renderWithAuth = (component: React.ReactNode, authValue = mockAuthDefaults) => {
-    return render( // @ts-ignore
+    return render(
         <AuthContext.Provider value={authValue}>
             <BrowserRouter>
                 {component}

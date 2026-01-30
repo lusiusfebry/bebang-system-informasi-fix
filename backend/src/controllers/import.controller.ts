@@ -16,6 +16,7 @@ export class ImportController {
 
             // Return validation result along with file path for confirmation
             res.status(200).json({
+                success: true,
                 message: 'File processed successfully',
                 data: {
                     ...result,
@@ -28,6 +29,7 @@ export class ImportController {
             if (req.file) deleteFile(req.file.path);
 
             res.status(500).json({
+                success: false,
                 message: 'Error processing file',
                 error: (error as Error).message
             });
@@ -42,7 +44,7 @@ export class ImportController {
             const { filePath } = req.body;
 
             if (!filePath) {
-                return res.status(400).json({ message: 'File path is required' });
+                return res.status(400).json({ success: false, message: 'File path is required' });
             }
 
             // Resolve relative path to absolute
@@ -55,12 +57,14 @@ export class ImportController {
             const result = await importService.executeImport(filePath);
 
             res.status(200).json({
+                success: true,
                 message: 'Import successful',
                 data: result
             });
         } catch (error) {
             console.error('Import confirm error:', error);
             res.status(500).json({
+                success: false,
                 message: 'Error executing import',
                 error: (error as Error).message
             });

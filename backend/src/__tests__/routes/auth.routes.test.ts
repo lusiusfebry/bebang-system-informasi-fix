@@ -7,7 +7,7 @@ import { authenticateAndValidate } from '../../middleware/auth.middleware';
 // Mock dependencies
 jest.mock('../../controllers/auth.controller');
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticateAndValidate: jest.fn((req, res, next) => next()),
+    authenticateAndValidate: jest.fn((req: any, res: any, next: any) => next()),
 }));
 
 const app = express();

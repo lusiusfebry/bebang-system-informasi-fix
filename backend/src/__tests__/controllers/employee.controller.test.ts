@@ -447,7 +447,7 @@ describe('Employee Controller - Saudara Kandung', () => {
             const req = {
                 params: { id: mockKaryawan.id },
                 body: {
-                    urutanSaudara: 6,
+                    urutanSaudara: 5,
                     namaSaudaraKandung: 'Saudara Keenam',
                     jenisKelamin: 'PEREMPUAN',
                 },

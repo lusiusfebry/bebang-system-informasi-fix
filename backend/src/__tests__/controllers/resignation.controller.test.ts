@@ -25,13 +25,13 @@ describe('Resignation Controller', () => {
         it('should create resignation successfully', async () => {
             const mockResignation = { id: '1', status: 'PENDING' };
             mockRequest.body = { reason: 'Resign' };
-            mockRequest.user = { userId: 'user-1', nik: '123', roleId: 'role-1', roleCode: 'EMP', permissions: [] };
+            (mockRequest as any).user = { userId: 'user-1', nik: '123', roleId: 'role-1', roleCode: 'EMP', permissions: [] };
 
             (resignationService.create as jest.Mock).mockResolvedValue(mockResignation);
 
-            await resignationController.create(mockRequest as any, mockResponse as Response, nextFunction);
+            await resignationController.create(mockRequest as any, mockResponse as Response);
 
-            expect(resignationService.create).toHaveBeenCalledWith(expect.anything(), 'user-1');
+            expect(resignationService.create).toHaveBeenCalledWith(expect.anything());
             expect(mockResponse.status).toHaveBeenCalledWith(201);
             expect(mockResponse.json).toHaveBeenCalledWith(expect.objectContaining({
                 success: true,
@@ -45,11 +45,12 @@ describe('Resignation Controller', () => {
             const mockResignation = { id: '1', status: 'APPROVED' };
             mockRequest.params = { id: '1' };
 
-            (resignationService.approve as jest.Mock).mockResolvedValue(mockResignation);
+            (resignationService.updateStatus as jest.Mock).mockResolvedValue(mockResignation);
+            (mockRequest as any).user = { userId: 'admin-1' };
 
-            await resignationController.approve(mockRequest as any, mockResponse as Response, nextFunction);
+            await resignationController.approve(mockRequest as any, mockResponse as Response);
 
-            expect(resignationService.approve).toHaveBeenCalledWith('1', expect.anything());
+            expect(resignationService.updateStatus).toHaveBeenCalledWith('1', 'APPROVED', 'admin-1');
             expect(mockResponse.json).toHaveBeenCalledWith(expect.objectContaining({
                 success: true,
                 data: mockResignation
@@ -62,11 +63,13 @@ describe('Resignation Controller', () => {
             const mockResignation = { id: '1', status: 'REJECTED' };
             mockRequest.params = { id: '1' };
 
-            (resignationService.reject as jest.Mock).mockResolvedValue(mockResignation);
+            (resignationService.updateStatus as jest.Mock).mockResolvedValue(mockResignation);
+            (mockRequest as any).user = { userId: 'admin-1' };
+            mockRequest.body = { reason: 'Rejected' };
 
-            await resignationController.reject(mockRequest as any, mockResponse as Response, nextFunction);
+            await resignationController.reject(mockRequest as any, mockResponse as Response);
 
-            expect(resignationService.reject).toHaveBeenCalledWith('1', expect.anything());
+            expect(resignationService.updateStatus).toHaveBeenCalledWith('1', 'REJECTED', 'admin-1', 'Rejected');
             expect(mockResponse.json).toHaveBeenCalledWith(expect.objectContaining({
                 success: true,
                 data: mockResignation
@@ -82,7 +85,7 @@ describe('Resignation Controller', () => {
                 meta: { page: 1, limit: 10, total: 0, totalPages: 0 }
             });
 
-            await resignationController.findAll(mockRequest as any, mockResponse as Response, nextFunction);
+            await resignationController.findAll(mockRequest as any, mockResponse as Response);
 
             expect(resignationService.findAll).toHaveBeenCalled();
             expect(mockResponse.json).toHaveBeenCalledWith(expect.objectContaining({

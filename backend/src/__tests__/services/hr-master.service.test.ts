@@ -1,7 +1,7 @@
 import { divisiService } from '../../services/hr-master.service';
-import { prisma } from '../../config/database';
+import { prisma } from '../../lib/prisma';
 
-jest.mock('../../config/database', () => ({
+jest.mock('../../lib/prisma', () => ({
     prisma: {
         divisi: {
             findMany: jest.fn(),
@@ -27,7 +27,7 @@ describe('HR Master Service', () => {
             const result = await divisiService.findAll({}, { page: 1, limit: 10 });
 
             expect(result).toHaveProperty('data');
-            expect(result).toHaveProperty('meta'); // Wait, service returns { data, total... } not meta object explicitly?
+            expect(result).toHaveProperty('total'); // Wait, service returns { data, total... } not meta object explicitly?
             // Service returns { data, total, page, limit, totalPages }
             expect(prisma.divisi.findMany).toHaveBeenCalled();
         });

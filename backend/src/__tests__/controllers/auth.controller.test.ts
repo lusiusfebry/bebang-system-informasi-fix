@@ -90,7 +90,7 @@ describe('Auth Controller', () => {
                 role: { code: 'ADMIN' }
             };
 
-            mockRequest.user = { userId: '1', nik: '12345', roleId: 'role-1', roleCode: 'ADMIN', permissions: [] };
+            (mockRequest as any).user = { userId: '1', nik: '12345', roleId: 'role-1', roleCode: 'ADMIN', permissions: [] };
             (prisma.user.findUnique as jest.Mock).mockResolvedValue(mockUser);
 
             await getProfile(mockRequest as any, mockResponse as Response, nextFunction);
@@ -104,7 +104,7 @@ describe('Auth Controller', () => {
 
     describe('getPermissions', () => {
         it('should return user permissions', async () => {
-            mockRequest.user = {
+            (mockRequest as any).user = {
                 userId: '1',
                 nik: '12345',
                 roleId: 'role-1',

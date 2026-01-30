@@ -6,11 +6,12 @@ import * as permissionController from '../../controllers/permission.controller';
 // Mock dependencies
 jest.mock('../../controllers/permission.controller', () => ({
     getAllPermissions: jest.fn((req, res) => res.status(200).json({ success: true })),
+    getPermissionsByModule: jest.fn(),
 }));
 
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticate: jest.fn((req, res, next) => next()),
-    requirePermissions: jest.fn(() => (req, res, next) => next()),
+    authenticate: jest.fn((req: any, res: any, next: any) => next()),
+    requirePermissions: jest.fn(() => (req: any, res: any, next: any) => next()),
 }));
 
 const app = express();

@@ -6,20 +6,20 @@ import { importController } from '../../controllers/import.controller';
 // Mock dependencies
 jest.mock('../../controllers/import.controller', () => ({
     importController: {
-        downloadTemplate: jest.fn((req, res) => res.status(200).send('template')),
-        uploadAndPreviewExcel: jest.fn((req, res) => res.status(200).json({ success: true })),
-        confirmImport: jest.fn((req, res) => res.status(200).json({ success: true })),
+        downloadTemplate: jest.fn((req: any, res: any) => res.status(200).send('template')),
+        uploadAndPreviewExcel: jest.fn((req: any, res: any) => res.status(200).json({ success: true })),
+        confirmImport: jest.fn((req: any, res: any) => res.status(200).json({ success: true })),
     }
 }));
 
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticate: jest.fn((req, res, next) => next()),
-    requirePermissions: jest.fn(() => (req, res, next) => next()),
+    authenticate: jest.fn((req: any, res: any, next: any) => next()),
+    requirePermissions: jest.fn(() => (req: any, res: any, next: any) => next()),
 }));
 
 jest.mock('../../config/upload', () => ({
     uploadExcelFile: {
-        single: jest.fn(() => (req, res, next) => next()),
+        single: jest.fn(() => (req: any, res: any, next: any) => next()),
     }
 }));
 

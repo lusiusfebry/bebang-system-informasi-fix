@@ -5,6 +5,10 @@ import { ApiError } from '../../middleware/errorHandler';
 
 // Mock dependencies
 jest.mock('../../services/import.service');
+jest.mock('../../config/upload', () => ({
+    deleteFile: jest.fn(),
+    getRelativePath: jest.fn((path) => path),
+}));
 
 describe('Import Controller', () => {
     let mockRequest: Partial<Request>;
@@ -18,6 +22,7 @@ describe('Import Controller', () => {
             status: jest.fn().mockReturnThis(),
             setHeader: jest.fn(),
             send: jest.fn(),
+            download: jest.fn(),
         };
         nextFunction = jest.fn();
         jest.clearAllMocks();
@@ -52,7 +57,7 @@ describe('Import Controller', () => {
 
             expect(mockResponse.json).toHaveBeenCalledWith(expect.objectContaining({
                 success: true,
-                data: mockPreview
+                data: expect.objectContaining(mockPreview)
             }));
         });
 
@@ -61,7 +66,7 @@ describe('Import Controller', () => {
 
             await importController.uploadAndPreviewExcel(mockRequest as Request, mockResponse as Response);
 
-            expect(mockResponse.status).toHaveBeenCalledWith(500);
+            expect(mockResponse.status).toHaveBeenCalledWith(400);
         });
     });
 

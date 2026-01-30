@@ -1,6 +1,6 @@
 import { importService } from '../../services/import.service';
 import { prisma } from '../../config/database';
-import * as ExcelJS from 'exceljs';
+
 
 jest.mock('../../config/database', () => ({
     prisma: {
@@ -15,21 +15,19 @@ jest.mock('../../config/database', () => ({
 }));
 
 describe('Import Service', () => {
-    describe('generateTemplate', () => {
-        it('should return a buffer', async () => {
-            const buffer = await importService.generateTemplate();
-            expect(Buffer.isBuffer(buffer)).toBe(true);
+    describe('getTemplatePath', () => {
+        it('should return a string path', () => {
+            // Mock fs.existsSync to return true
+            jest.spyOn(require('fs'), 'existsSync').mockReturnValue(true);
+            const path = importService.getTemplatePath();
+            expect(typeof path).toBe('string');
         });
     });
 
-    describe('parseAndValidateExcel', () => {
+    describe('previewImport', () => {
         it('should validate excel file', async () => {
-            // Mocking complex excel parsing is hard, simplify expectation or mock exceljs
-            // Here we assume implementation handles empty/mock buffer
-            const mockBuffer = Buffer.from('mock');
-            // This test is limited without real excel file 
-            // but ensures function exists and runs
-            // We might need to mock ExcelJS load
+            // Skip complex mocking for now, just ensure service method exists
+            expect(importService.previewImport).toBeDefined();
         });
     });
 });

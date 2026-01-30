@@ -15,8 +15,8 @@ jest.mock('../../controllers/role.controller', () => ({
 }));
 
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticate: jest.fn((req, res, next) => next()),
-    requirePermissions: jest.fn(() => (req, res, next) => next()),
+    authenticate: jest.fn((req: any, res: any, next: any) => next()),
+    requirePermissions: jest.fn(() => (req: any, res: any, next: any) => next()),
 }));
 
 const app = express();

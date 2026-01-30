@@ -1,9 +1,10 @@
 import { employeeService } from '../../services/employee.service';
-import { prisma } from '../../config/database';
+import { prisma } from '../../lib/prisma';
 
-jest.mock('../../config/database', () => ({
+// Mock with correct model name
+jest.mock('../../lib/prisma', () => ({
     prisma: {
-        employee: {
+        karyawan: {
             findMany: jest.fn(),
             findUnique: jest.fn(),
             create: jest.fn(),
@@ -20,31 +21,31 @@ describe('Employee Service', () => {
         jest.clearAllMocks();
     });
 
-    describe('getAllEmployees', () => {
+    describe('findAll', () => {
         it('should return paginated employees', async () => {
-            (prisma.employee.findMany as jest.Mock).mockResolvedValue([]);
-            (prisma.employee.count as jest.Mock).mockResolvedValue(0);
+            (prisma.karyawan.findMany as jest.Mock).mockResolvedValue([]);
+            (prisma.karyawan.count as jest.Mock).mockResolvedValue(0);
 
-            const result = await employeeService.getAllEmployees({ page: 1, limit: 10 });
+            const result = await employeeService.findAll({ page: 1, limit: 10, sortBy: 'namaLengkap', sortOrder: 'asc' });
 
             expect(result).toHaveProperty('data');
-            expect(prisma.employee.findMany).toHaveBeenCalled();
+            expect(prisma.karyawan.findMany).toHaveBeenCalled();
         });
     });
 
-    describe('createEmployee', () => {
+    describe('create', () => {
         it('should create employee', async () => {
-            const mockEmployee = { id: '1', fullName: 'John Doe', nik: '123' };
+            const mockEmployee = { id: '1', namaLengkap: 'John Doe', nomorIndukKaryawan: '123' };
             const input = {
-                personalInfo: { fullName: 'John Doe', nik: '123' } as any,
-                hrInfo: {} as any,
-                familyInfo: []
-            };
+                namaLengkap: 'John Doe',
+                nomorIndukKaryawan: '123',
+                nomorHandphone: '08123456789'
+            } as any;
 
-            (prisma.employee.create as jest.Mock).mockResolvedValue(mockEmployee);
-            (prisma.employee.findUnique as jest.Mock).mockResolvedValue(null);
+            (prisma.karyawan.create as jest.Mock).mockResolvedValue(mockEmployee);
+            (prisma.karyawan.create as jest.Mock).mockResolvedValue(mockEmployee); // ensure mock is set
 
-            const result = await employeeService.createEmployee(input, 'user-1');
+            const result = await employeeService.create(input);
 
             expect(result).toEqual(mockEmployee);
         });

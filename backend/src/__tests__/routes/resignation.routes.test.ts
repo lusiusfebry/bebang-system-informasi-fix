@@ -6,17 +6,17 @@ import { resignationController } from '../../controllers/resignation.controller'
 // Mock dependencies
 jest.mock('../../controllers/resignation.controller', () => ({
     resignationController: {
-        findAll: jest.fn((req, res) => res.status(200).json({ success: true })),
-        findById: jest.fn((req, res) => res.status(200).json({ success: true })),
-        create: jest.fn((req, res) => res.status(201).json({ success: true })),
-        approve: jest.fn((req, res) => res.status(200).json({ success: true })),
-        reject: jest.fn((req, res) => res.status(200).json({ success: true })),
+        findAll: jest.fn((req: any, res: any) => res.status(200).json({ success: true })),
+        findById: jest.fn((req: any, res: any) => res.status(200).json({ success: true })),
+        create: jest.fn((req: any, res: any) => res.status(201).json({ success: true })),
+        approve: jest.fn((req: any, res: any) => res.status(200).json({ success: true })),
+        reject: jest.fn((req: any, res: any) => res.status(200).json({ success: true })),
     }
 }));
 
 jest.mock('../../middleware/auth.middleware', () => ({
-    authenticate: jest.fn((req, res, next) => next()),
-    requirePermissions: jest.fn(() => (req, res, next) => next()),
+    authenticate: jest.fn((req: any, res: any, next: any) => next()),
+    requirePermissions: jest.fn(() => (req: any, res: any, next: any) => next()),
 }));
 
 const app = express();

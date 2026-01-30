@@ -34,7 +34,7 @@ export default function ResignationForm({ onClose, onSuccess }: ResignationFormP
             // For now, fetching first page or adjust service to fetch all
             const response = await employeeService.getEmployees({ limit: 1000 }); // Basic "all" fetch
             setEmployees(response.data);
-        } catch (error) {
+        } catch {
             showToast('Gagal memuat daftar karyawan', 'error');
         }
     };

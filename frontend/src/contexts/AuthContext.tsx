@@ -66,7 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         try {
             const { permissions, roleCode } = await import('../services/auth.service').then(s => s.fetchPermissions());
             setUser({ ...response.user, permissions, roleCode });
-        } catch (e) {
+        } catch {
             setUser(response.user);
         }
         setIsAuthenticated(true);
